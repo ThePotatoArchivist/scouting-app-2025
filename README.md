@@ -1,4 +1,4 @@
-# scouting-app-2024
+# scouting-app-2025
 
 [![Build all components](https://github.com/4201VitruvianBots/scouting-app-2024/actions/workflows/build.yml/badge.svg)](https://github.com/4201VitruvianBots/scouting-app-2024/actions/workflows/build.yml) [![Format with Prettier](https://github.com/4201VitruvianBots/scouting-app-2024/actions/workflows/format.yml/badge.svg)](https://github.com/4201VitruvianBots/scouting-app-2024/actions/workflows/format.yml)
 
