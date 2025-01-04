@@ -1,6 +1,6 @@
 # scouting-app-2025
 
-[![Build all components](https://github.com/4201VitruvianBots/scouting-app-2024/actions/workflows/build.yml/badge.svg)](https://github.com/4201VitruvianBots/scouting-app-2024/actions/workflows/build.yml) [![Format with Prettier](https://github.com/4201VitruvianBots/scouting-app-2024/actions/workflows/format.yml/badge.svg)](https://github.com/4201VitruvianBots/scouting-app-2024/actions/workflows/format.yml)
+[![Build all components](https://github.com/4201VitruvianBots/scouting-app-2025/actions/workflows/build.yml/badge.svg)](https://github.com/4201VitruvianBots/scouting-app-2025/actions/workflows/build.yml) [![Format with Prettier](https://github.com/4201VitruvianBots/scouting-app-2025/actions/workflows/format.yml/badge.svg)](https://github.com/4201VitruvianBots/scouting-app-2025/actions/workflows/format.yml)
 
 ## Getting Started
 
@@ -17,13 +17,13 @@ These instructions will get you a copy of the project up and running on your loc
 1. Clone the repository
 
 ```
-git clone https://github.com/yourusername/scouting-app-2024.git
+git clone https://github.com/yourusername/scouting-app-2025.git
 ```
 
 2. Navigate into the cloned repository
 
 ```
-cd scouting-app-2024
+cd scouting-app-2025
 ```
 
 3. Install dependencies
