@@ -39,19 +39,18 @@ export type CommentValues =
 export type Net = boolean;
 
 interface capabilities {
-    amp: boolean;
-    speaker: boolean;
-    trap: boolean;
-    climb: boolean;
-    chainTraversal: boolean;
+    coral: boolean;
+    algae: boolean;
+    climbShallow: boolean;
+    climbDeep: boolean;
 }
 
 
 interface preference {
-    ampPrefer: boolean;
-    speakerPerfer: boolean;
-    trapPrefer: boolean;
-    climbPrefer: boolean;
+    coralPerfer: boolean;
+    algaePerfer: boolean;
+    climbSPerfer: boolean;
+    climbDPerfer: boolean;
 }
 
 export type SuperPosition = 'red_ss' | 'blue_ss';

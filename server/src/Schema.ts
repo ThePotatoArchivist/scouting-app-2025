@@ -67,11 +67,7 @@ const superScoutDataSchema = new mongoose.Schema<SuperData>({
     },
     defended: Boolean,
     humanShooter: {
-        Net: {
-            amp: Boolean,
-            source: Boolean,
-            center: Boolean,
-        },
+        Net: Boolean,
     },
     // Are you asking about this error?
     // Currently the error is it's supposed to be a string array but it's only a string
@@ -106,17 +102,17 @@ const pitDataSchema = new mongoose.Schema<PitDataSchemaType>({
     scouterName: String,
     teamNumber: Number,
     capabilities: {
-        amp: Boolean,
-        speaker: Boolean,
-        trap: Boolean,
-        climb: Boolean,
-        chainTraversal: Boolean,
+        coral: Boolean,
+        algae: Boolean,
+        climbShallow: Boolean,
+        climbDeep: Boolean,
+
     },
     preference: {
-        ampPrefer: Boolean,
-        speakerPerfer: Boolean,
-        trapPrefer: Boolean,
-        climbPrefer: Boolean,
+        algaePerfer: Boolean,
+        coralPrefer: Boolean,
+        climbSPrefer: Boolean,
+        climbDPerfer:Boolean
     },
     autoCapability: [String],
     teamRole: {
