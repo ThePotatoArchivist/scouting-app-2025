@@ -34,7 +34,7 @@ const foulTypes: Foul[] = [
     'other',
 ];
 
-const defaultNet: Net = false;
+const defaultNet: Net = false
 const breakTypes: Break[] = ['mechanismDmg', 'batteryFall', 'commsFail'];
 
 const defaultSuperTeamState: SuperTeamState = {
@@ -267,7 +267,7 @@ function SuperApp() {
             />
         </div>
             <MultiButton
-                className='mx-5 mt-10 w-full max-w-40 outline-black'
+                className='mx-10 mt-10 w-full max-w-40 outline-black'
                 onChange={setShooterPlayerTeam}
                 values={[
                     team1.teamNumber ?? -1,
