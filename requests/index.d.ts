@@ -36,6 +36,8 @@ export type CommentValues =
     | 'weak_build'
     | 'avoids_under_stage';
 
+export type Net = boolean;
+
 interface capabilities {
     amp: boolean;
     speaker: boolean;
@@ -44,11 +46,7 @@ interface capabilities {
     chainTraversal: boolean;
 }
 
-interface HighNote {
-    amp: boolean;
-    source: boolean;
-    center: boolean;
-}
+
 interface preference {
     ampPrefer: boolean;
     speakerPerfer: boolean;
@@ -124,7 +122,7 @@ export interface SuperData {
     break: Record<Break, number>;
     defense: DefenseRank;
     defended: boolean;
-    humanShooter?: { highNotes: HighNote };
+    humanShooter?: { Net: Net };
     comments: CommentValues[];
 }
 

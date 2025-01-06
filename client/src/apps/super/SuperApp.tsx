@@ -9,7 +9,7 @@ import {
     Break,
     MatchSchedule,
     SuperData,
-    HighNote,
+    Net,
     RobotPosition,
     ScouterPosition,
 } from 'requests';
@@ -34,11 +34,7 @@ const foulTypes: Foul[] = [
     'other',
 ];
 
-const defaultHighNote: HighNote = {
-    amp: false,
-    center: false,
-    source: false,
-};
+const defaultNet: Net = false;
 const breakTypes: Break[] = ['mechanismDmg', 'batteryFall', 'commsFail'];
 
 const defaultSuperTeamState: SuperTeamState = {
@@ -67,7 +63,7 @@ function SuperApp() {
     const [sendQueue, sendAll, queue, sending] = useQueue();
     const [matchNumber, setMatchNumber] = useState<number>();
     const [showCheck, setShowCheck] = useState(false);
-    const [highNotes, setHighNotes] = useState(defaultHighNote);
+    const [Net, setNet] = useState(defaultNet);
     const [history, setHistory] = useState<
         { 1: SuperTeamState; 2: SuperTeamState; 3: SuperTeamState }[]
     >([]);
@@ -135,7 +131,7 @@ function SuperApp() {
                     humanShooter:
                         shooterPlayerTeam === team.teamNumber
                             ? {
-                                  highNotes,
+                                  Net,
                               }
                             : undefined,
                     comments: team.cannedComments.map(option => option.value),
@@ -143,7 +139,7 @@ function SuperApp() {
         );
 
         data.map(e => sendQueue('/data/super', e));
-        setHighNotes(defaultHighNote);
+        setNet(defaultNet);
         setTeam1(defaultSuperTeamState);
         setTeam2(defaultSuperTeamState);
         setTeam3(defaultSuperTeamState);

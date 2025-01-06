@@ -67,7 +67,7 @@ const superScoutDataSchema = new mongoose.Schema<SuperData>({
     },
     defended: Boolean,
     humanShooter: {
-        highNotes: {
+        Net: {
             amp: Boolean,
             source: Boolean,
             center: Boolean,
