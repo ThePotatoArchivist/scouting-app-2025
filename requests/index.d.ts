@@ -1,5 +1,4 @@
-export type ClimbPosition = StageLocation | 'park' | 'none' | 'failed';
-export type StageLocation = 'amp' | 'source' | 'center';
+export type ClimbPosition = 'shallow'| 'deep' | 'park' | 'none' | 'failed';
 export type PickupLocation =
     | 'speaker'
     | 'middle'
@@ -90,23 +89,28 @@ export interface MetaData {
     robotPosition: RobotPosition;
 }
 
-interface ScoreRanges {
-    near: number;
-    mid: number;
-    far: number;
-    amp: number;
-    miss: number;
+interface coral {
+    L1: number;
+    L2: number;
+    L3: number;
+    L4: number;
 }
 
+interface algae {
+    netHuman: number;
+    netRobot: number;
+    processor: number;
+}
 // - `POST` `/data/match`
 
 export interface MatchData {
     metadata: MetaData;
     // No competition info
     leftStartingZone: boolean;
-    autoNotes: ScoreRanges;
-    teleNotes: ScoreRanges;
-    trapNotes: number;
+    autoCoral: coral;
+    autoAlgae: algae;
+    teleCoral: coral;
+    teleAlgae: algae;
     climb: ClimbPosition;
     // disabledSeconds: number;
 }

@@ -21,23 +21,28 @@ const superappsMetaDataSchema = {
     },
 };
 
-const scoreRanges = {
-    near: Number,
-    mid: Number,
-    far: Number,
-    amp: Number,
-    miss: Number,
+const coral = {
+    L1: Number,
+    L2: Number,
+    L3: Number,
+    L4: Number
+};
+const algae = {
+    netHuman:Number,
+    netRobot: Number,
+    processor: Number
 };
 
 const matchDataSchema = new mongoose.Schema<MatchData>({
     metadata: matchappsMetaDataSchema,
     leftStartingZone: Boolean,
-    autoNotes: scoreRanges,
-    teleNotes: scoreRanges,
-    trapNotes: Number,
+    autoCoral: coral,
+    autoAlgae: algae,
+    teleCoral: coral, 
+    teleAlgae: algae,
     climb: {
         type: String,
-        enum: ['amp', 'source', 'center', 'park', 'none', 'failed'],
+        enum: ['shallow','deep', 'park', 'none', 'failed'],
     },
 });
 
