@@ -15,7 +15,6 @@ import {
 } from 'requests';
 import SuperTeam from './components/SuperTeam';
 import { SuperTeamState } from './components/SuperTeam';
-import MultiSelectFieldButton from './components/MultiSelectFieldButton';
 import NumberInput from '../../components/NumberInput';
 import MultiButton from '../../components/MultiButton';
 import { useStatus } from '../../lib/useStatus';
@@ -263,20 +262,14 @@ function SuperApp() {
                     />
                 </button>
             </div>
-
+        <div>
             <p className='text-xl text-white'>Match Number</p>
             <NumberInput
                 onChange={setMatchNumber}
                 value={matchNumber}
                 className='m-2 p-2 text-xl text-black'
             />
-
-            <div className='grid grid-cols-3 justify-items-center gap-10 px-10'>
-                <SuperTeam teamState={team1} setTeamState={handleTeam1} />
-                <SuperTeam teamState={team2} setTeamState={handleTeam2} />
-                <SuperTeam teamState={team3} setTeamState={handleTeam3} />
-            </div>
-
+        </div>
             <MultiButton
                 className='mx-5 mt-10 w-full max-w-40 outline-black'
                 onChange={setShooterPlayerTeam}
@@ -294,13 +287,12 @@ function SuperApp() {
                 selectedClassName='bg-[#48c55c]'
                 unSelectedClassName='bg-white'
             />
-
-            <MultiSelectFieldButton
-                highNotes={highNotes}
-                setHighNotes={setHighNotes}
-                alliance={superPosition === 'blue_ss'}
-                scouterPosition={scouterPosition}
-                className='relative mx-auto my-5 h-[40em] w-[40em] justify-items-center bg-cover bg-center '></MultiSelectFieldButton>
+            <div className='grid grid-cols-3 justify-items-center gap-10 px-10'>   
+                <SuperTeam teamState={team1} setTeamState={handleTeam1} />
+                <SuperTeam teamState={team2} setTeamState={handleTeam2} />
+                <SuperTeam teamState={team3} setTeamState={handleTeam3} />
+            </div>
+           
 
             <button
                 onClick={() => {

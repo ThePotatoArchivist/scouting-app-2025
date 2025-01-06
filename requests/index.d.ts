@@ -20,6 +20,7 @@ export type Foul =
     | 'protectedZone'
     | 'pinning'
     | 'multiplePieces'
+    | 'cageFoul'
     | 'other';
 export type Break = 'mechanismDmg' | 'batteryFall' | 'commsFail';
 export type DefenseRank = 'fullDef' | 'someDef' | 'noDef';

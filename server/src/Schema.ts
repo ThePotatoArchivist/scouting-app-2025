@@ -53,6 +53,7 @@ const superScoutDataSchema = new mongoose.Schema<SuperData>({
         protectedZone: Number,
         pinning: Number,
         multiplePieces: Number,
+        cageFoul: Number,
         other: Number,
     },
     break: {
