@@ -34,6 +34,14 @@ const foulTypes: Foul[] = [
     'other',
 ];
 
+interface superScores {
+    netHuman: number;
+}
+
+const defaultScore: superScores = {
+    netHuman: 0
+};
+
 const defaultNet: Net = false
 const breakTypes: Break[] = ['mechanismDmg', 'batteryFall', 'commsFail'];
 
@@ -46,7 +54,7 @@ const defaultSuperTeamState: SuperTeamState = {
         Break,
         number
     >,
-    defenseRank: 'noDef',
+    defenseRank: 'noDef', 
     wasDefended: false,
     teamNumber: undefined,
     cannedComments: [],
@@ -59,6 +67,7 @@ function SuperApp() {
     const [team1, setTeam1] = useState(defaultSuperTeamState);
     const [team2, setTeam2] = useState(defaultSuperTeamState);
     const [team3, setTeam3] = useState(defaultSuperTeamState);
+    const [count, setCount] = useState<superScores>(defaultScore);
     const [shooterPlayerTeam, setShooterPlayerTeam] = useState<number>();
     const [sendQueue, sendAll, queue, sending] = useQueue();
     const [matchNumber, setMatchNumber] = useState<number>();
@@ -93,6 +102,7 @@ function SuperApp() {
         setTeam3(teamValue);
         saveHistory();
     };
+    
 
     const handleSubmit = async () => {
         if (
@@ -128,6 +138,7 @@ function SuperApp() {
                     break: team.breakCount,
                     defense: team.defenseRank,
                     defended: team.wasDefended,
+                    netHuman: count.netHuman,
                     humanShooter:
                         shooterPlayerTeam === team.teamNumber
                             ? {
@@ -143,6 +154,7 @@ function SuperApp() {
         setTeam1(defaultSuperTeamState);
         setTeam2(defaultSuperTeamState);
         setTeam3(defaultSuperTeamState);
+        setCount(defaultScore);
         setHistory([]);
         setMatchNumber(matchNumber + 1);
         setShowCheck(true);
@@ -288,7 +300,6 @@ function SuperApp() {
                 <SuperTeam teamState={team2} setTeamState={handleTeam2} />
                 <SuperTeam teamState={team3} setTeamState={handleTeam3} />
             </div>
-           
 
             <button
                 onClick={() => {
