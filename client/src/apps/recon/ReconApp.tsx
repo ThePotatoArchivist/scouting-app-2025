@@ -15,18 +15,21 @@ import scheduleJson from '../../assets/matchSchedule.json';
 const schedule = scheduleJson as MatchSchedule;
 
 const matchStats: Exclude<keyof MatchDataAggregations, '_id'>[] = [
-    'averageTeleSpeakerNotes',
-    'averageTeleAmpNotes',
-    'averageAutoSpeakerNotes',
-    'averageAutoAmpNotes',
-    'averageTrapNotes',
-    'maxTeleSpeakerNotes',
-    'maxTeleAmpNotes',
-    'maxAutoSpeakerNotes',
-    'maxAutoAmpNotes',
-    'maxTrapNotes',
-    'avgClimbRate',
-    'harmonyRate',
+    'averageTeleCoral',
+    'averageTeleAlgaeProcessor',
+    'averageAutoCoral',
+    'averageAutoAlgaeProcessor',
+    'averageAutoAlgaeRobotNet',
+    'maxTeleCoral',
+    'maxTeleAlgaeProcessor',
+    'maxTeleAlgaeRobotNet',
+    'maxAutoCoral',
+    'maxAutoAlgaeProcessor',
+    'maxAutoAlgaeRobotNet',
+    'maxCoral',
+    'maxAlgaeProcessor',
+    'maxAlgaeRobotNet',
+    'avgClimbRate'
 ];
 const superStats: Exclude<keyof SuperDataAggregations, '_id'>[] = [
     'avgFouls',
@@ -57,7 +60,7 @@ function ReconApp() {
     }, [matchNumber]);
 
     return (
-        <main className='mx-auto flex h-screen grid-flow-row flex-col content-center items-center justify-center bg-[#171c26] text-white'>
+        <main className='mx-auto flex h-screen grid-flow-row flex-col content-center items-center justify-center bg-[#171c26] text-white bg-repeat'>
             <h1 className='my-8 text-center text-3xl font-bold text-[#48c55c]'>
                 Recon Interface
             </h1>

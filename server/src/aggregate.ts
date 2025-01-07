@@ -35,59 +35,6 @@ async function averageAndMax(): Promise<MatchDataAggregations[]> {
             },
         },
     ]);
-    // const spotLightCounts = await matchApp.aggregate([
-    //    { $group: {
-    //         _id: {
-    //             matchNumber: '$metadata.matchNumber',
-    //             alliance: {
-    //                 $cond:  [
-    //                     {$in: [ '$metadata.robotPosition', ['red_1', 'red_2', 'red_3']]},
-    //                     'red',
-    //                     'blue'
-    //                 ]
-    //             }
-    //         },
-    //         climbSource: {
-    //             $sum: { $cond: [{$eq: ['$climb', 'source']}, 1, 0]}
-    //         },
-    //         climbCenter: {
-    //             $sum: { $cond: [{$eq: ['$climb', 'center']}, 1, 0]}
-    //         },
-    //         climbAmp: {
-    //             $sum: { $cond: [{$eq: ['$climb', 'amp']}, 1, 0]}
-    //         },
-    //     }},
-    //     {$lookup: {
-    //         from: 'superapps',
-    //         foreignField: 'metadata.matchNumber',
-    //         localField: '_id.matchNumber',
-    //         as: 'test'
-    //     }}
-    // {$addFields: {
-    //       "humanShooter.highNotes.amp":"$amp"
-    // }},
-    // {$group:{_id:"$_id", HumanShooter:{$push:"$HumanShooter"}}},
-    // {$project:{HumanShooter:1,_id:0}}
-    // {$group: {
-    //     _id: {
-    //     humanShooter: '$humanShooter.highNotes',
-    // //       climb: { $cond: [{$eq: ['$climb', 'amp']}, 1, 0]}
-    //      }
-    //      }
-
-    //  }
-    // ])
-    //    { $lookup: {
-    //         from: 'superapps',
-    //         foreignField: 'humanShooter.highNotes.amp',
-    //         localField: 'climb',
-    //         as:'spotlight'
-    //     }},
-    //    { $addFields: {
-    //         spotlight: {
-    //            $add: { $cond: [{ $eq: ['$humanShooter', '$climb']},1,0] }
-    //         }
-    //     }}
 
     const matches = await matchApp
         .find()
@@ -97,63 +44,93 @@ async function averageAndMax(): Promise<MatchDataAggregations[]> {
         {
             $group: {
                 _id: { teamNumber: '$metadata.robotTeam' },
-                averageTeleSpeakerNotes: {
+                averageTeleCoral: {
                     $avg: {
                         $add: [
-                            '$teleNotes.near',
-                            '$teleNotes.mid',
-                            '$teleNotes.far',
+                            '$teleCoral.L1',
+                            '$teleCoral.L2',
+                            '$teleCoral.L3',
+                            '$teleCoral.L4'
                         ],
                     },
                 },
-                averageTeleAmpNotes: { $avg: '$teleNotes.amp' },
-                averageAutoSpeakerNotes: {
+                averageTeleAlgaeProcessor: { $avg: '$teleAlgae.processor' },
+                averageTeleAlgaeRobotNet: { $avg: '$teleAlgae.netRobot'},
+                averageAutoCoral: {
                     $avg: {
                         $add: [
-                            '$autoNotes.near',
-                            '$autoNotes.mid',
-                            '$autoNotes.far',
+                            '$autoCoral.L1',
+                            '$autoCoral.L2',
+                            '$autoCoral.L3',
+                            '$autoCoral.L4'
                         ],
                     },
                 },
-                averageAutoAmpNotes: { $avg: '$autoNotes.amp' },
-                averageTrapNotes: { $avg: '$trapNotes' },
-                maxTeleSpeakerNotes: {
+                averageAutoAlgaeProcessor: { $avg: '$autoAlgae.processor' },
+                averageAutoAlgaeRobotNet: { $avg: '$autoAlgae.netRobot' },
+                maxTeleCoral: {
                     $max: {
                         $add: [
-                            '$teleNotes.near',
-                            '$teleNotes.mid',
-                            '$teleNotes.far',
+                            '$teleCoral.L1',
+                            '$teleCoral.L2',
+                            '$teleCoral.L3',
+                            '$teleCoral.L4'
                         ],
                     },
                 },
-                maxTeleAmpNotes: { $max: '$teleNotes.amp' },
-                maxAutoSpeakerNotes: {
+                maxTeleAlgaeProcessor: { $max: '$teleAlgae.processor' },
+                maxTeleAlgaeRobotNet: { $max: '$teleAlgae.netRobot' },
+                maxAutoCoral: {
                     $max: {
                         $add: [
-                            '$autoNotes.near',
-                            '$autoNotes.mid',
-                            '$autoNotes.far',
+                            '$autoCoral.L1',
+                            '$autoCoral.L2',
+                            '$autoCoral.L3',
+                            '$autoCoral.L4'
                         ],
                     },
                 },
-                maxAutoAmpNotes: { $max: '$autoNotes.amp' },
-                maxTrapNotes: { $max: '$trapNotes' },
+                maxAutoAlgaeProcessor: { $max: '$autoAlgae.processor' },
+                maxCoral: {
+                    $max: {
+                        $add: [
+                            '$autoCoral.L1',
+                            '$autoCoral.L2',
+                            '$autoCoral.L3',
+                            '$autoCoral.L4',
+                            '$teleCoral.L1',
+                            '$teleCoral.L2',
+                            '$teleCoral.L3',
+                            '$teleCoral.L4'
+                        ],
+                    },
+                },
+                maxAlgaeProcessor: {
+                    $max: {
+                        $add: [
+                            'teleAlgae.processor',
+                            'autoAlgae.processor'
+                        ],
+                    },
+                },
+                maxAlgaeRobotNet: { 
+                    $max: {
+                        $add: [
+                            '$teleAlgae.netRobot',
+                            '$autoAlgae.netRobot'
+                        ],
+                    }, 
+                },
                 avgClimbRate: {
                     $avg: {
                         $cond: [
-                            { $in: ['$climb', ['source', 'center', 'amp']] },
+                            { $in: ['$climb', ['shallow', 'deep', 'park']] },
                             1,
                             { $cond: [{ $eq: ['$climb', 'failed'] }, 0, null] },
                         ],
                     },
                 },
-            } satisfies {
-                [K in keyof Omit<
-                    MatchDataAggregations,
-                    'harmonyRate'
-                >]: unknown;
-            },
+            }
         },
     ]);
 
@@ -189,6 +166,7 @@ async function superAverageAndMax(): Promise<SuperDataAggregations[]> {
                             '$fouls.multiplePieces',
                             '$fouls.insideRobot',
                             '$fouls.pinning',
+                            '$fouls.cageFoul',
                             '$fouls.other',
                         ],
                     },
@@ -200,6 +178,7 @@ async function superAverageAndMax(): Promise<SuperDataAggregations[]> {
                             '$fouls.multiplePieces',
                             '$fouls.insideRobot',
                             '$fouls.pinning',
+                            '$fouls.cageFoul',
                             '$fouls.other',
                         ],
                     },
