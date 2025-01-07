@@ -28,7 +28,6 @@ const coral = {
     L4: Number
 };
 const algae = {
-    netHuman:Number,
     netRobot: Number,
     processor: Number
 };
