@@ -28,15 +28,16 @@ function RegionButton({
 }) {
     return (
         <div className='flex flex-col items-center'>
+            <p className='text-4xl'>{label}</p>
             <button
-            className={` ${className} text-5xl rounded-md border-black border-2 min-w-24 h-24 `}
+            className={` ${className} text-5xl rounded-md border-black border-2 min-w-44 h-44 `}
             onClick={() => handleCount(autoKey, teleKey)}
             id='one'>
             <p>
                 {count[teleOp ? teleKey : autoKey]}
             </p>
         </button>
-        <p>{label}</p>
+        
         </div>
     );
 }
@@ -96,7 +97,7 @@ function FieldButton({
                 className={`mx-auto justify-center w-[20em] bg-center object-contain brightness-75 transition-[filter] duration-200
                     `}>
                     <>
-                    <div className='my-10 flex justify-center text-3xl font-semibold text-green-500'>Coral</div>
+                    <div className='my-10 flex justify-center text-4xl font-semibold text-black'>Coral</div>
                         <div className='mb-20 flex justify-center gap-x-4 '>
                         <RegionButton
                             teleOp={teleOp}
@@ -142,7 +143,7 @@ function FieldButton({
                     </>
                 
                     <>
-                    <div className='my-10 flex justify-center text-3xl font-semibold text-green-500'>Algae</div>
+                    <div className='my-10 flex justify-center text-4xl font-semibold text-black'>Algae</div>
                         <div className=' mb-20 flex justify-center gap-x-4'>
                         
                         <RegionButton
