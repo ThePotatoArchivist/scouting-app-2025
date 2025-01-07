@@ -36,7 +36,7 @@ interface MatchScores {
     teleAlgaenetRobot: number;
     teleProcessor: number;
 }
-const defualtScores: MatchScores = {
+const defaultScores: MatchScores = {
     autoL1: 0,
     autoL2: 0,
     autoL3: 0,
@@ -56,7 +56,7 @@ function MatchApp() {
     const [sendQueue, sendAll, queue, sending] = useQueue();
     const [teamNumber, setTeamNumber] = useState<number>();
     const [matchNumber, setMatchNumber] = useState<number>();
-    const [count, setCount] = useState<MatchScores>(defualtScores);
+    const [count, setCount] = useState<MatchScores>(defaultScores);
     const [leave, setLeave] = useState(false); //false=Not Left, true=Left
     const [countHistory, setCountHistory] = useState<MatchScores[]>([]);
     const [climbPosition, setClimbPosition] = useState<ClimbPosition>('none');
@@ -106,7 +106,7 @@ function MatchApp() {
         };
 
         sendQueue('/data/match', data);
-        setCount(defualtScores);
+        setCount(defaultScores);
         setClimbPosition('none');
         setLeave(false);
         setMatchNumber(matchNumber + 1);
@@ -161,7 +161,7 @@ function MatchApp() {
         };
 
         sendQueue('/data/match', data);
-        setCount(defualtScores);
+        setCount(defaultScores);
         setClimbPosition('none');
         setLeave(false);
         setMatchNumber(matchNumber + 1);

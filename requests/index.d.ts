@@ -121,6 +121,7 @@ export interface SuperData {
     break: Record<Break, number>;
     defense: DefenseRank;
     defended: boolean;
+    netHuman: number;
     humanShooter?: { Net: Net };
     comments: CommentValues[];
 }

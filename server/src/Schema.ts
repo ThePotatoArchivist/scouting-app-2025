@@ -65,6 +65,7 @@ const superScoutDataSchema = new mongoose.Schema<SuperData>({
         enum: ['fullDef', 'someDef', 'noDef'],
     },
     defended: Boolean,
+    netHuman: Number,
     humanShooter: {
         Net: {
             amp: Boolean,
