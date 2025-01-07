@@ -1,21 +1,74 @@
-import { Dispatch } from 'react';
+import { Dispatch, SetStateAction } from 'react';
+import { MatchScores } from '../MatchApp';
 import MultiButton from '../../../components/MultiButton';
 
+type countKeys = keyof MatchScores;
 
-function LeaveButton({
+function RegionButton({
+    handleCount,
+    className,
+    teleKey,
+    autoKey,
+    teleOp,
+    count,
+    label,
+
+}: {
+    handleCount: (
+        autokey: countKeys,
+        telekey: countKeys,
+        aKey?: countKeys
+    ) => void;
+    className?: string;
+    teleKey: countKeys;
+    autoKey: countKeys;
+    teleOp: boolean;
+    count: MatchScores;
+    label?: string;
+}) {
+    return (
+        <div className='flex flex-col items-center'>
+            <button
+            className={` ${className} text-5xl rounded-md border-black border-2 min-w-24 h-24 `}
+            onClick={() => handleCount(autoKey, teleKey)}
+            id='one'>
+            <p>
+                {count[teleOp ? teleKey : autoKey]}
+            </p>
+        </button>
+        <p>{label}</p>
+        </div>
+    );
+}
+
+function FieldButton({
     setLeave,
+    setCount,
     teleOp,
     leave,
+    count,
 }: {
     setLeave?: Dispatch<boolean>;
+    setCount: Dispatch<SetStateAction<MatchScores>>;
     teleOp: boolean;
     leave?: boolean;
+    count: MatchScores;
 }) {
-    
-    
+    const handleCount = (autoKey: countKeys, teleKey: countKeys) => {
+        //if (teleOp) {
+            const finalKey = teleOp ? teleKey : autoKey;
+            setCount(prevCount => ({
+                ...prevCount,
+                [finalKey]: prevCount[finalKey] + 1,
+            }));
+      //  }
+    };
+
     const handleLeave = () => {
         setLeave?.(!leave);
     };
+
+    
     return (
         <>
             <div className='flex items-center justify-center gap-2 py-2'>
@@ -24,8 +77,8 @@ function LeaveButton({
                         <div className='flex-col items-center justify-center pr-3'>
                             <h1 className='text-4xl'>Leave? </h1>
                             <p>
-                                The robot must exit the barge
-                                <br /> zone to select yes.
+                                The robot must cross the starting
+                                <br /> line completely to select yes.
                             </p>
                         </div>
                         <MultiButton
@@ -36,14 +89,87 @@ function LeaveButton({
                             onChange={handleLeave}
                         />
                     </>
-                    
                 )}
             </div>
+
+            <div
+                className={`mx-auto justify-center w-[20em] bg-center object-contain brightness-75 transition-[filter] duration-200
+                    `}>
+                    <>
+                    <div className='my-10 flex justify-center text-3xl font-semibold text-green-500'>Coral</div>
+                        <div className='mb-20 flex justify-center gap-x-4 '>
+                        <RegionButton
+                            teleOp={teleOp}
+                            count={count}
+                            handleCount={handleCount}
+                            autoKey='autoL1'
+                            teleKey='teleL1'
+                            className={` `}
+                            label='L1'
+                        />
+
+                        <RegionButton
+                            teleOp={teleOp}
+                            count={count}
+                            handleCount={handleCount}
+                            autoKey='autoL2'
+                            teleKey='teleL2'
+                            className={``}
+                            label='L2'
+                        />
+                    
+                        <RegionButton
+                            teleOp={teleOp}
+                            count={count}
+                            handleCount={handleCount}
+                            autoKey='autoL3'
+                            teleKey='teleL3'
+                            className={``}
+                            label='L3'
+                        />
+                        
+                        <RegionButton
+                            teleOp={teleOp}
+                            count={count}
+                            handleCount={handleCount}
+                            autoKey='autoL4'
+                            teleKey='teleL4'
+                            className={``}
+                            label='L4'
+                        />
+
+                    </div>
+                    </>
+                
+                    <>
+                    <div className='my-10 flex justify-center text-3xl font-semibold text-green-500'>Algae</div>
+                        <div className=' mb-20 flex justify-center gap-x-4'>
+                        
+                        <RegionButton
+                            teleOp={teleOp}
+                            count={count}
+                            handleCount={handleCount}
+                            autoKey='autoAlgaenetRobot'
+                            teleKey='teleAlgaenetRobot'
+                            className={``}
+                            label='Net'
+                        />
+                    
+                        <RegionButton
+                            teleOp={teleOp}
+                            count={count}
+                            handleCount={handleCount}
+                            autoKey='autoProcessor'
+                            teleKey='teleProcessor'
+                            className={``}
+                            label='Processor'
+                        />
+                        </div>
+                    </>
+            </div>
+
         </>
-
-
     );
 }
-export default LeaveButton;
 
-
+export default FieldButton;
