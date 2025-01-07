@@ -93,7 +93,6 @@ interface coral {
 }
 
 interface algae {
-    netHuman: number;
     netRobot: number;
     processor: number;
 }
