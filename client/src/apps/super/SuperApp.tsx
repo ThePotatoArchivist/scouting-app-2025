@@ -21,6 +21,7 @@ import { useStatus } from '../../lib/useStatus';
 import { useQueue } from '../../lib/useQueue';
 import scheduleFile from '../../assets/matchSchedule.json';
 import { usePreventUnload } from '../../lib/usePreventUnload';
+import HumanButton from './components/HumanNetCounter';
 // import CreatableSelect from 'react-select/creatable';
 // import SelectSearch, { SelectSearchOption } from 'react-select-search';
 
@@ -299,6 +300,12 @@ function SuperApp() {
                 <SuperTeam teamState={team1} setTeamState={handleTeam1} />
                 <SuperTeam teamState={team2} setTeamState={handleTeam2} />
                 <SuperTeam teamState={team3} setTeamState={handleTeam3} />
+            </div>
+                <HumanButton>
+                    
+                </HumanButton>
+            <div>
+                
             </div>
 
             <button
