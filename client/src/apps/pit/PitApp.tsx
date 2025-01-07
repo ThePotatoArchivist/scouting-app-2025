@@ -34,7 +34,6 @@ function PitApp() {
     const [coralChecked, setcoralChecked] = useState(false);
     const [climbShallowChecked, setclimbShallowChecked] = useState(false);
     const [climbDeepChecked, setclimbDeepChecked] = useState(false);
-    const [chainTraversalChecked, setChainTraversalChecked] = useState(false);
     const [algaePrefChecked, setalgaePrefChecked] = useState(false);
     const [coralPrefChecked, setcoralPrefChecked] = useState(false);
     const [climbShallowPrefChecked, setclimbShallowPrefChecked] = useState(false);
@@ -90,7 +89,6 @@ function PitApp() {
             setAdditionalNotes('');
             setRole(undefined);
             setTeamNumber(0);
-            setChainTraversalChecked(false);
             setclimbDeepChecked(false);
             setclimbDeepPrefChecked(false);
             setDrivetrain(undefined);
@@ -224,19 +222,7 @@ function PitApp() {
                             Deep Cage
                         </label>
                     </div>
-                     <div className='mb-4 flex items-center whitespace-nowrap'>
-                        <Checkbox
-                            checked={chainTraversalChecked}
-                            onChange={setChainTraversalChecked}
-                            className='form-checkbox ml-20 h-5 w-10 text-blue-600'
-                            boxClassName='h-7 w-7'
-                        />
-                        <label
-                            htmlFor='underChainTraversal'
-                            className='ml-5 mr-4 cursor-pointer select-none text-white'>
-                            Under Chain Traversal
-                        </label>
-                    </div> 
+                     
                 </div>
 
                 <h1 className='mb-3 mt-8 text-center text-white'>
