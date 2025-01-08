@@ -205,6 +205,7 @@ function MatchApp() {
     useStatus(robotPosition, matchNumber, scouterName);
 
     return (
+       <div className='bg-[#171c26]'> 
         <main className='mx-auto flex w-min grid-flow-row flex-col content-center items-center justify-center '>
             {showCheck && (
                 <MaterialSymbol
@@ -216,7 +217,7 @@ function MatchApp() {
                     className='absolute right-10 top-0 ml-10'
                 />
             )}
-            <h1 className='my-8 text-center text-3xl'>Match Scouting App</h1>
+            <h1 className='my-8 text-center font-semibold text-[#48c55c] text-3xl'>Match Scouting App</h1>
 
             <div className='fixed left-4 top-4 z-20 flex flex-row gap-3 rounded-md bg-slate-200 p-1'>
                 <LinkButton link='/' className='snap-none'>
@@ -269,13 +270,13 @@ function MatchApp() {
                 </button>
             </div>
 
-            <p className='mb-2 mt-2 text-2xl'>Match Number</p>
+            <p className='mb-2 mt-2 text-2xl text-white'>Match Number</p>
             <NumberInput
                 className='border border-black'
                 onChange={setMatchNumber}
                 value={matchNumber}
             />
-            <p className='mb-2 mt-2 text-2xl'>Team Number</p>
+            <p className='mb-2 mt-8 text-2xl text-white'>Team Number</p>
             <TeamDropdown onChange={setTeamNumber} value={teamNumber} />
 
             <div>
@@ -337,6 +338,7 @@ function MatchApp() {
                 </button>
             </div>
         </main>
+        </div> 
     );
 }
 
