@@ -30,15 +30,14 @@ function PitApp() {
     const [batteryNumber, setBatteryNumber] = useState(Number);
     const [teamNumber, setTeamNumber] = useState(Number);
 
-    const [ampChecked, setAmpChecked] = useState(false);
-    const [trapChecked, setTrapChecked] = useState(false);
-    const [speakerChecked, setSpeakerChecked] = useState(false);
-    const [climbingChecked, setClimbingChecked] = useState(false);
-    const [chainTraversalChecked, setChainTraversalChecked] = useState(false);
-    const [ampPrefChecked, setAmpPrefChecked] = useState(false);
-    const [trapPrefChecked, setTrapPrefChecked] = useState(false);
-    const [speakerPrefChecked, setSpeakerPrefChecked] = useState(false);
-    const [climbingPrefChecked, setClimbingPrefChecked] = useState(false);
+    const [algaeChecked, setalgaeChecked] = useState(false);
+    const [coralChecked, setcoralChecked] = useState(false);
+    const [climbShallowChecked, setclimbShallowChecked] = useState(false);
+    const [climbDeepChecked, setclimbDeepChecked] = useState(false);
+    const [algaePrefChecked, setalgaePrefChecked] = useState(false);
+    const [coralPrefChecked, setcoralPrefChecked] = useState(false);
+    const [climbShallowPrefChecked, setclimbShallowPrefChecked] = useState(false);
+    const [climbDeepPrefChecked, setclimbDeepPrefChecked] = useState(false);
 
     const [scouterName, setScouterName] = useState('');
     const [robotImage, setRobotImage] = useState('');
@@ -59,17 +58,16 @@ function PitApp() {
             scouterName: 'bcdsh',
             teamNumber,
             capabilities: {
-                amp: ampChecked,
-                speaker: speakerChecked,
-                trap: trapChecked,
-                climb: climbingChecked,
-                chainTraversal: chainTraversalChecked,
+                algae: algaeChecked,
+                coral: coralChecked,
+                climbShallow: climbShallowChecked,
+                climbDeep: climbDeepChecked,
             },
             preference: {
-                ampPrefer: ampPrefChecked,
-                speakerPerfer: speakerPrefChecked,
-                trapPrefer: trapPrefChecked,
-                climbPrefer: climbingPrefChecked,
+                algaePerfer: algaePrefChecked,
+                coralPerfer: coralPrefChecked,
+                climbSPerfer: climbShallowPrefChecked,
+                climbDPerfer: climbDeepPrefChecked,
             },
             autoCapability: autoInputValues,
             teamRole: role,
@@ -85,20 +83,19 @@ function PitApp() {
             if (!result.ok) throw new Error('Request Did Not Succeed');
             refreshScoutedTeams();
             setAutoInputValues(['']);
-            setAmpChecked(false);
-            setAmpPrefChecked(false);
+            setalgaeChecked(false);
+            setalgaePrefChecked(false);
             setBatteryNumber(0);
             setAdditionalNotes('');
             setRole(undefined);
             setTeamNumber(0);
-            setChainTraversalChecked(false);
-            setClimbingChecked(false);
-            setClimbingPrefChecked(false);
+            setclimbDeepChecked(false);
+            setclimbDeepPrefChecked(false);
             setDrivetrain(undefined);
-            setTrapChecked(false);
-            setTrapPrefChecked(false);
-            setSpeakerChecked(false);
-            setSpeakerPrefChecked(false);
+            setcoralChecked(false);
+            setcoralPrefChecked(false);
+            setclimbShallowChecked(false);
+            setclimbShallowPrefChecked(false);
             setRobotImage('');
         } catch {
             alert('Sending Data Failed');
@@ -175,69 +172,57 @@ function PitApp() {
                 <div className='pad mx-auto !flex w-min flex-wrap place-content-center'>
                     <div className='mb-4 flex items-center whitespace-nowrap'>
                         <Checkbox
-                            checked={ampChecked}
-                            onChange={setAmpChecked}
+                            checked={algaeChecked}
+                            onChange={setalgaeChecked}
                             className='form-checkbox mr-2 h-5 w-10 text-blue-600'
                             boxClassName='h-7 w-7'
                         />
                         <label
-                            htmlFor='ampNotes'
+                            htmlFor='algae'
                             className='ml-5 mr-4 cursor-pointer select-none text-white'>
-                            Amp Notes
+                            Algae 
                         </label>
                     </div>
                     <div className='mb-4 flex items-center whitespace-nowrap'>
                         <Checkbox
-                            checked={speakerChecked}
-                            onChange={setSpeakerChecked}
+                            checked={coralChecked}
+                            onChange={setcoralChecked}
+                            className='form-checkbox mr-2 h-5 w-10 text-blue-600'
+                            boxClassName='h-7 w-7'
+                        />
+                        <label
+                            htmlFor='coral'
+                            className='ml-5 mr-4 cursor-pointer select-none text-white'>
+                            Coral
+                        </label>
+                    </div>
+                    <div className='mb-4 flex items-center whitespace-nowrap'>
+                        <Checkbox
+                            checked={climbShallowChecked}
+                            onChange={setclimbShallowChecked}
                             className='form-checkbox ml-5 h-5 w-10 text-blue-600'
                             boxClassName='h-7 w-7'
                         />
                         <label
-                            htmlFor='speakerNotes'
+                            htmlFor='climbShallowNotes'
                             className='ml-5 mr-4 cursor-pointer select-none text-white'>
-                            Speaker Notes
+                            Shallow Cage
                         </label>
                     </div>
                     <div className='mb-4 flex items-center whitespace-nowrap'>
                         <Checkbox
-                            checked={trapChecked}
-                            onChange={setTrapChecked}
-                            className='form-checkbox mr-2 h-5 w-10 text-blue-600'
-                            boxClassName='h-7 w-7'
-                        />
-                        <label
-                            htmlFor='trapNotes'
-                            className='ml-5 mr-4 cursor-pointer select-none text-white'>
-                            Trap Notes
-                        </label>
-                    </div>
-                    <div className='mb-4 flex items-center whitespace-nowrap'>
-                        <Checkbox
-                            checked={climbingChecked}
-                            onChange={setClimbingChecked}
+                            checked={climbDeepChecked}
+                            onChange={setclimbDeepChecked}
                             className='form-checkbox ml-16 h-5 w-10 text-blue-600'
                             boxClassName='h-7 w-7'
                         />
                         <label
-                            htmlFor='climbingCapability'
+                            htmlFor='climbDeepingCapability'
                             className='ml-5 mr-4 cursor-pointer select-none text-white'>
-                            Climbing Capability
+                            Deep Cage
                         </label>
                     </div>
-                    <div className='mb-4 flex items-center whitespace-nowrap'>
-                        <Checkbox
-                            checked={chainTraversalChecked}
-                            onChange={setChainTraversalChecked}
-                            className='form-checkbox ml-20 h-5 w-10 text-blue-600'
-                            boxClassName='h-7 w-7'
-                        />
-                        <label
-                            htmlFor='underChainTraversal'
-                            className='ml-5 mr-4 cursor-pointer select-none text-white'>
-                            Under Chain Traversal
-                        </label>
-                    </div>
+                     
                 </div>
 
                 <h1 className='mb-3 mt-8 text-center text-white'>
@@ -246,54 +231,55 @@ function PitApp() {
                 <div className='pad mx-auto !flex w-min flex-wrap place-content-center'>
                     <div className='mb-4 flex items-center whitespace-nowrap'>
                         <Checkbox
-                            checked={ampPrefChecked}
-                            onChange={setAmpPrefChecked}
+                            checked={algaePrefChecked}
+                            onChange={setalgaePrefChecked}
                             className='form-checkbox h-5 w-5 text-blue-600'
                             boxClassName='h-7 w-7'
                         />
                         <label
-                            htmlFor='ampPreferred'
+                            htmlFor='algaePreferred'
                             className='ml-5 mr-4 cursor-pointer select-none text-white'>
-                            Amp Preferred?
+                            algae Preferred?
                         </label>
                     </div>
                     <div className='mb-4 flex items-center whitespace-nowrap'>
                         <Checkbox
-                            checked={speakerPrefChecked}
-                            onChange={setSpeakerPrefChecked}
+                            checked={coralPrefChecked}
+                            onChange={setcoralPrefChecked}
+                            className='form-checkbox h-5 w-5 text-blue-600'
+                            boxClassName='h-7 w-7'
+                        />
+                        <label
+                            htmlFor='coralPreferred'
+                            className='ml-5 mr-4 cursor-pointer select-none text-white'>
+                            coral Preferred?
+                        </label>
+                    </div>
+                    <div className='mb-4 flex items-center whitespace-nowrap'>
+                        <Checkbox
+                            checked={climbShallowPrefChecked}
+                            onChange={setclimbShallowPrefChecked}
                             className='form-checkbox ml-7 h-5 w-5 text-blue-600'
                             boxClassName='h-7 w-7'
                         />
                         <label
-                            htmlFor='speakerPreferred'
+                            htmlFor='climbShallowPreferred'
                             className='ml-5 mr-4 cursor-pointer select-none text-white'>
-                            Speaker Preferred?
+                            Shallow Cage Preferred?
                         </label>
                     </div>
+                    
                     <div className='mb-4 flex items-center whitespace-nowrap'>
                         <Checkbox
-                            checked={trapPrefChecked}
-                            onChange={setTrapPrefChecked}
-                            className='form-checkbox h-5 w-5 text-blue-600'
-                            boxClassName='h-7 w-7'
-                        />
-                        <label
-                            htmlFor='trapPreferred'
-                            className='ml-5 mr-4 cursor-pointer select-none text-white'>
-                            Trap Preferred?
-                        </label>
-                    </div>
-                    <div className='mb-4 flex items-center whitespace-nowrap'>
-                        <Checkbox
-                            checked={climbingPrefChecked}
-                            onChange={setClimbingPrefChecked}
+                            checked={climbDeepPrefChecked}
+                            onChange={setclimbDeepPrefChecked}
                             className='form-checkbox ml-9 h-5 w-5 text-blue-600'
                             boxClassName='h-7 w-7'
                         />
                         <label
-                            htmlFor='climbPreferred'
+                            htmlFor='climbDeepPreferred'
                             className='ml-5 mr-4 cursor-pointer select-none text-white'>
-                            Climbing Preferred?
+                            Deep Cage Preferred?
                         </label>
                     </div>
                 </div>

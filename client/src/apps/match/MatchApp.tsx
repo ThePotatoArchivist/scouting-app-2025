@@ -1,5 +1,5 @@
-import EndgameButton from './components/EndGameButton';
-import FieldButton from './components/FieldButton';
+import EndgameButton from './components/EndGameButton'; 
+import FieldButton from './components/LeaveButton';
 import LinkButton from '../../components/LinkButton';
 import {
     ClimbPosition,
@@ -23,32 +23,32 @@ import { usePreventUnload } from '../../lib/usePreventUnload';
 const schedule = scheduleFile as MatchSchedule;
 
 interface MatchScores {
-    autoShootNear: number;
-    autoShootMid: number;
-    autoShootFar: number;
-    autoAmp: number;
-    autoMiss: number;
-    teleShootNear: number;
-    teleShootMid: number;
-    teleShootFar: number;
-    hold: number; // Did the robot hold a note between auto and teleop? 0=no, 1=yes
-    teleAmp: number;
-    teleMiss: number;
-    trap: number;
+    autoL1: number;
+    autoL2: number;
+    autoL3: number;
+    autoL4: number;
+    autoAlgaenetRobot: number;
+    autoProcessor: number;
+    teleL1: number;
+    teleL2: number;
+    teleL3: number;
+    teleL4: number;
+    teleAlgaenetRobot: number;
+    teleProcessor: number;
 }
-const defualtScores: MatchScores = {
-    autoShootNear: 0,
-    autoShootMid: 0,
-    autoShootFar: 0,
-    autoAmp: 0,
-    autoMiss: 0,
-    teleShootNear: 0,
-    teleShootMid: 0,
-    teleShootFar: 0,
-    hold: 0,
-    teleAmp: 0,
-    teleMiss: 0,
-    trap: 0,
+const defaultScores: MatchScores = {
+    autoL1: 0,
+    autoL2: 0,
+    autoL3: 0,
+    autoL4: 0,
+    autoAlgaenetRobot: 0,
+    autoProcessor: 0,
+    teleL1: 0,
+    teleL2: 0,
+    teleL3: 0,
+    teleL4: 0,
+    teleAlgaenetRobot: 0,
+    teleProcessor: 0
 };
 
 function MatchApp() {
@@ -56,7 +56,7 @@ function MatchApp() {
     const [sendQueue, sendAll, queue, sending] = useQueue();
     const [teamNumber, setTeamNumber] = useState<number>();
     const [matchNumber, setMatchNumber] = useState<number>();
-    const [count, setCount] = useState<MatchScores>(defualtScores);
+    const [count, setCount] = useState<MatchScores>(defaultScores);
     const [leave, setLeave] = useState(false); //false=Not Left, true=Left
     const [countHistory, setCountHistory] = useState<MatchScores[]>([]);
     const [climbPosition, setClimbPosition] = useState<ClimbPosition>('none');
@@ -66,9 +66,7 @@ function MatchApp() {
 
     const [scouterPosition, setScouterPosition] = useState<ScouterPosition>();
 
-    const blueAlliance = (
-        ['blue_1', 'blue_2', 'blue_3'] as (string | undefined)[]
-    ).includes(robotPosition);
+
 
     const handleAbsentRobot = async () => {
         if (robotPosition == undefined || matchNumber == undefined) {
@@ -84,26 +82,31 @@ function MatchApp() {
                 robotTeam: undefined,
             },
             leftStartingZone: leave,
-            autoNotes: {
-                near: count.autoShootNear,
-                mid: count.autoShootMid,
-                far: count.autoShootFar,
-                amp: count.autoAmp,
-                miss: count.autoMiss,
+            autoCoral: {
+                L1: count.autoL1,
+                L2: count.autoL2,
+                L3: count.autoL3,
+                L4: count.autoL4,
             },
-            teleNotes: {
-                near: count.teleShootNear,
-                mid: count.teleShootMid,
-                far: count.teleShootFar,
-                amp: count.teleAmp,
-                miss: count.teleMiss,
+            autoAlgae: {
+                netRobot: count.autoAlgaenetRobot,
+                processor: count.autoProcessor
             },
-            trapNotes: count.trap,
+            teleCoral: {
+                L1: count.teleL1,
+                L2: count.teleL2,
+                L3: count.teleL3,
+                L4: count.teleL4
+            },
+            teleAlgae: {
+                netRobot: count.teleAlgaenetRobot,
+                processor: count.teleProcessor
+            },
             climb: climbPosition,
         };
 
         sendQueue('/data/match', data);
-        setCount(defualtScores);
+        setCount(defaultScores);
         setClimbPosition('none');
         setLeave(false);
         setMatchNumber(matchNumber + 1);
@@ -134,26 +137,31 @@ function MatchApp() {
                 robotTeam: teamNumber,
             },
             leftStartingZone: leave,
-            autoNotes: {
-                near: count.autoShootNear,
-                mid: count.autoShootMid,
-                far: count.autoShootFar,
-                amp: count.autoAmp,
-                miss: count.autoMiss,
+            autoCoral: {
+                L1: count.autoL1,
+                L2: count.autoL2,
+                L3: count.autoL3,
+                L4: count.autoL4
             },
-            teleNotes: {
-                near: count.teleShootNear,
-                mid: count.teleShootMid,
-                far: count.teleShootFar,
-                amp: count.teleAmp,
-                miss: count.autoMiss,
+            autoAlgae: {
+                netRobot: count.autoAlgaenetRobot,
+                processor: count.autoProcessor
             },
-            trapNotes: count.trap,
+            teleCoral: {
+               L1: count.teleL1,
+               L2: count.teleL2,
+               L3: count.teleL3,
+               L4: count.teleL4
+            },
+            teleAlgae: {
+                netRobot: count.teleAlgaenetRobot,
+                processor: count.teleProcessor
+            },
             climb: climbPosition,
         };
 
         sendQueue('/data/match', data);
-        setCount(defualtScores);
+        setCount(defaultScores);
         setClimbPosition('none');
         setLeave(false);
         setMatchNumber(matchNumber + 1);
@@ -283,35 +291,29 @@ function MatchApp() {
                 <h2 className='mb-5 mt-12 text-center text-5xl font-semibold text-green-600'>
                     Autonomous
                 </h2>
-                <FieldButton
+                { <FieldButton
                     setCount={handleSetCount}
                     setLeave={setLeave}
-                    teleOp={false}
                     count={count}
+                    teleOp={false}
                     leave={leave}
-                    alliance={blueAlliance}
-                    scouterPosition={scouterPosition}
-                />
+                /> }
                 <h2 className='my-6 mt-12 text-center text-5xl font-semibold text-green-600'>
                     Tele-Op
                 </h2>
-                <FieldButton
+                { <FieldButton
                     setCount={handleSetCount}
-                    teleOp={true}
                     count={count}
-                    alliance={blueAlliance}
-                    scouterPosition={scouterPosition}
-                />
+                    teleOp={true}
+                /> }
                 <h2 className='my-6 mt-12 text-center text-5xl font-semibold text-green-600'>
                     Endgame
                 </h2>
                 <EndgameButton
-                    setCount={handleSetCount}
                     climbPosition={climbPosition}
                     setClimb={setClimbPosition}
-                    alliance={blueAlliance}
-                    scouterPosition={scouterPosition}
                     count={count}
+                    setCount={setCount}
                 />
                 <div className='mb-5 mt-20 flex flex-col justify-center'>
                     <button

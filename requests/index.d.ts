@@ -1,5 +1,4 @@
-export type ClimbPosition = StageLocation | 'park' | 'none' | 'failed';
-export type StageLocation = 'amp' | 'source' | 'center';
+export type ClimbPosition = 'shallow'| 'deep' | 'park' | 'none' | 'failed';
 export type PickupLocation =
     | 'speaker'
     | 'middle'
@@ -21,6 +20,7 @@ export type Foul =
     | 'protectedZone'
     | 'pinning'
     | 'multiplePieces'
+    | 'cageFoul'
     | 'other';
 export type Break = 'mechanismDmg' | 'batteryFall' | 'commsFail';
 export type DefenseRank = 'fullDef' | 'someDef' | 'noDef';
@@ -36,24 +36,21 @@ export type CommentValues =
     | 'weak_build'
     | 'avoids_under_stage';
 
+export type Net = boolean;
+
 interface capabilities {
-    amp: boolean;
-    speaker: boolean;
-    trap: boolean;
-    climb: boolean;
-    chainTraversal: boolean;
+    coral: boolean;
+    algae: boolean;
+    climbShallow: boolean;
+    climbDeep: boolean;
 }
 
-interface HighNote {
-    amp: boolean;
-    source: boolean;
-    center: boolean;
-}
+
 interface preference {
-    ampPrefer: boolean;
-    speakerPerfer: boolean;
-    trapPrefer: boolean;
-    climbPrefer: boolean;
+    coralPerfer: boolean;
+    algaePerfer: boolean;
+    climbSPerfer: boolean;
+    climbDPerfer: boolean;
 }
 
 export type SuperPosition = 'red_ss' | 'blue_ss';
@@ -90,23 +87,27 @@ export interface MetaData {
     robotPosition: RobotPosition;
 }
 
-interface ScoreRanges {
-    near: number;
-    mid: number;
-    far: number;
-    amp: number;
-    miss: number;
+interface coral {
+    L1: number;
+    L2: number;
+    L3: number;
+    L4: number;
 }
 
+interface algae {
+    netRobot: number;
+    processor: number;
+}
 // - `POST` `/data/match`
 
 export interface MatchData {
     metadata: MetaData;
     // No competition info
     leftStartingZone: boolean;
-    autoNotes: ScoreRanges;
-    teleNotes: ScoreRanges;
-    trapNotes: number;
+    autoCoral: coral;
+    autoAlgae: algae;
+    teleCoral: coral;
+    teleAlgae: algae;
     climb: ClimbPosition;
     // disabledSeconds: number;
 }
@@ -119,7 +120,8 @@ export interface SuperData {
     break: Record<Break, number>;
     defense: DefenseRank;
     defended: boolean;
-    humanShooter?: { highNotes: HighNote };
+    netHuman: number;
+    humanShooter?: { Net: Net };
     comments: CommentValues[];
 }
 

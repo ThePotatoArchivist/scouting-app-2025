@@ -9,19 +9,19 @@ import {
     Break,
     MatchSchedule,
     SuperData,
-    HighNote,
+    Net,
     RobotPosition,
     ScouterPosition,
 } from 'requests';
 import SuperTeam from './components/SuperTeam';
 import { SuperTeamState } from './components/SuperTeam';
-import MultiSelectFieldButton from './components/MultiSelectFieldButton';
 import NumberInput from '../../components/NumberInput';
 import MultiButton from '../../components/MultiButton';
 import { useStatus } from '../../lib/useStatus';
 import { useQueue } from '../../lib/useQueue';
 import scheduleFile from '../../assets/matchSchedule.json';
 import { usePreventUnload } from '../../lib/usePreventUnload';
+import HumanButton from './components/HumanNetCounter';
 // import CreatableSelect from 'react-select/creatable';
 // import SelectSearch, { SelectSearchOption } from 'react-select-search';
 
@@ -35,11 +35,15 @@ const foulTypes: Foul[] = [
     'other',
 ];
 
-const defaultHighNote: HighNote = {
-    amp: false,
-    center: false,
-    source: false,
+interface superScores {
+    netHuman: number;
+}
+
+const defaultScore: superScores = {
+    netHuman: 0
 };
+
+const defaultNet: Net = false
 const breakTypes: Break[] = ['mechanismDmg', 'batteryFall', 'commsFail'];
 
 const defaultSuperTeamState: SuperTeamState = {
@@ -51,7 +55,7 @@ const defaultSuperTeamState: SuperTeamState = {
         Break,
         number
     >,
-    defenseRank: 'noDef',
+    defenseRank: 'noDef', 
     wasDefended: false,
     teamNumber: undefined,
     cannedComments: [],
@@ -64,11 +68,12 @@ function SuperApp() {
     const [team1, setTeam1] = useState(defaultSuperTeamState);
     const [team2, setTeam2] = useState(defaultSuperTeamState);
     const [team3, setTeam3] = useState(defaultSuperTeamState);
+    const [count, setCount] = useState<superScores>(defaultScore);
     const [shooterPlayerTeam, setShooterPlayerTeam] = useState<number>();
     const [sendQueue, sendAll, queue, sending] = useQueue();
     const [matchNumber, setMatchNumber] = useState<number>();
     const [showCheck, setShowCheck] = useState(false);
-    const [highNotes, setHighNotes] = useState(defaultHighNote);
+    const [Net, setNet] = useState(defaultNet);
     const [history, setHistory] = useState<
         { 1: SuperTeamState; 2: SuperTeamState; 3: SuperTeamState }[]
     >([]);
@@ -98,6 +103,7 @@ function SuperApp() {
         setTeam3(teamValue);
         saveHistory();
     };
+    
 
     const handleSubmit = async () => {
         if (
@@ -133,10 +139,11 @@ function SuperApp() {
                     break: team.breakCount,
                     defense: team.defenseRank,
                     defended: team.wasDefended,
+                    netHuman: count.netHuman,
                     humanShooter:
                         shooterPlayerTeam === team.teamNumber
                             ? {
-                                  highNotes,
+                                  Net,
                               }
                             : undefined,
                     comments: team.cannedComments.map(option => option.value),
@@ -144,10 +151,11 @@ function SuperApp() {
         );
 
         data.map(e => sendQueue('/data/super', e));
-        setHighNotes(defaultHighNote);
+        setNet(defaultNet);
         setTeam1(defaultSuperTeamState);
         setTeam2(defaultSuperTeamState);
         setTeam3(defaultSuperTeamState);
+        setCount(defaultScore);
         setHistory([]);
         setMatchNumber(matchNumber + 1);
         setShowCheck(true);
@@ -263,22 +271,16 @@ function SuperApp() {
                     />
                 </button>
             </div>
-
+        <div>
             <p className='text-xl text-white'>Match Number</p>
             <NumberInput
                 onChange={setMatchNumber}
                 value={matchNumber}
                 className='m-2 p-2 text-xl text-black'
             />
-
-            <div className='grid grid-cols-3 justify-items-center gap-10 px-10'>
-                <SuperTeam teamState={team1} setTeamState={handleTeam1} />
-                <SuperTeam teamState={team2} setTeamState={handleTeam2} />
-                <SuperTeam teamState={team3} setTeamState={handleTeam3} />
-            </div>
-
+        </div>
             <MultiButton
-                className='mx-5 mt-10 w-full max-w-40 outline-black'
+                className='mx-10 mt-10 w-full max-w-40 outline-black'
                 onChange={setShooterPlayerTeam}
                 values={[
                     team1.teamNumber ?? -1,
@@ -294,13 +296,17 @@ function SuperApp() {
                 selectedClassName='bg-[#48c55c]'
                 unSelectedClassName='bg-white'
             />
-
-            <MultiSelectFieldButton
-                highNotes={highNotes}
-                setHighNotes={setHighNotes}
-                alliance={superPosition === 'blue_ss'}
-                scouterPosition={scouterPosition}
-                className='relative mx-auto my-5 h-[40em] w-[40em] justify-items-center bg-cover bg-center '></MultiSelectFieldButton>
+            <div className='grid grid-cols-3 justify-items-center gap-10 px-10'>   
+                <SuperTeam teamState={team1} setTeamState={handleTeam1} />
+                <SuperTeam teamState={team2} setTeamState={handleTeam2} />
+                <SuperTeam teamState={team3} setTeamState={handleTeam3} />
+            </div>
+                <HumanButton>
+                    
+                </HumanButton>
+            <div>
+                
+            </div>
 
             <button
                 onClick={() => {
