@@ -20,6 +20,7 @@ export type Foul =
     | 'protectedZone'
     | 'pinning'
     | 'multiplePieces'
+    | 'cageFoul'
     | 'other';
 export type Break = 'mechanismDmg' | 'batteryFall' | 'commsFail';
 export type DefenseRank = 'fullDef' | 'someDef' | 'noDef';
@@ -35,6 +36,8 @@ export type CommentValues =
     | 'weak_build'
     | 'avoids_under_stage';
 
+export type Net = boolean;
+
 interface capabilities {
     amp: boolean;
     speaker: boolean;
@@ -43,11 +46,7 @@ interface capabilities {
     chainTraversal: boolean;
 }
 
-interface HighNote {
-    amp: boolean;
-    source: boolean;
-    center: boolean;
-}
+
 interface preference {
     ampPrefer: boolean;
     speakerPerfer: boolean;
@@ -122,7 +121,8 @@ export interface SuperData {
     break: Record<Break, number>;
     defense: DefenseRank;
     defended: boolean;
-    humanShooter?: { highNotes: HighNote };
+    netHuman: number;
+    humanShooter?: { Net: Net };
     comments: CommentValues[];
 }
 

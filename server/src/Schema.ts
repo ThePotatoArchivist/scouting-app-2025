@@ -52,6 +52,7 @@ const superScoutDataSchema = new mongoose.Schema<SuperData>({
         protectedZone: Number,
         pinning: Number,
         multiplePieces: Number,
+        cageFoul: Number,
         other: Number,
     },
     break: {
@@ -64,8 +65,9 @@ const superScoutDataSchema = new mongoose.Schema<SuperData>({
         enum: ['fullDef', 'someDef', 'noDef'],
     },
     defended: Boolean,
+    netHuman: Number,
     humanShooter: {
-        highNotes: {
+        Net: {
             amp: Boolean,
             source: Boolean,
             center: Boolean,
