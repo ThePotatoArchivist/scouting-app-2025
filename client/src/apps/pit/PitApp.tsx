@@ -239,7 +239,7 @@ function PitApp() {
                         <label
                             htmlFor='algaePreferred'
                             className='ml-5 mr-4 cursor-pointer select-none text-white'>
-                            algae Preferred?
+                            Algae Preferred?
                         </label>
                     </div>
                     <div className='mb-4 flex items-center whitespace-nowrap'>
@@ -252,7 +252,7 @@ function PitApp() {
                         <label
                             htmlFor='coralPreferred'
                             className='ml-5 mr-4 cursor-pointer select-none text-white'>
-                            coral Preferred?
+                            Coral Preferred?
                         </label>
                     </div>
                     <div className='mb-4 flex items-center whitespace-nowrap'>
@@ -344,7 +344,7 @@ function PitApp() {
                                 labels={['Tank', 'Swerve']}
                                 values={['tank', 'swerve']}
                                 className={[
-                                    'mx-auto !flex w-min place-content-center px-12',
+                                    'mx-auto !flex w-min place-content-center px-8',
                                 ]}
                             />
                             <MultiButton
@@ -353,8 +353,8 @@ function PitApp() {
                                 labels={['Mecanum', 'Other']}
                                 values={['MECANUM', 'other']}
                                 className={[
-                                    'mx-auto !flex w-min place-content-center px-7',
-                                    'mx-auto !flex w-min place-content-center px-10',
+                                    'mx-auto !flex w-min place-content-center ',
+                                    'mx-auto !flex w-min place-content-center px-8',
                                 ]}
                             />
                         </div>
