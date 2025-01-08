@@ -95,7 +95,6 @@ interface coral {
 }
 
 interface algae {
-    netHuman: number;
     netRobot: number;
     processor: number;
 }
@@ -121,6 +120,7 @@ export interface SuperData {
     break: Record<Break, number>;
     defense: DefenseRank;
     defended: boolean;
+    netHuman: number;
     humanShooter?: { Net: Net };
     comments: CommentValues[];
 }

@@ -21,6 +21,7 @@ import { useStatus } from '../../lib/useStatus';
 import { useQueue } from '../../lib/useQueue';
 import scheduleFile from '../../assets/matchSchedule.json';
 import { usePreventUnload } from '../../lib/usePreventUnload';
+import HumanButton from './components/HumanNetCounter';
 // import CreatableSelect from 'react-select/creatable';
 // import SelectSearch, { SelectSearchOption } from 'react-select-search';
 
@@ -34,7 +35,15 @@ const foulTypes: Foul[] = [
     'other',
 ];
 
-const defaultNet: Net = false;
+interface superScores {
+    netHuman: number;
+}
+
+const defaultScore: superScores = {
+    netHuman: 0
+};
+
+const defaultNet: Net = false
 const breakTypes: Break[] = ['mechanismDmg', 'batteryFall', 'commsFail'];
 
 const defaultSuperTeamState: SuperTeamState = {
@@ -46,7 +55,7 @@ const defaultSuperTeamState: SuperTeamState = {
         Break,
         number
     >,
-    defenseRank: 'noDef',
+    defenseRank: 'noDef', 
     wasDefended: false,
     teamNumber: undefined,
     cannedComments: [],
@@ -59,6 +68,7 @@ function SuperApp() {
     const [team1, setTeam1] = useState(defaultSuperTeamState);
     const [team2, setTeam2] = useState(defaultSuperTeamState);
     const [team3, setTeam3] = useState(defaultSuperTeamState);
+    const [count, setCount] = useState<superScores>(defaultScore);
     const [shooterPlayerTeam, setShooterPlayerTeam] = useState<number>();
     const [sendQueue, sendAll, queue, sending] = useQueue();
     const [matchNumber, setMatchNumber] = useState<number>();
@@ -93,6 +103,7 @@ function SuperApp() {
         setTeam3(teamValue);
         saveHistory();
     };
+    
 
     const handleSubmit = async () => {
         if (
@@ -128,6 +139,7 @@ function SuperApp() {
                     break: team.breakCount,
                     defense: team.defenseRank,
                     defended: team.wasDefended,
+                    netHuman: count.netHuman,
                     humanShooter:
                         shooterPlayerTeam === team.teamNumber
                             ? {
@@ -143,6 +155,7 @@ function SuperApp() {
         setTeam1(defaultSuperTeamState);
         setTeam2(defaultSuperTeamState);
         setTeam3(defaultSuperTeamState);
+        setCount(defaultScore);
         setHistory([]);
         setMatchNumber(matchNumber + 1);
         setShowCheck(true);
@@ -267,7 +280,7 @@ function SuperApp() {
             />
         </div>
             <MultiButton
-                className='mx-5 mt-10 w-full max-w-40 outline-black'
+                className='mx-10 mt-10 w-full max-w-40 outline-black'
                 onChange={setShooterPlayerTeam}
                 values={[
                     team1.teamNumber ?? -1,
@@ -288,7 +301,12 @@ function SuperApp() {
                 <SuperTeam teamState={team2} setTeamState={handleTeam2} />
                 <SuperTeam teamState={team3} setTeamState={handleTeam3} />
             </div>
-           
+                <HumanButton>
+                    
+                </HumanButton>
+            <div>
+                
+            </div>
 
             <button
                 onClick={() => {

@@ -28,7 +28,6 @@ const coral = {
     L4: Number
 };
 const algae = {
-    netHuman:Number,
     netRobot: Number,
     processor: Number
 };
@@ -66,6 +65,7 @@ const superScoutDataSchema = new mongoose.Schema<SuperData>({
         enum: ['fullDef', 'someDef', 'noDef'],
     },
     defended: Boolean,
+    netHuman: Number,
     humanShooter: {
         Net: Boolean,
     },
