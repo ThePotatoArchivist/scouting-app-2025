@@ -10,7 +10,6 @@ function EndgameButton({
     setClimb: Dispatch<SetStateAction<ClimbPosition>>;
     setCount: Dispatch<SetStateAction<MatchScores>>;
     climbPosition: ClimbPosition;
-    alliance: boolean | undefined;
     count: MatchScores;
 }) {
     // const [alliance, setAlliance] = useState(false); //false=red, true=blue, null=hollow purple
