@@ -6,7 +6,7 @@ import {
     MatchData,
     MatchSchedule,
     RobotPosition,
-    ScouterPosition,
+    // ScouterPosition,
 } from 'requests';
 import { SetStateAction, useEffect, useState } from 'react';
 import { MaterialSymbol } from 'react-material-symbols';
@@ -64,7 +64,7 @@ function MatchApp() {
     const [scouterName, setScouterName] = useState('');
     const [robotPosition, setRobotPosition] = useState<RobotPosition>();
 
-    const [scouterPosition, setScouterPosition] = useState<ScouterPosition>();
+    // const [scouterPosition, setScouterPosition] = useState<ScouterPosition>();
 
 
 
@@ -250,8 +250,8 @@ function MatchApp() {
                             onChangeScouterName={setScouterName}
                             robotPosition={robotPosition}
                             onChangeRobotPosition={setRobotPosition}
-                            scouterPosition={scouterPosition}
-                            onChangeScouterPosition={setScouterPosition}
+                            // scouterPosition={scouterPosition}
+                            // onChangeScouterPosition={setScouterPosition}
                             onSubmit={close}
                         />
                     )}
