@@ -47,7 +47,7 @@ function RootMenu() {
                 link='/picklist'
                 className='rounded-3xl bg-[#2f3646] text-5xl'>
                 Picklist
-            </LinkButton>
+            </LinkButton> */}
             <LinkButton
                 link='/score_calculator'
                 className='rounded-3xl bg-[#2f3646] text-5xl'>
