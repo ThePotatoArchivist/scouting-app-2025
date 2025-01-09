@@ -41,10 +41,10 @@ interface capabilities {
 
 
 interface preference {
-    coralPerfer: boolean;
-    algaePerfer: boolean;
-    climbSPerfer: boolean;
-    climbDPerfer: boolean;
+    coralPrefer: boolean;
+    algaePrefer: boolean;
+    climbSPrefer: boolean;
+    climbDPrefer: boolean;
 }
 
 export type SuperPosition = 'red_ss' | 'blue_ss';
