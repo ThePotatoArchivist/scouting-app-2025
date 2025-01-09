@@ -19,108 +19,108 @@ import TeamSummary from './components/TeamSummary';
 import { Dispatch, useState } from 'react';
 import FinalPicklist from './components/FinalPicklist';
 
-// function generateWindow(
-//     data: AnalysisEntry[],
-//     table: WindowData,
-//     setTable: Dispatch<WindowData>,
-//     teamInfoJson: TeamData,
-//     pitData: PitResult,
-//     addToFocused: Dispatch<WindowData>,
-//     setFinalPicklist: Dispatch<number[]>
-// ) {
-//     switch (table.type) {
-//         case 'StatTable':
-//             return (
-//                 <StatTable
-//                     data={data}
-//                     setTable={setTable}
-//                     table={table}
-//                     teamInfoJson={teamInfoJson}
-//                     onSubmit={addToFocused}
-//                     onSetFinal={setFinalPicklist}
-//                 />
-//             );
-//         case 'BarGraph':
-//             return (
-//                 <BarGraph
-//                     data={data}
-//                     table={table}
-//                     teamInfoJson={teamInfoJson}
-//                 />
-//             );
-//         case 'ScatterPlotGraph':
-//             return (
-//                 <ScatterPlotGraph
-//                     data={data}
-//                     table={table}
-//                     teamInfoJson={teamInfoJson}
-//                 />
-//             );
-//         case 'StatSummary':
-//             return (
-//                 <StatSummary
-//                     data={data}
-//                     table={table}
-//                     teamInfoJson={teamInfoJson}
-//                 />
-//             );
-//         case 'TeamSummary':
-//             return (
-//                 <TeamSummary
-//                     data={data}
-//                     table={table}
-//                     pitData={pitData}
-//                     teamInfoJson={teamInfoJson}
-//                 />
-//             );
-//         default:
-//             return undefined;
-//     }
-// }
+function generateWindow(
+    data: AnalysisEntry[],
+    table: WindowData,
+    setTable: Dispatch<WindowData>,
+    teamInfoJson: TeamData,
+    pitData: PitResult,
+    addToFocused: Dispatch<WindowData>,
+    setFinalPicklist: Dispatch<number[]>
+) {
+    switch (table.type) {
+        case 'StatTable':
+            return (
+                <StatTable
+                    data={data}
+                    setTable={setTable}
+                    table={table}
+                    teamInfoJson={teamInfoJson}
+                    onSubmit={addToFocused}
+                    onSetFinal={setFinalPicklist}
+                />
+            );
+        case 'BarGraph':
+            return (
+                <BarGraph
+                    data={data}
+                    table={table}
+                    teamInfoJson={teamInfoJson}
+                />
+            );
+        case 'ScatterPlotGraph':
+            return (
+                <ScatterPlotGraph
+                    data={data}
+                    table={table}
+                    teamInfoJson={teamInfoJson}
+                />
+            );
+        case 'StatSummary':
+            return (
+                <StatSummary
+                    data={data}
+                    table={table}
+                    teamInfoJson={teamInfoJson}
+                />
+            );
+        case 'TeamSummary':
+            return (
+                <TeamSummary
+                    data={data}
+                    table={table}
+                    pitData={pitData}
+                    teamInfoJson={teamInfoJson}
+                />
+            );
+        default:
+            return undefined;
+    }
+}
 
-// function PicklistApp() {
-//     const [analyzedData, reloadData] = useFetchJson<AnalysisEntry[]>(
-//         '/output_analysis.json'
-//     );
-//     const [pitData, reloadPitData] = useFetchJson<PitResult>('/data/pit');
-//     const [teamInfo] = useFetchJson<TeamData>('/team_info.json');
+function PicklistApp() {
+    const [analyzedData, reloadData] = useFetchJson<AnalysisEntry[]>(
+        '/output_analysis.json'
+    );
+    const [pitData, reloadPitData] = useFetchJson<PitResult>('/data/pit');
+    const [teamInfo] = useFetchJson<TeamData>('/team_info.json');
 
-//     const [views, setViews, addToFocused, controls] =
-//         useWorkspaceState<WindowData>();
+    const [views, setViews, addToFocused, controls] =
+        useWorkspaceState<WindowData>();
 
-//     const [finalPicklist, setFinalPicklist] = useState<number[]>([]);
+    const [finalPicklist, setFinalPicklist] = useState<number[]>([]);
 
-//     return (
-//         <main className='relative grid h-screen grid-rows-[auto_1fr] overflow-hidden'>
-//             <div className='flex items-center border-b border-black bg-gray-100 py-3'>
-//                 <LinkButton
-//                     link='/'
-//                     className='flex snap-none items-center justify-center px-2'>
-//                     <MaterialSymbol
-//                         icon='home'
-//                         size={50}
-//                         fill
-//                         grade={200}
-//                         color='black'
-//                         className='snap-none'
-//                     />
-//                 </LinkButton>
+    return (
+        <main className='relative grid h-screen grid-rows-[auto_1fr] overflow-hidden'>
+            <div className='flex items-center border-b border-black bg-gray-100 py-3'>
+                <LinkButton
+                    link='/'
+                    className='flex snap-none items-center justify-center px-2'>
+                    <MaterialSymbol
+                        icon='home'
+                        size={50}
+                        fill
+                        grade={200}
+                        color='black'
+                        className='snap-none'
+                    />
+                </LinkButton>
 
-//                 <button
-//                     className='flex snap-none items-center justify-center px-2'
-//                     onClick={() => {
-//                         reloadData();
-//                         reloadPitData();
-//                     }}
-//                     title='Refresh Data'>
-//                     <MaterialSymbol
-//                         icon='refresh'
-//                         size={50}
-//                         grade={200}
-//                         color='black'
-//                         className='snap-none'
-//                     />
-//                 </button>
+                <button
+                    className='flex snap-none items-center justify-center px-2'
+                    onClick={() => {
+                        reloadData();
+                        reloadPitData();
+                    }}
+                    title='Refresh Data'>
+                    <MaterialSymbol
+                        icon='refresh'
+                        size={50}
+                        grade={200}
+                        color='black'
+                        className='snap-none'
+                    />
+                </button>
 
                 <Dialog
                     trigger={open => (
@@ -265,4 +265,4 @@ import FinalPicklist from './components/FinalPicklist';
     );
 }
 
-// export default PicklistApp;
+export default PicklistApp;
