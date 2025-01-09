@@ -1,5 +1,4 @@
-import React from 'react';
-//  { lazy, Suspense } from react 
+import React, { lazy, Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import 'react-select-search/style.css';
@@ -18,7 +17,7 @@ import ScoringCalculator from './apps/score_calculator/ScoreCalculator';
 
 import { registerSW } from 'virtual:pwa-register';
 
-// const PicklistApp = lazy(() => import('./apps/picklist/PicklistApp'));
+const PicklistApp = lazy(() => import('./apps/picklist/PicklistApp'));
 
 // Automatically reloads the page a second time to update the SW
 registerSW();
@@ -56,14 +55,14 @@ const router = createBrowserRouter([
                 path: 'super',
                 element: <SuperApp />,
             },
-            // {
-            //     path: 'picklist',
-            //     element: (
-            //         <Suspense fallback={<p>Loading</p>}>
-            //             <PicklistApp />
-            //         </Suspense>
-            //     ),
-            // },
+            {
+                path: 'picklist',
+                element: (
+                    <Suspense fallback={<p>Loading</p>}>
+                        <PicklistApp />
+                    </Suspense>
+                ),
+            },
             {
                 path: 'score_calculator',
                 element: <ScoringCalculator />,
