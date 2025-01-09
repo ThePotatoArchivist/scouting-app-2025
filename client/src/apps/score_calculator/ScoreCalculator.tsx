@@ -32,42 +32,42 @@ function Counter({
 
 function ScoreCalculator() {
     const [autoLeave, setAutoLeave] = useState(0);
-    const [autoSpeaker, setAutoSpeaker] = useState(0);
-    const [autoAmp, setAutoAmp] = useState(0);
-    const [teleSpeaker, setTeleSpeaker] = useState(0);
-    const [ampedTeleSpeaker, setAmpedTeleSpeaker] = useState(0);
-    const [teleAmp, setTeleAmp] = useState(0);
+    const [autoCoral, setAutoCoral] = useState(0);
+    const [autoAlgaeProcessor, setAutoAlgaeProcessor] = useState(0);
+    const [teleCoral, setTeleCoral] = useState(0);
+    const [AlgaeProcessoredTeleCoral, setAlgaeProcessoredTeleCoral] = useState(0);
+    const [teleAlgaeProcessor, setTeleAlgaeProcessor] = useState(0);
     const [park, setPark] = useState(0);
-    const [climb, setClimb] = useState(0);
-    const [climbSpot, setClimbSpot] = useState(0);
+    const [Deep, setDeep] = useState(0);
+    const [Shallow, setShallow] = useState(0);
     const [trap, setTrap] = useState(0);
     const [harmony, setHarmony] = useState(0);
 
     const [foulPoints, setFoulPoints] = useState<number | undefined>(0);
 
     const autoPoints = autoLeave * 2;
-    const speakerPoints =
-        autoSpeaker * 5 + teleSpeaker * 2 + ampedTeleSpeaker * 5;
-    const ampPoints = autoAmp * 2 + teleAmp * 1;
+    const CoralPoints =
+        autoCoral * 5 + teleCoral * 2 + AlgaeProcessoredTeleCoral * 5;
+    const AlgaeProcessorPoints = autoAlgaeProcessor * 2 + teleAlgaeProcessor * 1;
     const stagePoints =
-        park * 1 + climb * 3 + climbSpot * 4 + trap * 5 + harmony * 2;
+        park * 1 + Deep * 3 + Shallow * 4 + trap * 5 + harmony * 2;
     const totalPoints =
         autoPoints +
-        speakerPoints +
-        ampPoints +
+        CoralPoints +
+        AlgaeProcessorPoints +
         stagePoints +
         (foulPoints ?? 0);
 
     const handleReset = () => {
         setAutoLeave(0);
-        setAutoSpeaker(0);
-        setAutoAmp(0);
-        setTeleSpeaker(0);
-        setAmpedTeleSpeaker(0);
-        setTeleAmp(0);
+        setAutoCoral(0);
+        setAutoAlgaeProcessor(0);
+        setTeleCoral(0);
+        setAlgaeProcessoredTeleCoral(0);
+        setTeleAlgaeProcessor(0);
         setPark(0);
-        setClimb(0);
-        setClimbSpot(0);
+        setDeep(0);
+        setShallow(0);
         setTrap(0);
         setHarmony(0);
         setFoulPoints(0);
@@ -109,28 +109,28 @@ function ScoreCalculator() {
                         <Counter value={autoLeave} onChange={setAutoLeave}>
                             Auto Leave
                         </Counter>
-                        <Counter value={autoSpeaker} onChange={setAutoSpeaker}>
-                            Auto Speaker
+                        <Counter value={autoCoral} onChange={setAutoCoral}>
+                            Auto Coral
                         </Counter>
-                        <Counter value={autoAmp} onChange={setAutoAmp}>
-                            Auto Amp
+                        <Counter value={autoAlgaeProcessor} onChange={setAutoAlgaeProcessor}>
+                            Auto AlgaeProcessor
                         </Counter>
                     </div>
                     <div className='grid w-[calc(100%_-_2rem)] snap-center snap-always auto-rows-fr grid-cols-[auto_1fr] grid-rows-[auto] gap-1 md:w-auto md:flex-grow md:basis-0'>
                         <h2 className='col-span-2 text-center text-xl font-bold text-green-600'>
                             Teleop
                         </h2>
-                        <Counter value={teleSpeaker} onChange={setTeleSpeaker}>
-                            Tele Speaker
+                        <Counter value={teleCoral} onChange={setTeleCoral}>
+                            Tele Coral
                         </Counter>
                         <Counter
-                            value={ampedTeleSpeaker}
-                            onChange={setAmpedTeleSpeaker}>
-                            Amped Tele Speaker
+                            value={AlgaeProcessoredTeleCoral}
+                            onChange={setAlgaeProcessoredTeleCoral}>
+                            AlgaeProcessored Tele Coral
                         </Counter>
 
-                        <Counter value={teleAmp} onChange={setTeleAmp}>
-                            Tele Amp
+                        <Counter value={teleAlgaeProcessor} onChange={setTeleAlgaeProcessor}>
+                            Tele AlgaeProcessor
                         </Counter>
                     </div>
 
@@ -141,11 +141,11 @@ function ScoreCalculator() {
                         <Counter value={park} onChange={setPark}>
                             Park
                         </Counter>
-                        <Counter value={climb} onChange={setClimb}>
-                            Climb
+                        <Counter value={Deep} onChange={setDeep}>
+                            Deep
                         </Counter>
-                        <Counter value={climbSpot} onChange={setClimbSpot}>
-                            Spotlit Climb
+                        <Counter value={Shallow} onChange={setShallow}>
+                            Spotlit Deep
                         </Counter>
                         <Counter value={trap} onChange={setTrap}>
                             Trap
@@ -166,16 +166,16 @@ function ScoreCalculator() {
 
                     <p
                         className={` text-black-100 text-md rounded-md border-green-800 bg-green-400/70 px-3 py-2 text-center`}>
-                        Speaker:{' '}
+                        Coral:{' '}
                         <span className='rounded-lg bg-black/15 p-2 py-1'>
-                            {speakerPoints}
+                            {CoralPoints}
                         </span>
                     </p>
 
                     <p className='text-black-100 text-md rounded-md border-green-800 bg-green-400/70 px-3 py-2 text-center'>
-                        Amp:{' '}
+                        AlgaeProcessor:{' '}
                         <span className='rounded-lg bg-black/15 p-2 py-1'>
-                            {ampPoints}
+                            {AlgaeProcessorPoints}
                         </span>
                     </p>
 
