@@ -32,44 +32,54 @@ function Counter({
 
 function ScoreCalculator() {
     const [autoLeave, setAutoLeave] = useState(0);
-    const [autoCoral, setAutoCoral] = useState(0);
+    const [autoCoral1, setAutoCoral1] = useState(0);
+    const [autoCoral2, setAutoCoral2] = useState(0);
+    const [autoCoral3, setAutoCoral3] = useState(0);
+    const [autoCoral4, setAutoCoral4] = useState(0);
     const [autoAlgaeProcessor, setAutoAlgaeProcessor] = useState(0);
-    const [teleCoral, setTeleCoral] = useState(0);
-    const [AlgaeProcessoredTeleCoral, setAlgaeProcessoredTeleCoral] = useState(0);
+    const [autoAlgaeNet, setAutoAlgaeNet] = useState(0);
+    const [teleCoral1, setTeleCoral1] = useState(0);
+    const [teleCoral2, setTeleCoral2] = useState(0);
+    const [teleCoral3, setTeleCoral3] = useState(0);
+    const [teleCoral4, setTeleCoral4] = useState(0);
+    const [teleAlgaeNet, setTeleAlgaeNet] = useState(0);
     const [teleAlgaeProcessor, setTeleAlgaeProcessor] = useState(0);
     const [park, setPark] = useState(0);
     const [Deep, setDeep] = useState(0);
     const [Shallow, setShallow] = useState(0);
-    const [trap, setTrap] = useState(0);
-    const [harmony, setHarmony] = useState(0);
-
+    
     const [foulPoints, setFoulPoints] = useState<number | undefined>(0);
 
-    const autoPoints = autoLeave * 2;
+    const autoPoints = autoLeave * 3 ;
     const CoralPoints =
-        autoCoral * 5 + teleCoral * 2 + AlgaeProcessoredTeleCoral * 5;
-    const AlgaeProcessorPoints = autoAlgaeProcessor * 2 + teleAlgaeProcessor * 1;
-    const stagePoints =
-        park * 1 + Deep * 3 + Shallow * 4 + trap * 5 + harmony * 2;
+        autoCoral1 * 3 + autoCoral2 * 4 + autoCoral3 * 6 + autoCoral4 * 7 + teleCoral1 * 2 + teleCoral2 * 3 + teleCoral3 * 4 + teleCoral4 * 5;
+    const AlgaePoints = autoAlgaeProcessor * 6 + teleAlgaeProcessor * 6 + autoAlgaeNet *4; teleAlgaeNet * 4;
+    const cagePoints =
+        park * 2 + Deep * 12 + Shallow * 6;
     const totalPoints =
         autoPoints +
-        CoralPoints +
-        AlgaeProcessorPoints +
-        stagePoints +
+        CoralPoints + 
+        AlgaePoints +
+        cagePoints +
         (foulPoints ?? 0);
 
     const handleReset = () => {
         setAutoLeave(0);
-        setAutoCoral(0);
+        setAutoCoral1(0);
+        setAutoCoral2(0);
+        setAutoCoral3(0);
+        setAutoCoral4(0);
         setAutoAlgaeProcessor(0);
-        setTeleCoral(0);
-        setAlgaeProcessoredTeleCoral(0);
+        setAutoAlgaeNet(0);
+        setTeleCoral1(0);
+        setTeleCoral2(0);
+        setTeleCoral3(0);
+        setTeleCoral4(0);
         setTeleAlgaeProcessor(0);
+        setTeleAlgaeNet(0);
         setPark(0);
         setDeep(0);
         setShallow(0);
-        setTrap(0);
-        setHarmony(0);
         setFoulPoints(0);
     };
 
@@ -109,28 +119,50 @@ function ScoreCalculator() {
                         <Counter value={autoLeave} onChange={setAutoLeave}>
                             Auto Leave
                         </Counter>
-                        <Counter value={autoCoral} onChange={setAutoCoral}>
-                            Auto Coral
+                        <Counter value={autoCoral1} onChange={setAutoCoral1}>
+                            Auto Coral L1
+                        </Counter>
+                        <Counter value={autoCoral2} onChange={setAutoCoral2}>
+                            Auto Coral L2
+                        </Counter>
+                        <Counter value={autoCoral3} onChange={setAutoCoral3}>
+                            Auto Coral L3
+                        </Counter>
+                        <Counter value={autoCoral4} onChange={setAutoCoral4}>
+                            Auto Coral L4
                         </Counter>
                         <Counter value={autoAlgaeProcessor} onChange={setAutoAlgaeProcessor}>
                             Auto Algae Processor
+                        </Counter>
+                        <Counter value={autoAlgaeNet} onChange={setAutoAlgaeNet}>
+                            Auto Algae Net
                         </Counter>
                     </div>
                     <div className='grid w-[calc(100%_-_2rem)] snap-center snap-always auto-rows-fr grid-cols-[auto_1fr] grid-rows-[auto] gap-1 md:w-auto md:flex-grow md:basis-0'>
                         <h2 className='col-span-2 text-center text-xl font-bold text-green-600'>
                             Teleop
                         </h2>
-                        <Counter value={teleCoral} onChange={setTeleCoral}>
-                            Tele Coral
+                        <Counter value={teleCoral1} onChange={setTeleCoral1}>
+                            Tele Coral L1
                         </Counter>
-                        <Counter
-                            value={AlgaeProcessoredTeleCoral}
-                            onChange={setAlgaeProcessoredTeleCoral}>
-                            Tele AlgaeProcessored 
+                        <Counter value={teleCoral2} onChange={setTeleCoral2}>
+                            Tele Coral L2
+                        </Counter>
+                        <Counter value={teleCoral3} onChange={setTeleCoral3}>
+                            Tele Coral L3
+                        </Counter>
+                        <Counter value={teleCoral4} onChange={setTeleCoral4}>
+                            Tele Coral L4
                         </Counter>
 
                         <Counter value={teleAlgaeProcessor} onChange={setTeleAlgaeProcessor}>
-                            Tele AlgaeProcessor
+                            Tele Algae Processor
+                        </Counter>
+
+                        <Counter
+                            value={teleAlgaeNet}
+                            onChange={setTeleAlgaeNet}>
+                            Tele Algae Net
                         </Counter>
                     </div>
 
@@ -147,12 +179,7 @@ function ScoreCalculator() {
                         <Counter value={Shallow} onChange={setShallow}>
                             Shallow
                         </Counter>
-                        <Counter value={trap} onChange={setTrap}>
-                            Trap
-                        </Counter>
-                        <Counter value={harmony} onChange={setHarmony}>
-                            Harmonies
-                        </Counter>
+                        
                     </div>
                 </div>
 
@@ -173,16 +200,16 @@ function ScoreCalculator() {
                     </p>
 
                     <p className='text-black-100 text-md rounded-md border-green-800 bg-green-400/70 px-3 py-2 text-center'>
-                        AlgaeProcessor:{' '}
+                        Algae:{' '}
                         <span className='rounded-lg bg-black/15 p-2 py-1'>
-                            {AlgaeProcessorPoints}
+                            {AlgaePoints}
                         </span>
                     </p>
 
                     <p className='text-black-100 text-md rounded-md border-green-800 bg-green-400/70 px-3 py-2 text-center'>
-                        Stage:{' '}
+                        Cage:{' '}
                         <span className='rounded-lg bg-black/15 p-2 py-1'>
-                            {stagePoints}
+                            {cagePoints}
                         </span>
                     </p>
 
