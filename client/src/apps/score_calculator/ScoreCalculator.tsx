@@ -113,7 +113,7 @@ function ScoreCalculator() {
                             Auto Coral
                         </Counter>
                         <Counter value={autoAlgaeProcessor} onChange={setAutoAlgaeProcessor}>
-                            Auto AlgaeProcessor
+                            Auto Algae Processor
                         </Counter>
                     </div>
                     <div className='grid w-[calc(100%_-_2rem)] snap-center snap-always auto-rows-fr grid-cols-[auto_1fr] grid-rows-[auto] gap-1 md:w-auto md:flex-grow md:basis-0'>
@@ -126,7 +126,7 @@ function ScoreCalculator() {
                         <Counter
                             value={AlgaeProcessoredTeleCoral}
                             onChange={setAlgaeProcessoredTeleCoral}>
-                            AlgaeProcessored Tele Coral
+                            Tele AlgaeProcessored 
                         </Counter>
 
                         <Counter value={teleAlgaeProcessor} onChange={setTeleAlgaeProcessor}>
@@ -145,7 +145,7 @@ function ScoreCalculator() {
                             Deep
                         </Counter>
                         <Counter value={Shallow} onChange={setShallow}>
-                            Spotlit Deep
+                            Shallow
                         </Counter>
                         <Counter value={trap} onChange={setTrap}>
                             Trap
