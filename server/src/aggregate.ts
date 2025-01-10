@@ -2,7 +2,7 @@ import { MatchDataAggregations, SuperDataAggregations } from 'requests';
 import { matchApp, superApp, pitApp } from './Schema.js';
 
 async function averageAndMax(): Promise<MatchDataAggregations[]> {
-    const climbCounts = await matchApp.aggregate([
+    await matchApp.aggregate([
         {
             $group: {
                 _id: {
@@ -20,14 +20,11 @@ async function averageAndMax(): Promise<MatchDataAggregations[]> {
                         ],
                     },
                 },
-                source: {
-                    $sum: { $cond: [{ $eq: ['$climb', 'source'] }, 1, 0] },
+                shallow: {
+                    $sum: { $cond: [{ $eq: ['$climb', 'shallow'] }, 1, 0] },
                 },
-                center: {
-                    $sum: { $cond: [{ $eq: ['$climb', 'center'] }, 1, 0] },
-                },
-                amp: {
-                    $sum: { $cond: [{ $eq: ['$climb', 'amp'] }, 1, 0] },
+                deep: {
+                    $sum: { $cond: [{ $eq: ['$climb', 'deep'] }, 1, 0] },
                 },
                 teams: {
                     $push: '$metadata.robotTeam',
@@ -35,10 +32,6 @@ async function averageAndMax(): Promise<MatchDataAggregations[]> {
             },
         },
     ]);
-
-    const matches = await matchApp
-        .find()
-        .select('metadata.matchNumber metadata.robotTeam climb');
 
     const result = await matchApp.aggregate([
         {
@@ -91,6 +84,7 @@ async function averageAndMax(): Promise<MatchDataAggregations[]> {
                     },
                 },
                 maxAutoAlgaeProcessor: { $max: '$autoAlgae.processor' },
+                maxAutoAlgaeRobotNet: { $max: '$autoAlgae.netHuman'}, 
                 maxCoral: {
                     $max: {
                         $add: [
@@ -108,8 +102,8 @@ async function averageAndMax(): Promise<MatchDataAggregations[]> {
                 maxAlgaeProcessor: {
                     $max: {
                         $add: [
-                            'teleAlgae.processor',
-                            'autoAlgae.processor'
+                            '$teleAlgae.processor',
+                            '$autoAlgae.processor'
                         ],
                     },
                 },
@@ -124,7 +118,7 @@ async function averageAndMax(): Promise<MatchDataAggregations[]> {
                 avgClimbRate: {
                     $avg: {
                         $cond: [
-                            { $in: ['$climb', ['shallow', 'deep', 'park']] },
+                            { $in: ['$climb', ['shallow', 'deep']]},
                             1,
                             { $cond: [{ $eq: ['$climb', 'failed'] }, 0, null] },
                         ],
@@ -133,24 +127,6 @@ async function averageAndMax(): Promise<MatchDataAggregations[]> {
             }
         },
     ]);
-
-    result.forEach(result => {
-        const matchingMatches = matches.filter(
-            match => match.metadata.robotTeam === result._id.teamNumber
-        );
-        const matchingClimbCounts = matchingMatches.map(
-            match =>
-                climbCounts.find(
-                    climbCount =>
-                        climbCount._id.matchNumber ===
-                            match.metadata.matchNumber &&
-                        climbCount.teams.includes(result._id.teamNumber)
-                )[match.climb]
-        );
-        const harmonyCount = matchingClimbCounts.filter(e => e > 1).length;
-        result.harmonyRate = harmonyCount / matchingMatches.length;
-    });
-
     return result;
 }
 
