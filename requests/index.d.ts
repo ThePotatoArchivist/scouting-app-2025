@@ -1,10 +1,4 @@
 export type ClimbPosition = 'shallow'| 'deep' | 'park' | 'none' | 'failed';
-export type PickupLocation =
-    | 'speaker'
-    | 'middle'
-    | 'source'
-    | 'preload'
-    | 'pickup';
 export type teamRoles = 'scoring' | 'defense' | 'support' | 'all-round';
 export type drivebase = 'tank' | 'swerve' | 'MECANUM' | 'other';
 
@@ -47,10 +41,10 @@ interface capabilities {
 
 
 interface preference {
-    coralPerfer: boolean;
-    algaePerfer: boolean;
-    climbSPerfer: boolean;
-    climbDPerfer: boolean;
+    coralPrefer: boolean;
+    algaePrefer: boolean;
+    climbSPrefer: boolean;
+    climbDPrefer: boolean;
 }
 
 export type SuperPosition = 'red_ss' | 'blue_ss';
@@ -60,18 +54,22 @@ export type ScouterPosition = 'red_right' | 'blue_right';
 
 export interface MatchDataAggregations {
     _id: { teamNumber: number };
-    averageTeleSpeakerNotes: number;
-    averageTeleAmpNotes: number;
-    averageAutoSpeakerNotes: number;
-    averageAutoAmpNotes: number;
-    averageTrapNotes: number;
-    maxTeleSpeakerNotes: number;
-    maxTeleAmpNotes: number;
-    maxAutoSpeakerNotes: number;
-    maxAutoAmpNotes: number;
-    maxTrapNotes: number;
+    averageTeleCoral: number;
+    averageTeleAlgaeProcessor: number;
+    averageTeleAlgaeRobotNet: number;
+    averageAutoCoral: number;
+    averageAutoAlgaeProcessor: number;
+    averageAutoAlgaeRobotNet: number;
+    maxTeleCoral: number;
+    maxTeleAlgaeProcessor: number;
+    maxTeleAlgaeRobotNet: number;
+    maxAutoCoral: number;
+    maxAutoAlgaeProcessor: number;
+    maxAutoAlgaeRobotNet: number;
+    maxCoral: number;
+    maxAlgaeProcessor: number;
+    maxAlgaeRobotNet: number;
     avgClimbRate: number;
-    harmonyRate: number;
 }
 
 export interface SuperDataAggregations {
