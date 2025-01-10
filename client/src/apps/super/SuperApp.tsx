@@ -11,7 +11,6 @@ import {
     SuperData,
     Net,
     RobotPosition,
-    ScouterPosition,
 } from 'requests';
 import SuperTeam from './components/SuperTeam';
 import { SuperTeamState } from './components/SuperTeam';
@@ -77,8 +76,6 @@ function SuperApp() {
     const [history, setHistory] = useState<
         { 1: SuperTeamState; 2: SuperTeamState; 3: SuperTeamState }[]
     >([]);
-    const [scouterPosition, setScouterPosition] = useState<ScouterPosition>();
-
     useStatus(superPosition, matchNumber, scouterName);
 
     const saveHistory = () => {
@@ -251,8 +248,6 @@ function SuperApp() {
                             robotPosition={superPosition}
                             onChangeRobotPosition={setSuperPosition}
                             superScouting
-                            scouterPosition={scouterPosition}
-                            onChangeScouterPosition={setScouterPosition}
                             onSubmit={close}
                         />
                     )}
