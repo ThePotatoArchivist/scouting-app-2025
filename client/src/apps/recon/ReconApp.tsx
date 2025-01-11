@@ -60,7 +60,8 @@ function ReconApp() {
     }, [matchNumber]);
 
     return (
-        <main className='mx-auto flex h-screen grid-flow-row flex-col content-center items-center justify-center bg-[#171c26] text-white bg-repeat'>
+       <div className='bg-[#171c26] min-h-fit border-4 border-[#171c26]'> 
+        <main className='mx-auto mb-5 flex h-full grid-flow-row flex-col content-center items-center justify-center bg-[#171c26] text-white bg-repeat'>
             <h1 className='my-8 text-center text-3xl font-bold text-[#48c55c]'>
                 Recon Interface
             </h1>
@@ -90,7 +91,7 @@ function ReconApp() {
                 }}>
                 Reload Data
             </button>
-            <table className='border-4 border-slate-700 bg-[#171c26]'>
+            <table className=' border-4 border-slate-700 bg-[#171c26]'>
                 <thead>
                     <tr>
                         <td className='justify-center border-4 border-slate-700 pl-40'>
@@ -146,6 +147,7 @@ function ReconApp() {
                 </tbody>
             </table>
         </main>
+        </div> 
     );
 }
 
