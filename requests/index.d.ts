@@ -198,4 +198,11 @@ export type TeamData = Partial<{
         avatar?: string;
         info?: TeamInfo;
     };
+
 }>;
+
+export interface leaderboard{
+    name: string;
+    match: MatchData;
+    super: SuperData;
+}

@@ -72,6 +72,8 @@ app.post('/data/pit', async (req, res) => {
     }
 });
 
+app.get('/leaderboard/')
+
 app.get('/data/retrieve', async (req, res) => {
     res.send(await averageAndMax());
 });
