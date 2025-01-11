@@ -274,6 +274,8 @@ function SuperApp() {
                 className='m-2 p-2 text-xl text-black'
             />
         </div>
+           
+            <div className='grid grid-cols-3 justify-items-center gap-10 px-10'>   
             <MultiButton
                 className='mx-10 mt-10 w-full max-w-40 outline-black'
                 onChange={setShooterPlayerTeam}
@@ -291,7 +293,6 @@ function SuperApp() {
                 selectedClassName='bg-[#48c55c]'
                 unSelectedClassName='bg-white'
             />
-            <div className='grid grid-cols-3 justify-items-center gap-10 px-10'>   
                 <SuperTeam teamState={team1} setTeamState={handleTeam1} />
                 <SuperTeam teamState={team2} setTeamState={handleTeam2} />
                 <SuperTeam teamState={team3} setTeamState={handleTeam3} />
