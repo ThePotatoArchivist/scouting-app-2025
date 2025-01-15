@@ -196,6 +196,7 @@ function SuperApp() {
         }
     };
 
+
     return (
         <main className='bg-[#171c26] text-center'>
             {showCheck && (
@@ -274,8 +275,8 @@ function SuperApp() {
                 className='m-2 p-2 text-xl text-black'
             />
         </div>
-           
-            <div className='grid grid-cols-3 justify-items-center gap-10 px-10'>   
+       <p className='text-white pt-5 text-2xl'>Human Player</p>     
+        <div className='grid grid-cols-3 justify-items-center gap-10 px-10'>
             <MultiButton
                 className='mx-10 mt-10 w-full max-w-40 outline-black'
                 onChange={setShooterPlayerTeam}
@@ -283,7 +284,7 @@ function SuperApp() {
                     team1.teamNumber ?? -1,
                     team2.teamNumber ?? -2,
                     team3.teamNumber ?? -3,
-                ]} // ugly hack hehe
+                ]} // ugly hack hehe 
                 labels={[
                     team1.teamNumber ?? 'Team 1',
                     team2.teamNumber ?? 'Team 2',
@@ -293,16 +294,12 @@ function SuperApp() {
                 selectedClassName='bg-[#48c55c]'
                 unSelectedClassName='bg-white'
             />
-                <SuperTeam teamState={team1} setTeamState={handleTeam1} />
-                <SuperTeam teamState={team2} setTeamState={handleTeam2} />
-                <SuperTeam teamState={team3} setTeamState={handleTeam3} />
-            </div>
-                <HumanButton>
-                    
-                </HumanButton>
-            <div>
+                <SuperTeam teamState={team1} setTeamState={handleTeam1} bgClass={`${shooterPlayerTeam == -1 ? 'bg-[#003805] rounded-lg p-5' : ''} `}/>
+                <SuperTeam teamState={team2} setTeamState={handleTeam2} bgClass={`${shooterPlayerTeam == -2 ? 'bg-[#003805] rounded-lg p-5' : ''} `}/>
+                <SuperTeam teamState={team3} setTeamState={handleTeam3} bgClass={`${shooterPlayerTeam == -3 ? 'bg-[#003805] rounded-lg p-5' : ''} `}/>
                 
-            </div>
+        </div>
+                <HumanButton/>
 
             <button
                 onClick={() => {

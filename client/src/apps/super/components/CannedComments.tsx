@@ -35,11 +35,7 @@ const commentOptions: SelectOption<CommentValues>[] = [
     },
     { label: 'sturdy build', value: 'sturdy_build', color: '#5ac750' },
     { label: 'weak build', value: 'weak_build', color: '#c75050' },
-    {
-        label: 'avoids under stage',
-        value: 'avoids_under_stage',
-        color: '#c78450',
-    },
+    
 ];
 
 const colourStyles: StylesConfig<ColourOption, true> = {

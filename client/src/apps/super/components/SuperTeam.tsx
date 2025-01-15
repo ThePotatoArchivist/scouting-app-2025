@@ -17,9 +17,11 @@ export interface SuperTeamState {
 function SuperTeam({
     teamState,
     setTeamState,
+    bgClass
 }: {
     teamState: SuperTeamState;
     setTeamState: Dispatch<SuperTeamState>;
+    bgClass?: string;
 }) {
     const handleDefense = (newDefense: DefenseRank) => {
         setTeamState({ ...teamState, defenseRank: newDefense });
@@ -68,15 +70,18 @@ function SuperTeam({
         }
         setTeamState({ ...teamState, breakCount: updatedBreakCounts });
     };
+    
+    
 
     //many divs, kinda ugly
 
     // saves all the other inputs, ovverrides the one in setTeamState({... comments, X})
 
     return (
-        <div>
-            <div className='mx-auto flex  flex-col content-center items-center justify-center '>
-                <p className='pt-3 text-lg text-zinc-100 underline'>
+        <div className={bgClass}>
+        
+            <div className='mx-auto flex  flex-col content-center items-center justify-center p-5 '>
+                <p className=' pt-3 text-lg text-zinc-100 underline'>
                     Team Number
                 </p>
                 <TeamDropdown
@@ -94,7 +99,7 @@ function SuperTeam({
 
             <p className='mt-5 text-4xl text-zinc-100 underline'>Fouls</p>
 
-            <div className='flex justify-center'>
+            <div className=' flex justify-center'>
                 <button
                     className='mt-3 rounded-md border bg-red-400 px-3 py-2 text-lg text-zinc-100'
                     onClick={() => handleDecreaseFoul('insideRobot')}>
