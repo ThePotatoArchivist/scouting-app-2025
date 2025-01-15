@@ -19,6 +19,7 @@ import TeamDropdown from '../../components/TeamDropdown';
 import { useQueue } from '../../lib/useQueue';
 import scheduleFile from '../../assets/matchSchedule.json';
 import { usePreventUnload } from '../../lib/usePreventUnload';
+import ToggleButton from '../../components/LightVDarkMode';
 
 const schedule = scheduleFile as MatchSchedule;
 
@@ -63,7 +64,7 @@ function MatchApp() {
     const [showCheck, setShowCheck] = useState(false);
     const [scouterName, setScouterName] = useState('');
     const [robotPosition, setRobotPosition] = useState<RobotPosition>();
-
+    const [toggleState, setToggleState] = useState(false);
     // const [scouterPosition, setScouterPosition] = useState<ScouterPosition>();
 
 
@@ -73,6 +74,7 @@ function MatchApp() {
             alert('Check if your signed in, and you have the match number');
             return;
         }
+    
 
         const data: MatchData = {
             metadata: {
@@ -204,8 +206,16 @@ function MatchApp() {
 
     useStatus(robotPosition, matchNumber, scouterName);
 
+    function buttonToggle() {
+        if (toggleState == false) {
+            setToggleState(true);
+        } else {
+            setToggleState(false);
+        }
+    }
+
     return (
-       <div className='bg-[#171c26]'> 
+       <div className= {`${ toggleState ? 'bg-[#171c26]' : 'bg-white'}`}> 
         <main className='mx-auto flex w-min grid-flow-row flex-col content-center items-center justify-center '>
             {showCheck && (
                 <MaterialSymbol
@@ -213,11 +223,11 @@ function MatchApp() {
                     size={150}
                     fill
                     grade={200}
-                    color='green'
+                    color="#48c55c"
                     className='absolute right-10 top-0 ml-10'
                 />
             )}
-            <h1 className='my-8 text-center font-semibold text-[#48c55c] text-3xl'>Match Scouting App</h1>
+            <h1 className='my-8 mt-10 text-center font-semibold text-[#48c55c] text-3xl'>Match Scouting App</h1>
 
             <div className='fixed left-4 top-4 z-20 flex flex-row gap-3 rounded-md bg-slate-200 p-1'>
                 <LinkButton link='/' className='snap-none'>
@@ -268,15 +278,32 @@ function MatchApp() {
                         className='snap-none'
                     />
                 </button>
+
+                <div className={`fixed right-4 top-4 z-20 flex flex-row gap-3 rounded-md p-1`}>
+                    <ToggleButton
+                    className='' 
+                    buttonClassName=''
+                    onClick={buttonToggle}>
+                    <MaterialSymbol
+                        icon={`${toggleState ? 'dark_mode' : 'light_mode'}`}
+                        size={60}
+                        fill
+                        grade={200}
+                        color='#48c55c'
+                        className='snap-none'
+                    />
+                    </ToggleButton>
+                </div>
+
             </div>
 
-            <p className='mb-2 mt-2 text-2xl text-white'>Match Number</p>
+            <p className={`mb-2 mt-2 text-2xl ${ toggleState ? 'text-white' : 'text-[#171c26]'}`}>Match Number</p>
             <NumberInput
                 className='border border-black'
                 onChange={setMatchNumber}
                 value={matchNumber}
             />
-            <p className='mb-2 mt-8 text-2xl text-white'>Team Number</p>
+            <p className={`mb-2 mt-8 text-2xl ${toggleState ? 'text-white' : 'text-[#171c26]'}`}>Team Number</p>
             <TeamDropdown onChange={setTeamNumber} value={teamNumber} />
 
             <div>
@@ -298,6 +325,7 @@ function MatchApp() {
                     count={count}
                     teleOp={false}
                     leave={leave}
+                    styleMode={toggleState}
                 /> }
                 <h2 className='my-6 mt-12 text-center text-5xl font-semibold text-green-600'>
                     Tele-Op
@@ -306,6 +334,7 @@ function MatchApp() {
                     setCount={handleSetCount}
                     count={count}
                     teleOp={true}
+                    styleMode={toggleState}
                 /> }
                 <h2 className='my-6 mt-12 text-center text-5xl font-semibold text-green-600'>
                     Endgame
@@ -333,7 +362,7 @@ function MatchApp() {
                 <div>Queue: {queue.length}</div>
                 <button
                     onClick={sendAll}
-                    className='rounded-md bg-amber-500 px-2 py-1 text-center'>
+                    className='rounded-md bg-amber-500 px-2 py-1 text-center mb-5'>
                     {sending ? 'Sending...' : 'Resend All'}
                 </button>
             </div>
