@@ -205,7 +205,7 @@ function MatchApp() {
     useStatus(robotPosition, matchNumber, scouterName);
 
     return (
-       <div className={` ${scouterName === 'Fuchsia' ? 'bg-[#FF77FF]' : 'bg-[#171c26]'}`}> 
+       <div className={` ${scouterName === 'Fuchsia' ? 'bg-[#FF5BFC]' : 'bg-[#171c26]'}`}> 
         <main className='mx-auto flex w-min grid-flow-row flex-col content-center items-center justify-center '>
             {showCheck && (
                 <MaterialSymbol
@@ -217,7 +217,7 @@ function MatchApp() {
                     className='absolute right-10 top-0 ml-10'
                 />
             )}
-            <h1 className={` ${scouterName === 'Fuchsia' ? 'my-8 text-center font-semibold text-[#77FF77] text-3xl' : 'my-8 text-center font-semibold text-[#48c55c] text-3xl'}`}>{` ${scouterName === 'Fuchsia' ? 'Match Scouting App - Fuchsia Edition! :)' : 'Match Scouting App'}`}</h1>
+            <h1 className={` ${scouterName === 'Fuchsia' ? 'my-8 text-center font-semibold text-[#C74375] text-3xl' : 'my-8 text-center font-semibold text-[#48c55c] text-3xl'}`}>{` ${scouterName === 'Fuchsia' ? 'Match Scouting App - Fuchsia Edition! :)' : 'Match Scouting App'}`}</h1>
 
             <div className='fixed left-4 top-4 z-20 flex flex-row gap-3 rounded-md bg-slate-200 p-1'>
                 <LinkButton link='/' className='snap-none'>
@@ -270,20 +270,20 @@ function MatchApp() {
                 </button>
             </div>
 
-            <p className='mb-2 mt-2 text-2xl text-white'>Match Number</p>
+            <p className={`${scouterName === 'Fuchsia' ? 'text-[#C74375]' : (scouterName && robotPosition ? 'text-green-400' : 'text-gray-400')} mb-2 mt-2 text-2xl text-white`}>Match Number</p>
             <NumberInput
                 className='border border-black'
                 onChange={setMatchNumber}
                 value={matchNumber}
             />
-            <p className='mb-2 mt-8 text-2xl text-white'>Team Number</p>
+            <p className={`${scouterName === 'Fuchsia' ? 'text-[#C74375]' : (scouterName && robotPosition ? 'text-green-400' : 'text-gray-400')}  mb-2 mt-8 text-2xl text-white`}>Team Number</p>
             <TeamDropdown onChange={setTeamNumber} value={teamNumber} />
 
             <div>
                 <button
                     onClick={showConfirmationDialog}
                     style={{ fontSize: '20px' }}
-                    className='mb-2 mt-14 rounded-md bg-green-500 px-2 py-1 text-center'>
+                        className={`${scouterName === 'Fuchsia' ? 'bg-[#C74375]' : (scouterName === 'Randy' ? 'bg-[#]' : 'text-black')} text-black mb-2 mt-14 rounded-md bg-green-500 px-2 py-1 text-center`}>
                     Robot Absent
                 </button>
             </div>
