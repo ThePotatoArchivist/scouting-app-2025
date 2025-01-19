@@ -98,6 +98,11 @@ type PitDataSchemaType = {
     [K in keyof PitFile]: K extends 'photo' ? Buffer : PitFile[K];
 };
 
+const leaderboardDataSchema = {
+    scouterName: String,
+    accuracy: Number,
+};
+
 const pitDataSchema = new mongoose.Schema<PitDataSchemaType>({
     scouterName: String,
     teamNumber: Number,
@@ -132,6 +137,7 @@ const pitDataSchema = new mongoose.Schema<PitDataSchemaType>({
 const pitApp = mongoose.model('pitApp', pitDataSchema);
 const matchApp = mongoose.model('matchApp', matchDataSchema);
 const superApp = mongoose.model('superApp', superScoutDataSchema);
+const leaderboardApp = mongoose.model('leaderboardApp', leaderboardDataSchema);
 
 export {
     matchApp,
@@ -140,4 +146,7 @@ export {
     pitDataSchema,
     superApp,
     superScoutDataSchema,
+    leaderboardApp,
+    leaderboardDataSchema,
+
 };

@@ -30,6 +30,9 @@ export type CommentValues =
     | 'weak_build'
     | 'avoids_under_stage';
 
+export type leaderboardValues =
+    'names'
+
 export type Net = boolean;
 
 interface capabilities {
@@ -71,6 +74,12 @@ export interface MatchDataAggregations {
     maxAlgaeRobotNet: number;
     avgClimbRate: number;
 }
+
+export interface ScouterDataAggregations {
+    _id: { scouterName: string }
+    accuracy: number;
+}
+
 
 export interface SuperDataAggregations {
     _id: { teamNumber: number };
@@ -125,6 +134,12 @@ export interface SuperData {
 
 // - `POST` `/data/pits`
 // `<form>` files?
+
+export interface ScouterData {
+    metadata: MetaData;
+    scouterName: string;
+    accuracy: number;
+}
 
 export interface PitFile {
     scouterName: string;
@@ -198,4 +213,6 @@ export type TeamData = Partial<{
         avatar?: string;
         info?: TeamInfo;
     };
+
+    
 }>;

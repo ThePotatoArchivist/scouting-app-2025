@@ -80,6 +80,10 @@ app.get('/data/retrieve/super', async (req, res) => {
     res.send(await superAverageAndMax());
 });
 
+app.get('/data/retrieve/scouter', async (req, res) => {
+    res.send(await scouterRankings());
+});
+
 app.get('/data/pit/scouted-teams', async (req, res) => {
     res.send((await pitApp.find({}, { teamNumber: 1 })).map(e => e.teamNumber));
 });
