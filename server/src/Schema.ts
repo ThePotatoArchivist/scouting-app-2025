@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { CommentValues, MatchData, PitFile, SuperData } from 'requests';
+import { CommentValues, MatchData, PitFile, SuperData, ScouterData } from 'requests';
 
 const matchappsMetaDataSchema = {
     scouterName: String,
@@ -94,13 +94,14 @@ const superScoutDataSchema = new mongoose.Schema<SuperData>({
     ],
 });
 
-type PitDataSchemaType = {
-    [K in keyof PitFile]: K extends 'photo' ? Buffer : PitFile[K];
-};
-
-const leaderboardDataSchema = {
+const leaderboardDataSchema = new mongoose.Schema<ScouterData> ({
     scouterName: String,
     accuracy: Number,
+});
+
+
+type PitDataSchemaType = {
+    [K in keyof PitFile]: K extends 'photo' ? Buffer : PitFile[K];
 };
 
 const pitDataSchema = new mongoose.Schema<PitDataSchemaType>({

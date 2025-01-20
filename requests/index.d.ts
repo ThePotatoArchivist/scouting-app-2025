@@ -30,8 +30,11 @@ export type CommentValues =
     | 'weak_build'
     | 'avoids_under_stage';
 
-export type leaderboardValues =
-    'names'
+// export type leaderboardValues = 'Vanessa' | 'Crisanto' | 'Christian' | 'Nathan' | 'Ashreeya' | 'Tica';
+
+// find me
+
+
 
 export type Net = boolean;
 
@@ -75,11 +78,11 @@ export interface MatchDataAggregations {
     avgClimbRate: number;
 }
 
-export interface ScouterDataAggregations {
-    _id: { scouterName: string }
-    accuracy: number;
-}
-
+// export interface ScouterDataAggregations {
+//     scouterName: string
+//     accuracy: number;
+// }
+// find me
 
 export interface SuperDataAggregations {
     _id: { teamNumber: number };
@@ -136,10 +139,11 @@ export interface SuperData {
 // `<form>` files?
 
 export interface ScouterData {
-    metadata: MetaData;
     scouterName: string;
     accuracy: number;
+    
 }
+// find me
 
 export interface PitFile {
     scouterName: string;

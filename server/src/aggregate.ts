@@ -1,5 +1,5 @@
-import { MatchDataAggregations, SuperDataAggregations } from 'requests';
-import { matchApp, superApp, pitApp } from './Schema.js';
+import { MatchDataAggregations, SuperDataAggregations, ScouterData } from 'requests';
+import { matchApp, superApp, pitApp, leaderboardApp } from './Schema.js';
 
 async function averageAndMax(): Promise<MatchDataAggregations[]> {
     await matchApp.aggregate([
@@ -164,6 +164,31 @@ async function superAverageAndMax(): Promise<SuperDataAggregations[]> {
     ]);
 }
 
+// async function scouterRankings(): Promise<ScouterDataAggregations[]> {
+//     return await leaderboardApp.aggregate([
+//         {
+//             $group: {
+//                 _id: { scouterName: '$metadata.scouterName' },
+
+//                 accuracy: {
+                   
+                    
+//                 },
+//             } satisfies { [K in keyof ScouterDataAggregations]: unknown },
+//         },
+//     ]);
+// }
+
+async function scouterRankings(): Promise<ScouterData[]> {
+    const filter = {};
+    const result =  await leaderboardApp.find(filter)
+    return (
+        result
+    );
+}
+
+
+
 async function robotImageDisplay(
     teamNumber: number
 ): Promise<Buffer | undefined> {
@@ -172,4 +197,4 @@ async function robotImageDisplay(
     )?.photo;
 }
 
-export { averageAndMax, superAverageAndMax, robotImageDisplay };
+export { averageAndMax, superAverageAndMax, robotImageDisplay, scouterRankings };

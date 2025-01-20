@@ -1,13 +1,18 @@
-
-
+import {
+    ScouterData,
+} from 'requests';
+import { StatRow } from './components/StatRow';
 import LinkButton from '../../components/LinkButton';
 import { MaterialSymbol } from 'react-material-symbols';
+import { useFetchJson } from '../../lib/useFetch';
 
 
 
 function LeaderboardApp() {
     
-   
+    const [retrieveScouter, reloadRetrieveScouter] =
+    useFetchJson<ScouterData[]>('/data/retrieve/scouter');
+
     return (
        <div className='bg-[#171c26] min-h-fit min-w-f border-4 border-[#171c26]'> 
         <main className='mx-auto mb-5 flex h-full grid-flow-row flex-col content-center items-center justify-center bg-[#171c26] text-white bg-repeat'>
@@ -27,7 +32,18 @@ function LeaderboardApp() {
                     />
                 </LinkButton>
             </div>
+
+            <button
+                className='my-3 rounded-lg border-2 border-slate-900 text-lg'
+                onClick={() => {
+                    reloadRetrieveScouter();
+                }}>
+                Reload Data
+            </button>
+
             <table className='h-screen border-4 border-slate-700 bg-[#171c26] '>
+                        <thead>
+                            <tr>
                             <th className='justify-center border-4 border-slate-700 px-3 pt-3 '>
                                 Rank
                             </th>
@@ -37,9 +53,15 @@ function LeaderboardApp() {
                             <th className='justify-center border-4 border-slate-700 px-3'>
                                 Accuracy
                             </th>
-                
-                <tbody className='rows-12'>
-                    
+                            </tr>
+                        </thead>
+                <tbody>
+                {(retrieveScouter??[]).map(scouter => (
+                        <StatRow
+                            key = ''
+                            scouter={scouter}
+                        />
+                    ))} 
                 </tbody>
             </table>
         </main>

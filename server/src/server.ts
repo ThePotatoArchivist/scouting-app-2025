@@ -7,6 +7,7 @@ import {
     averageAndMax,
     superAverageAndMax,
     robotImageDisplay,
+    scouterRankings
 } from './aggregate.js';
 import { setUpSocket, updateMatchStatus } from './status.js';
 import { MatchData, PitFile, PitResult, SuperData } from 'requests';
