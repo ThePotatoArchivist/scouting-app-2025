@@ -13,6 +13,9 @@ function LeaderboardApp() {
     const [retrieveScouter, reloadRetrieveScouter] =
     useFetchJson<ScouterData[]>('/data/retrieve/scouter');
 
+    const sortedScouters = (retrieveScouter ?? []).sort((a, b) => b.accuracy - a.accuracy);
+    console.log(sortedScouters)
+
     return (
        <div className='bg-[#171c26] min-h-fit min-w-f border-4 border-[#171c26]'> 
         <main className='mx-auto mb-5 flex h-full grid-flow-row flex-col content-center items-center justify-center bg-[#171c26] text-white bg-repeat'>
@@ -56,9 +59,10 @@ function LeaderboardApp() {
                             </tr>
                         </thead>
                 <tbody>
-                {(retrieveScouter??[]).map(scouter => (
+                {sortedScouters.map((scouter, index) => (
                         <StatRow
-                            key = ''
+                            key={scouter.scouterName}
+                            rank= {index + 1}
                             scouter={scouter}
                         />
                     ))} 
