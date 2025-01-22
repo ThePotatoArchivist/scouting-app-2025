@@ -92,7 +92,7 @@ function ScoreCalculator() {
                 </h1>
             </div>
 
-            <div className='fixed left-4 top-4 z-20  flex flex-col gap-2 rounded-md bg-slate-200 p-1'>
+            <div className='fixed left-4 top-4 z-20  flex flex-row gap-2 rounded-md bg-slate-200 px-1'>
                 <LinkButton link='/' className='snap-none'>
                     <MaterialSymbol
                         icon='home'
@@ -103,6 +103,17 @@ function ScoreCalculator() {
                         className='snap-none'
                     />
                 </LinkButton>
+                <button
+                    className='flex'>
+                        <MaterialSymbol
+                        icon='flag'
+                        size={50}
+                        fill
+                        grade={200}
+                        color='crimson'
+                        className=''
+                    />
+                </button>
             </div>
 
             <div className='flex flex-grow flex-col'>
