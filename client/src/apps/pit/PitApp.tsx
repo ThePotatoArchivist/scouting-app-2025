@@ -39,6 +39,10 @@ function PitApp() {
     const [climbShallowPrefChecked, setclimbShallowPrefChecked] = useState(false);
     const [climbDeepPrefChecked, setclimbDeepPrefChecked] = useState(false);
 
+    const [coralAmnt, setCoralAmnt] = useState<number>(0);
+    const [algae, setAlgae] = useState<number>(0);
+    const [movement, setMovement] = useState<boolean>(false);
+
     const [scouterName, setScouterName] = useState('');
     const [robotImage, setRobotImage] = useState('');
     useEffect(() => {
@@ -106,6 +110,20 @@ function PitApp() {
     const inputBattery = {
         width: '150px',
         height: '50px',
+    };
+
+    function handleMovement() {
+        if (movement) {
+            setMovement(false);
+        } else {
+            setMovement(true);
+        }
+    };
+    function handleCoral() {
+        setCoralAmnt(coralAmnt+1)
+    };
+    function handleAlgae() {
+        setAlgae(algae+1)
     };
 
     return (
@@ -284,6 +302,16 @@ function PitApp() {
                     </div>
                 </div>
 
+<div className='justify-items-center'>
+    <h2 className='text-2xl text-slate-200'>Auto Information</h2>
+    <div className='grid grid-cols-3'>
+        <button onClick={handleCoral} className='text-slate-900 text-2xl bg-slate-200 flex border-2 border-emerald-500 rounded-lg p-5 justify-items-center justify-center m-2'>Coral: {coralAmnt}</button>
+        <button onClick={handleAlgae} className='text-slate-900 text-2xl bg-slate-200 flex border-2 border-emerald-500 rounded-lg p-5 justify-items-center justify-center m-2'>Algae: {algae}</button>
+        <button onClick={handleMovement} className='text-slate-900 text-2xl bg-slate-200 flex border-2 border-emerald-500 rounded-lg p-5 justify-items-center justify-center m-2'>Movement: {movement? 'yes' : 'no'}</button>
+    </div>
+    <button className='text-slate-900 text-lg bg-green-200 flex border-2 border-emerald-500 rounded-lg px-10 justify-items-center justify-center'>Add Auto</button> 
+</div>
+{/* add auto button does nothing rn because i dont remember how to do it */}
                 <div className='mb-8 mt-7 flex items-center justify-center'>
                     <div className='flex h-24 w-2/4 flex-col items-center justify-center rounded-lg border-4 border-[#2f3646] bg-[#2f3646] '>
                         <h1 className='text-center text-white'>
