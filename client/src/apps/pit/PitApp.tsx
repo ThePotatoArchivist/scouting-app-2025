@@ -39,9 +39,10 @@ function PitApp() {
     const [climbShallowPrefChecked, setclimbShallowPrefChecked] = useState(false);
     const [climbDeepPrefChecked, setclimbDeepPrefChecked] = useState(false);
 
-    const [coralAmnt, setCoralAmnt] = useState<number>(0);
-    const [algae, setAlgae] = useState<number>(0);
-    const [movement, setMovement] = useState<boolean>(false);
+    const [coral, setCoral] = useState<number[]>([]);
+    const [algae, setAlgae] = useState<number[]>([]);
+    const [movement, setMovement] = useState<boolean[]>([]);
+
 
     const [scouterName, setScouterName] = useState('');
     const [robotImage, setRobotImage] = useState('');
@@ -112,19 +113,36 @@ function PitApp() {
         height: '50px',
     };
 
-    function handleMovement() {
-        if (movement) {
-            setMovement(false);
-        } else {
-            setMovement(true);
-        }
-    };
-    function handleCoral() {
-        setCoralAmnt(coralAmnt+1)
-    };
-    function handleAlgae() {
-        setAlgae(algae+1)
-    };
+    //add auto set
+  const addAuto = () => {
+    setCoral((prev) => [...prev, 0]);
+    setAlgae((prev) => [...prev, 0]);
+    setMovement((prev) => [...prev, false]);
+  };
+
+  //remove auto set
+  const removeAuto = (index: number) => {
+    setCoral((prev) => prev.filter((_, i) => i !== index));
+    setAlgae((prev) => prev.filter((_, i) => i !== index));
+    setMovement((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const updateValue = (
+    setter: React.Dispatch<React.SetStateAction<number[]>>,
+    index: number,
+    newValue: number
+  ) => {
+    setter((prev) =>
+      prev.map((value, i) => (i === index ? newValue : value))
+    );
+  };
+
+  // Toggle a boolean value (for auto movement)
+  const toggleMovement = (index: number) => {
+    setMovement((prev) =>
+      prev.map((value, i) => (i === index ? !value : value))
+    );
+  };
 
     return (
         <>
@@ -302,16 +320,71 @@ function PitApp() {
                     </div>
                 </div>
 
-<div className='justify-items-center'>
-    <h2 className='text-2xl text-slate-200'>Auto Information</h2>
-    <div className='grid grid-cols-3'>
-        <button onClick={handleCoral} className='text-slate-900 text-2xl bg-slate-200 flex border-2 border-emerald-500 rounded-lg p-5 justify-items-center justify-center m-2'>Coral: {coralAmnt}</button>
-        <button onClick={handleAlgae} className='text-slate-900 text-2xl bg-slate-200 flex border-2 border-emerald-500 rounded-lg p-5 justify-items-center justify-center m-2'>Algae: {algae}</button>
-        <button onClick={handleMovement} className='text-slate-900 text-2xl bg-slate-200 flex border-2 border-emerald-500 rounded-lg p-5 justify-items-center justify-center m-2'>Movement: {movement? 'yes' : 'no'}</button>
-    </div>
-    <button className='text-slate-900 text-lg bg-green-200 flex border-2 border-emerald-500 rounded-lg px-10 justify-items-center justify-center'>Add Auto</button> 
+      <div className="flex-col items-center justify-center bg-[#2f3646] border-2 rounded-lg text-gray-200 border-[#2f3646]">
+        {coral.map((_, index) => (
+          <div key={index} className="">
+            <h2 className="text-lg font-semibold mb-2 mt-5">Auto {index + 1}</h2>
+
+            {/* Algae n Coral Controls */}
+            {[
+              { label: "Coral", state: coral, setter: setCoral},
+              { label: "Algae", state: algae, setter: setAlgae},
+            ].map(({label, state, setter}) => (
+              <div key={label} className="flex item-center justify-center mb-2">
+                <p className="text-md font-medium px-3 py-5">{label}:</p>
+                <p className="text-md py-5 px-3 w-10">{state[index]}</p>
+                <div className="flex space-x-2">
+                  <button
+                    onClick={() => updateValue(setter, index, state[index] - 1)}
+                    className="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600"
+                  >
+                    -
+                  </button>
+                  <button
+                    onClick={() => updateValue(setter, index, state[index] + 1)}
+                    className="px-10 py-5 bg-green-500 text-white rounded-md hover:bg-green-600"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            ))}
+
+            {/* Movement Control */}
+            <div className="flex items-center justify-center mb-2">
+              <p className="text-md w-40">
+                {movement[index] ? "Movement" : "No Movement"}
+              </p>
+              <button
+                onClick={() => toggleMovement(index)}
+                className=" px-3 py-1 bg-purple-500 text-white rounded-md hover:bg-purple-600"
+              >
+                Toggle
+              </button>
+            </div>
+
+            {/* Remove Data Set Button */}
+            <div className='flex items-center justify-center'>
+            <button
+              onClick={() => removeAuto(index)}
+              className="mt-2 px-3 py-1 bg-gray-500 text-white rounded-md hover:bg-gray-600"
+            >
+              Remove Auto
+            </button>
+            </div>
+          </div>
+        ))}
+      </div>
+      <br/>
+      <div className='flex items-center justify-center'>
+                <button
+        onClick={addAuto}
+        className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 mb-4"
+      >
+        Add Auto
+      </button>
 </div>
-{/* add auto button does nothing rn because i dont remember how to do it */}
+
                 <div className='mb-8 mt-7 flex items-center justify-center'>
                     <div className='flex h-24 w-2/4 flex-col items-center justify-center rounded-lg border-4 border-[#2f3646] bg-[#2f3646] '>
                         <h1 className='text-center text-white'>
