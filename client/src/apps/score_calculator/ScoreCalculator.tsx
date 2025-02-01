@@ -1,6 +1,6 @@
 //import ToggleButton from '../../components/ToggleButton'
 import React, { Dispatch, SetStateAction, useState } from 'react';
-
+import Dialog from '../../components/Dialog';
 import LinkButton from '../../components/LinkButton';
 import { MaterialSymbol } from 'react-material-symbols';
 import NumberInput from '../../components/NumberInput';
@@ -47,8 +47,11 @@ function ScoreCalculator() {
     const [park, setPark] = useState(0);
     const [Deep, setDeep] = useState(0);
     const [Shallow, setShallow] = useState(0);
+
     
     const [foulPoints, setFoulPoints] = useState<number | undefined>(0);
+
+    const [showCheck] = useState<boolean>(false);
 
     const autoPoints = autoLeave * 3 ;
     const CoralPoints =
@@ -103,17 +106,34 @@ function ScoreCalculator() {
                         className='snap-none'
                     />
                 </LinkButton>
-                <button
-                    className='flex'>
-                        <MaterialSymbol
-                        icon='flag'
-                        size={50}
-                        fill
-                        grade={200}
-                        color='crimson'
-                        className=''
-                    />
-                </button>
+                <Dialog
+                        trigger={open => (
+                            <button onClick={open}>
+                                <MaterialSymbol
+                                    icon='flag'
+                                    size={50}
+                                    fill
+                                    grade={200}
+                                    color='crimson'
+                                    className=''
+                                />
+                            </button>
+                        )}>
+                        {close => (
+                            <>
+                                <div className='pt-32 px-56'>
+                                <p className=''>
+                                    Truvi (Jumpscare) (This is the part where you go "AAAA")
+                                </p>
+                                <button 
+                                    onClick={close}
+                                    className={` ${showCheck ? 'bg-green-500' : 'bg-gray-300'} m-3 justify-center rounded-md bg-gray-300  px-5  py-3 text-xl hover:bg-green-500`}>
+                                    Close
+                                </button>
+                                </div>
+                            </>
+                        )}
+                    </Dialog>
             </div>
 
             <div className='flex flex-grow flex-col'>

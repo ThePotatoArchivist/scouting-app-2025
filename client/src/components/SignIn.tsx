@@ -19,7 +19,7 @@ function SignIn({
     | {
           superScouting: true;
           pitScouting?: false;
-          robotPosition: SuperPosition | undefined;
+          robotPosition?: SuperPosition | undefined;
           onChangeRobotPosition: Dispatch<SuperPosition>;
       }
     | {
