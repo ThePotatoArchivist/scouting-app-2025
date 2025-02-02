@@ -95,6 +95,7 @@ interface coral {
 interface algae {
     netRobot: number;
     processor: number;
+    remove: number;
 }
 // - `POST` `/data/match`
 

@@ -29,7 +29,8 @@ const coral = {
 };
 const algae = {
     netRobot: Number,
-    processor: Number
+    processor: Number,
+    remove: Number
 };
 
 const matchDataSchema = new mongoose.Schema<MatchData>({

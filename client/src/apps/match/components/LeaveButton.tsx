@@ -170,6 +170,17 @@ function FieldButton({
                             label='Processor'
                             styleMode={styleMode}
                         />
+
+                        <RegionButton
+                            teleOp={teleOp}
+                            count={count}
+                            handleCount={handleCount}
+                            autoKey='autoRemove'
+                            teleKey='teleRemove'
+                            className={``}
+                            label='Remove'
+                            styleMode={styleMode}
+                        />
                         </div>
                     </>
             </div>
