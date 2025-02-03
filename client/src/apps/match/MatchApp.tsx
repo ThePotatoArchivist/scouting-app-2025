@@ -235,7 +235,7 @@ function MatchApp() {
             )}
             <h1 className='my-8 mt-10 text-center font-semibold text-[#48c55c] text-3xl'>Match Scouting App</h1>
 
-            <div className='fixed left-4 top-4 z-20 flex flex-row gap-3 rounded-md bg-slate-200 p-1'>
+            <div className='fixed left-4 top-4 z-30 flex flex-row gap-3 rounded-md bg-slate-200 p-1'>
                 <LinkButton link='/' className='snap-none'>
                     <MaterialSymbol
                         icon='home'
