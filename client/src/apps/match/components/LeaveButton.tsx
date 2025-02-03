@@ -12,7 +12,8 @@ function RegionButton({
     teleOp,
     count,
     label,
-    styleMode
+    styleMode,
+
 }: {
     handleCount: (
         autokey: countKeys,
@@ -26,6 +27,8 @@ function RegionButton({
     count: MatchScores;
     label?: string;
     styleMode?: boolean;
+    textClassName?: string;
+
 }) {
     return (
         <div className='flex flex-col items-center'>
@@ -71,7 +74,6 @@ function FieldButton({
     const handleLeave = () => {
         setLeave?.(!leave);
     };
-
     
     return (
         <>
@@ -79,10 +81,10 @@ function FieldButton({
                 {!teleOp && (
                     <>
                         <div className='flex-col items-center justify-center pr-3'>
-                            <h1 className={`text-4xl ${styleMode ? 'text-white' : 'text-[#171c26]'}`}>Leave? </h1>
+                            <h1 className={`text-4xl ${styleMode ? 'text-white' : 'text-[#171c26]'}`}>Mobility? </h1>
                             <p className={`${styleMode ? 'text-white' : 'text-[#171c26]'}`}>
-                                The robot must cross the starting
-                                <br /> line completely to select yes.
+                                The robot must be off the starting completely
+                                <br /> at the end of the match to select yes.
                             </p>
                         </div>
                         <MultiButton
@@ -97,8 +99,9 @@ function FieldButton({
             </div>
 
             <div
-                className={`mx-auto justify-center w-[20em] bg-center object-contain brightness-75 transition-[filter] duration-200
-                    `}>
+                className={` mx-auto justify-center w-[20em] bg-center object-contain brightness-75 transition-[filter] duration-200
+                ${!teleOp ? '' : ''}`}>
+            </div>
                     <>
                     <div className={`my-10 flex justify-center text-4xl font-semibold ${styleMode ? 'text-white' : 'text-[#171c26]'}`}>Coral</div>
                         <div className='mb-20 flex justify-center gap-x-4'>
@@ -144,7 +147,6 @@ function FieldButton({
 
                     </div>
                     </>
-                
                     <>
                     <div className={`my-10 flex justify-center text-4xl font-semibold ${styleMode ? 'text-white' : 'text-[#171c26]'}`}>Algae</div>
                         <div className=' mb-20 flex justify-center gap-x-4'>
@@ -172,7 +174,7 @@ function FieldButton({
                         />
                         </div>
                     </>
-            </div>
+                    
 
         </>
     );

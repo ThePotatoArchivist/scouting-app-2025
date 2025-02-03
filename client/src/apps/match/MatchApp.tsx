@@ -14,12 +14,14 @@ import 'react-material-symbols/rounded';
 import SignIn from '../../components/SignIn';
 import Dialog from '../../components/Dialog';
 import NumberInput from '../../components/NumberInput';
+import CheckBoxMatch from './components/CheckBoxButton';
 import { useStatus } from '../../lib/useStatus';
 import TeamDropdown from '../../components/TeamDropdown';
 import { useQueue } from '../../lib/useQueue';
 import scheduleFile from '../../assets/matchSchedule.json';
 import { usePreventUnload } from '../../lib/usePreventUnload';
 import ToggleButton from '../../components/LightVDarkMode';
+import CoralSectionButton from './components/CoralSectionButton';
 
 const schedule = scheduleFile as MatchSchedule;
 
@@ -67,7 +69,9 @@ function MatchApp() {
     const [toggleState, setToggleState] = useState(false);
     // const [scouterPosition, setScouterPosition] = useState<ScouterPosition>();
 
-
+    const blueAlliance = (
+        ['blue_1', 'blue_2', 'blue_3'] as (string | undefined)[]
+    ).includes(robotPosition);
 
     const handleAbsentRobot = async () => {
         if (robotPosition == undefined || matchNumber == undefined) {
@@ -214,6 +218,8 @@ function MatchApp() {
         }
     }
 
+    const [handleCheck ] = useState(false);
+
     return (
        <div className= {`${ toggleState ? 'bg-[#171c26]' : 'bg-white'}`}> 
         <main className='mx-auto flex w-min grid-flow-row flex-col content-center items-center justify-center '>
@@ -319,6 +325,55 @@ function MatchApp() {
                 <h2 className='mb-5 mt-12 text-center text-5xl font-semibold text-green-600'>
                     Autonomous
                 </h2>
+                <img src={`${blueAlliance ? 'bluesidematch.png': 'redsidematch.png'}`} width={500} height={600} className='justify-self-center my-7'></img>
+                {   <CheckBoxMatch
+                    handleChecked={handleCheck}
+                    className={`${blueAlliance ? '' :'bottom-[1px] right-[260px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    </CheckBoxMatch>
+                    }
+                    <CheckBoxMatch
+                    handleChecked={handleCheck}
+                    className={`${blueAlliance ? '' :'bottom-[90px] right-[260px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    </CheckBoxMatch>
+                    <CheckBoxMatch
+                    handleChecked={handleCheck}
+                    className={`${blueAlliance ? '' :'bottom-[180px] right-[260px] ' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    </CheckBoxMatch>
+                    <CheckBoxMatch
+                    handleChecked={handleCheck}
+                    className={`${blueAlliance? '' :'bottom-[255px] right-[250px] ' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    </CheckBoxMatch>
+                    <CheckBoxMatch
+                    handleChecked={handleCheck}
+                    className={`${blueAlliance? '' :'bottom-[-65px] right-[250px] ' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    </CheckBoxMatch>
+                    <CheckBoxMatch
+                    handleChecked={handleCheck}
+                    className={`${blueAlliance? 'bottom-[-15px] right-[165px] ' :'bottom-[95px] left-[175px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    </CheckBoxMatch>
+                    <CheckBoxMatch
+                    handleChecked={handleCheck}
+                    className={`${blueAlliance? 'bottom-[110px] right-[165px] ' :'bottom-[205px] left-[175px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    </CheckBoxMatch>
+                    <CheckBoxMatch
+                    handleChecked={handleCheck}
+                    className={`${blueAlliance? 'bottom-[220px] right-[165px] ' :'bottom-[-15px] left-[175px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    </CheckBoxMatch>
+                    
+                    
+                    <CoralSectionButton selectClassName='bg-green-300 absolute left-[17.2em] top-[51em] h-[1em] w-[4em] rotate-[6.88rad]'
+                    unselectClassName='bg-red-300 absolute left-[17.2em] top-[51em] h-[1em] w-[4em] rotate-[6.88rad]'></CoralSectionButton>
+                    <CoralSectionButton selectClassName='bg-green-300 absolute left-[20.6em] top-[45em] h-[1em] w-[4em] rotate-[6.88rad]'
+                    unselectClassName='bg-red-300 absolute left-[20.6em] top-[45em] h-[1em] w-[4em] rotate-[6.88rad]'></CoralSectionButton>
+                    <CoralSectionButton selectClassName='bg-green-300 absolute left-[22.4em] top-[48em] h-[1em] w-[4em] rotate-90'
+                    unselectClassName='bg-red-300 absolute left-[22.4em] top-[48em] h-[1em] w-[4em] rotate-90'></CoralSectionButton>
+                    <CoralSectionButton selectClassName='bg-green-300 absolute left-[15.5em] top-[48em] h-[1em] w-[4em] rotate-90'
+                    unselectClassName='bg-red-300 absolute left-[15.5em] top-[48em] h-[1em] w-[4em] rotate-90'></CoralSectionButton>
+                    <CoralSectionButton selectClassName='bg-green-300 absolute left-[17.2em] top-[45em] h-[1em] w-[4em] rotate-[2.64rad]'
+                    unselectClassName='bg-red-300 absolute left-[17.2em] top-[45em] h-[1em] w-[4em] rotate-[2.64rad]'></CoralSectionButton>
+                    <CoralSectionButton selectClassName='bg-green-300 absolute left-[20.7em] top-[51.1em] h-[1em] w-[4em] rotate-[2.64rad]'
+                    unselectClassName='bg-red-300 absolute left-[20.7em] top-[51.1em] h-[1em] w-[4em] rotate-[2.64rad]'></CoralSectionButton>
+                    
                 { <FieldButton
                     setCount={handleSetCount}
                     setLeave={setLeave}
