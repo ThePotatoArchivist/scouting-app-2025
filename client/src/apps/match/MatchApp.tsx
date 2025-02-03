@@ -376,7 +376,7 @@ function MatchApp() {
                     unselectClassName='bg-red-300 absolute left-[20.7em] top-[51.1em] h-[1em] w-[4em] rotate-[2.64rad]'></CoralSectionButton>
                     
                 <p
-                    className='text-center m-5'>
+                    className={`text-center m-5 ${toggleState ? 'text-white' : 'text-[#171c26]'}`}>
                     Please select starting position, collection location, and scored location in autos.
                 </p>
 
