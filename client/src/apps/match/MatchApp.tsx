@@ -325,6 +325,7 @@ function MatchApp() {
                 <h2 className='mb-5 mt-12 text-center text-5xl font-semibold text-green-600'>
                     Autonomous
                 </h2>
+                
                 <img src={`${blueAlliance ? 'bluesidematch.png': 'redsidematch.png'}`} width={500} height={600} className='justify-self-center my-7'></img>
                 {   <CheckBoxMatch
                     handleChecked={handleCheck}
@@ -349,7 +350,7 @@ function MatchApp() {
                     </CheckBoxMatch>
                     <CheckBoxMatch
                     handleChecked={handleCheck}
-                    className={`${blueAlliance? 'bottom-[-15px] right-[165px] ' :'bottom-[95px] left-[175px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`${blueAlliance? 'bottom-[4px] right-[165px] ' :'bottom-[95px] left-[175px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
                     <CheckBoxMatch
                     handleChecked={handleCheck}
@@ -374,6 +375,11 @@ function MatchApp() {
                     <CoralSectionButton selectClassName='bg-green-300 absolute left-[20.7em] top-[51.1em] h-[1em] w-[4em] rotate-[2.64rad]'
                     unselectClassName='bg-red-300 absolute left-[20.7em] top-[51.1em] h-[1em] w-[4em] rotate-[2.64rad]'></CoralSectionButton>
                     
+                <p
+                    className='text-center m-5'>
+                    Please select starting position, collection location, and scored location in autos.
+                </p>
+
                 { <FieldButton
                     setCount={handleSetCount}
                     setLeave={setLeave}
