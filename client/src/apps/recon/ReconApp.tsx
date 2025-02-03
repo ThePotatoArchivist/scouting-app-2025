@@ -6,11 +6,11 @@ import {
 import LinkButton from '../../components/LinkButton';
 import { useFetchJson } from '../../lib/useFetch';
 import { useEffect, useState } from 'react';
-import { StatRow, SuperStatRow } from './components/StatRow';
 import { MaterialSymbol } from 'react-material-symbols';
-import TeamDropdown from '../../components/TeamDropdown';
 import NumberInput from '../../components/NumberInput';
 import scheduleJson from '../../assets/matchSchedule.json';
+
+import BarChartWIP from './components/BarchartWIP';
 
 const schedule = scheduleJson as MatchSchedule;
 
@@ -60,7 +60,8 @@ function ReconApp() {
     }, [matchNumber]);
 
     return (
-        <main className='mx-auto flex h-screen grid-flow-row flex-col content-center items-center justify-center bg-[#171c26] text-white bg-repeat'>
+       <div className='bg-[#171c26] min-h-fit border-4 border-[#171c26]'> 
+        <main className='mx-auto mb-5 flex h-full grid-flow-row flex-col content-center items-center justify-center bg-[#171c26] text-white bg-repeat'>
             <h1 className='my-8 text-center text-3xl font-bold text-[#48c55c]'>
                 Recon Interface
             </h1>
@@ -90,62 +91,11 @@ function ReconApp() {
                 }}>
                 Reload Data
             </button>
-            <table className='border-4 border-slate-700 bg-[#171c26]'>
-                <thead>
-                    <tr>
-                        <td className='justify-center border-4 border-slate-700 pl-40'>
-                            Team
-                        </td>
-                        {teams.map((team, index) => (
-                            <th className='border-4 border-slate-700'>
-                                <TeamDropdown
-                                    value={team}
-                                    onChange={value =>
-                                        setTeams(
-                                            teams.map((team, index2) =>
-                                                index === index2 ? value : team
-                                            )
-                                        )
-                                    }
-                                />
-                                <button
-                                    onClick={() =>
-                                        setTeams(
-                                            teams.filter(
-                                                (_, index2) => index !== index2
-                                            )
-                                        )
-                                    }>
-                                    X
-                                </button>
-                            </th>
-                        ))}
-                        <td>
-                            <button
-                                onClick={() => setTeams([...teams, undefined])}>
-                                Add
-                            </button>
-                        </td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {matchStats.map(stat => (
-                        <StatRow
-                            data={retrieveMatch}
-                            teams={teams}
-                            stat={stat}
-                        />
-                    ))}
-                    {superStats.map(superStat => (
-                        <SuperStatRow
-                            data={retrieveSuper}
-                            teams={teams}
-                            stat={superStat}
-                        />
-                    ))}
-                </tbody>
-            </table>
+            
+            <BarChartWIP></BarChartWIP>
+           
         </main>
+        </div> 
     );
 }
 
