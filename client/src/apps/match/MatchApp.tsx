@@ -1,3 +1,4 @@
+//for rookie training
 import EndgameButton from './components/EndGameButton'; 
 import FieldButton from './components/LeaveButton';
 import LinkButton from '../../components/LinkButton';
