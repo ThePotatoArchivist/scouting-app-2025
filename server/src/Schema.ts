@@ -66,11 +66,8 @@ const superScoutDataSchema = new mongoose.Schema<SuperData>({
     },
     defended: Boolean,
     humanShooter: { 
-        net: {
             Success: Number,
             Failed: Number,
-            Human: Boolean
-        }
     },
     // Are you asking about this error?
     // Currently the error is it's supposed to be a string array but it's only a string

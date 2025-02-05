@@ -158,13 +158,17 @@ async function superAverageAndMax(): Promise<SuperDataAggregations[]> {
                             '$fouls.other',
                         ],
                     },
-                },
+                }, 
+                humanAccuracy: {
+                 $divide: { '$humanShooter.Success':{$add:['$humanshooter.Success','$humanShooter.Failed']}},
+                }
+
             } satisfies { [K in keyof SuperDataAggregations]: unknown },
         },
     ]);
 }
 
-async function robotImageDisplay(
+async function robotImageDisplay( 
     teamNumber: number
 ): Promise<Buffer | undefined> {
     return (

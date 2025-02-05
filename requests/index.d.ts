@@ -75,6 +75,7 @@ export interface SuperDataAggregations {
     _id: { teamNumber: number };
     avgFouls: number;
     maxFouls: number;
+    humanAccuracy: number;
 }
 
 export interface MetaData {
@@ -122,7 +123,7 @@ export interface SuperData {
     break: Record<Break, number>;
     defense: DefenseRank;
     defended: boolean;
-    humanShooter?: {net: netHuman};
+    humanShooter?: netHuman;
     comments: CommentValues[];
 }
 
