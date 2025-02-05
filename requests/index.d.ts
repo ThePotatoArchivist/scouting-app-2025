@@ -30,7 +30,6 @@ export type CommentValues =
     | 'weak_build'
     | 'avoids_under_stage';
 
-export type Net = boolean;
 
 interface capabilities {
     coral: boolean;
@@ -96,6 +95,11 @@ interface algae {
     netRobot: number;
     processor: number;
 }
+
+export interface netHuman {
+    Success: number;
+    Failed: number;
+}
 // - `POST` `/data/match`
 
 export interface MatchData {
@@ -118,8 +122,7 @@ export interface SuperData {
     break: Record<Break, number>;
     defense: DefenseRank;
     defended: boolean;
-    netHuman: number;
-    humanShooter?: { Net: Net };
+    humanShooter?: {net: netHuman};
     comments: CommentValues[];
 }
 

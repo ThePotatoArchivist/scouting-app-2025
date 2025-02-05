@@ -9,7 +9,6 @@ import {
     Break,
     MatchSchedule,
     SuperData,
-    Net,
     RobotPosition,
 } from 'requests';
 import SuperTeam from './components/SuperTeam';
@@ -35,26 +34,27 @@ const foulTypes: Foul[] = [
 ];
 
 interface superScores {
-    netHuman: number;
+    success: number;
+    failed: number;
+    human: boolean;
 }
 
 const defaultScore: superScores = {
-    netHuman: 0
+    success: 0,
+    failed: 0,
+    human: false
 };
 
-const defaultNet: Net = false
 const breakTypes: Break[] = ['mechanismDmg', 'batteryFall', 'commsFail'];
 
 const defaultSuperTeamState: SuperTeamState = {
     foulCounts: Object.fromEntries(foulTypes.map(e => [e, 0])) as Record<
-        Foul,
-        number
+        Foul, number
     >,
     breakCount: Object.fromEntries(breakTypes.map(e => [e, 0])) as Record<
-        Break,
-        number
+        Break, number
     >,
-    defenseRank: 'noDef', 
+    defenseRank: 'noDef',
     wasDefended: false,
     teamNumber: undefined,
     cannedComments: [],
@@ -72,7 +72,6 @@ function SuperApp() {
     const [sendQueue, sendAll, queue, sending] = useQueue();
     const [matchNumber, setMatchNumber] = useState<number>();
     const [showCheck, setShowCheck] = useState(false);
-    const [Net, setNet] = useState(defaultNet);
     const [history, setHistory] = useState<
         { 1: SuperTeamState; 2: SuperTeamState; 3: SuperTeamState }[]
     >([]);
@@ -136,19 +135,22 @@ function SuperApp() {
                     break: team.breakCount,
                     defense: team.defenseRank,
                     defended: team.wasDefended,
-                    netHuman: count.netHuman,
                     humanShooter:
                         shooterPlayerTeam === team.teamNumber
                             ? {
-                                  Net,
+                                net: {
+                                    Success: count.success,
+                                    Failed: count.failed,
+                                }
                               }
                             : undefined,
                     comments: team.cannedComments.map(option => option.value),
                 }) satisfies SuperData
         );
 
+        console.log(data);
+
         data.map(e => sendQueue('/data/super', e));
-        setNet(defaultNet);
         setTeam1(defaultSuperTeamState);
         setTeam2(defaultSuperTeamState);
         setTeam3(defaultSuperTeamState);
