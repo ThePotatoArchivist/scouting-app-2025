@@ -30,13 +30,6 @@ export type CommentValues =
     | 'weak_build'
     | 'avoids_under_stage';
 
-// export type leaderboardValues = 'Vanessa' | 'Crisanto' | 'Christian' | 'Nathan' | 'Ashreeya' | 'Tica';
-
-// find me
-
-
-
-export type Net = boolean;
 
 interface capabilities {
     coral: boolean;
@@ -109,6 +102,11 @@ interface algae {
     processor: number;
 }
 
+export interface netHuman {
+    Success: number;
+    Failed: number;
+}
+
 interface StartingZone {
     left: boolean;
     middle: boolean;
@@ -156,8 +154,7 @@ export interface SuperData {
     break: Record<Break, number>;
     defense: DefenseRank;
     defended: boolean;
-    netHuman: number;
-    humanShooter?: { Net: Net };
+    humanShooter?: {net: netHuman};
     comments: CommentValues[];
 }
 
