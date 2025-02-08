@@ -14,12 +14,7 @@ import BarChartWIP from './components/BarchartWIP';
 
 const schedule = scheduleJson as MatchSchedule;
 
-const matchStats: Exclude<keyof MatchDataAggregations, '_id'>[] = [
-    'averageTeleCoral',
-    'averageTeleAlgaeProcessor',
-    'averageAutoCoral',
-    'averageAutoAlgaeProcessor',
-    'averageAutoAlgaeRobotNet',
+const matchStats: Exclude<keyof MatchDataAggregations, '_id'>[] = [  
     'maxTeleCoral',
     'maxTeleAlgaeProcessor',
     'maxTeleAlgaeRobotNet',
@@ -91,9 +86,21 @@ function ReconApp() {
                 }}>
                 Reload Data
             </button>
+            <div className='flex w-full h-full'>
+
+            <div className="w-2/5 bg-gray-800 border-2 border-gray-800 rounded-lg p-4 flex justify-end">
+            img go here
+            </div>
             
+            <div className="flex justify-center items-center w-2/5 bg-gray-800 border-2 border-gray-800 rounded-lg p-4 flex justify-end ml-auto">
             <BarChartWIP></BarChartWIP>
-           
+            </div>
+
+            </div>
+
+            <div className='w-2/5 bg-gray-800 border-2 border-gray-800 rounded-lg p-4 flex justify items-center justify-start mr-auto m-10 h-80'>
+            <h3 className='text-3xl font-bold'>Autos</h3>
+            </div>
         </main>
         </div> 
     );
