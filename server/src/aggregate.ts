@@ -160,10 +160,16 @@ async function superAverageAndMax(): Promise<SuperDataAggregations[]> {
                     },
                 }, 
                 humanAccuracy: {
-                       $add: [
-                            "$humanShooter.Success",
-                            "$humanShooter.Failed"
+                    $first: {
+                        $divide: [
+                            '$humanShooter.Success',
+                            {$add: [
+                                "$humanShooter.Success",
+                                 "$humanShooter.Failed"
+                                ]
+                            }
                         ]
+                    }
                 }
 
             } satisfies { [K in keyof SuperDataAggregations]: unknown },
