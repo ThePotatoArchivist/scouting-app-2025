@@ -7,7 +7,7 @@ import LinkButton from '../../components/LinkButton';
 import { useFetchJson } from '../../lib/useFetch';
 import { useEffect, useState } from 'react';
 import { MaterialSymbol } from 'react-material-symbols';
-import NumberInput from '../../components/NumberInput';
+import TeamDropdown from '../../components/TeamDropdown';
 import scheduleJson from '../../assets/matchSchedule.json';
 
 import BarChartWIP from './components/BarchartWIP';
@@ -31,6 +31,12 @@ const superStats: Exclude<keyof SuperDataAggregations, '_id'>[] = [
     'maxFouls',
 ];
 
+
+// const superStats: Exclude<keyof SuperDataAggregations, '_id'>[] = [
+//     'avgFouls',
+//     'maxFouls',
+// ];
+
 function ReconApp() {
     const [retrieveMatch, reloadRetrieveMatch] =
         useFetchJson<MatchDataAggregations[]>('/data/retrieve');
@@ -39,6 +45,8 @@ function ReconApp() {
     >('/data/retrieve/super');
     const [matchNumber, setMatchNumber] = useState<number>();
     const [teams, setTeams] = useState<(number | undefined)[]>([undefined]);
+    const [teamNumber, setTeamNumber] = useState(Number);
+    
 
     useEffect(() => {
         if (!matchNumber) return;
@@ -55,7 +63,7 @@ function ReconApp() {
     }, [matchNumber]);
 
     return (
-       <div className='bg-[#171c26] min-h-fit border-4 border-[#171c26]'> 
+       <div className='bg-[#171c26] h-screen min-h-fit border-4 border-[#171c26]'> 
         <main className='mx-auto mb-5 flex h-full grid-flow-row flex-col content-center items-center justify-center bg-[#171c26] text-white bg-repeat'>
             <h1 className='my-8 text-center text-3xl font-bold text-[#48c55c]'>
                 Recon Interface
@@ -73,13 +81,12 @@ function ReconApp() {
                     />
                 </LinkButton>
             </div>
-            <NumberInput
-                className='rounded-lg border-2 border-slate-900 text-center text-2xl text-black'
-                placeholder='type match #'
-                value={matchNumber}
-                onChange={setMatchNumber}></NumberInput>
+            <p className='mb-2 text-2xl text-white'>Team Number</p>
+                        <TeamDropdown
+                            onChange={setTeamNumber}
+                            value={teamNumber}                        />
             <button
-                className='my-3 rounded-lg border-2 border-slate-900 text-lg'
+                className='mt-5 mb-10 rounded-lg border-2 border-slate-900 text-lg'
                 onClick={() => {
                     reloadRetrieveMatch();
                     reloadRetrieveSuper();
