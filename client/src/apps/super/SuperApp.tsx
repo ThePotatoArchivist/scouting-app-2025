@@ -19,9 +19,8 @@ import { useStatus } from '../../lib/useStatus';
 import { useQueue } from '../../lib/useQueue';
 import scheduleFile from '../../assets/matchSchedule.json';
 import { usePreventUnload } from '../../lib/usePreventUnload';
-import HumanButton from './components/HumanNetCounter';
-// import CreatableSelect from 'react-select/creatable';
-// import SelectSearch, { SelectSearchOption } from 'react-select-search';
+import HumanCounter from './components/HumanNetCounter';
+// import Human from './components/HumanNetCounter';
 
 const schedule = scheduleFile as MatchSchedule;
 
@@ -33,16 +32,14 @@ const foulTypes: Foul[] = [
     'other',
 ];
 
-interface superScores {
-    success: number;
-    failed: number;
-    human: boolean;
+interface SuperScores {
+    Success: number;
+    Failed: number;
 }
 
-const defaultScore: superScores = {
-    success: 0,
-    failed: 0,
-    human: false
+const defaultScore: SuperScores = {
+    Success: 0,
+    Failed: 0,
 };
 
 const breakTypes: Break[] = ['mechanismDmg', 'batteryFall', 'commsFail'];
@@ -67,7 +64,7 @@ function SuperApp() {
     const [team1, setTeam1] = useState(defaultSuperTeamState);
     const [team2, setTeam2] = useState(defaultSuperTeamState);
     const [team3, setTeam3] = useState(defaultSuperTeamState);
-    const [count, setCount] = useState<superScores>(defaultScore);
+    const [count, setCount] = useState<SuperScores>(defaultScore);
     const [shooterPlayerTeam, setShooterPlayerTeam] = useState<number>();
     const [sendQueue, sendAll, queue, sending] = useQueue();
     const [matchNumber, setMatchNumber] = useState<number>();
@@ -138,10 +135,8 @@ function SuperApp() {
                     humanShooter:
                         shooterPlayerTeam === team.teamNumber
                             ? {
-                                net: {
-                                    Success: count.success,
-                                    Failed: count.failed,
-                                }
+                                    Success: count.Success,
+                                    Failed: count.Failed,
                               }
                             : undefined,
                     comments: team.cannedComments.map(option => option.value),
@@ -301,7 +296,20 @@ function SuperApp() {
                 <SuperTeam teamState={team3} setTeamState={handleTeam3} bgClass={`${shooterPlayerTeam == -3 ? 'bg-[#003805] rounded-lg p-5' : ''} `}/>
                 
         </div>
-                <HumanButton/>
+               
+            <p
+            className={`mt-10  text-white text-2xl`}>
+                Human Player Points
+            </p>
+
+               <HumanCounter
+               
+                count={count}
+                className='mt-10 mb-5 p-10 mx-4 bg-red-500 text-white text-2xl rounded' 
+                setCount={setCount} >        
+                </HumanCounter>
+
+                <br/>
 
             <button
                 onClick={() => {
@@ -324,4 +332,5 @@ function SuperApp() {
     );
 }
 
+export type { SuperScores };
 export default SuperApp;
