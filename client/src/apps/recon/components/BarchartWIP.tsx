@@ -30,8 +30,7 @@ const CustomTooltip: React.FC<TooltipProps<ValueType, NameType>> = ({
 
 const BarChartWIP: React.FC = () => {
   return (
-    <div className="w-2/5 h-2/5 bg-gray-800 border-2 border-gray-800 rounded-lg p-4 flex justify-end ml-auto">
-      <div className="w-full h-full flex justify-center items-center">
+    
     <ResponsiveContainer width="100%" height={300}>
       <BarChart data={data}>
         <CartesianGrid strokeDasharray="4 4" />
@@ -53,8 +52,7 @@ const BarChartWIP: React.FC = () => {
         <Bar dataKey="Other" stackId='a' fill="#9C16FF" />
       </BarChart>
     </ResponsiveContainer>
-      </div>
-    </div>
+    
   );
 };
 
