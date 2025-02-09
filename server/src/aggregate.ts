@@ -160,15 +160,23 @@ async function superAverageAndMax(): Promise<SuperDataAggregations[]> {
                     },
                 }, 
                 humanAccuracy: {
-                    $first: {
-                        $divide: [
+                    $avg: {
+                     $cond: [
+                        {$eq: [ {$add: [
+                            "$humanShooter.Success",
+                            "$humanShooter.Failed"
+                            ]
+                        }, 0]},
+                        null,
+                        {$divide: [
                             '$humanShooter.Success',
                             {$add: [
                                 "$humanShooter.Success",
-                                 "$humanShooter.Failed"
+                                "$humanShooter.Failed"
                                 ]
-                            }
-                        ]
+                            }    
+                        ]}
+                     ]
                     }
                 }
 
