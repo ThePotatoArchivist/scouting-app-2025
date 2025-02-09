@@ -62,7 +62,7 @@ function ReconApp() {
     }, [matchNumber]);
 
     return (
-        <div className='h-screen min-h-fit border-4 border-[#171c26] bg-[#171c26]'>
+        <div className='h-auto min-h-fit border-4 border-[#171c26] bg-[#171c26]'>
             <main className='mx-auto mb-5 flex h-full grid-flow-row flex-col content-center items-center justify-center bg-[#171c26] bg-repeat text-white'>
                 <h1 className='my-8 text-center text-3xl font-bold text-[#48c55c]'>
                     Recon Interface
@@ -90,24 +90,29 @@ function ReconApp() {
                     }}>
                     Reload Data
                 </button>
-                <div className='flex h-full w-full'>
-                    <div className='ml-auto mr-5 flex w-fit justify-end rounded-lg border-2 border-gray-800 bg-gray-800 p-4'>
+                <div className='grid gap-10 grid-cols-6 w-full'>
+
+                    <div className='col-span-3 ml-auto mr-20 rounded-lg border-2 border-gray-800 bg-gray-800 p-4 w-full'>
                         <img
                             src={`/image/${teamNumber}.jpeg`}
                             width='100px'
                             height='100px'
                             alt=''
-                            className='flex items-center text-center h-[300px] w-[500px]'
+                            className='items-center text-center h-[300px] w-[500px]'
                         />
                     </div>
 
-                    <div className='ml-auto mr-5 flex w-2/5 items-center justify-center rounded-lg border-2 border-gray-800 bg-gray-800 p-4'>
+                    <div className='col-span-3 w-full items-center justify-center rounded-lg border-2 border-gray-800 bg-gray-800 p-4'>
                         <BarChartWIP></BarChartWIP>
                     </div>
+
+                <div className='justify mt-6 h-80 w-full col-span-3 items-center rounded-lg border-2 border-gray-800 bg-gray-800 p-4'>
+                    <h3 className='text-3xl font-bold'>Autos</h3>
+                </div>
+                <div className='justify h-80 w-full col-span-2 col-start-4 mt-6 rounded-lg border-2 border-gray-800 bg-gray-800'>
+                    <h3 className='text-3xl font-bold'>Outliers</h3>
                 </div>
 
-                <div className='justify m-10 mr-auto flex h-80 w-2/5 items-center justify-start rounded-lg border-2 border-gray-800 bg-gray-800 p-4'>
-                    <h3 className='text-3xl font-bold'>Autos</h3>
                 </div>
             </main>
         </div>
