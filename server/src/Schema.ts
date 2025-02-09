@@ -32,9 +32,35 @@ const algae = {
     processor: Number
 };
 
+const StartingZone = {
+    left: Boolean,
+    middle: Boolean,
+    right: Boolean,
+}
+
+const pickup = {
+    leftSource: Boolean,
+    rightSource: Boolean,
+    ground1: Boolean,
+    ground2: Boolean,
+    round3: Boolean
+}
+
+const placeLocation = {
+    deposit1: Boolean,
+    deposit2: Boolean,
+    deposit3: Boolean,
+    deposit4: Boolean,
+    deposit5: Boolean,
+    deposit6: Boolean,
+}
+
 const matchDataSchema = new mongoose.Schema<MatchData>({
     metadata: matchappsMetaDataSchema,
     leftStartingZone: Boolean,
+    startingZone: StartingZone,
+    pickupLocation: pickup,
+    placement: placeLocation,
     autoCoral: coral,
     autoAlgae: algae,
     teleCoral: coral, 
