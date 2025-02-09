@@ -90,9 +90,9 @@ function ReconApp() {
                     }}>
                     Reload Data
                 </button>
-                <div className='grid gap-10 grid-cols-6 w-full'>
+                <div className='grid gap-10 grid-cols-4 w-full'>
 
-                    <div className='col-span-3 ml-auto mr-20 rounded-lg border-2 border-gray-800 bg-gray-800 p-4 w-full'>
+                    <div className='col-span-2 ml-auto mr-20 rounded-lg border-2 border-gray-800 bg-gray-800 p-4 w-full'>
                         <img
                             src={`/image/${teamNumber}.jpeg`}
                             width='100px'
@@ -102,16 +102,25 @@ function ReconApp() {
                         />
                     </div>
 
-                    <div className='col-span-3 w-full items-center justify-center rounded-lg border-2 border-gray-800 bg-gray-800 p-4'>
+                    <div className='col-span-2 w-full items-center justify-center rounded-lg border-2 border-gray-800 bg-gray-800 p-4'>
                         <BarChartWIP></BarChartWIP>
                     </div>
 
-                <div className='justify mt-6 h-80 w-full col-span-3 items-center rounded-lg border-2 border-gray-800 bg-gray-800 p-4'>
+                <div className='justify mt-6 h-80 w-full col-span-2 items-center rounded-lg border-2 border-gray-800 bg-gray-800 p-4'>
                     <h3 className='text-3xl font-bold'>Autos</h3>
                 </div>
-                <div className='justify h-80 w-full col-span-2 col-start-4 mt-6 rounded-lg border-2 border-gray-800 bg-gray-800'>
+                <div className='justify h-80 w-full col-span-1 col-start-3 mt-6 rounded-lg border-2 border-gray-800 bg-gray-800'>
                     <h3 className='text-3xl font-bold'>Outliers</h3>
                 </div>
+                <div>
+                <div className='justify h-24 w-full col-span-1 col-start-4 mt-6 rounded-lg border-2 border-gray-800 bg-gray-800'>
+                    <h3 className='text-3xl font-bold'>HR%</h3>
+                </div>
+                <div className='justify h-48 w-full col-span-1 mt-8 col-start-4 rounded-lg border-2 border-gray-800 bg-gray-800'>
+                    <h3 className='text-3xl font-bold'>Checklist</h3>
+                </div>
+                </div>
+
 
                 </div>
             </main>
