@@ -61,6 +61,20 @@ function MatchApp() {
     const [matchNumber, setMatchNumber] = useState<number>();
     const [count, setCount] = useState<MatchScores>(defaultScores);
     const [leave, setLeave] = useState(false); //false=Not Left, true=Left
+    const [left, setLeft] = useState(false);
+    const [middle, setMiddle] = useState(false);
+    const [right, setRight] = useState(false);
+    const [leftSource, setleftSource] = useState(false);
+    const [rightSource, setrightSource] = useState(false);
+    const [ground1, setGround1] = useState(false);
+    const [ground2, setGround2] = useState(false);
+    const [ground3, setGround3] = useState(false);
+    const [deposit1, setDeposit1] = useState(false);
+    const [deposit2, setDeposit2] = useState(false);
+    const [deposit3, setDeposit3] = useState(false);
+    const [deposit4, setDeposit4] = useState(false);
+    const [deposit5, setDeposit5] = useState(false);
+    const [deposit6, setDeposit6] = useState(false);
     const [countHistory, setCountHistory] = useState<MatchScores[]>([]);
     const [climbPosition, setClimbPosition] = useState<ClimbPosition>('none');
     const [showCheck, setShowCheck] = useState(false);
@@ -88,6 +102,26 @@ function MatchApp() {
                 robotTeam: undefined,
             },
             leftStartingZone: leave,
+            startingZone: {
+                left: left,
+                middle: middle,
+                right: right,
+            },
+            pickupLocation: {
+                leftSource: leftSource,
+                rightSource: rightSource,
+                ground1: ground1,
+                ground2: ground2,
+                round3: ground3
+            },
+            placement: {
+                deposit1: deposit1,
+                deposit2: deposit2,
+                deposit3: deposit3,
+                deposit4: deposit4,
+                deposit5: deposit5,
+                deposit6: deposit6,
+            },
             autoCoral: {
                 L1: count.autoL1,
                 L2: count.autoL2,
@@ -143,6 +177,26 @@ function MatchApp() {
                 robotTeam: teamNumber,
             },
             leftStartingZone: leave,
+            startingZone: {
+                left: left,
+                middle: middle,
+                right: right,
+            },
+            pickupLocation: {
+                leftSource: leftSource,
+                rightSource: rightSource,
+                ground1: ground1,
+                ground2: ground2,
+                round3: ground3
+            },
+            placement: {
+                deposit1: deposit1,
+                deposit2: deposit2,
+                deposit3: deposit3,
+                deposit4: deposit4,
+                deposit5: deposit5,
+                deposit6: deposit6,
+            },
             autoCoral: {
                 L1: count.autoL1,
                 L2: count.autoL2,
@@ -170,6 +224,20 @@ function MatchApp() {
         setCount(defaultScores);
         setClimbPosition('none');
         setLeave(false);
+        setLeft(false);
+        setMiddle(false);
+        setRight(false);
+        setDeposit1(false);
+        setDeposit2(false);
+        setDeposit3(false);
+        setDeposit4(false);
+        setDeposit5(false);
+        setDeposit6(false);
+        setleftSource(false);
+        setrightSource(false);
+        setGround1(false);
+        setGround2(false);
+        setGround3(false);
         setMatchNumber(matchNumber + 1);
         setCountHistory([]);
 
