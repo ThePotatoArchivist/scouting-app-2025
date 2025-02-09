@@ -329,36 +329,36 @@ function MatchApp() {
                 <img src={`${blueAlliance ? 'bluesidematch.png': 'redsidematch.png'}`} width={500} height={600} className='justify-self-center my-7'></img>
                 {   <CheckBoxMatch
                     handleChecked={handleCheck}
-                    className={`${blueAlliance ? '' :'bottom-[1px] right-[260px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`${blueAlliance ? '' :'bottom-[78px] right-[700px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
                     }
                     <CheckBoxMatch
                     handleChecked={handleCheck}
-                    className={`${blueAlliance ? '' :'bottom-[90px] right-[260px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`${blueAlliance ? '' :'bottom-[230px] right-[395px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
                     <CheckBoxMatch
                     handleChecked={handleCheck}
-                    className={`${blueAlliance ? '' :'bottom-[180px] right-[260px] ' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`${blueAlliance ? '' :'bottom-[135px] right-[395px] ' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
                     <CheckBoxMatch
                     handleChecked={handleCheck}
-                    className={`${blueAlliance? '' :'bottom-[255px] right-[250px] ' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`${blueAlliance? '' :'bottom-[390px] right-[365px] ' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
                     <CheckBoxMatch
                     handleChecked={handleCheck}
-                    className={`${blueAlliance? '' :'bottom-[-65px] right-[250px] ' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`${blueAlliance? '' :'bottom-[315px] right-[395px] ' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
                     <CheckBoxMatch
                     handleChecked={handleCheck}
-                    className={`${blueAlliance? 'bottom-[4px] right-[165px] ' :'bottom-[95px] left-[175px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`${blueAlliance? 'bottom-[100px] right-[180px] ' :'bottom-[185px] left-[120px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
                     <CheckBoxMatch
                     handleChecked={handleCheck}
-                    className={`${blueAlliance? 'bottom-[110px] right-[165px] ' :'bottom-[205px] left-[175px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`${blueAlliance? 'bottom-[100px] right-[165px] ' :'bottom-[50px] left-[120px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
                     <CheckBoxMatch
                     handleChecked={handleCheck}
-                    className={`${blueAlliance? 'bottom-[220px] right-[165px] ' :'bottom-[-15px] left-[175px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`${blueAlliance? 'bottom-[350px] right-[170px] ' :'bottom-[40px] left-[360px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
                     
                     
