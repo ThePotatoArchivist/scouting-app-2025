@@ -32,7 +32,6 @@ const schedule = scheduleJson as MatchSchedule;
 //     'avgClimbRate'
 // ];
 
-
 // const superStats: Exclude<keyof SuperDataAggregations, '_id'>[] = [
 //     'avgFouls',
 //     'maxFouls',
@@ -47,7 +46,6 @@ function ReconApp() {
     const [matchNumber, setMatchNumber] = useState<number>();
     const [teams, setTeams] = useState<(number | undefined)[]>([undefined]);
     const [teamNumber, setTeamNumber] = useState(Number);
-    
 
     useEffect(() => {
         if (!matchNumber) return;
@@ -64,53 +62,55 @@ function ReconApp() {
     }, [matchNumber]);
 
     return (
-       <div className='bg-[#171c26] h-screen min-h-fit border-4 border-[#171c26]'> 
-        <main className='mx-auto mb-5 flex h-full grid-flow-row flex-col content-center items-center justify-center bg-[#171c26] text-white bg-repeat'>
-            <h1 className='my-8 text-center text-3xl font-bold text-[#48c55c]'>
-                Recon Interface
-            </h1>
+        <div className='h-screen min-h-fit border-4 border-[#171c26] bg-[#171c26]'>
+            <main className='mx-auto mb-5 flex h-full grid-flow-row flex-col content-center items-center justify-center bg-[#171c26] bg-repeat text-white'>
+                <h1 className='my-8 text-center text-3xl font-bold text-[#48c55c]'>
+                    Recon Interface
+                </h1>
 
-            <div className='fixed left-4 top-4 z-20  flex flex-col gap-2 rounded-md p-2'>
-                <LinkButton link='/' className='snap-none'>
-                    <MaterialSymbol
-                        icon='home'
-                        size={60}
-                        fill
-                        grade={200}
-                        color='green'
-                        className='snap-none'
-                    />
-                </LinkButton>
-            </div>
-            <p className='mb-2 text-2xl text-white'>Team Number</p>
-                        <TeamDropdown
-                            onChange={setTeamNumber}
-                            value={teamNumber}                        />
-            <button
-                className='mt-5 mb-10 rounded-lg border-2 border-slate-900 text-lg'
-                onClick={() => {
-                    reloadRetrieveMatch();
-                    reloadRetrieveSuper();
-                }}>
-                Reload Data
-            </button>
-            <div className='flex w-full h-full'>
+                <div className='fixed left-4 top-4 z-20  flex flex-col gap-2 rounded-md p-2'>
+                    <LinkButton link='/' className='snap-none'>
+                        <MaterialSymbol
+                            icon='home'
+                            size={60}
+                            fill
+                            grade={200}
+                            color='green'
+                            className='snap-none'
+                        />
+                    </LinkButton>
+                </div>
+                <p className='mb-2 text-2xl text-white'>Team Number</p>
+                <TeamDropdown onChange={setTeamNumber} value={teamNumber} />
+                <button
+                    className='mb-10 mt-5 rounded-lg border-2 border-slate-900 text-lg'
+                    onClick={() => {
+                        reloadRetrieveMatch();
+                        reloadRetrieveSuper();
+                    }}>
+                    Reload Data
+                </button>
+                <div className='flex h-full w-full'>
+                    <div className='ml-auto mr-5 flex w-fit justify-end rounded-lg border-2 border-gray-800 bg-gray-800 p-4'>
+                        <img
+                            src={`/image/${teamNumber}.jpeg`}
+                            width='100px'
+                            height='100px'
+                            alt=''
+                            className='flex items-center text-center h-[300px] w-[500px]'
+                        />
+                    </div>
 
-            <div className="w-2/5 bg-gray-800 border-2 border-gray-800 rounded-lg p-4 flex justify-end">
-            img go here
-            </div>
-            
-            <div className="flex justify-center items-center w-2/5 bg-gray-800 border-2 border-gray-800 rounded-lg p-4 flex justify-end ml-auto">
-            <BarChartWIP></BarChartWIP>
-            </div>
+                    <div className='ml-auto mr-5 flex w-2/5 items-center justify-center rounded-lg border-2 border-gray-800 bg-gray-800 p-4'>
+                        <BarChartWIP></BarChartWIP>
+                    </div>
+                </div>
 
-            </div>
-
-            <div className='w-2/5 bg-gray-800 border-2 border-gray-800 rounded-lg p-4 flex justify items-center justify-start mr-auto m-10 h-80'>
-            <h3 className='text-3xl font-bold'>Autos</h3>
-            </div>
-        </main>
-        </div> 
+                <div className='justify m-10 mr-auto flex h-80 w-2/5 items-center justify-start rounded-lg border-2 border-gray-800 bg-gray-800 p-4'>
+                    <h3 className='text-3xl font-bold'>Autos</h3>
+                </div>
+            </main>
+        </div>
     );
 }
 
