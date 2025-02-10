@@ -9,9 +9,7 @@ import {
     Break,
     MatchSchedule,
     SuperData,
-    Net,
     RobotPosition,
-    ScouterPosition,
 } from 'requests';
 import SuperTeam from './components/SuperTeam';
 import { SuperTeamState } from './components/SuperTeam';
@@ -21,9 +19,8 @@ import { useStatus } from '../../lib/useStatus';
 import { useQueue } from '../../lib/useQueue';
 import scheduleFile from '../../assets/matchSchedule.json';
 import { usePreventUnload } from '../../lib/usePreventUnload';
-import HumanButton from './components/HumanNetCounter';
-// import CreatableSelect from 'react-select/creatable';
-// import SelectSearch, { SelectSearchOption } from 'react-select-search';
+import HumanCounter from './components/HumanNetCounter';
+// import Human from './components/HumanNetCounter';
 
 const schedule = scheduleFile as MatchSchedule;
 
@@ -35,27 +32,26 @@ const foulTypes: Foul[] = [
     'other',
 ];
 
-interface superScores {
-    netHuman: number;
+interface SuperScores {
+    Success: number;
+    Failed: number;
 }
 
-const defaultScore: superScores = {
-    netHuman: 0
+const defaultScore: SuperScores = {
+    Success: 0,
+    Failed: 0,
 };
 
-const defaultNet: Net = false
 const breakTypes: Break[] = ['mechanismDmg', 'batteryFall', 'commsFail'];
 
 const defaultSuperTeamState: SuperTeamState = {
     foulCounts: Object.fromEntries(foulTypes.map(e => [e, 0])) as Record<
-        Foul,
-        number
+        Foul, number
     >,
     breakCount: Object.fromEntries(breakTypes.map(e => [e, 0])) as Record<
-        Break,
-        number
+        Break, number
     >,
-    defenseRank: 'noDef', 
+    defenseRank: 'noDef',
     wasDefended: false,
     teamNumber: undefined,
     cannedComments: [],
@@ -68,17 +64,14 @@ function SuperApp() {
     const [team1, setTeam1] = useState(defaultSuperTeamState);
     const [team2, setTeam2] = useState(defaultSuperTeamState);
     const [team3, setTeam3] = useState(defaultSuperTeamState);
-    const [count, setCount] = useState<superScores>(defaultScore);
+    const [count, setCount] = useState<SuperScores>(defaultScore);
     const [shooterPlayerTeam, setShooterPlayerTeam] = useState<number>();
     const [sendQueue, sendAll, queue, sending] = useQueue();
     const [matchNumber, setMatchNumber] = useState<number>();
     const [showCheck, setShowCheck] = useState(false);
-    const [Net, setNet] = useState(defaultNet);
     const [history, setHistory] = useState<
         { 1: SuperTeamState; 2: SuperTeamState; 3: SuperTeamState }[]
     >([]);
-    const [scouterPosition, setScouterPosition] = useState<ScouterPosition>();
-
     useStatus(superPosition, matchNumber, scouterName);
 
     const saveHistory = () => {
@@ -139,19 +132,20 @@ function SuperApp() {
                     break: team.breakCount,
                     defense: team.defenseRank,
                     defended: team.wasDefended,
-                    netHuman: count.netHuman,
                     humanShooter:
                         shooterPlayerTeam === team.teamNumber
                             ? {
-                                  Net,
+                                    Success: count.Success,
+                                    Failed: count.Failed,
                               }
                             : undefined,
                     comments: team.cannedComments.map(option => option.value),
                 }) satisfies SuperData
         );
 
+        console.log(data);
+
         data.map(e => sendQueue('/data/super', e));
-        setNet(defaultNet);
         setTeam1(defaultSuperTeamState);
         setTeam2(defaultSuperTeamState);
         setTeam3(defaultSuperTeamState);
@@ -198,6 +192,7 @@ function SuperApp() {
             setTeam3(last[3]);
         }
     };
+
 
     return (
         <main className='bg-[#171c26] text-center'>
@@ -251,8 +246,6 @@ function SuperApp() {
                             robotPosition={superPosition}
                             onChangeRobotPosition={setSuperPosition}
                             superScouting
-                            scouterPosition={scouterPosition}
-                            onChangeScouterPosition={setScouterPosition}
                             onSubmit={close}
                         />
                     )}
@@ -279,6 +272,8 @@ function SuperApp() {
                 className='m-2 p-2 text-xl text-black'
             />
         </div>
+       <p className='text-white pt-5 text-2xl'>Human Player</p>     
+        <div className='grid grid-cols-3 justify-items-center gap-10 px-10'>
             <MultiButton
                 className='mx-10 mt-10 w-full max-w-40 outline-black'
                 onChange={setShooterPlayerTeam}
@@ -286,7 +281,7 @@ function SuperApp() {
                     team1.teamNumber ?? -1,
                     team2.teamNumber ?? -2,
                     team3.teamNumber ?? -3,
-                ]} // ugly hack hehe
+                ]} // ugly hack hehe 
                 labels={[
                     team1.teamNumber ?? 'Team 1',
                     team2.teamNumber ?? 'Team 2',
@@ -296,17 +291,25 @@ function SuperApp() {
                 selectedClassName='bg-[#48c55c]'
                 unSelectedClassName='bg-white'
             />
-            <div className='grid grid-cols-3 justify-items-center gap-10 px-10'>   
-                <SuperTeam teamState={team1} setTeamState={handleTeam1} />
-                <SuperTeam teamState={team2} setTeamState={handleTeam2} />
-                <SuperTeam teamState={team3} setTeamState={handleTeam3} />
-            </div>
-                <HumanButton>
-                    
-                </HumanButton>
-            <div>
+                <SuperTeam teamState={team1} setTeamState={handleTeam1} bgClass={`${shooterPlayerTeam == -1 ? 'bg-[#003805] rounded-lg p-5' : ''} `}/>
+                <SuperTeam teamState={team2} setTeamState={handleTeam2} bgClass={`${shooterPlayerTeam == -2 ? 'bg-[#003805] rounded-lg p-5' : ''} `}/>
+                <SuperTeam teamState={team3} setTeamState={handleTeam3} bgClass={`${shooterPlayerTeam == -3 ? 'bg-[#003805] rounded-lg p-5' : ''} `}/>
                 
-            </div>
+        </div>
+               
+            <p
+            className={`mt-10  text-white text-2xl`}>
+                Human Player Points
+            </p>
+
+               <HumanCounter
+               
+                count={count}
+                className='mt-10 mb-5 p-10 mx-4 bg-red-500 text-white text-2xl rounded' 
+                setCount={setCount} >        
+                </HumanCounter>
+
+                <br/>
 
             <button
                 onClick={() => {
@@ -329,4 +332,5 @@ function SuperApp() {
     );
 }
 
+export type { SuperScores };
 export default SuperApp;

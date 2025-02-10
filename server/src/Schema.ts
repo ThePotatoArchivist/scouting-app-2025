@@ -65,9 +65,9 @@ const superScoutDataSchema = new mongoose.Schema<SuperData>({
         enum: ['fullDef', 'someDef', 'noDef'],
     },
     defended: Boolean,
-    netHuman: Number,
-    humanShooter: {
-        Net: Boolean,
+    humanShooter: { 
+            Success: Number,
+            Failed: Number,
     },
     // Are you asking about this error?
     // Currently the error is it's supposed to be a string array but it's only a string
