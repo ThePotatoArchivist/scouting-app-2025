@@ -432,12 +432,12 @@ function MatchApp() {
                     
                     <CoralSectionButton selectClassName='bg-green-300 absolute left-[9.01em] top-[51em] h-[1em] w-[4em] rotate-[6.88rad]'
                     unselectClassName='bg-red-300 absolute left-[9.01em] top-[51em] h-[1em] w-[4em] rotate-[6.88rad]'></CoralSectionButton>
-                    <CoralSectionButton selectClassName='bg-green-300 absolute left-[20.6em] top-[45em] h-[1em] w-[4em] rotate-[6.88rad]'
-                    unselectClassName='bg-red-300 absolute left-[12.2em] top-[45.2em] h-[1em] w-[4.5em] rotate-[6.81rad]'></CoralSectionButton>
-                    <CoralSectionButton selectClassName='bg-green-300 absolute left-[22.4em] top-[48em] h-[1em] w-[4em] rotate-90'
-                    unselectClassName='bg-red-300 absolute left-[22.4em] top-[48em] h-[1em] w-[4em] rotate-90'></CoralSectionButton>
-                    <CoralSectionButton selectClassName='bg-green-300 absolute left-[15.5em] top-[48em] h-[1em] w-[4em] rotate-90'
-                    unselectClassName='bg-red-300 absolute left-[15.5em] top-[48em] h-[1em] w-[4em] rotate-90'></CoralSectionButton>
+                    <CoralSectionButton selectClassName='bg-green-300 absolute left-[12.2em] top-[45.2em] h-[1em] w-[4.5em] rotate-[6.88rad]'
+                    unselectClassName='bg-red-300 absolute left-[12.2em] top-[45.2em] h-[1em] w-[4.5em] rotate-[6.88rad]'></CoralSectionButton>
+                    <CoralSectionButton selectClassName='bg-green-300 absolute left-[7.6em] top-[48em] h-[1em] w-[4em] rotate-90'
+                    unselectClassName='bg-red-300 absolute left-[7.6em] top-[48em] h-[1em] w-[4em] rotate-90'></CoralSectionButton>
+                    <CoralSectionButton selectClassName='bg-green-300 absolute left-[14.25em] top-[48.3em] h-[1em] w-[4em] rotate-90'
+                    unselectClassName='bg-red-300 absolute left-[14.25em] top-[48.3em] h-[1em] w-[4em] rotate-90'></CoralSectionButton>
                     <CoralSectionButton selectClassName='bg-green-300 absolute left-[17.2em] top-[45em] h-[1em] w-[4em] rotate-[2.64rad]'
                     unselectClassName='bg-red-300 absolute left-[17.2em] top-[45em] h-[1em] w-[4em] rotate-[2.64rad]'></CoralSectionButton>
                     <CoralSectionButton selectClassName='bg-green-300 absolute left-[20.7em] top-[51.1em] h-[1em] w-[4em] rotate-[2.64rad]'
