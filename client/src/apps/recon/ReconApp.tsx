@@ -106,10 +106,10 @@ function ReconApp() {
                         <BarChartWIP></BarChartWIP>
                     </div>
 
-                <div className='justify mt-6 h-80 w-full col-span-2 items-center rounded-lg border-2 border-gray-800 bg-gray-800 p-4'>
+                <div className='mt-6 h-80 w-full col-span-2 items-center rounded-lg border-2 border-gray-800 bg-gray-800 p-4'>
                     <h3 className='text-3xl font-bold'>Autos</h3>
                 </div>
-                <div className='justify h-80 w-full col-span-1 col-start-3 mt-6 rounded-lg border-2 border-gray-800 bg-gray-800'>
+                <div className='h-80 w-full col-span-1 col-start-3 mt-6 rounded-lg border-2 border-gray-800 bg-gray-800'>
                     <h3 className='text-3xl font-bold'>Outliers</h3>
                 </div>
                 <div>
