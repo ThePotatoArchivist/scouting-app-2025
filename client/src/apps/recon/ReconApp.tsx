@@ -14,28 +14,6 @@ import BarChartWIP from './components/BarchartWIP';
 
 const schedule = scheduleJson as MatchSchedule;
 
-const matchStats: Exclude<keyof MatchDataAggregations, '_id'>[] = [
-    'maxTeleCoral',
-    'maxTeleAlgaeProcessor',
-    'maxTeleAlgaeRobotNet',
-    'maxAutoCoral',
-    'maxAutoAlgaeProcessor',
-    'maxAutoAlgaeRobotNet',
-    'maxCoral',
-    'maxAlgaeProcessor',
-    'maxAlgaeRobotNet',
-    'avgClimbRate',
-];
-const superStats: Exclude<keyof SuperDataAggregations, '_id'>[] = [
-    'avgFouls',
-    'maxFouls',
-];
-
-// const superStats: Exclude<keyof SuperDataAggregations, '_id'>[] = [
-//     'avgFouls',
-//     'maxFouls',
-// ];
-
 function ReconApp() {
     const [retrieveMatch, reloadRetrieveMatch] =
         useFetchJson<MatchDataAggregations[]>('/data/retrieve');
@@ -113,9 +91,10 @@ function ReconApp() {
                 </div>
                 <div>
                 <div className='justify h-24 w-full col-span-1 col-start-4 mt-6 rounded-lg border-2 border-gray-800 bg-gray-800'>
-                    <h3 className='text-3xl font-bold'>HR%</h3>
+                    <h3 className='text-3xl font-bold text-center'>HP%</h3>
+                    <p className='text-center'>{retrieveSuper?.filter((superDataEntry) => superDataEntry._id.teamNumber == teamNumber)[0]?.humanAccuracy ?? "No Data"} </p>
                 </div>
-                <div className='justify h-48 w-full col-span-1 mt-8 col-start-4 rounded-lg border-2 border-gray-800 bg-gray-800'>
+                <div className='justify h-48 w-full col-span-1 mt-8 col-start-4 rounded-lg border-2 border-gray-800 bg-gray-800'> 
                     <h3 className='text-3xl font-bold'>Checklist</h3>
                 </div>
                 </div>
