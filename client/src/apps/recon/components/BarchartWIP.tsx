@@ -3,7 +3,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsive
 import { NameType, ValueType } from 'recharts/types/component/DefaultTooltipContent';
 
 const data = [
-  { name: 'Coral', Tier1: 4, Tier2: 5, Tier3:6, Tier4:7},
+  { name: 'Coral', Level1: 4, Level2: 5, Level3:6, Level4:7},
   { name: 'Algae', Processor: 5, Net: 6, Remove: 7},
   {name: 'Fouls', InsideRobot: 1, ProtectedZone: 2, Pinning: 3, MultiplePiece: 5, CageFoul: 4, Other: 6},
 ];
@@ -37,10 +37,10 @@ const BarChartWIP: React.FC = () => {
         <XAxis dataKey="name" tick={{ fill: "white" }} />
         <YAxis tick={{ fill: "white" }} />
         <Tooltip content={<CustomTooltip />} />
-        <Bar dataKey="Tier1" stackId='a' fill="#9C16FF" />
-        <Bar dataKey="Tier2" stackId='a' fill="#82ca9d" />
-        <Bar dataKey="Tier3" stackId='a' fill="#c73260" />
-        <Bar dataKey="Tier4" stackId='a' fill="#FFA343" />
+        <Bar dataKey="Level1" stackId='a' fill="#9C16FF" />
+        <Bar dataKey="Level2" stackId='a' fill="#82ca9d" />
+        <Bar dataKey="Level3" stackId='a' fill="#c73260" />
+        <Bar dataKey="Level4" stackId='a' fill="#FFA343" />
         <Bar dataKey="Processor" stackId='a' fill="#82ca9d" />
         <Bar dataKey="Net" stackId='a' fill="#c73260" />
         <Bar dataKey="Remove" stackId='a' fill="#9C16FF" />
