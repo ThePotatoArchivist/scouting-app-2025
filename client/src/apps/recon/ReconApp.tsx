@@ -14,6 +14,36 @@ import BarChartWIP from './components/BarchartWIP';
 
 const schedule = scheduleJson as MatchSchedule;
 
+const matchStats: Exclude<keyof MatchDataAggregations, '_id'>[] = [
+    // 'averageTeleCoral',
+    // 'averageTeleAlgaeProcessor',
+    // 'averageAutoCoral',
+    // 'averageAutoAlgaeProcessor',
+    // 'averageAutoAlgaeRobotNet',
+    'maxTeleCoral',
+    'maxTeleAlgaeProcessor',
+    'maxTeleAlgaeRobotNet',
+    'maxAutoCoral',
+    'maxAutoAlgaeProcessor',
+    'maxAutoAlgaeRobotNet',
+    'maxCoral',
+    'maxAlgaeProcessor',
+    'maxAlgaeRobotNet',
+    'avgClimbRate',
+    'totalL1' ,
+    'totalL2',
+    'totalL3',
+    'totalL4' ,
+    'totalProcessor' ,
+    'totalNet' ,
+    'totalRemoved' ,
+];
+const superStats: Exclude<keyof SuperDataAggregations, '_id'>[] = [
+    'avgFouls',
+    'maxFouls',
+    'humanAccuracy'
+];
+
 function ReconApp() {
     const [retrieveMatch, reloadRetrieveMatch] =
         useFetchJson<MatchDataAggregations[]>('/data/retrieve');
