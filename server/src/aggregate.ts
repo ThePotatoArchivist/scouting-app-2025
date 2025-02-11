@@ -124,6 +124,62 @@ async function averageAndMax(): Promise<MatchDataAggregations[]> {
                         ],
                     },
                 },
+                totalL1: {
+                    $sum: {
+                        $add: [
+                            '$autoCoral.L1',
+                            '$teleCoral.L1'
+                        ]
+                    }
+                },
+                totalL2: {
+                    $sum: {
+                        $add: [
+                            '$autoCoral.L2',
+                            '$teleCoral.L2'
+                        ]
+                    }
+                },
+                totalL3: {
+                    $sum: {
+                        $add: [
+                            '$autoCoral.L3',
+                            '$teleCoral.L3'
+                        ]
+                    }
+                },
+                totalL4: {
+                    $sum: {
+                        $add: [
+                            '$autoCoral.L4',
+                            '$teleCoral.L4'
+                        ]
+                    }
+                },
+                totalProcessor: {
+                    $sum: {
+                        $add: [
+                            '$autoAlgae.processor',
+                            '$teleAlgae.processor'
+                        ]
+                    }
+                },
+                totalNet: {
+                    $sum: {
+                        $add: [
+                            '$autoAlgae.netRobot',
+                            '$teleAlgae.netRobot'
+                        ]
+                    }
+                },
+                totalRemoved: {
+                    $sum: {
+                        $add: [
+                            '$autoAlgae.removed',
+                            '$teleAlgae.removed'
+                        ]
+                    }
+                },
             }
         },
     ]);

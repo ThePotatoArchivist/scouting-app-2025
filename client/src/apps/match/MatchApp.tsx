@@ -32,12 +32,14 @@ interface MatchScores {
     autoL4: number;
     autoAlgaenetRobot: number;
     autoProcessor: number;
+    autoRemoved: number;
     teleL1: number;
     teleL2: number;
     teleL3: number;
     teleL4: number;
     teleAlgaenetRobot: number;
     teleProcessor: number;
+    teleRemoved: number;
 }
 const defaultScores: MatchScores = {
     autoL1: 0,
@@ -46,12 +48,14 @@ const defaultScores: MatchScores = {
     autoL4: 0,
     autoAlgaenetRobot: 0,
     autoProcessor: 0,
+    autoRemoved: 0,
     teleL1: 0,
     teleL2: 0,
     teleL3: 0,
     teleL4: 0,
     teleAlgaenetRobot: 0,
-    teleProcessor: 0
+    teleProcessor: 0,
+    teleRemoved: 0
 };
 
 function MatchApp() {
@@ -130,7 +134,8 @@ function MatchApp() {
             },
             autoAlgae: {
                 netRobot: count.autoAlgaenetRobot,
-                processor: count.autoProcessor
+                processor: count.autoProcessor,
+                removed: count.autoRemoved
             },
             teleCoral: {
                 L1: count.teleL1,
@@ -140,7 +145,8 @@ function MatchApp() {
             },
             teleAlgae: {
                 netRobot: count.teleAlgaenetRobot,
-                processor: count.teleProcessor
+                processor: count.teleProcessor,
+                removed: count.teleRemoved
             },
             climb: climbPosition,
         };
@@ -205,7 +211,8 @@ function MatchApp() {
             },
             autoAlgae: {
                 netRobot: count.autoAlgaenetRobot,
-                processor: count.autoProcessor
+                processor: count.autoProcessor,
+                removed: count.autoRemoved
             },
             teleCoral: {
                L1: count.teleL1,
@@ -215,7 +222,8 @@ function MatchApp() {
             },
             teleAlgae: {
                 netRobot: count.teleAlgaenetRobot,
-                processor: count.teleProcessor
+                processor: count.teleProcessor,
+                removed: count.teleRemoved
             },
             climb: climbPosition,
         };

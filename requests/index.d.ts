@@ -69,6 +69,13 @@ export interface MatchDataAggregations {
     maxAlgaeProcessor: number;
     maxAlgaeRobotNet: number;
     avgClimbRate: number;
+    totalL1: number;
+    totalL2: number;
+    totalL3: number;
+    totalL4: number;
+    totalProcessor: number;
+    totalNet: number;
+    totalRemoved: number;
 }
 
 // export interface ScouterDataAggregations {
@@ -101,6 +108,7 @@ interface coral {
 interface algae {
     netRobot: number;
     processor: number;
+    removed: number;
 }
 
 export interface netHuman {
