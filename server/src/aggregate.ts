@@ -37,30 +37,30 @@ async function averageAndMax(): Promise<MatchDataAggregations[]> {
         {
             $group: {
                 _id: { teamNumber: '$metadata.robotTeam' },
-                averageTeleCoral: {
-                    $avg: {
-                        $add: [
-                            '$teleCoral.L1',
-                            '$teleCoral.L2',
-                            '$teleCoral.L3',
-                            '$teleCoral.L4'
-                        ],
-                    },
-                },
-                averageTeleAlgaeProcessor: { $avg: '$teleAlgae.processor' },
-                averageTeleAlgaeRobotNet: { $avg: '$teleAlgae.netRobot'},
-                averageAutoCoral: {
-                    $avg: {
-                        $add: [
-                            '$autoCoral.L1',
-                            '$autoCoral.L2',
-                            '$autoCoral.L3',
-                            '$autoCoral.L4'
-                        ],
-                    },
-                },
-                averageAutoAlgaeProcessor: { $avg: '$autoAlgae.processor' },
-                averageAutoAlgaeRobotNet: { $avg: '$autoAlgae.netRobot' },
+                // averageTeleCoral: {
+                //     $avg: {
+                //         $add: [
+                //             '$teleCoral.L1',
+                //             '$teleCoral.L2',
+                //             '$teleCoral.L3',
+                //             '$teleCoral.L4'
+                //         ],
+                //     },
+                // },
+                // averageTeleAlgaeProcessor: { $avg: '$teleAlgae.processor' },
+                // averageTeleAlgaeRobotNet: { $avg: '$teleAlgae.netRobot'},
+                // averageAutoCoral: {
+                //     $avg: {
+                //         $add: [
+                //             '$autoCoral.L1',
+                //             '$autoCoral.L2',
+                //             '$autoCoral.L3',
+                //             '$autoCoral.L4'
+                //         ],
+                //     },
+                // },
+                // averageAutoAlgaeProcessor: { $avg: '$autoAlgae.processor' },
+                // averageAutoAlgaeRobotNet: { $avg: '$autoAlgae.netRobot' },
                 maxTeleCoral: {
                     $max: {
                         $add: [

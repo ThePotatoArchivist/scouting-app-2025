@@ -53,12 +53,12 @@ export type ScouterPosition = 'red_right' | 'blue_right';
 
 export interface MatchDataAggregations {
     _id: { teamNumber: number };
-    averageTeleCoral: number;
-    averageTeleAlgaeProcessor: number;
-    averageTeleAlgaeRobotNet: number;
-    averageAutoCoral: number;
-    averageAutoAlgaeProcessor: number;
-    averageAutoAlgaeRobotNet: number;
+    // averageTeleCoral: number;
+    // averageTeleAlgaeProcessor: number;
+    // averageTeleAlgaeRobotNet: number;
+    // averageAutoCoral: number;
+    // averageAutoAlgaeProcessor: number;
+    // averageAutoAlgaeRobotNet: number;
     maxTeleCoral: number;
     maxTeleAlgaeProcessor: number;
     maxTeleAlgaeRobotNet: number;
