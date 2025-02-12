@@ -53,29 +53,28 @@ export type ScouterPosition = 'red_right' | 'blue_right';
 
 export interface MatchDataAggregations {
     _id: { teamNumber: number };
-    // averageTeleCoral: number;
-    // averageTeleAlgaeProcessor: number;
-    // averageTeleAlgaeRobotNet: number;
-    // averageAutoCoral: number;
-    // averageAutoAlgaeProcessor: number;
-    // averageAutoAlgaeRobotNet: number;
-    maxTeleCoral: number;
-    maxTeleAlgaeProcessor: number;
-    maxTeleAlgaeRobotNet: number;
-    maxAutoCoral: number;
-    maxAutoAlgaeProcessor: number;
-    maxAutoAlgaeRobotNet: number;
-    maxCoral: number;
-    maxAlgaeProcessor: number;
-    maxAlgaeRobotNet: number;
+    averageTeleCoral: number;
+    averageTeleAlgaeProcessor: number;
+    averageTeleAlgaeRobotNet: number;
+    averageAutoCoral: number;
+    averageAutoAlgaeProcessor: number;
+    averageAutoAlgaeRobotNet: number;
     avgClimbRate: number;
     totalL1: number;
     totalL2: number;
     totalL3: number;
     totalL4: number;
+    totalCoral: number;
     totalProcessor: number;
     totalNet: number;
     totalRemoved: number;
+    totalAlgae: number;
+    coralDrop1: boolean;
+    coralDrop2: boolean;
+    coralDrop3: boolean;
+    coralDrop4: boolean;
+    coralDrop5: boolean;
+    coralDrop6: boolean;
 }
 
 export interface SuperDataAggregations {

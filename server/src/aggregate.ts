@@ -36,7 +36,7 @@ async function averageAndMax(): Promise<MatchDataAggregations[]> {
     const result = await matchApp.aggregate([
         {
             $group: {
-                _id: { teamNumber: '$metadata.robotTeam' },
+                _id: { teamNumber: '$metadata.robotTeam', matchnumber: '$metadata.matchNumber'},
                 // averageTeleCoral: {
                 //     $avg: {
                 //         $add: [
@@ -61,60 +61,6 @@ async function averageAndMax(): Promise<MatchDataAggregations[]> {
                 // },
                 // averageAutoAlgaeProcessor: { $avg: '$autoAlgae.processor' },
                 // averageAutoAlgaeRobotNet: { $avg: '$autoAlgae.netRobot' },
-                maxTeleCoral: {
-                    $max: {
-                        $add: [
-                            '$teleCoral.L1',
-                            '$teleCoral.L2',
-                            '$teleCoral.L3',
-                            '$teleCoral.L4'
-                        ],
-                    },
-                },
-                maxTeleAlgaeProcessor: { $max: '$teleAlgae.processor' },
-                maxTeleAlgaeRobotNet: { $max: '$teleAlgae.netRobot' },
-                maxAutoCoral: {
-                    $max: {
-                        $add: [
-                            '$autoCoral.L1',
-                            '$autoCoral.L2',
-                            '$autoCoral.L3',
-                            '$autoCoral.L4'
-                        ],
-                    },
-                },
-                maxAutoAlgaeProcessor: { $max: '$autoAlgae.processor' },
-                maxAutoAlgaeRobotNet: { $max: '$autoAlgae.netHuman'}, 
-                maxCoral: {
-                    $max: {
-                        $add: [
-                            '$autoCoral.L1',
-                            '$autoCoral.L2',
-                            '$autoCoral.L3',
-                            '$autoCoral.L4',
-                            '$teleCoral.L1',
-                            '$teleCoral.L2',
-                            '$teleCoral.L3',
-                            '$teleCoral.L4'
-                        ],
-                    },
-                },
-                maxAlgaeProcessor: {
-                    $max: {
-                        $add: [
-                            '$teleAlgae.processor',
-                            '$autoAlgae.processor'
-                        ],
-                    },
-                },
-                maxAlgaeRobotNet: { 
-                    $max: {
-                        $add: [
-                            '$teleAlgae.netRobot',
-                            '$autoAlgae.netRobot'
-                        ],
-                    }, 
-                },
                 avgClimbRate: {
                     $avg: {
                         $cond: [
