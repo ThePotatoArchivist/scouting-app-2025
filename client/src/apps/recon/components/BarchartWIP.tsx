@@ -1,12 +1,36 @@
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, TooltipProps } from 'recharts';
 import { NameType, ValueType } from 'recharts/types/component/DefaultTooltipContent';
+import { MatchDataAggregations, SuperDataAggregations } from 'requests';
+
+
+const matchStats: Exclude<keyof MatchDataAggregations, '_id'>[] = [
+  'totalL1' ,
+  'totalL2',
+  'totalL3',
+  'totalL4' ,
+  'totalCoral',
+  'totalProcessor' ,
+  'totalNet' ,
+  'totalRemoved' ,
+  'totalAlgae',
+  'coralDrop1',
+  'coralDrop2',
+  'coralDrop3',
+  'coralDrop4',
+  'coralDrop5',
+  'coralDrop6' 
+];
+const superStats: Exclude<keyof SuperDataAggregations, '_id'>[] = [
+  'maxFouls',
+];
+
 
 const data = [
-  { name: 'Coral', Level1: 4, Level2: 5, Level3:6, Level4:7},
-  { name: 'Algae', Processor: 5, Net: 6, Remove: 7},
-  {name: 'Fouls', InsideRobot: 1, ProtectedZone: 2, Pinning: 3, MultiplePiece: 5, CageFoul: 4, Other: 6},
+  { name: 'Match6576576', Level1: 4, Level2: 5, Level3:6, Level4:7, Processor: 5, Net: 6, Remove: 7, InsideRobot: -1, ProtectedZone: -2, Pinning: -3, MultiplePiece: -5, CageFoul: -4, Other: -6},
 ];
+
+
 
 
 const CustomTooltip: React.FC<TooltipProps<ValueType, NameType>> = ({
@@ -28,11 +52,16 @@ const CustomTooltip: React.FC<TooltipProps<ValueType, NameType>> = ({
   return null;
 };
 
+const teamNumber = 1 //should be defined outta this file, this is placeholder (it tells which team to show)
+
+const chartData = matchStats
+
+
 const BarChartWIP: React.FC = () => {
   return (
     
     <ResponsiveContainer width="100%" height={300}>
-      <BarChart data={data}>
+      <BarChart stackOffset='sign' data={data}>
         <CartesianGrid strokeDasharray="4 4" />
         <XAxis dataKey="name" tick={{ fill: "white" }} />
         <YAxis tick={{ fill: "white" }} />
