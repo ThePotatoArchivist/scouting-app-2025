@@ -5,8 +5,8 @@ export default {
     theme: {
         extend: {
             backgroundImage: {
-                'field-blue': "url('images/blueSideCropped.png')",
-                'field-red': "url('images/redSideCropped.png')",
+                'field-blue': "/images/bluesidematch.png",
+                'field-red': "/images/redsidematch.png",
 
                 'field-red-endgame': "url('images/fieldmapREDendgame.png')",
                 'field-blue-endgame': "url('images/fieldmapBLUEendgame.png')",

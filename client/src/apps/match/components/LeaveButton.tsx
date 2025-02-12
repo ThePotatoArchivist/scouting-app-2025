@@ -12,6 +12,7 @@ function RegionButton({
     teleOp,
     count,
     label,
+    styleMode,
 
 }: {
     handleCount: (
@@ -25,18 +26,21 @@ function RegionButton({
     teleOp: boolean;
     count: MatchScores;
     label?: string;
+    styleMode?: boolean;
+    textClassName?: string;
+
 }) {
     return (
         <div className='flex flex-col items-center'>
-            <p className='text-4xl text-white'>{label}</p>
+            <p className={`text-4xl ${styleMode ?'text-white' : 'text-[#171c26]'}`}>{label}</p>
             <button
-            className={` ${className} text-5xl rounded-md border-white border-2 min-w-44 h-44 bg-[#48c55c]`}
-            onClick={() => handleCount(autoKey, teleKey)}
-            id='one'>
-            <p>
-                {count[teleOp ? teleKey : autoKey]}
-            </p>
-        </button>
+                className={` ${className} text-5xl rounded-md border-white border-2 min-w-44 h-44 bg-[#48c55c]`}
+                onClick={() => handleCount(autoKey, teleKey)}
+                id='one'>
+                <p>
+                    {count[teleOp ? teleKey : autoKey]}
+                </p>
+            </button>
         
         </div>
     );
@@ -48,12 +52,14 @@ function FieldButton({
     teleOp,
     leave,
     count,
+    styleMode
 }: {
     setLeave?: Dispatch<boolean>;
     setCount: Dispatch<SetStateAction<MatchScores>>;
     teleOp: boolean;
     leave?: boolean;
     count: MatchScores;
+    styleMode?: boolean;
 }) {
     const handleCount = (autoKey: countKeys, teleKey: countKeys) => {
         //if (teleOp) {
@@ -68,7 +74,6 @@ function FieldButton({
     const handleLeave = () => {
         setLeave?.(!leave);
     };
-
     
     return (
         <>
@@ -76,10 +81,10 @@ function FieldButton({
                 {!teleOp && (
                     <>
                         <div className='flex-col items-center justify-center pr-3'>
-                            <h1 className='text-4xl text-white'>Leave? </h1>
-                            <p className='text-white'>
-                                The robot must cross the starting
-                                <br /> line completely to select yes.
+                            <h1 className={`text-4xl ${styleMode ? 'text-white' : 'text-[#171c26]'}`}>Mobility? </h1>
+                            <p className={`${styleMode ? 'text-white' : 'text-[#171c26]'}`}>
+                                The robot must be off the starting completely
+                                <br /> at the end of the match to select yes.
                             </p>
                         </div>
                         <MultiButton
@@ -94,19 +99,20 @@ function FieldButton({
             </div>
 
             <div
-                className={`mx-auto justify-center w-[20em] bg-center object-contain brightness-75 transition-[filter] duration-200
-                    `}>
+                className={` mx-auto justify-center w-[20em] bg-center object-contain brightness-75 transition-[filter] duration-200
+                ${!teleOp ? '' : ''}`}>
+            </div>
                     <>
-                    <div className='my-10 flex justify-center text-4xl font-semibold text-white'>Coral</div>
-                        <div className='mb-20 flex justify-center gap-x-4 '>
+                    <div className={`my-10 flex justify-center text-4xl font-semibold ${styleMode ? 'text-white' : 'text-[#171c26]'}`}>Coral</div>
+                        <div className='mb-20 flex justify-center gap-x-4'>
                         <RegionButton
                             teleOp={teleOp}
                             count={count}
                             handleCount={handleCount}
                             autoKey='autoL1'
                             teleKey='teleL1'
-                            className={` `}
                             label='L1'
+                            styleMode={styleMode}
                         />
 
                         <RegionButton
@@ -115,8 +121,8 @@ function FieldButton({
                             handleCount={handleCount}
                             autoKey='autoL2'
                             teleKey='teleL2'
-                            className={``}
                             label='L2'
+                            styleMode={styleMode}
                         />
                     
                         <RegionButton
@@ -125,8 +131,8 @@ function FieldButton({
                             handleCount={handleCount}
                             autoKey='autoL3'
                             teleKey='teleL3'
-                            className={``}
                             label='L3'
+                            styleMode={styleMode}
                         />
                         
                         <RegionButton
@@ -135,15 +141,14 @@ function FieldButton({
                             handleCount={handleCount}
                             autoKey='autoL4'
                             teleKey='teleL4'
-                            className={``}
                             label='L4'
+                            styleMode={styleMode}
                         />
 
                     </div>
                     </>
-                
                     <>
-                    <div className='my-10 flex justify-center text-4xl font-semibold text-white'>Algae</div>
+                    <div className={`my-10 flex justify-center text-4xl font-semibold ${styleMode ? 'text-white' : 'text-[#171c26]'}`}>Algae</div>
                         <div className=' mb-20 flex justify-center gap-x-4'>
                         
                         <RegionButton
@@ -154,6 +159,7 @@ function FieldButton({
                             teleKey='teleAlgaenetRobot'
                             className={``}
                             label='Net'
+                            styleMode={styleMode}
                         />
                     
                         <RegionButton
@@ -164,10 +170,11 @@ function FieldButton({
                             teleKey='teleProcessor'
                             className={``}
                             label='Processor'
+                            styleMode={styleMode}
                         />
                         </div>
                     </>
-            </div>
+                    
 
         </>
     );

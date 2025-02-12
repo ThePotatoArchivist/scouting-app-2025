@@ -53,12 +53,12 @@ export type ScouterPosition = 'red_right' | 'blue_right';
 
 export interface MatchDataAggregations {
     _id: { teamNumber: number };
-    averageTeleCoral: number;
-    averageTeleAlgaeProcessor: number;
-    averageTeleAlgaeRobotNet: number;
-    averageAutoCoral: number;
-    averageAutoAlgaeProcessor: number;
-    averageAutoAlgaeRobotNet: number;
+    // averageTeleCoral: number;
+    // averageTeleAlgaeProcessor: number;
+    // averageTeleAlgaeRobotNet: number;
+    // averageAutoCoral: number;
+    // averageAutoAlgaeProcessor: number;
+    // averageAutoAlgaeRobotNet: number;
     maxTeleCoral: number;
     maxTeleAlgaeProcessor: number;
     maxTeleAlgaeRobotNet: number;
@@ -69,6 +69,13 @@ export interface MatchDataAggregations {
     maxAlgaeProcessor: number;
     maxAlgaeRobotNet: number;
     avgClimbRate: number;
+    totalL1: number;
+    totalL2: number;
+    totalL3: number;
+    totalL4: number;
+    totalProcessor: number;
+    totalNet: number;
+    totalRemoved: number;
 }
 
 export interface SuperDataAggregations {
@@ -95,11 +102,35 @@ interface coral {
 interface algae {
     netRobot: number;
     processor: number;
+    removed: number;
 }
 
 export interface netHuman {
     Success: number;
     Failed: number;
+}
+
+interface StartingZone {
+    left: boolean;
+    middle: boolean;
+    right: boolean;
+}
+
+interface pickup {
+    leftSource: boolean;
+    rightSource: boolean;
+    ground1: boolean;
+    ground2: boolean;
+    round3: boolean
+}
+
+interface placeLocation {
+    deposit1: boolean;
+    deposit2: boolean;
+    deposit3: boolean;
+    deposit4: boolean;
+    deposit5: boolean;
+    deposit6: boolean;
 }
 // - `POST` `/data/match`
 
@@ -107,6 +138,9 @@ export interface MatchData {
     metadata: MetaData;
     // No competition info
     leftStartingZone: boolean;
+    startingZone: StartingZone;
+    pickupLocation: pickup;
+    placement: placeLocation;
     autoCoral: coral;
     autoAlgae: algae;
     teleCoral: coral;
