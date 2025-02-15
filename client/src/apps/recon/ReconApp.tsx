@@ -32,6 +32,17 @@ const matchStats: Exclude<keyof MatchDataAggregations, '_id'>[] = [
     'totalProcessor' ,
     'totalNet' ,
     'totalRemoved' ,
+    'coralDrop1',
+    'coralDrop2',
+    'coralDrop3',
+    'coralDrop4',
+    'coralDrop5',
+    'coralDrop6',
+    'groundPick1',
+    'groundPick2',
+    'groundPick3',
+    'sourcePick1',
+    'sourcePick2'
 ];
 const superStats: Exclude<keyof SuperDataAggregations, '_id'>[] = [
     'avgFouls',
@@ -70,6 +81,9 @@ function ReconApp() {
             match.blue_3,
         ]);
     }, [matchNumber]);
+
+
+   
 
     return (
         <div className='h-auto min-h-fit border-4 border-[#171c26] bg-[#171c26]'>
@@ -113,7 +127,7 @@ function ReconApp() {
                     </div>
 
                     <div className='col-span-2 w-full items-center justify-center rounded-lg border-2 border-gray-800 bg-gray-800 p-4'>
-                        <BarChartWIP></BarChartWIP>
+                        <BarChartWIP data={[]} teamNumber={0}></BarChartWIP>
                     </div>
 
                 <div className='mt-6 h-fit w-full col-span-2 items-center rounded-lg border-2 border-gray-800 bg-gray-800 p-4'>
