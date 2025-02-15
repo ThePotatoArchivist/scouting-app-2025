@@ -9,9 +9,12 @@ import { useEffect, useState } from 'react';
 import { MaterialSymbol } from 'react-material-symbols';
 import TeamDropdown from '../../components/TeamDropdown';
 import scheduleJson from '../../assets/matchSchedule.json';
+import { RobotPosition } from 'requests';
 
 import BarChartWIP from './components/BarchartWIP';
+import CheckBoxRecon from './components/CheckDisplayRecon';
 import Checkbox from '../../components/Checkbox';
+import CoralReconButton from './components/ReconDisplay';
 
 const schedule = scheduleJson as MatchSchedule;
 
@@ -45,6 +48,14 @@ function ReconApp() {
     const [matchNumber, setMatchNumber] = useState<number>();
     const [teams, setTeams] = useState<(number | undefined)[]>([undefined]);
     const [teamNumber, setTeamNumber] = useState(Number);
+    const [handleCheck ] = useState(false);
+    const [robotPosition, setRobotPosition] = useState<RobotPosition>();
+
+
+    const blueAlliance = (
+        ['blue_1', 'blue_2', 'blue_3'] as (string | undefined)[]
+    ).includes(robotPosition);
+
 
     useEffect(() => {
         if (!matchNumber) return;
@@ -105,9 +116,56 @@ function ReconApp() {
                         <BarChartWIP></BarChartWIP>
                     </div>
 
-                <div className='mt-6 h-80 w-full col-span-2 items-center rounded-lg border-2 border-gray-800 bg-gray-800 p-4'>
+                <div className='mt-6 h-fit w-full col-span-2 items-center rounded-lg border-2 border-gray-800 bg-gray-800 p-4'>
                     <h3 className='text-3xl font-bold text-center'>Autos</h3>
-                    
+                    <img src='bluesidematch.png'>
+                    </img>
+                    <CheckBoxRecon
+                    read-only
+                    className={`bottom-[50px] right-[777px] absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    </CheckBoxRecon>
+                    <CheckBoxRecon
+                    read-only
+                    className={`bottom-[-20px] right-[777px] absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    </CheckBoxRecon>
+                    <CheckBoxRecon
+                    read-only
+                    className={`bottom-[-88px] right-[777px] absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    </CheckBoxRecon>
+                    <CheckBoxRecon
+                    read-only
+                    className={`bottom-[110px] right-[790px] absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    </CheckBoxRecon>
+                    <CheckBoxRecon
+                    read-only
+                    className={`bottom-[-150px] right-[790px] absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    </CheckBoxRecon>
+                    <CheckBoxRecon
+                    read-only
+                    className={`bottom-[59px] right-[538px] absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    </CheckBoxRecon>
+                    <CheckBoxRecon
+                    read-only
+                    className={`bottom-[-19px] right-[538px] absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    </CheckBoxRecon>
+                    <CheckBoxRecon
+                    read-only
+                    className={`bottom-[-99px] right-[538px] absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    </CheckBoxRecon>
+
+                    <CoralReconButton selectClassName='bg-green-300 absolute left-[281px] top-[893px] h-[10px] w-[55px] rotate-[6.81rad]'
+                    unselectClassName='bg-red-300 absolute left-[281px] top-[893px] h-[10px] w-[55px] rotate-[6.81rad]'></CoralReconButton>
+                    <CoralReconButton selectClassName='bg-green-300 absolute left-[281px] top-[893px] h-[10px] w-[55px] rotate-[6.81rad]'
+                    unselectClassName='bg-red-300 absolute left-[239px] top-[965px] h-[10px] w-[55px] rotate-[6.81rad]'></CoralReconButton>
+                    <CoralReconButton selectClassName='bg-green-300 absolute left-[281px] top-[893px] h-[10px] w-[55px] rotate-[6.81rad]'
+                    unselectClassName='bg-red-300 absolute left-[240px] top-[893px] h-[10px] w-[55px] rotate-[5.76rad]'></CoralReconButton>
+                    <CoralReconButton selectClassName='bg-green-300 absolute left-[281px] top-[893px] h-[10px] w-[55px] rotate-[6.81rad]'
+                    unselectClassName='bg-red-300 absolute left-[280px] top-[965px] h-[10px] w-[55px] rotate-[5.76rad]'></CoralReconButton>
+                    <CoralReconButton selectClassName='bg-green-300 absolute left-[281px] top-[893px] h-[10px] w-[55px] rotate-[6.81rad]'
+                    unselectClassName='bg-red-300 absolute left-[218px] top-[930px] h-[10px] w-[55px] rotate-[4.7rad]'></CoralReconButton>
+                    <CoralReconButton selectClassName='bg-green-300 absolute left-[281px] top-[893px] h-[10px] w-[55px] rotate-[6.81rad]'
+                    unselectClassName='bg-red-300 absolute left-[302px] top-[930px] h-[10px] w-[55px] rotate-[4.7rad]'></CoralReconButton>
+
                 </div>
                 <div className='h-80 w-full col-span-1 col-start-3 mt-6 rounded-lg border-2 border-gray-800 bg-gray-800'>
                     <h3 className='text-3xl font-bold text-center'>Outliers</h3>
@@ -123,6 +181,17 @@ function ReconApp() {
                 </div>
                 <div className='justify h-48 w-full col-span-1 mt-8 col-start-4 rounded-lg border-2 border-gray-800 bg-gray-800'> 
                     <h3 className='text-3xl font-bold text-center'>Checklist</h3>
+                    <Checkbox className='text-center'>Coral L1</Checkbox>
+                    <br/>
+                    <Checkbox className='text-center'>Coral L2</Checkbox>
+                    <br/>
+                    <Checkbox className='text-center'>Coral L3</Checkbox>
+                    <br/>
+                    <Checkbox className='text-center'>Coral L4</Checkbox>
+                    <br/>
+                    <Checkbox className='text-center'>Algae Net</Checkbox>
+                    <br/>
+                    <Checkbox className='text-center'>Algae Processor</Checkbox>
                 </div>
                 </div>
 
