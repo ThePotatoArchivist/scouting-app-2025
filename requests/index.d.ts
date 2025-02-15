@@ -79,6 +79,11 @@ export interface MatchDataAggregations {
     sourcePick2: boolean;
 }
 
+export interface matchOutliersAggregation {
+    _id: { teamNumber: number };
+    matchOutlier: number;
+}
+
 export interface SuperDataAggregations {
     _id: { teamNumber: number };
     avgFouls: number;

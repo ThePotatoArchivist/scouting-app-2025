@@ -1,4 +1,4 @@
-import { MatchDataAggregations, SuperDataAggregations } from 'requests';
+import { MatchDataAggregations, SuperDataAggregations, matchOutliersAggregation } from 'requests';
 import { matchApp, superApp, pitApp } from './Schema.js';
 
 async function averageAndMax(): Promise<MatchDataAggregations[]> {
@@ -241,6 +241,20 @@ async function averageAndMax(): Promise<MatchDataAggregations[]> {
     return result;
 }
 
+async function matchOutlier(): Promise<matchOutliersAggregation[]> {
+    return await matchApp.aggregate([
+       { 
+        $group: {
+            _id:  { teamNumber: '$metadata.robotTeam' },
+            matchOutlier: {
+                $sum: {
+
+                }
+            }
+        }}
+    ])
+}
+
 async function superAverageAndMax(): Promise<SuperDataAggregations[]> {
     return await superApp.aggregate([
         {
@@ -304,4 +318,4 @@ async function robotImageDisplay(
     )?.photo;
 }
 
-export { averageAndMax, superAverageAndMax, robotImageDisplay };
+export { averageAndMax, superAverageAndMax, robotImageDisplay, matchOutlier };
