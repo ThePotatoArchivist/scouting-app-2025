@@ -296,6 +296,7 @@ async function superAverageAndMax(): Promise<SuperDataAggregations[]> {
     ]);
 }
 
+async function robotImageDisplay( 
 // async function scouterRankings(): Promise<ScouterDataAggregations[]> {
 //     return await leaderboardApp.aggregate([
 //         {
