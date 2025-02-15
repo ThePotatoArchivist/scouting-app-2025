@@ -30,6 +30,12 @@ export type CommentValues =
     | 'weak_build'
     | 'avoids_under_stage';
 
+// export type leaderboardValues = 'Vanessa' | 'Crisanto' | 'Christian' | 'Nathan' | 'Ashreeya' | 'Tica';
+
+// find me
+
+
+
 export type Net = boolean;
 
 interface capabilities {
@@ -71,6 +77,12 @@ export interface MatchDataAggregations {
     maxAlgaeRobotNet: number;
     avgClimbRate: number;
 }
+
+// export interface ScouterDataAggregations {
+//     scouterName: string
+//     accuracy: number;
+// }
+// find me
 
 export interface SuperDataAggregations {
     _id: { teamNumber: number };
@@ -125,6 +137,13 @@ export interface SuperData {
 
 // - `POST` `/data/pits`
 // `<form>` files?
+
+export interface ScouterData {
+    scouterName: string;
+    accuracy: number;
+    
+}
+// find me
 
 export interface PitFile {
     scouterName: string;
@@ -198,4 +217,6 @@ export type TeamData = Partial<{
         avatar?: string;
         info?: TeamInfo;
     };
+
+    
 }>;

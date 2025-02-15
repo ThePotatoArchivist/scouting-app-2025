@@ -53,6 +53,11 @@ function RootMenu() {
                 className='rounded-3xl bg-[#2f3646] text-5xl'>
                 Scoring Calculator
             </LinkButton>
+            <LinkButton
+                link='/scouting_leaderboard'
+                className='col-span-2 rounded-3xl bg-[#2f3646] text-5xl'>
+                Scouting Leaderboard
+            </LinkButton>
             <div className='absolute opacity-0'>
                 {images.map(e => (
                     <div className={e} />
