@@ -168,35 +168,35 @@ async function averageAndMax(): Promise<MatchDataAggregations[]> {
                 coralDrop2: {
                     $push: {
                        $toBool: [
-                        '$placement.deposit1'
+                        '$placement.deposit2'
                        ]
                     }
                 },
                 coralDrop3: {
                     $push: {
                        $toBool: [
-                        '$placement.deposit1'
+                        '$placement.deposit3'
                        ]
                     }
                 },
                 coralDrop4: {
                     $push: {
                        $toBool: [
-                        '$placement.deposit1'
+                        '$placement.deposit4'
                        ]
                     }
                 },
                 coralDrop5: {
                     $push: {
                        $toBool: [
-                        '$placement.deposit1'
+                        '$placement.deposit5'
                        ]
                     }
                 },
                 coralDrop6: {
                     $push: {
                        $toBool: [
-                        '$placement.deposit1'
+                        '$placement.deposit6'
                        ]
                     }
                 },
@@ -217,7 +217,7 @@ async function averageAndMax(): Promise<MatchDataAggregations[]> {
                 groundPick3: {
                     $push: {
                         $toBool: [
-                            '$pickupLocation.ground1'
+                            '$pickupLocation.ground3'
                         ]
                     }
                 },
