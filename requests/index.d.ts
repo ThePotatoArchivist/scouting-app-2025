@@ -53,12 +53,9 @@ export type ScouterPosition = 'red_right' | 'blue_right';
 
 export interface MatchDataAggregations {
     _id: { teamNumber: number };
-    averageTeleCoral: number;
-    averageTeleAlgaeProcessor: number;
-    averageTeleAlgaeRobotNet: number;
-    averageAutoCoral: number;
-    averageAutoAlgaeProcessor: number;
-    averageAutoAlgaeRobotNet: number;
+    averageCoral: number;
+    averageAlgae: number;
+    averageRemove: number;
     avgClimbRate: number;
     totalL1: number;
     totalL2: number;
@@ -75,6 +72,11 @@ export interface MatchDataAggregations {
     coralDrop4: boolean;
     coralDrop5: boolean;
     coralDrop6: boolean;
+    groundPick1: boolean;
+    groundPick2: boolean;
+    groundPick3: boolean;
+    sourcePick1: boolean;
+    sourcePick2: boolean;
 }
 
 // export interface ScouterDataAggregations {
@@ -126,7 +128,7 @@ interface pickup {
     rightSource: boolean;
     ground1: boolean;
     ground2: boolean;
-    round3: boolean
+    ground3: boolean
 }
 
 interface placeLocation {

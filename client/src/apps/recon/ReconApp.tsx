@@ -32,6 +32,17 @@ const matchStats: Exclude<keyof MatchDataAggregations, '_id'>[] = [
     'totalProcessor' ,
     'totalNet' ,
     'totalRemoved' ,
+    'coralDrop1',
+    'coralDrop2',
+    'coralDrop3',
+    'coralDrop4',
+    'coralDrop5',
+    'coralDrop6',
+    'groundPick1',
+    'groundPick2',
+    'groundPick3',
+    'sourcePick1',
+    'sourcePick2'
 ];
 const superStats: Exclude<keyof SuperDataAggregations, '_id'>[] = [
     'avgFouls',

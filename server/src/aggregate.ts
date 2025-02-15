@@ -37,30 +37,38 @@ async function averageAndMax(): Promise<MatchDataAggregations[]> {
         {
             $group: {
                 _id: { teamNumber: '$metadata.robotTeam', matchnumber: '$metadata.matchNumber'},
-                // averageTeleCoral: {
-                //     $avg: {
-                //         $add: [
-                //             '$teleCoral.L1',
-                //             '$teleCoral.L2',
-                //             '$teleCoral.L3',
-                //             '$teleCoral.L4'
-                //         ],
-                //     },
-                // },
-                // averageTeleAlgaeProcessor: { $avg: '$teleAlgae.processor' },
-                // averageTeleAlgaeRobotNet: { $avg: '$teleAlgae.netRobot'},
-                // averageAutoCoral: {
-                //     $avg: {
-                //         $add: [
-                //             '$autoCoral.L1',
-                //             '$autoCoral.L2',
-                //             '$autoCoral.L3',
-                //             '$autoCoral.L4'
-                //         ],
-                //     },
-                // },
-                // averageAutoAlgaeProcessor: { $avg: '$autoAlgae.processor' },
-                // averageAutoAlgaeRobotNet: { $avg: '$autoAlgae.netRobot' },
+                averageCoral: {
+                    $avg: {
+                        $add: [
+                            '$teleCoral.L1',
+                            '$teleCoral.L2',
+                            '$teleCoral.L3',
+                            '$teleCoral.L4',
+                            '$autoCoral.L1',
+                            '$autoCoral.L2',
+                            '$autoCoral.L3',
+                            '$autoCoral.L4'
+                        ],
+                    },
+                },
+                averageAlgae: { 
+                    $avg: {
+                        $add: [
+                            '$autoAlgae.processor', 
+                            '$teleAlgae.processor',
+                            '$autoAlgae.netRobot',
+                            '$teleAlgae.netRobot'
+                        ],
+                    },
+                },
+                averageRemove: { 
+                    $avg: {
+                        $add: [
+                            '$autoAlgae.removed', 
+                            '$teleAlgae.removed'
+                        ]
+                    }
+                },
                 avgClimbRate: {
                     $avg: {
                         $cond: [
@@ -102,6 +110,20 @@ async function averageAndMax(): Promise<MatchDataAggregations[]> {
                         ]
                     }
                 },
+                totalCoral: {
+                    $sum: {
+                        $add: [
+                            '$teleCoral.L1',
+                            '$teleCoral.L2',
+                            '$teleCoral.L3',
+                            '$teleCoral.L4',
+                            '$autoCoral.L1',
+                            '$autoCoral.L2',
+                            '$autoCoral.L3',
+                            '$autoCoral.L4'
+                        ]
+                    }
+                },
                 totalProcessor: {
                     $sum: {
                         $add: [
@@ -118,11 +140,98 @@ async function averageAndMax(): Promise<MatchDataAggregations[]> {
                         ]
                     }
                 },
+                totalAlgae: {
+                    $sum: {
+                        $add: [
+                            '$autoAlgae.processor', 
+                            '$teleAlgae.processor',
+                            '$autoAlgae.netRobot',
+                            '$teleAlgae.netRobot'
+                        ]
+                    }
+                },
                 totalRemoved: {
                     $sum: {
                         $add: [
                             '$autoAlgae.removed',
                             '$teleAlgae.removed'
+                        ]
+                    }
+                },
+                coralDrop1: {
+                    $push: {
+                       $toBool: [
+                        '$placement.deposit1'
+                       ]
+                    }
+                },
+                coralDrop2: {
+                    $push: {
+                       $toBool: [
+                        '$placement.deposit1'
+                       ]
+                    }
+                },
+                coralDrop3: {
+                    $push: {
+                       $toBool: [
+                        '$placement.deposit1'
+                       ]
+                    }
+                },
+                coralDrop4: {
+                    $push: {
+                       $toBool: [
+                        '$placement.deposit1'
+                       ]
+                    }
+                },
+                coralDrop5: {
+                    $push: {
+                       $toBool: [
+                        '$placement.deposit1'
+                       ]
+                    }
+                },
+                coralDrop6: {
+                    $push: {
+                       $toBool: [
+                        '$placement.deposit1'
+                       ]
+                    }
+                },
+                groundPick1: {
+                    $push: {
+                        $toBool: [
+                            '$pickupLocation.ground1'
+                        ]
+                    }
+                },
+                groundPick2: {
+                    $push: {
+                        $toBool: [
+                            '$pickupLocation.ground2'
+                        ]
+                    }
+                },
+                groundPick3: {
+                    $push: {
+                        $toBool: [
+                            '$pickupLocation.ground1'
+                        ]
+                    }
+                },
+                sourcePick1: {
+                    $push: {
+                        $toBool: [
+                            '$pickupLocation.leftSource'
+                        ]
+                    }
+                },
+                sourcePick2: {
+                    $push: {
+                        $toBool: [
+                            '$pickupLocation.rightSource'
                         ]
                     }
                 },
