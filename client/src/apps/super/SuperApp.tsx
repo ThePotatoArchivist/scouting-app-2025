@@ -298,16 +298,15 @@ function SuperApp() {
         </div>
                
             <p
-            className={`mt-10  text-white text-2xl`}>
+            className={'mt-10  text-white text-2xl'}>
                 Human Player Points
             </p>
-
                <HumanCounter
                
                 count={count}
-                className='mt-10 mb-5 p-10 mx-4 bg-red-500 text-white text-2xl rounded' 
+                className='mt-10 mb-5 p-10 mx-4 bg-green-500 text-white text-2xl rounded' 
                 setCount={setCount} >        
-                </HumanCounter>
+                </HumanCounter> /
 
                 <br/>
 
