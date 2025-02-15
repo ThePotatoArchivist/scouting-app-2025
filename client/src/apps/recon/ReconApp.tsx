@@ -11,6 +11,7 @@ import TeamDropdown from '../../components/TeamDropdown';
 import scheduleJson from '../../assets/matchSchedule.json';
 
 import BarChartWIP from './components/BarchartWIP';
+import Checkbox from '../../components/Checkbox';
 
 const schedule = scheduleJson as MatchSchedule;
 
@@ -108,10 +109,11 @@ function ReconApp() {
                     </div>
 
                 <div className='mt-6 h-80 w-full col-span-2 items-center rounded-lg border-2 border-gray-800 bg-gray-800 p-4'>
-                    <h3 className='text-3xl font-bold'>Autos</h3>
+                    <h3 className='text-3xl font-bold text-center'>Autos</h3>
+                    
                 </div>
                 <div className='h-80 w-full col-span-1 col-start-3 mt-6 rounded-lg border-2 border-gray-800 bg-gray-800'>
-                    <h3 className='text-3xl font-bold'>Outliers</h3>
+                    <h3 className='text-3xl font-bold text-center'>Outliers</h3>
                 </div>
                 <div>
                 <div className='justify h-24 w-full col-span-1 col-start-4 mt-6 rounded-lg border-2 border-gray-800 bg-gray-800'>
@@ -123,7 +125,7 @@ function ReconApp() {
                     </p>
                 </div>
                 <div className='justify h-48 w-full col-span-1 mt-8 col-start-4 rounded-lg border-2 border-gray-800 bg-gray-800'> 
-                    <h3 className='text-3xl font-bold'>Checklist</h3>
+                    <h3 className='text-3xl font-bold text-center'>Checklist</h3>
                 </div>
                 </div>
 
