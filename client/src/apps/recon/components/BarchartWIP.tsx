@@ -14,20 +14,9 @@ const matchStats: Exclude<keyof MatchDataAggregations, '_id'>[] = [
   'totalNet' ,
   'totalRemoved' ,
   'totalAlgae',
-  'coralDrop1',
-  'coralDrop2',
-  'coralDrop3',
-  'coralDrop4',
-  'coralDrop5',
-  'coralDrop6' 
 ];
 const superStats: Exclude<keyof SuperDataAggregations, '_id'>[] = [
   'maxFouls',
-];
-
-
-const data = [
-  { name: 'Match6576576', Level1: 4, Level2: 5, Level3:6, Level4:7, Processor: 5, Net: 6, Remove: 7, InsideRobot: -1, ProtectedZone: -2, Pinning: -3, MultiplePiece: -5, CageFoul: -4, Other: -6},
 ];
 
 
@@ -52,33 +41,35 @@ const CustomTooltip: React.FC<TooltipProps<ValueType, NameType>> = ({
   return null;
 };
 
-const teamNumber = 1 //should be defined outta this file, this is placeholder (it tells which team to show)
 
-const chartData = matchStats
+const BarChartWIP: React.FC<{ data: MatchDataAggregations[]; teamNumber: number }> = ({ data, teamNumber }) => {
+
+  //grabs data for a specific team
+  const teamData = data.filter(d => d._id.teamNumber === teamNumber);
+
+  // Transform data for charts, d. means the item in the teamdata, match is for the x-axis (i pray this works w/ data :sob:)
+  const chartData = teamData.map(d => ({
+      match: `Match ${d._id.match}`, 
+      Coral: d.totalCoral,
+      Processor: d.totalProcessor,
+      Net: d.totalNet,
+      Removed: d.totalRemoved,
+      Algae: d.totalAlgae
+  }));
 
 
-const BarChartWIP: React.FC = () => {
   return (
     
     <ResponsiveContainer width="100%" height={300}>
-      <BarChart stackOffset='sign' data={data}>
+      <BarChart stackOffset='sign' data={chartData}>
         <CartesianGrid strokeDasharray="4 4" />
-        <XAxis dataKey="name" tick={{ fill: "white" }} />
+        <XAxis dataKey="match" tick={{ fill: "white" }} />
         <YAxis tick={{ fill: "white" }} />
         <Tooltip content={<CustomTooltip />} />
-        <Bar dataKey="Level1" stackId='a' fill="#9C16FF" />
-        <Bar dataKey="Level2" stackId='a' fill="#82ca9d" />
-        <Bar dataKey="Level3" stackId='a' fill="#c73260" />
-        <Bar dataKey="Level4" stackId='a' fill="#FFA343" />
+        <Bar dataKey="Coral" stackId='a' fill="#FFA343" />
         <Bar dataKey="Processor" stackId='a' fill="#82ca9d" />
         <Bar dataKey="Net" stackId='a' fill="#c73260" />
-        <Bar dataKey="Remove" stackId='a' fill="#9C16FF" />
-        <Bar dataKey="InsideRobot" stackId='a' fill="#FFFF72" />
-        <Bar dataKey="Pinning" stackId='a' fill="#FF00FF" />
-        <Bar dataKey="CageFoul" stackId='a' fill="#FFA343" />
-        <Bar dataKey="ProtectedZone" stackId='a' fill="#82ca9d" />
-        <Bar dataKey="MultiplePiece" stackId='a' fill="#c73260" />
-        <Bar dataKey="Other" stackId='a' fill="#9C16FF" />
+        <Bar dataKey="Removed" stackId='a' fill="#9C16FF" />
       </BarChart>
     </ResponsiveContainer>
     

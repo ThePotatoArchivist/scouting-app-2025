@@ -59,6 +59,9 @@ function ReconApp() {
         ]);
     }, [matchNumber]);
 
+
+   
+
     return (
         <div className='h-auto min-h-fit border-4 border-[#171c26] bg-[#171c26]'>
             <main className='mx-auto mb-5 flex h-full grid-flow-row flex-col content-center items-center justify-center bg-[#171c26] bg-repeat text-white'>
@@ -101,7 +104,7 @@ function ReconApp() {
                     </div>
 
                     <div className='col-span-2 w-full items-center justify-center rounded-lg border-2 border-gray-800 bg-gray-800 p-4'>
-                        <BarChartWIP></BarChartWIP>
+                        <BarChartWIP data={[]} teamNumber={0}></BarChartWIP>
                     </div>
 
                 <div className='mt-6 h-80 w-full col-span-2 items-center rounded-lg border-2 border-gray-800 bg-gray-800 p-4'>
