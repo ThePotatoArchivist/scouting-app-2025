@@ -52,7 +52,7 @@ export type SuperPosition = 'red_ss' | 'blue_ss';
 export type ScouterPosition = 'red_right' | 'blue_right';
 
 export interface MatchDataAggregations {
-    _id: { teamNumber: number };
+    _id: { teamNumber: number, matchnumber: number};
     averageCoral: number;
     averageAlgae: number;
     averageRemove: number;
@@ -78,12 +78,6 @@ export interface MatchDataAggregations {
     sourcePick1: boolean;
     sourcePick2: boolean;
 }
-
-// export interface ScouterDataAggregations {
-//     scouterName: string
-//     accuracy: number;
-// }
-// find me
 
 export interface SuperDataAggregations {
     _id: { teamNumber: number };
@@ -250,6 +244,4 @@ export type TeamData = Partial<{
         avatar?: string;
         info?: TeamInfo;
     };
-
-    
 }>;

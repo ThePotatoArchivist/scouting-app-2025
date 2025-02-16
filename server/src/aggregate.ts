@@ -1,5 +1,7 @@
 import { MatchDataAggregations, SuperDataAggregations, ScouterData } from 'requests';
 import { matchApp, superApp, pitApp, leaderboardApp } from './Schema.js';
+//no scouterdata??
+
 
 async function averageAndMax(): Promise<MatchDataAggregations[]> {
     await matchApp.aggregate([
@@ -296,7 +298,6 @@ async function superAverageAndMax(): Promise<SuperDataAggregations[]> {
     ]);
 }
 
-async function robotImageDisplay( 
 // async function scouterRankings(): Promise<ScouterDataAggregations[]> {
 //     return await leaderboardApp.aggregate([
 //         {

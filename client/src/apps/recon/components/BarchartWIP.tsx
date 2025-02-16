@@ -42,19 +42,26 @@ const CustomTooltip: React.FC<TooltipProps<ValueType, NameType>> = ({
 };
 
 
-const BarChartWIP: React.FC<{ data: MatchDataAggregations[]; teamNumber: number }> = ({ data, teamNumber }) => {
+interface MatchAndSuper {
+ matchData: MatchDataAggregations[];
+ superData: SuperDataAggregations[]
+}
+
+
+const BarChartWIP: React.FC<{ data: MatchAndSuper[]; teamNumber: number }> = ({ data, teamNumber }) => {
 
   //grabs data for a specific team
   const teamData = data.filter(d => d._id.teamNumber === teamNumber);
 
-  // Transform data for charts, d. means the item in the teamdata, match is for the x-axis (i pray this works w/ data :sob:)
+  // Transform data for charts to have nicer labels (when tooltip works), d. means the item in the teamdata, match is for the x-axis (i pray this works w/ data :sob:)
   const chartData = teamData.map(d => ({
-      match: `Match ${d._id.match}`, 
-      Coral: d.totalCoral,
-      Processor: d.totalProcessor,
-      Net: d.totalNet,
-      Removed: d.totalRemoved,
-      Algae: d.totalAlgae
+      match: `Match ${d.matchData._id.matchnumber}`, 
+      Coral: d.matchData.totalCoral,
+      Processor: d.matchData.totalProcessor,
+      Net: d.matchData.totalNet,
+      Removed: d.matchData.totalRemoved,
+      Algae: d.matchData.totalAlgae,
+      Fouls: d.matchData.maxFouls
   }));
 
 
