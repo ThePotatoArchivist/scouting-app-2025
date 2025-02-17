@@ -359,7 +359,7 @@ function MatchApp() {
                         color='black'
                         className='snap-none'
                     />
-                </button>
+</button>
 
                 <div className={`fixed right-4 top-4 z-20 flex flex-row gap-3 rounded-md p-1`}>
                     <ToggleButton
