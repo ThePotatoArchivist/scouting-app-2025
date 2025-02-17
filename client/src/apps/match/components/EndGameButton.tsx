@@ -36,7 +36,7 @@ function EndgameButton({
                 />
                 </div>
                 <br/>
-                <div className={`relative  flex flex-row gap-2 bg-cover bg-center py-2`}>
+                <div className={`relative justify-center flex flex-row gap-2 bg-cover bg-center py-2`}>
                 <MultiButton
                     onChange={handleClimb}
                     value={climbPosition}

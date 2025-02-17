@@ -116,7 +116,7 @@ function MatchApp() {
                 rightSource: rightSource,
                 ground1: ground1,
                 ground2: ground2,
-                round3: ground3
+                ground3: ground3
             },
             placement: {
                 deposit1: deposit1,
@@ -193,7 +193,7 @@ function MatchApp() {
                 rightSource: rightSource,
                 ground1: ground1,
                 ground2: ground2,
-                round3: ground3
+                ground3: ground3
             },
             placement: {
                 deposit1: deposit1,
@@ -405,51 +405,59 @@ function MatchApp() {
                 <img src={`${blueAlliance ? 'bluesidematch.png': 'redsidematch.png'}`} width={500} height={600} className='justify-self-center my-7'></img>
                 {   <CheckBoxMatch
                     handleChecked={handleCheck}
-                    className={`${blueAlliance ? '' :'bottom-[120px] right-[700px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`${blueAlliance ? 'top-[820px] left-[285px]' :'top-[858px] left-[160px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
+                    // ground 1
                     }
                     <CheckBoxMatch
                     handleChecked={handleCheck}
-                    className={`${blueAlliance ? '' :'bottom-[230px] right-[395px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`${blueAlliance ? 'top-[745px] left-[285px]' :'top-[760px] left-[455px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
+                    {/* ground 2 */}
                     <CheckBoxMatch
                     handleChecked={handleCheck}
-                    className={`${blueAlliance ? '' :'bottom-[135px] right-[395px] ' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`${blueAlliance ? 'top-[660px] left-[285px]' :'top-[675px] left-[455px] ' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
+                    {/* ground 3 */}
                     <CheckBoxMatch
                     handleChecked={handleCheck}
-                    className={`${blueAlliance? '' :'bottom-[390px] right-[365px] ' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`${blueAlliance? 'top-[570px] left-[250px]' :'top-[760px] left-[160px] ' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
+                    {/* source 1 */}
                     <CheckBoxMatch
                     handleChecked={handleCheck}
-                    className={`${blueAlliance? '' :'bottom-[315px] right-[395px] ' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`${blueAlliance? 'top-[910px] left-[250px]' :'top-[660px] left-[160px] ' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
+                    {/* source 2 */}
                     <CheckBoxMatch
                     handleChecked={handleCheck}
-                    className={`${blueAlliance? 'bottom-[100px] right-[180px] ' :'bottom-[230px] left-[32px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`${blueAlliance? 'top-[645px] left-[565px] ' :'top-[930px] left-[485px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
+                    {/* starting location 1 */}
                     <CheckBoxMatch
                     handleChecked={handleCheck}
-                    className={`${blueAlliance? 'bottom-[100px] right-[160px] ' :'bottom-[345px] left-[30px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`${blueAlliance? 'top-[740px] left-[565px]' :'top-[585px] left-[485px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
+                    {/* starting location 2 */}
                     <CheckBoxMatch
                     handleChecked={handleCheck}
-                    className={`${blueAlliance? 'bottom-[350px] right-[170px] ' :'bottom-[40px] left-[365px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`${blueAlliance? 'top-[835px] left-[565px]' :'top-[840px] left-[455px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
+                    {/* starting location 3 */}
                     
                     
-                    <CoralSectionButton selectClassName='bg-green-300 absolute left-[9.01em] top-[51em] h-[1em] w-[4em] rotate-[6.88rad]'
-                    unselectClassName='bg-red-300 absolute left-[9.01em] top-[51em] h-[1em] w-[4em] rotate-[6.88rad]'></CoralSectionButton>
-                    <CoralSectionButton selectClassName='bg-green-300 absolute left-[12.2em] top-[45.2em] h-[1em] w-[4.5em] rotate-[6.88rad]'
-                    unselectClassName='bg-red-300 absolute left-[12.2em] top-[45.2em] h-[1em] w-[4.5em] rotate-[6.88rad]'></CoralSectionButton>
-                    <CoralSectionButton selectClassName='bg-green-300 absolute left-[7.6em] top-[48em] h-[1em] w-[4em] rotate-90'
-                    unselectClassName='bg-red-300 absolute left-[7.6em] top-[48em] h-[1em] w-[4em] rotate-90'></CoralSectionButton>
-                    <CoralSectionButton selectClassName='bg-green-300 absolute left-[14.25em] top-[48.3em] h-[1em] w-[4em] rotate-90'
-                    unselectClassName='bg-red-300 absolute left-[14.25em] top-[48.3em] h-[1em] w-[4em] rotate-90'></CoralSectionButton>
-                    <CoralSectionButton selectClassName='bg-green-300 absolute left-[17.2em] top-[45em] h-[1em] w-[4em] rotate-[2.64rad]'
-                    unselectClassName='bg-red-300 absolute left-[17.2em] top-[45em] h-[1em] w-[4em] rotate-[2.64rad]'></CoralSectionButton>
-                    <CoralSectionButton selectClassName='bg-green-300 absolute left-[20.7em] top-[51.1em] h-[1em] w-[4em] rotate-[2.64rad]'
-                    unselectClassName='bg-red-300 absolute left-[20.7em] top-[51.1em] h-[1em] w-[4em] rotate-[2.64rad]'></CoralSectionButton>
+                    <CoralSectionButton selectClassName={`${blueAlliance? 'bg-green-300 absolute left-[24.35em] top-[49.9em]':'bg-green-300 absolute left-[16.95em] top-[51em]'} h-[1em] w-[4em] rotate-[6.83rad]`}
+                    unselectClassName={`${blueAlliance? 'bg-red-300 absolute left-[24.35em] top-[49.9em]':'bg-red-300 absolute left-[16.95em] top-[51em]'} h-[1em] w-[4em] rotate-[6.83rad]`}></CoralSectionButton>
+                    <CoralSectionButton selectClassName={`${blueAlliance? 'bg-green-300 absolute left-[27.45em] top-[44.3em]':'bg-green-300 absolute left-[20.15em] top-[45.3em]'} h-[1em] w-[4.5em] rotate-[6.83rad]`}
+                    unselectClassName={`${blueAlliance? 'bg-red-300 absolute left-[27.45em] top-[44.3em]':'bg-red-300 absolute left-[20.15em] top-[45.3em]'} h-[1em] w-[4.5em] rotate-[6.83rad]`}></CoralSectionButton>
+                    <CoralSectionButton selectClassName={`${blueAlliance? 'bg-green-300 absolute left-[29.4em] top-[47.1em]':'bg-green-300 absolute left-[22em] top-[48.4em]'} h-[1em] w-[4em] rotate-90`}
+                    unselectClassName={`${blueAlliance? 'bg-red-300 absolute left-[29.4em] top-[47.1em]':'bg-red-300 absolute left-[22em] top-[48.4em]'} h-[1em] w-[4em] rotate-90`}></CoralSectionButton>
+                    <CoralSectionButton selectClassName={`${blueAlliance? 'bg-green-300 absolute left-[22.85em] top-[47.3em]':'bg-green-300 absolute left-[15.4em] top-[48.05em]'} h-[1em] w-[4em] rotate-90`}
+                    unselectClassName={`${blueAlliance? 'bg-red-300 absolute left-[22.85em] top-[47.3em]':'bg-red-300 absolute left-[15.4em] top-[48.05em]'} h-[1em] w-[4em] rotate-90`}></CoralSectionButton>
+                    <CoralSectionButton selectClassName={`${blueAlliance? 'bg-green-300 absolute left-[24.3em] top-[44.4em]':'bg-green-300 absolute left-[17em] top-[45.3em]'} h-[1em] w-[4em] rotate-[2.6rad]`}
+                    unselectClassName={`${blueAlliance? 'bg-red-300 absolute left-[24.3em] top-[44.4em]':'bg-red-300 absolute left-[17em] top-[45.3em]'} h-[1em] w-[4em] rotate-[2.6rad]`}></CoralSectionButton>
+                    <CoralSectionButton selectClassName={`${blueAlliance? 'bg-green-300 absolute left-[27.6em] top-[49.9em]':'bg-green-300 absolute left-[20.2em] top-[51.1em]'} h-[1em] w-[4em] rotate-[2.6rad]`}
+                    unselectClassName={`${blueAlliance? 'bg-red-300 absolute left-[27.6em] top-[49.9em]':'bg-red-300 absolute left-[20.2em] top-[51.1em]'} h-[1em] w-[4em] rotate-[2.6rad]`}></CoralSectionButton>
                     
                 <p
                     className={`text-center m-5 ${toggleState ? 'text-white' : 'text-[#171c26]'}`}>
