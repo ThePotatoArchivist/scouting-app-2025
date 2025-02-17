@@ -1,4 +1,4 @@
-import { MatchDataAggregations, SuperDataAggregations, ScouterData } from 'requests';
+import { MatchDataAggregations, SuperDataAggregations, ScouterData, SuperDataFoulAggregationsDataDataDataDataData, MatchDataDataAggregationsDataDataData } from 'requests';
 import { matchApp, superApp, pitApp, leaderboardApp } from './Schema.js';
 //no scouterdata??
 
@@ -243,6 +243,177 @@ async function averageAndMax(): Promise<MatchDataAggregations[]> {
     return result;
 }
 
+
+
+async function maxIndividual(): Promise<MatchDataDataAggregationsDataDataData[]> {
+    const result = await matchApp.aggregate([
+        {
+            $group: {
+                _id: { teamNumber: '$metadata.robotTeam', matchNumber: '$metadata.matchNumber'},
+                totalL1: {
+                    $sum: {
+                        $add: [
+                            '$autoCoral.L1',
+                            '$teleCoral.L1'
+                        ]
+                    }
+                },
+                totalL2: {
+                    $sum: {
+                        $add: [
+                            '$autoCoral.L2',
+                            '$teleCoral.L2'
+                        ]
+                    }
+                },
+                totalL3: {
+                    $sum: {
+                        $add: [
+                            '$autoCoral.L3',
+                            '$teleCoral.L3'
+                        ]
+                    }
+                },
+                totalL4: {
+                    $sum: {
+                        $add: [
+                            '$autoCoral.L4',
+                            '$teleCoral.L4'
+                        ]
+                    }
+                },
+                totalCoral: {
+                    $sum: {
+                        $add: [
+                            '$teleCoral.L1',
+                            '$teleCoral.L2',
+                            '$teleCoral.L3',
+                            '$teleCoral.L4',
+                            '$autoCoral.L1',
+                            '$autoCoral.L2',
+                            '$autoCoral.L3',
+                            '$autoCoral.L4'
+                        ]
+                    }
+                },
+                totalProcessor: {
+                    $sum: {
+                        $add: [
+                            '$autoAlgae.processor',
+                            '$teleAlgae.processor'
+                        ]
+                    }
+                },
+                totalNet: {
+                    $sum: {
+                        $add: [
+                            '$autoAlgae.netRobot',
+                            '$teleAlgae.netRobot'
+                        ]
+                    }
+                },
+                totalAlgae: {
+                    $sum: {
+                        $add: [
+                            '$autoAlgae.processor', 
+                            '$teleAlgae.processor',
+                            '$autoAlgae.netRobot',
+                            '$teleAlgae.netRobot'
+                        ]
+                    }
+                },
+                totalRemoved: {
+                    $sum: {
+                        $add: [
+                            '$autoAlgae.removed',
+                            '$teleAlgae.removed'
+                        ]
+                    }
+                },
+                coralDrop1: {
+                    $push: {
+                       $toBool: [
+                        '$placement.deposit1'
+                       ]
+                    }
+                },
+                coralDrop2: {
+                    $push: {
+                       $toBool: [
+                        '$placement.deposit1'
+                       ]
+                    }
+                },
+                coralDrop3: {
+                    $push: {
+                       $toBool: [
+                        '$placement.deposit1'
+                       ]
+                    }
+                },
+                coralDrop4: {
+                    $push: {
+                       $toBool: [
+                        '$placement.deposit1'
+                       ]
+                    }
+                },
+                coralDrop5: {
+                    $push: {
+                       $toBool: [
+                        '$placement.deposit1'
+                       ]
+                    }
+                },
+                coralDrop6: {
+                    $push: {
+                       $toBool: [
+                        '$placement.deposit1'
+                       ]
+                    }
+                },
+                groundPick1: {
+                    $push: {
+                        $toBool: [
+                            '$pickupLocation.ground1'
+                        ]
+                    }
+                },
+                groundPick2: {
+                    $push: {
+                        $toBool: [
+                            '$pickupLocation.ground2'
+                        ]
+                    }
+                },
+                groundPick3: {
+                    $push: {
+                        $toBool: [
+                            '$pickupLocation.ground1'
+                        ]
+                    }
+                },
+                sourcePick1: {
+                    $push: {
+                        $toBool: [
+                            '$pickupLocation.leftSource'
+                        ]
+                    }
+                },
+                sourcePick2: {
+                    $push: {
+                        $toBool: [
+                            '$pickupLocation.rightSource'
+                        ]
+                    }
+                },
+            }
+        },
+    ]);
+    return result;
+}
+
+
 async function superAverageAndMax(): Promise<SuperDataAggregations[]> {
     return await superApp.aggregate([
         {
@@ -298,6 +469,30 @@ async function superAverageAndMax(): Promise<SuperDataAggregations[]> {
     ]);
 }
 
+async function superMaxIndividual(): Promise<SuperDataFoulAggregationsDataDataDataDataData[]> {
+    return await superApp.aggregate([
+        {
+            $group: {
+                _id: { teamNumber: '$metadata.robotTeam', matchNumber: '$metadata.matchNumber' },
+                maxFouls: {
+                    $max: {
+                        $add: [
+                            '$fouls.protectedZone',
+                            '$fouls.multiplePieces',
+                            '$fouls.insideRobot',
+                            '$fouls.pinning',
+                            '$fouls.cageFoul',
+                            '$fouls.other',
+                        ],
+                    },
+                }, 
+                
+
+            } satisfies { [K in keyof SuperDataFoulAggregationsDataDataDataDataData]: unknown },
+        },
+    ]);
+}
+
 // async function scouterRankings(): Promise<ScouterDataAggregations[]> {
 //     return await leaderboardApp.aggregate([
 //         {
@@ -331,4 +526,4 @@ async function robotImageDisplay(
     )?.photo;
 }
 
-export { averageAndMax, superAverageAndMax, robotImageDisplay, scouterRankings };
+export { averageAndMax, superAverageAndMax, robotImageDisplay, scouterRankings, superMaxIndividual, maxIndividual };
