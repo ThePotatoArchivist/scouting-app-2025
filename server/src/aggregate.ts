@@ -282,20 +282,6 @@ async function maxIndividual(): Promise<MatchDataDataAggregationsDataDataData[]>
                         ]
                     }
                 },
-                totalCoral: {
-                    $sum: {
-                        $add: [
-                            '$teleCoral.L1',
-                            '$teleCoral.L2',
-                            '$teleCoral.L3',
-                            '$teleCoral.L4',
-                            '$autoCoral.L1',
-                            '$autoCoral.L2',
-                            '$autoCoral.L3',
-                            '$autoCoral.L4'
-                        ]
-                    }
-                },
                 totalProcessor: {
                     $sum: {
                         $add: [
@@ -307,16 +293,6 @@ async function maxIndividual(): Promise<MatchDataDataAggregationsDataDataData[]>
                 totalNet: {
                     $sum: {
                         $add: [
-                            '$autoAlgae.netRobot',
-                            '$teleAlgae.netRobot'
-                        ]
-                    }
-                },
-                totalAlgae: {
-                    $sum: {
-                        $add: [
-                            '$autoAlgae.processor', 
-                            '$teleAlgae.processor',
                             '$autoAlgae.netRobot',
                             '$teleAlgae.netRobot'
                         ]
@@ -474,18 +450,36 @@ async function superMaxIndividual(): Promise<SuperDataFoulAggregationsDataDataDa
         {
             $group: {
                 _id: { teamNumber: '$metadata.robotTeam', matchNumber: '$metadata.matchNumber' },
-                maxFouls: {
-                    $max: {
-                        $add: [
-                            '$fouls.protectedZone',
-                            '$fouls.multiplePieces',
-                            '$fouls.insideRobot',
-                            '$fouls.pinning',
-                            '$fouls.cageFoul',
-                            '$fouls.other',
-                        ],
-                    },
-                }, 
+                totalInsideRobot: {
+                    $push: {
+                       $add: [ '$fouls.insideRobot']
+                    }
+                },
+                totalProtectedZone: {
+                    $push: {    
+                        $add: ['$fouls.protectedZone']
+                    } 
+                },
+                totalPinning: {
+                    $push: {    
+                        $add: ['$fouls.pinning']
+                    } 
+                },
+                totalMultiplePieces: {
+                    $push: {    
+                        $add: ['$fouls.multiplePieces']
+                    } 
+                },
+                totalCageFoul: {
+                    $push: {    
+                        $add: ['$fouls.cageFoul']
+                    } 
+                },
+                totalOther: {
+                    $push: {    
+                        $add: ['$fouls.other']
+                    } 
+                },
                 
 
             } satisfies { [K in keyof SuperDataFoulAggregationsDataDataDataDataData]: unknown },
