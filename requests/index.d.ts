@@ -46,7 +46,7 @@ interface preference {
     climbDPrefer: boolean;
 }
 
-export type SuperPosition = 'red_ss' | 'blue_ss';
+export type SuperPosition = 'red_ss1' | 'blue_ss1' | 'red_ss2' | 'blue_ss2';
 // export type ScoringLocation = 'A' | 'B';
 
 export type ScouterPosition = 'red_right' | 'blue_right';
@@ -88,7 +88,12 @@ export interface SuperDataAggregations {
 
 export interface SuperDataFoulAggregationsDataDataDataDataData {
     _id: { teamNumber: number, matchNumber: number };
-    maxFouls: number;
+    totalInsideRobot: number;
+    totalProtectedZone: number;
+    totalPinning: number;
+    totalMultiplePieces: number;
+    totalCageFoul: number;
+    totalOther: number;
 }
 
 export interface MatchDataDataAggregationsDataDataData {
@@ -97,11 +102,9 @@ export interface MatchDataDataAggregationsDataDataData {
     totalL2: number;
     totalL3: number;
     totalL4: number;
-    totalCoral: number;
     totalProcessor: number;
     totalNet: number;
     totalRemoved: number;
-    totalAlgae: number;
     coralDrop1: boolean;
     coralDrop2: boolean;
     coralDrop3: boolean;
