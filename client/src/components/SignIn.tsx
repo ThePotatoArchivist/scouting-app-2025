@@ -51,13 +51,13 @@ function SignIn({
     return (
         <>
             <div
-                className={`grid w-[400px] grid-cols-2 grid-rows-3 selection:box-border ${superScouting ? 'grid-rows-[auto_auto_1fr_1fr_auto]' : pitScouting ? 'grid-rows-[auto_auto_auto]' : 'grid-rows-[auto_auto_1fr_1fr_1fr_0.5fr_1fr]'} grid-flow-col justify-center gap-3`}>
+                className={`grid w-[400px] grid-cols-2 grid-rows- selection:box-border ${superScouting ? 'grid-rows-[auto_auto_1fr_1fr_auto]' : pitScouting ? 'grid-rows-[auto_auto_auto]' : 'grid-rows-[auto_auto_1fr_1fr_1fr_0.5fr_1fr]'}  justify-center gap-3`}>
                 <p className='col-span-2 justify-self-center p-1 text-2xl font-medium text-green-600'>
                     Sign-In
                 </p>
 
                 <TextInput
-                    className={`required col-span- h-[40px] justify-center text-xl text-black outline-double outline-sky-300 ${pitScouting ? 'row-span-1' : 'row-span-2'}`}
+                    className={`required col-span-2 h-[40px] justify-center text-xl text-black outline-double outline-sky-300 ${pitScouting ? 'row-span-1' : 'row-span-2'}`}
                     value={scouterName}
                     onChange={onChangeScouterName}
                     placeholder='Name'></TextInput>
@@ -125,7 +125,7 @@ function SignIn({
                 
 
                 <div
-                    className={`col-span-2 flex flex-row justify-self-center ${superScouting ? 'row-start-5' : pitScouting ? 'row-start-3' : 'row-start-7'} col-start-1 `}>
+                    className={`col-span-2 flex flex-row justify-self-center ${superScouting ? 'row-start-6' : pitScouting ? 'row-start-3' : 'row-start-7'} col-start-1 `}>
                     <button
                         onClick={handleSubmit}
                         className={` ${showCheck ? 'bg-green-500' : 'bg-gray-300'} m-3 justify-center rounded-md bg-gray-300  px-5  py-3 text-xl hover:bg-green-500`}>
