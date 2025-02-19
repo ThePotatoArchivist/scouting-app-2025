@@ -46,7 +46,7 @@ interface preference {
     climbDPrefer: boolean;
 }
 
-export type SuperPosition = 'red_ss' | 'blue_ss';
+export type SuperPosition = 'red_ss1' | 'blue_ss1' | 'red_ss2' | 'blue_ss2';
 // export type ScoringLocation = 'A' | 'B';
 
 export type ScouterPosition = 'red_right' | 'blue_right';

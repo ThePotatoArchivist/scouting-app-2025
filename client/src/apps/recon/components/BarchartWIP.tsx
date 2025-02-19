@@ -49,7 +49,7 @@ const BarChartWIP: React.FC<{ data: MatchDataAggregations[]; teamNumber: number 
 
   // Transform data for charts, d. means the item in the teamdata, match is for the x-axis (i pray this works w/ data :sob:)
   const chartData = teamData.map(d => ({
-      match: `Match ${d._id.match}`, 
+      // match: `Match ${d._id.match}`, 
       Coral: d.totalCoral,
       Processor: d.totalProcessor,
       Net: d.totalNet,

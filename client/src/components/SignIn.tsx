@@ -57,7 +57,7 @@ function SignIn({
                 </p>
 
                 <TextInput
-                    className={`required col-span-2 h-[40px] justify-center text-xl text-black outline-double outline-sky-300 ${pitScouting ? 'row-span-1' : 'row-span-2'}`}
+                    className={`required col-span- h-[40px] justify-center text-xl text-black outline-double outline-sky-300 ${pitScouting ? 'row-span-1' : 'row-span-2'}`}
                     value={scouterName}
                     onChange={onChangeScouterName}
                     placeholder='Name'></TextInput>
@@ -66,15 +66,19 @@ function SignIn({
                     <MultiButton
                         onChange={onChangeRobotPosition}
                         value={robotPosition}
-                        labels={['Red', 'Blue']}
-                        values={['red_ss', 'blue_ss']}
-                        className={'text-xl'}
+                        labels={['Red 1', 'Red 2', 'Blue 1', 'Blue 2']}
+                        values={['red_ss1', 'red_ss2','blue_ss1','blue_ss2']}
+                        className={'text-xl col-2 row-2'}
                         unSelectedClassName={[
                             'text-red-500 bg-gray-300 ',
+                            'text-red-500 bg-gray-300 ',
+                            'text-blue-500 bg-gray-300',
                             'text-blue-500 bg-gray-300',
                         ]}
                         selectedClassName={[
                             'bg-red-500 text-white',
+                            'bg-red-500 text-white',
+                            'bg-blue-500 text-white',
                             'bg-blue-500 text-white',
                         ]}
                     />

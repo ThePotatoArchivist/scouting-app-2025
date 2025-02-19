@@ -81,14 +81,14 @@ async function updateMatchStatus() {
                 ),
                 // Super scouters
                 ...Object.fromEntries(
-                    (['red_ss', 'blue_ss'] satisfies SuperPosition[]).map(
+                    (['red_ss1', 'red_ss2', 'blue_ss1', 'blue_ss2'] satisfies SuperPosition[]).map(
                         superPosition => [
                             superPosition,
                             superEntries.some(
                                 entry =>
                                     entry.metadata.matchNumber ===
                                         matchNumber &&
-                                    (superPosition === 'blue_ss'
+                                    (superPosition === 'blue_ss1'
                                         ? bluePositions
                                         : redPositions
                                     ).includes(entry.metadata.robotPosition)
