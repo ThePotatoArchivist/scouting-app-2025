@@ -1,7 +1,9 @@
 import {
     MatchDataAggregations,
+    MatchDataDataAggregationsDataDataData,
     MatchSchedule,
     SuperDataAggregations,
+    SuperDataFoulAggregationsDataDataDataDataData,
 } from 'requests';
 import LinkButton from '../../components/LinkButton';
 import { useFetchJson } from '../../lib/useFetch';
@@ -11,7 +13,7 @@ import TeamDropdown from '../../components/TeamDropdown';
 import scheduleJson from '../../assets/matchSchedule.json';
 import { RobotPosition } from 'requests';
 
-import BarChartWIP from './components/BarchartWIP';
+import BarChartWIP, { MatchAndSuper } from './components/BarchartWIP';
 import CheckBoxRecon from './components/CheckDisplayRecon';
 import Checkbox from '../../components/Checkbox';
 import CoralReconButton from './components/ReconDisplay';
@@ -56,6 +58,11 @@ function ReconApp() {
     const [retrieveSuper, reloadRetrieveSuper] = useFetchJson<
         SuperDataAggregations[]
     >('/data/retrieve/super');
+    const [retrieveIndividualMatch, reloadRetrieveIndividualMatch] =
+        useFetchJson<MatchDataDataAggregationsDataDataData[]>('/data/retrieve/individualMatch');
+    const [retrieveIndividualSuper, reloadRetrieveIndividualSuper] = useFetchJson<
+        SuperDataFoulAggregationsDataDataDataDataData[]
+    >('/data/retrieve/individualSuper');
     const [matchNumber, setMatchNumber] = useState<number>();
     const [teams, setTeams] = useState<(number | undefined)[]>([undefined]);
     const [teamNumber, setTeamNumber] = useState(Number);
@@ -83,11 +90,37 @@ function ReconApp() {
     }, [matchNumber]);
 
 
-   
+   const sampleData : MatchAndSuper = {
+       _id: {
+           teamNumber: 0,
+           matchNumber: 0
+       },
+       totalL1: 4,
+       totalL2: 5,
+       totalL3: 6,
+       totalL4: 73,
+       totalCoral: 8,
+       totalProcessor: 21,
+       totalNet: 43,
+       totalRemoved: 8,
+       totalAlgae: 11,
+       coralDrop1: false,
+       coralDrop2: false,
+       coralDrop3: false,
+       coralDrop4: false,
+       coralDrop5: false,
+       coralDrop6: false,
+       groundPick1: false,
+       groundPick2: false,
+       groundPick3: false,
+       sourcePick1: false,
+       sourcePick2: false,
+       maxFouls: 60
+   }
 
     return (
         <div className='h-auto min-h-fit border-4 border-[#171c26] bg-[#171c26]'>
-            <main className='mx-auto mb-5 flex h-full grid-flow-row flex-col content-center items-center justify-center bg-[#171c26] bg-repeat text-white'>
+            <main className='mx-auto mb-10 flex h-full grid-flow-row flex-col content-center items-center justify-center bg-[#171c26] bg-repeat text-white'>
                 <h1 className='my-8 text-center text-3xl font-bold text-[#48c55c]'>
                     Recon Interface
                 </h1>
@@ -127,7 +160,7 @@ function ReconApp() {
                     </div>
 
                     <div className='col-span-2 w-full items-center justify-center rounded-lg border-2 border-gray-800 bg-gray-800 p-4'>
-                        <BarChartWIP data={[]} teamNumber={0}></BarChartWIP>
+                        <BarChartWIP data={[sampleData]} teamNumber={0}></BarChartWIP>
                     </div>
 
                 <div className='mt-6 h-fit w-full col-span-2 items-center rounded-lg border-2 border-gray-800 bg-gray-800 p-4'>
@@ -136,49 +169,49 @@ function ReconApp() {
                     </img>
                     <CheckBoxRecon
                     read-only
-                    className={`bottom-[50px] right-[777px] absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`top-[820px] left-[115px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
                     </CheckBoxRecon>
                     <CheckBoxRecon
                     read-only
-                    className={`bottom-[-20px] right-[777px] absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`top-[873px] left-[115px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
                     </CheckBoxRecon>
                     <CheckBoxRecon
                     read-only
-                    className={`bottom-[-88px] right-[777px] absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`top-[925px] left-[115px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
                     </CheckBoxRecon>
                     <CheckBoxRecon
                     read-only
-                    className={`bottom-[110px] right-[790px] absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`top-[760px] left-[95px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
                     </CheckBoxRecon>
                     <CheckBoxRecon
                     read-only
-                    className={`bottom-[-150px] right-[790px] absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`top-[980px] left-[95px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
                     </CheckBoxRecon>
                     <CheckBoxRecon
                     read-only
-                    className={`bottom-[59px] right-[538px] absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`top-[812px] left-[300px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
                     </CheckBoxRecon>
                     <CheckBoxRecon
                     read-only
-                    className={`bottom-[-19px] right-[538px] absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`top-[875px] left-[300px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
                     </CheckBoxRecon>
                     <CheckBoxRecon
                     read-only
-                    className={`bottom-[-99px] right-[538px] absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`top-[935px] left-[300px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
                     </CheckBoxRecon>
 
-                    <CoralReconButton selectClassName='bg-green-300 absolute left-[281px] top-[893px] h-[10px] w-[55px] rotate-[6.81rad]'
-                    unselectClassName='bg-red-300 absolute left-[281px] top-[893px] h-[10px] w-[55px] rotate-[6.81rad]'></CoralReconButton>
-                    <CoralReconButton selectClassName='bg-green-300 absolute left-[281px] top-[893px] h-[10px] w-[55px] rotate-[6.81rad]'
-                    unselectClassName='bg-red-300 absolute left-[239px] top-[965px] h-[10px] w-[55px] rotate-[6.81rad]'></CoralReconButton>
-                    <CoralReconButton selectClassName='bg-green-300 absolute left-[281px] top-[893px] h-[10px] w-[55px] rotate-[6.81rad]'
-                    unselectClassName='bg-red-300 absolute left-[240px] top-[893px] h-[10px] w-[55px] rotate-[5.76rad]'></CoralReconButton>
-                    <CoralReconButton selectClassName='bg-green-300 absolute left-[281px] top-[893px] h-[10px] w-[55px] rotate-[6.81rad]'
-                    unselectClassName='bg-red-300 absolute left-[280px] top-[965px] h-[10px] w-[55px] rotate-[5.76rad]'></CoralReconButton>
-                    <CoralReconButton selectClassName='bg-green-300 absolute left-[281px] top-[893px] h-[10px] w-[55px] rotate-[6.81rad]'
-                    unselectClassName='bg-red-300 absolute left-[218px] top-[930px] h-[10px] w-[55px] rotate-[4.7rad]'></CoralReconButton>
-                    <CoralReconButton selectClassName='bg-green-300 absolute left-[281px] top-[893px] h-[10px] w-[55px] rotate-[6.81rad]'
-                    unselectClassName='bg-red-300 absolute left-[302px] top-[930px] h-[10px] w-[55px] rotate-[4.7rad]'></CoralReconButton>
+                    <CoralReconButton selectClassName='bg-green-300 absolute left-[222px] top-[855px] h-[10px] w-[45px] rotate-[6.81rad]'
+                    unselectClassName='bg-red-300 absolute left-[222px] top-[855px] h-[10px] w-[45px] rotate-[6.81rad]'></CoralReconButton>
+                    <CoralReconButton selectClassName='bg-green-300 absolute left-[187px] top-[915px] h-[10px] w-[45px] rotate-[6.81rad]'
+                    unselectClassName='bg-red-300 absolute left-[187px] top-[915px] h-[10px] w-[45px] rotate-[6.81rad]'></CoralReconButton>
+                    <CoralReconButton selectClassName='bg-green-300 absolute left-[188px] top-[855px] h-[10px] w-[45px] rotate-[6.81rad]'
+                    unselectClassName='bg-red-300 absolute left-[188px] top-[855px] h-[10px] w-[45px] rotate-[5.76rad]'></CoralReconButton>
+                    <CoralReconButton selectClassName='bg-green-300 absolute left-[222px] top-[915px] h-[10px] w-[45px] rotate-[6.81rad]'
+                    unselectClassName='bg-red-300 absolute left-[222px] top-[915px] h-[10px] w-[45px] rotate-[5.76rad]'></CoralReconButton>
+                    <CoralReconButton selectClassName='bg-green-300 absolute left-[170px] top-[885px] h-[10px] w-[45px] rotate-[6.81rad]'
+                    unselectClassName='bg-red-300 absolute left-[170px] top-[885px] h-[10px] w-[45px] rotate-[4.7rad]'></CoralReconButton>
+                    <CoralReconButton selectClassName='bg-green-300 absolute left-[240px] top-[885px] h-[10px] w-[45px] rotate-[6.81rad]'
+                    unselectClassName='bg-red-300 absolute left-[240px] top-[885px] h-[10px] w-[45px] rotate-[4.7rad]'></CoralReconButton>
 
                 </div>
                 <div className='h-80 w-full col-span-1 col-start-3 mt-6 rounded-lg border-2 border-gray-800 bg-gray-800'>

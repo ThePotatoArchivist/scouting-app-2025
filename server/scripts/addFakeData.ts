@@ -1,7 +1,7 @@
 import { startDockerContainer } from 'database';
 import mongoose from 'mongoose';
-import { matchApp, superApp } from '../src/Schema.js';
-import { CommentValues, MatchData, SuperData } from 'requests';
+import { matchApp, superApp, leaderboardApp } from '../src/Schema.js';
+import { CommentValues, MatchData, SuperData, ScouterData } from 'requests';
 import { dotenvLoad } from 'dotenv-mono';
 
 function randint(max: number, min = 0) {
@@ -27,6 +27,15 @@ const comments: CommentValues[] = [
     'weak_build',
     'avoids_under_stage',
 ];
+
+// const scouterLeaderName: leaderboardValues[] = [
+//     'Vanessa',
+//     'Crisanto',
+//     'Christian',
+//     'Nathan',
+//     'Ashreeya',
+//     'Tica',
+//];
 
 dotenvLoad({ path: '.env' });
 dotenvLoad({ path: '.env.local' });
@@ -73,20 +82,24 @@ for (let matchNumber = 1; matchNumber < 400; matchNumber++) {
         console.log(matchNumber);
         const team = choose(teams);
         await new matchApp({
-            autoNotes: {
-                far: randint(5),
-                mid: randint(5),
-                near: randint(5),
-                amp: randint(5),
-                miss: randint(5),
+            autoCoral: {
+                L1: randint(5),
+                L2: randint(5),
+                L3: randint(5),
+                L4: randint(5),
+                
+            },
+            autoAlgae: {
+                netRobot: randint(5),
+                processor: randint(5),
+                removed: randint(5),
             },
             climb: choose([
-                'amp',
-                'center',
-                'failed',
-                'none',
+                'shallow',
+                'deep',
                 'park',
-                'source',
+                'none',
+                'failed',
             ]),
             leftStartingZone: Math.random() > 0.5,
             metadata: {
@@ -95,15 +108,18 @@ for (let matchNumber = 1; matchNumber < 400; matchNumber++) {
                 scouterName: 'Jim',
                 matchNumber: matchNumber,
             },
-            teleNotes: {
-                far: randint(10),
-                mid: randint(10),
-                near: randint(10),
-                amp: randint(10),
-                miss: randint(10),
+            teleCoral: {
+                L1: randint(10),
+                L2: randint(10),
+                L3: randint(10),
+                L4: randint(10),
+            },
+            teleAlgae: {
+                netRobot: randint(5),
+                processor: randint(5),
+                removed: 0
             },
 
-            trapNotes: randint(2),
         } satisfies MatchData).save();
 
         await new superApp({
@@ -119,6 +135,7 @@ for (let matchNumber = 1; matchNumber < 400; matchNumber++) {
                 multiplePieces: randint(2),
                 other: randint(2),
                 pinning: randint(2),
+                cageFoul: randint(2)
             },
             break: {
                 batteryFall: randint(2),
@@ -131,15 +148,24 @@ for (let matchNumber = 1; matchNumber < 400; matchNumber++) {
             humanShooter:
                 randint(3) === 0
                     ? {
-                          highNotes: {
-                              amp: Math.random() > 0.5,
-                              source: Math.random() > 0.5,
-                              center: Math.random() > 0.5,
-                          },
+                          Net: Math.random() > 0.5,
                       }
                     : undefined,
+            netHuman: randint(4)        
         } satisfies SuperData).save();
     }
+}
+
+for (let scouterNumber = 1; scouterNumber < 100; scouterNumber++) {
+    console.log(scouterNumber);
+        await new leaderboardApp({                
+            
+                scouterName:choose(['Vanessa', 'Crisanto', 'Christian', 'Nathan', 'Ashreeya', 'Tica']),
+                accuracy: randint(100),
+            
+
+        } satisfies ScouterData).save();
+
 }
 
 await mongoose.disconnect();

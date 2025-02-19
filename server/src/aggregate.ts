@@ -1,5 +1,7 @@
-import { MatchDataAggregations, SuperDataAggregations } from 'requests';
-import { matchApp, superApp, pitApp } from './Schema.js';
+import { MatchDataAggregations, SuperDataAggregations, ScouterData, SuperDataFoulAggregationsDataDataDataDataData, MatchDataDataAggregationsDataDataData } from 'requests';
+import { matchApp, superApp, pitApp, leaderboardApp } from './Schema.js';
+//no scouterdata??
+
 
 async function averageAndMax(): Promise<MatchDataAggregations[]> {
     await matchApp.aggregate([
@@ -241,6 +243,153 @@ async function averageAndMax(): Promise<MatchDataAggregations[]> {
     return result;
 }
 
+
+
+async function maxIndividual(): Promise<MatchDataDataAggregationsDataDataData[]> {
+    const result = await matchApp.aggregate([
+        {
+            $group: {
+                _id: { teamNumber: '$metadata.robotTeam', matchNumber: '$metadata.matchNumber'},
+                totalL1: {
+                    $sum: {
+                        $add: [
+                            '$autoCoral.L1',
+                            '$teleCoral.L1'
+                        ]
+                    }
+                },
+                totalL2: {
+                    $sum: {
+                        $add: [
+                            '$autoCoral.L2',
+                            '$teleCoral.L2'
+                        ]
+                    }
+                },
+                totalL3: {
+                    $sum: {
+                        $add: [
+                            '$autoCoral.L3',
+                            '$teleCoral.L3'
+                        ]
+                    }
+                },
+                totalL4: {
+                    $sum: {
+                        $add: [
+                            '$autoCoral.L4',
+                            '$teleCoral.L4'
+                        ]
+                    }
+                },
+                totalProcessor: {
+                    $sum: {
+                        $add: [
+                            '$autoAlgae.processor',
+                            '$teleAlgae.processor'
+                        ]
+                    }
+                },
+                totalNet: {
+                    $sum: {
+                        $add: [
+                            '$autoAlgae.netRobot',
+                            '$teleAlgae.netRobot'
+                        ]
+                    }
+                },
+                totalRemoved: {
+                    $sum: {
+                        $add: [
+                            '$autoAlgae.removed',
+                            '$teleAlgae.removed'
+                        ]
+                    }
+                },
+                coralDrop1: {
+                    $push: {
+                       $toBool: [
+                        '$placement.deposit1'
+                       ]
+                    }
+                },
+                coralDrop2: {
+                    $push: {
+                       $toBool: [
+                        '$placement.deposit1'
+                       ]
+                    }
+                },
+                coralDrop3: {
+                    $push: {
+                       $toBool: [
+                        '$placement.deposit1'
+                       ]
+                    }
+                },
+                coralDrop4: {
+                    $push: {
+                       $toBool: [
+                        '$placement.deposit1'
+                       ]
+                    }
+                },
+                coralDrop5: {
+                    $push: {
+                       $toBool: [
+                        '$placement.deposit1'
+                       ]
+                    }
+                },
+                coralDrop6: {
+                    $push: {
+                       $toBool: [
+                        '$placement.deposit1'
+                       ]
+                    }
+                },
+                groundPick1: {
+                    $push: {
+                        $toBool: [
+                            '$pickupLocation.ground1'
+                        ]
+                    }
+                },
+                groundPick2: {
+                    $push: {
+                        $toBool: [
+                            '$pickupLocation.ground2'
+                        ]
+                    }
+                },
+                groundPick3: {
+                    $push: {
+                        $toBool: [
+                            '$pickupLocation.ground1'
+                        ]
+                    }
+                },
+                sourcePick1: {
+                    $push: {
+                        $toBool: [
+                            '$pickupLocation.leftSource'
+                        ]
+                    }
+                },
+                sourcePick2: {
+                    $push: {
+                        $toBool: [
+                            '$pickupLocation.rightSource'
+                        ]
+                    }
+                },
+            }
+        },
+    ]);
+    return result;
+}
+
+
 async function superAverageAndMax(): Promise<SuperDataAggregations[]> {
     return await superApp.aggregate([
         {
@@ -296,7 +445,74 @@ async function superAverageAndMax(): Promise<SuperDataAggregations[]> {
     ]);
 }
 
-async function robotImageDisplay( 
+async function superMaxIndividual(): Promise<SuperDataFoulAggregationsDataDataDataDataData[]> {
+    return await superApp.aggregate([
+        {
+            $group: {
+                _id: { teamNumber: '$metadata.robotTeam', matchNumber: '$metadata.matchNumber' },
+                totalInsideRobot: {
+                    $push: {
+                       $add: [ '$fouls.insideRobot']
+                    }
+                },
+                totalProtectedZone: {
+                    $push: {    
+                        $add: ['$fouls.protectedZone']
+                    } 
+                },
+                totalPinning: {
+                    $push: {    
+                        $add: ['$fouls.pinning']
+                    } 
+                },
+                totalMultiplePieces: {
+                    $push: {    
+                        $add: ['$fouls.multiplePieces']
+                    } 
+                },
+                totalCageFoul: {
+                    $push: {    
+                        $add: ['$fouls.cageFoul']
+                    } 
+                },
+                totalOther: {
+                    $push: {    
+                        $add: ['$fouls.other']
+                    } 
+                },
+                
+
+            } satisfies { [K in keyof SuperDataFoulAggregationsDataDataDataDataData]: unknown },
+        },
+    ]);
+}
+
+// async function scouterRankings(): Promise<ScouterDataAggregations[]> {
+//     return await leaderboardApp.aggregate([
+//         {
+//             $group: {
+//                 _id: { scouterName: '$metadata.scouterName' },
+
+//                 accuracy: {
+                   
+                    
+//                 },
+//             } satisfies { [K in keyof ScouterDataAggregations]: unknown },
+//         },
+//     ]);
+// }
+
+async function scouterRankings(): Promise<ScouterData[]> {
+    const filter = {};
+    const result =  await leaderboardApp.find(filter)
+    return (
+        result
+    );
+}
+
+
+
+async function robotImageDisplay(
     teamNumber: number
 ): Promise<Buffer | undefined> {
     return (
@@ -304,4 +520,4 @@ async function robotImageDisplay(
     )?.photo;
 }
 
-export { averageAndMax, superAverageAndMax, robotImageDisplay };
+export { averageAndMax, superAverageAndMax, robotImageDisplay, scouterRankings, superMaxIndividual, maxIndividual };

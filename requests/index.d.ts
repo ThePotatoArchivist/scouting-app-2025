@@ -52,7 +52,7 @@ export type SuperPosition = 'red_ss1' | 'blue_ss1' | 'red_ss2' | 'blue_ss2';
 export type ScouterPosition = 'red_right' | 'blue_right';
 
 export interface MatchDataAggregations {
-    _id: { teamNumber: number };
+    _id: { teamNumber: number};
     averageCoral: number;
     averageAlgae: number;
     averageRemove: number;
@@ -84,6 +84,38 @@ export interface SuperDataAggregations {
     avgFouls: number;
     maxFouls: number;
     humanAccuracy: number;
+}
+
+export interface SuperDataFoulAggregationsDataDataDataDataData {
+    _id: { teamNumber: number, matchNumber: number };
+    totalInsideRobot: number;
+    totalProtectedZone: number;
+    totalPinning: number;
+    totalMultiplePieces: number;
+    totalCageFoul: number;
+    totalOther: number;
+}
+
+export interface MatchDataDataAggregationsDataDataData {
+    _id: { teamNumber: number, matchNumber: number};
+    totalL1: number;
+    totalL2: number;
+    totalL3: number;
+    totalL4: number;
+    totalProcessor: number;
+    totalNet: number;
+    totalRemoved: number;
+    coralDrop1: boolean;
+    coralDrop2: boolean;
+    coralDrop3: boolean;
+    coralDrop4: boolean;
+    coralDrop5: boolean;
+    coralDrop6: boolean;
+    groundPick1: boolean;
+    groundPick2: boolean;
+    groundPick3: boolean;
+    sourcePick1: boolean;
+    sourcePick2: boolean;
 }
 
 export interface MetaData {
@@ -164,6 +196,13 @@ export interface SuperData {
 
 // - `POST` `/data/pits`
 // `<form>` files?
+
+export interface ScouterData {
+    scouterName: string;
+    accuracy: number;
+    
+}
+// find me
 
 export interface PitFile {
     scouterName: string;

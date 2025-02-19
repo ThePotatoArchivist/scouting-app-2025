@@ -1,24 +1,7 @@
 import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, TooltipProps } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps } from 'recharts';
 import { NameType, ValueType } from 'recharts/types/component/DefaultTooltipContent';
-import { MatchDataAggregations, SuperDataAggregations } from 'requests';
-
-
-const matchStats: Exclude<keyof MatchDataAggregations, '_id'>[] = [
-  'totalL1' ,
-  'totalL2',
-  'totalL3',
-  'totalL4' ,
-  'totalCoral',
-  'totalProcessor' ,
-  'totalNet' ,
-  'totalRemoved' ,
-  'totalAlgae',
-];
-const superStats: Exclude<keyof SuperDataAggregations, '_id'>[] = [
-  'maxFouls',
-];
-
+import { MatchDataAggregations, MatchDataDataAggregationsDataDataData, SuperDataFoulAggregationsDataDataDataDataData } from 'requests';
 
 
 
@@ -42,19 +25,23 @@ const CustomTooltip: React.FC<TooltipProps<ValueType, NameType>> = ({
 };
 
 
-const BarChartWIP: React.FC<{ data: MatchDataAggregations[]; teamNumber: number }> = ({ data, teamNumber }) => {
+
+export interface MatchAndSuper extends MatchDataDataAggregationsDataDataData, SuperDataFoulAggregationsDataDataDataDataData {}
+
+const BarChartWIP: React.FC<{ data: MatchAndSuper[]; teamNumber: number }> = ({ data, teamNumber }) => {
 
   //grabs data for a specific team
   const teamData = data.filter(d => d._id.teamNumber === teamNumber);
 
-  // Transform data for charts, d. means the item in the teamdata, match is for the x-axis (i pray this works w/ data :sob:)
+  // Transform data for charts to have nicer labels (when tooltip works), d. means the item in the teamdata, match is for the x-axis (i pray this works w/ data :sob:)
   const chartData = teamData.map(d => ({
-      // match: `Match ${d._id.match}`, 
+      match: `Match ${d._id.matchNumber}`, 
       Coral: d.totalCoral,
       Processor: d.totalProcessor,
       Net: d.totalNet,
       Removed: d.totalRemoved,
-      Algae: d.totalAlgae
+      Algae: d.totalAlgae,
+      Fouls: d.maxFouls
   }));
 
 
