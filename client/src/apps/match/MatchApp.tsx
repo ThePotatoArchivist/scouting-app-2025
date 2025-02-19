@@ -294,7 +294,6 @@ function MatchApp() {
         }
     }
 
-    const [handleCheck ] = useState(false);
 
     return (
        <div className= {`${ toggleState ? 'bg-[#171c26]' : 'bg-white'}`}> 
@@ -404,43 +403,51 @@ function MatchApp() {
                 
                 <img src={`${blueAlliance ? 'bluesidematch.png': 'redsidematch.png'}`} width={500} height={600} className='justify-self-center my-7'></img>
                 {   <CheckBoxMatch
-                    handleChecked={handleCheck}
+                    checked={ground1}
+                    onChange={setGround1}
                     className={`${blueAlliance ? 'top-[820px] left-[285px]' :'top-[858px] left-[160px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
                     // ground 1
                     }
                     <CheckBoxMatch
-                    handleChecked={handleCheck}
-                    className={`${blueAlliance ? 'top-[745px] left-[285px]' :'top-[760px] left-[455px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    checked={ground2}
+                    onChange={setGround2}
+                    className={`${blueAlliance ? 'top-[740px] left-[285px]' :'top-[760px] left-[455px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
                     {/* ground 2 */}
                     <CheckBoxMatch
-                    handleChecked={handleCheck}
+                    checked={ground3}
+                    onChange={setGround3}
                     className={`${blueAlliance ? 'top-[660px] left-[285px]' :'top-[675px] left-[455px] ' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
                     {/* ground 3 */}
                     <CheckBoxMatch
-                    handleChecked={handleCheck}
+                    checked={leftSource}
+                    onChange={setleftSource}
                     className={`${blueAlliance? 'top-[570px] left-[250px]' :'top-[760px] left-[160px] ' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
                     {/* source 1 */}
                     <CheckBoxMatch
-                    handleChecked={handleCheck}
+                    checked={rightSource}
+                    onChange={setrightSource}
                     className={`${blueAlliance? 'top-[910px] left-[250px]' :'top-[660px] left-[160px] ' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
                     {/* source 2 */}
                     <CheckBoxMatch
-                    handleChecked={handleCheck}
+                    checked={left}
+                    onChange={setLeft}
                     className={`${blueAlliance? 'top-[645px] left-[565px] ' :'top-[930px] left-[485px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
                     {/* starting location 1 */}
                     <CheckBoxMatch
-                    handleChecked={handleCheck}
+                    checked={middle}
+                    onChange={setMiddle}
                     className={`${blueAlliance? 'top-[740px] left-[565px]' :'top-[585px] left-[485px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
                     {/* starting location 2 */}
                     <CheckBoxMatch
-                    handleChecked={handleCheck}
+                    checked={right}
+                    onChange={setRight}
                     className={`${blueAlliance? 'top-[835px] left-[565px]' :'top-[840px] left-[455px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
                     {/* starting location 3 */}

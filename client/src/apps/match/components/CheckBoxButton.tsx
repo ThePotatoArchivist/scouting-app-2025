@@ -1,19 +1,26 @@
-
+import { ReactNode } from "react";
 
 function CheckBoxMatch ({
-    handleChecked,
-    className
+    checked,
+    children,
+    onChange,
+    className,
 }:
 {
-    handleChecked: boolean;
+    checked: boolean;
+    children?:ReactNode;
+    onChange?: (value: boolean) => void;
     className?: string;
 }) {
     return(
         <input
+                type="checkbox"
+                checked={checked}
                 className={` ${className} absolute text-5xl `}
-                onClick={() => handleChecked}
+                onChange={event => onChange?.(event.target.checked)}
                 id='one'
-                type="checkbox">
+                >
+                    {children}
         </input>
 )}
 export default CheckBoxMatch;

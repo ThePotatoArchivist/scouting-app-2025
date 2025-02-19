@@ -119,7 +119,7 @@ function SuperApp() {
                         matchNumber,
                         robotTeam: team.teamNumber!,
                         robotPosition: (
-                            (superPosition === 'blue_ss'
+                            (superPosition === 'blue_ss1'
                                 ? ['blue_1', 'blue_2', 'blue_3']
                                 : [
                                       'red_1',
@@ -165,7 +165,7 @@ function SuperApp() {
             setTeam3(team3 => ({ ...team3, teamNumber: undefined }));
             return;
         }
-        const blueAlliance = superPosition === 'blue_ss';
+        const blueAlliance = superPosition === 'blue_ss1';
         setTeam1(team1 => ({
             ...team1,
             teamNumber:
@@ -298,16 +298,15 @@ function SuperApp() {
         </div>
                
             <p
-            className={`mt-10  text-white text-2xl`}>
+            className={'mt-10  text-white text-2xl'}>
                 Human Player Points
             </p>
-
                <HumanCounter
                
                 count={count}
-                className='mt-10 mb-5 p-10 mx-4 bg-red-500 text-white text-2xl rounded' 
+                className='mt-10 mb-5 p-10 mx-4 bg-green-500 text-white text-2xl rounded' 
                 setCount={setCount} >        
-                </HumanCounter>
+                </HumanCounter> /
 
                 <br/>
 
