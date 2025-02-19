@@ -1,7 +1,7 @@
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps } from 'recharts';
 import { NameType, ValueType } from 'recharts/types/component/DefaultTooltipContent';
-import { MatchDataAggregations, MatchDataDataAggregationsDataDataData, SuperDataFoulAggregationsDataDataDataDataData } from 'requests';
+import { MatchIndividualDataAggregations, SuperFoulAggregationsData } from 'requests';
 
 
 
@@ -26,9 +26,43 @@ const CustomTooltip: React.FC<TooltipProps<ValueType, NameType>> = ({
 
 
 
-export interface MatchAndSuper extends MatchDataDataAggregationsDataDataData, SuperDataFoulAggregationsDataDataDataDataData {}
+export interface MatchAndSuper extends MatchIndividualDataAggregations, SuperFoulAggregationsData {}
 
 const BarChartWIP: React.FC<{ data: MatchAndSuper[]; teamNumber: number }> = ({ data, teamNumber }) => {
+
+
+  //what is element? :sob:
+//   let i=0
+  const bingus : MatchIndividualDataAggregations[] = [];
+  const bongus : SuperFoulAggregationsData[] = [];
+
+// for( i; i < bingus.length; ){
+
+// };
+
+// for(let totalL1 in bingus){
+//   const bogos = Element._id.teamNumber
+// };
+
+
+// bingus.forEach((element) => {
+  
+// });
+
+
+//how attach to the actual value????
+const superPZ1 = bongus.filter(e => e._id.teamNumber === teamNumber)
+const superPZ2 = bongus.filter(e => e._id.matchNumber === AHHHHHH)
+const superIR1 = bongus.filter(e => e._id.teamNumber === teamNumber)
+const superIR2 = bongus.filter(e => e._id.matchNumber === AHHHHHH)
+const superPin1 = bongus.filter(e => e._id.teamNumber === teamNumber)
+const superPin2 = bongus.filter(e => e._id.matchNumber === AHHHHHH)
+const superMP1 = bongus.filter(e => e._id.teamNumber === teamNumber)
+const superMP2 = bongus.filter(e => e._id.matchNumber === AHHHHHH)
+const superCF1 = bongus.filter(e => e._id.teamNumber === teamNumber)
+const superCF2 = bongus.filter(e => e._id.matchNumber === AHHHHHH)
+const superO1 = bongus.filter(e => e._id.teamNumber === teamNumber)
+const superO2 = bongus.filter(e => e._id.matchNumber === AHHHHHH)
 
   //grabs data for a specific team
   const teamData = data.filter(d => d._id.teamNumber === teamNumber);
@@ -36,12 +70,9 @@ const BarChartWIP: React.FC<{ data: MatchAndSuper[]; teamNumber: number }> = ({ 
   // Transform data for charts to have nicer labels (when tooltip works), d. means the item in the teamdata, match is for the x-axis (i pray this works w/ data :sob:)
   const chartData = teamData.map(d => ({
       match: `Match ${d._id.matchNumber}`, 
-      Coral: d.totalCoral,
       Processor: d.totalProcessor,
       Net: d.totalNet,
       Removed: d.totalRemoved,
-      Algae: d.totalAlgae,
-      Fouls: d.maxFouls
   }));
 
 
@@ -53,7 +84,6 @@ const BarChartWIP: React.FC<{ data: MatchAndSuper[]; teamNumber: number }> = ({ 
         <XAxis dataKey="match" tick={{ fill: "white" }} />
         <YAxis tick={{ fill: "white" }} />
         <Tooltip content={<CustomTooltip />} />
-        <Bar dataKey="Coral" stackId='a' fill="#FFA343" />
         <Bar dataKey="Processor" stackId='a' fill="#82ca9d" />
         <Bar dataKey="Net" stackId='a' fill="#c73260" />
         <Bar dataKey="Removed" stackId='a' fill="#9C16FF" />
