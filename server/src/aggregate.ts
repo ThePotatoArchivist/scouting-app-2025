@@ -292,35 +292,35 @@ async function maxIndividual(): Promise<MatchDataDataAggregationsDataDataData[]>
                 coralDrop2: {
                     $push: {
                        $toBool: [
-                        '$placement.deposit1'
+                        '$placement.deposit2'
                        ]
                     }
                 },
                 coralDrop3: {
                     $push: {
                        $toBool: [
-                        '$placement.deposit1'
+                        '$placement.deposit3'
                        ]
                     }
                 },
                 coralDrop4: {
                     $push: {
                        $toBool: [
-                        '$placement.deposit1'
+                        '$placement.deposit4'
                        ]
                     }
                 },
                 coralDrop5: {
                     $push: {
                        $toBool: [
-                        '$placement.deposit1'
+                        '$placement.deposit5'
                        ]
                     }
                 },
                 coralDrop6: {
                     $push: {
                        $toBool: [
-                        '$placement.deposit1'
+                        '$placement.deposit6'
                        ]
                     }
                 },
@@ -341,7 +341,7 @@ async function maxIndividual(): Promise<MatchDataDataAggregationsDataDataData[]>
                 groundPick3: {
                     $push: {
                         $toBool: [
-                            '$pickupLocation.ground1'
+                            '$pickupLocation.ground3'
                         ]
                     }
                 },
@@ -581,5 +581,6 @@ async function robotImageDisplay(
     )?.photo;
 }
 
+export { averageAndMax, superAverageAndMax, robotImageDisplay, matchOutlier };
 
 export { averageAndMax, superAverageAndMax, robotImageDisplay, scouterRankings, superMaxIndividual, maxIndividual, matchOutlier };
