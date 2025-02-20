@@ -33,9 +33,9 @@ const algae = {
 };
 
 const StartingZone = {
-    left: Boolean,
-    middle: Boolean,
-    right: Boolean,
+    start1: Boolean,
+    start2: Boolean,
+    start3: Boolean,
 }
 
 const pickup = {
@@ -43,7 +43,7 @@ const pickup = {
     rightSource: Boolean,
     ground1: Boolean,
     ground2: Boolean,
-    round3: Boolean
+    ground3: Boolean
 }
 
 const placeLocation = {

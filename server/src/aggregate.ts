@@ -195,7 +195,7 @@ async function averageAndMax(): Promise<MatchDataAggregations[]> {
                 groundPick3: {
                     $push: {
                         $toBool: [
-                            '$pickupLocation.ground1'
+                            '$pickupLocation.ground3'
                         ]
                     }
                 },
