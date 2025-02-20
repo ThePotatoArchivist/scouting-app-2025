@@ -51,7 +51,7 @@ function SignIn({
     return (
         <>
             <div
-                className={`grid w-[400px] grid-cols-2 grid-rows- selection:box-border ${superScouting ? 'grid-rows-[auto_auto_1fr_1fr_auto]' : pitScouting ? 'grid-rows-[auto_auto_auto]' : 'grid-rows-[auto_auto_1fr_1fr_1fr_0.5fr_1fr]'}  justify-center gap-3`}>
+                className={`grid w-[400px] grid-cols-2 grid-rows- selection:box-border ${superScouting ? 'grid-rows-[auto_auto_1fr_1fr_auto]' : pitScouting ? 'grid-rows-[auto_auto_auto]' : 'grid-rows-[auto_auto_1fr_1fr_1fr_1fr_1fr]'}  justify-center gap-3`}>
                 <p className='col-span-2 justify-self-center p-1 text-2xl font-medium text-green-600'>
                     Sign-In
                 </p>
