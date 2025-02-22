@@ -102,6 +102,7 @@ interface coral {
 interface algae {
     netRobot: number;
     processor: number;
+    remove: number;
 }
 
 export interface netHuman {
