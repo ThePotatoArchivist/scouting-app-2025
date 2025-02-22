@@ -30,6 +30,7 @@ export type CommentValues =
     | 'weak_build'
     | 'avoids_under_stage';
 
+export type Net = boolean;
 
 interface capabilities {
     coral: boolean;
@@ -71,6 +72,12 @@ export interface MatchDataAggregations {
     avgClimbRate: number;
 }
 
+// export interface ScouterDataAggregations {
+//     scouterName: string
+//     accuracy: number;
+// }
+// find me
+
 export interface SuperDataAggregations {
     _id: { teamNumber: number };
     avgFouls: number;
@@ -101,12 +108,38 @@ export interface netHuman {
     Success: number;
     Failed: number;
 }
+
+interface StartingZone {
+    left: boolean;
+    middle: boolean;
+    right: boolean;
+}
+
+interface pickup {
+    leftSource: boolean;
+    rightSource: boolean;
+    ground1: boolean;
+    ground2: boolean;
+    round3: boolean
+}
+
+interface placeLocation {
+    deposit1: boolean;
+    deposit2: boolean;
+    deposit3: boolean;
+    deposit4: boolean;
+    deposit5: boolean;
+    deposit6: boolean;
+}
 // - `POST` `/data/match`
 
 export interface MatchData {
     metadata: MetaData;
     // No competition info
     leftStartingZone: boolean;
+    startingZone: StartingZone;
+    pickupLocation: pickup;
+    placement: placeLocation;
     autoCoral: coral;
     autoAlgae: algae;
     teleCoral: coral;
@@ -129,6 +162,13 @@ export interface SuperData {
 
 // - `POST` `/data/pits`
 // `<form>` files?
+
+export interface ScouterData {
+    scouterName: string;
+    accuracy: number;
+    
+}
+// find me
 
 export interface PitFile {
     scouterName: string;
@@ -202,4 +242,6 @@ export type TeamData = Partial<{
         avatar?: string;
         info?: TeamInfo;
     };
+
+    
 }>;

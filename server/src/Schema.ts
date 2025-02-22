@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { CommentValues, MatchData, PitFile, SuperData } from 'requests';
+import { CommentValues, MatchData, PitFile, SuperData, ScouterData } from 'requests';
 
 const matchappsMetaDataSchema = {
     scouterName: String,
@@ -32,9 +32,35 @@ const algae = {
     processor: Number
 };
 
+const StartingZone = {
+    left: Boolean,
+    middle: Boolean,
+    right: Boolean,
+}
+
+const pickup = {
+    leftSource: Boolean,
+    rightSource: Boolean,
+    ground1: Boolean,
+    ground2: Boolean,
+    round3: Boolean
+}
+
+const placeLocation = {
+    deposit1: Boolean,
+    deposit2: Boolean,
+    deposit3: Boolean,
+    deposit4: Boolean,
+    deposit5: Boolean,
+    deposit6: Boolean,
+}
+
 const matchDataSchema = new mongoose.Schema<MatchData>({
     metadata: matchappsMetaDataSchema,
     leftStartingZone: Boolean,
+    startingZone: StartingZone,
+    pickupLocation: pickup,
+    placement: placeLocation,
     autoCoral: coral,
     autoAlgae: algae,
     teleCoral: coral, 
@@ -94,6 +120,12 @@ const superScoutDataSchema = new mongoose.Schema<SuperData>({
     ],
 });
 
+const leaderboardDataSchema = new mongoose.Schema<ScouterData> ({
+    scouterName: String,
+    accuracy: Number,
+});
+
+
 type PitDataSchemaType = {
     [K in keyof PitFile]: K extends 'photo' ? Buffer : PitFile[K];
 };
@@ -132,6 +164,7 @@ const pitDataSchema = new mongoose.Schema<PitDataSchemaType>({
 const pitApp = mongoose.model('pitApp', pitDataSchema);
 const matchApp = mongoose.model('matchApp', matchDataSchema);
 const superApp = mongoose.model('superApp', superScoutDataSchema);
+const leaderboardApp = mongoose.model('leaderboardApp', leaderboardDataSchema);
 
 export {
     matchApp,
@@ -140,4 +173,7 @@ export {
     pitDataSchema,
     superApp,
     superScoutDataSchema,
+    leaderboardApp,
+    leaderboardDataSchema,
+
 };

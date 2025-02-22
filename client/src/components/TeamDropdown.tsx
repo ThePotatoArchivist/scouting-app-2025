@@ -34,7 +34,7 @@ function TeamDropdown({
         : options;
 
     return (
-        <div className='team-search mx-auto contents '>
+        <div className='team-search mx-auto contents'>
             <SelectSearch
                 options={optionsWithDisabled}
                 value={value?.toString()}
