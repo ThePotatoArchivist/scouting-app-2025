@@ -86,7 +86,7 @@ export interface SuperDataAggregations {
     humanAccuracy: number;
 }
 
-export interface SuperDataFoulAggregationsDataDataDataDataData {
+export interface SuperFoulAggregationsData{
     _id: { teamNumber: number, matchNumber: number };
     totalInsideRobot: number;
     totalProtectedZone: number;
@@ -96,7 +96,7 @@ export interface SuperDataFoulAggregationsDataDataDataDataData {
     totalOther: number;
 }
 
-export interface MatchDataDataAggregationsDataDataData {
+export interface MatchIndividualDataAggregations {
     _id: { teamNumber: number, matchNumber: number};
     totalL1: number;
     totalL2: number;

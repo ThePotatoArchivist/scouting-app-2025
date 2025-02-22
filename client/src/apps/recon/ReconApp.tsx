@@ -1,9 +1,9 @@
 import {
     MatchDataAggregations,
-    MatchDataDataAggregationsDataDataData,
     MatchSchedule,
+    MatchIndividualDataAggregations,
     SuperDataAggregations,
-    SuperDataFoulAggregationsDataDataDataDataData,
+    SuperFoulAggregationsData,
 } from 'requests';
 import LinkButton from '../../components/LinkButton';
 import { useFetchJson } from '../../lib/useFetch';
@@ -59,9 +59,9 @@ function ReconApp() {
         SuperDataAggregations[]
     >('/data/retrieve/super');
     const [retrieveIndividualMatch, reloadRetrieveIndividualMatch] =
-        useFetchJson<MatchDataDataAggregationsDataDataData[]>('/data/retrieve/individualMatch');
+        useFetchJson<MatchIndividualDataAggregations[]>('/data/retrieve/individualMatch');
     const [retrieveIndividualSuper, reloadRetrieveIndividualSuper] = useFetchJson<
-        SuperDataFoulAggregationsDataDataDataDataData[]
+        SuperFoulAggregationsData[]
     >('/data/retrieve/individualSuper');
     const [matchNumber, setMatchNumber] = useState<number>();
     const [teams, setTeams] = useState<(number | undefined)[]>([undefined]);
@@ -99,11 +99,9 @@ function ReconApp() {
        totalL2: 5,
        totalL3: 6,
        totalL4: 73,
-       totalCoral: 8,
        totalProcessor: 21,
        totalNet: 43,
        totalRemoved: 8,
-       totalAlgae: 11,
        coralDrop1: false,
        coralDrop2: false,
        coralDrop3: false,
@@ -115,9 +113,16 @@ function ReconApp() {
        groundPick3: false,
        sourcePick1: false,
        sourcePick2: false,
-       maxFouls: 60
+       totalInsideRobot: 9,
+       totalProtectedZone: 8,
+       totalPinning: 10,
+       totalMultiplePieces: 44,
+       totalCageFoul: 23,
+       totalOther: 7
    }
 
+   let bingus: MatchAndSuper[]
+//for (const x: MatchIndividualDataAggregations)
     return (
         <div className='h-auto min-h-fit border-4 border-[#171c26] bg-[#171c26]'>
             <main className='mx-auto mb-10 flex h-full grid-flow-row flex-col content-center items-center justify-center bg-[#171c26] bg-repeat text-white'>
