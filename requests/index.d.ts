@@ -174,12 +174,7 @@ export interface ScouterData {
 export interface PitFile {
     scouterName: string;
     teamNumber: number;
-    capabilities: capabilities;
-    preference: preference;
-    autoCapability: string[];
-    teamRole: teamRoles;
     pitBatteryCount: number;
-    drivebase: drivebase;
     comments: string;
     photo: string;
 }
