@@ -22,7 +22,6 @@ import { SuperScores } from "../SuperApp";
   }){
    return (
     <>
-    <col-2></col-2>
     <p 
     className={'mt-8 text-white text-2xl'}>
     Successes
