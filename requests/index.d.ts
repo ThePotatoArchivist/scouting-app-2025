@@ -79,6 +79,24 @@ export interface MatchDataAggregations {
     sourcePick2: boolean;
 }
 
+export interface matchOutliersAggregation {
+    _id: { teamNumber: number };
+    autoL1: number;
+    autoL2: number;
+    autoL3: number;
+    autoL4: number;
+    leave: number;
+    teleL1: number;
+    teleL2: number;
+    teleL3: number;
+    teleL4: number;
+    teleProcessor: number;
+    teleNet: number;
+    shallow: number;
+    deep: number;
+    park: number;
+}
+
 export interface SuperDataAggregations {
     _id: { teamNumber: number };
     avgFouls: number;
@@ -144,14 +162,14 @@ export interface netHuman {
 }
 
 interface StartingZone {
-    left: boolean;
-    middle: boolean;
-    right: boolean;
+    start1: boolean;
+    start2: boolean;
+    start3: boolean;
 }
 
 interface pickup {
-    leftSource: boolean;
-    rightSource: boolean;
+    source1: boolean;
+    source2: boolean;
     ground1: boolean;
     ground2: boolean;
     ground3: boolean

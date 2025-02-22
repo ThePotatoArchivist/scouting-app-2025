@@ -13,7 +13,7 @@ import TeamDropdown from '../../components/TeamDropdown';
 import scheduleJson from '../../assets/matchSchedule.json';
 import { RobotPosition } from 'requests';
 
-import BarChartWIP, { MatchAndSuper } from './components/BarchartWIP';
+// import BarChartWIP, { MatchAndSuper } from './components/BarchartWIP';
 import CheckBoxRecon from './components/CheckDisplayRecon';
 import Checkbox from '../../components/Checkbox';
 import CoralReconButton from './components/ReconDisplay';
@@ -68,7 +68,7 @@ function ReconApp() {
     const [teamNumber, setTeamNumber] = useState(Number);
     const [handleCheck ] = useState(false);
     const [robotPosition, setRobotPosition] = useState<RobotPosition>();
-
+    const [currentMatchDisplayed, setcurrentMatchDisplayed] = useState<number>(0);
 
     const blueAlliance = (
         ['blue_1', 'blue_2', 'blue_3'] as (string | undefined)[]
@@ -165,58 +165,97 @@ function ReconApp() {
                     </div>
 
                     <div className='col-span-2 w-full items-center justify-center rounded-lg border-2 border-gray-800 bg-gray-800 p-4'>
-                        <BarChartWIP data={[sampleData]} teamNumber={0}></BarChartWIP>
+                        {/* <BarChartWIP data={[sampleData]} teamNumber={0}></BarChartWIP> */}
                     </div>
 
                 <div className='mt-6 h-fit w-full col-span-2 items-center rounded-lg border-2 border-gray-800 bg-gray-800 p-4'>
-                    <h3 className='text-3xl font-bold text-center'>Autos</h3>
+                    <button className='absolute left-[40px] top-[690px]'>
+                        <MaterialSymbol
+                        icon='arrow_circle_left'
+                        size={60}
+                        fill
+                        grade={200}
+                        color='green'
+                        className=''
+                        />
+                    </button>
+
+                    <h3 className='text-3xl font-bold text-center pb-5'>Autos</h3>
+
+                    <button className='absolute left-[270px] top-[690px]'>
+                        <MaterialSymbol
+                        icon='arrow_circle_right'
+                        size={60}
+                        fill
+                        grade={200}
+                        color='green'
+                        className=''
+                        />
+                    </button>
+
                     <img src='bluesidematch.png'>
                     </img>
+                    
                     <CheckBoxRecon
-                    read-only
-                    className={`top-[820px] left-[115px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
+                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch[1].groundPick1}
+                        className={`top-[840px] left-[115px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
+                        {/* ground1 */}
                     </CheckBoxRecon>
+                    
                     <CheckBoxRecon
-                    read-only
-                    className={`top-[873px] left-[115px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
+                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch[1].groundPick2}
+                        className={`top-[893px] left-[115px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
+                        {/* ground2 */}
                     </CheckBoxRecon>
+                    
                     <CheckBoxRecon
-                    read-only
-                    className={`top-[925px] left-[115px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
+                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch[0].groundPick3}
+                        className={`top-[945px] left-[115px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
+                        {/* ground3 */}
                     </CheckBoxRecon>
+                    
                     <CheckBoxRecon
-                    read-only
-                    className={`top-[760px] left-[95px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
+                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch[0].sourcePick1}
+                        className={`top-[780px] left-[95px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
+                        {/* source1 */}
                     </CheckBoxRecon>
+                    
                     <CheckBoxRecon
-                    read-only
-                    className={`top-[980px] left-[95px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
+                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch[0].sourcePick2}
+                        className={`top-[1000px] left-[95px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
+                        {/* source2 */}
                     </CheckBoxRecon>
+                    
                     <CheckBoxRecon
-                    read-only
-                    className={`top-[812px] left-[300px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
+                        // ischecked={retrieveIndividualMatch && retrieveIndividualMatch[0].}
+                        className={`top-[832px] left-[300px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
+                        {/* start1 */}
                     </CheckBoxRecon>
+                    
                     <CheckBoxRecon
-                    read-only
-                    className={`top-[875px] left-[300px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
+                        // ischecked={retrieveIndividualMatch && retrieveIndividualMatch[0].}
+                        className={`top-[895px] left-[300px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
+                        {/* start2 */}
                     </CheckBoxRecon>
+                    
                     <CheckBoxRecon
-                    read-only
-                    className={`top-[935px] left-[300px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
+                        // ischecked={retrieveMatch && retrieveMatch[0].}
+                        className={`top-[955px] left-[300px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
+                        {/* start3 */}
                     </CheckBoxRecon>
 
-                    <CoralReconButton selectClassName='bg-green-300 absolute left-[222px] top-[855px] h-[10px] w-[45px] rotate-[6.81rad]'
-                    unselectClassName='bg-red-300 absolute left-[222px] top-[855px] h-[10px] w-[45px] rotate-[6.81rad]'></CoralReconButton>
-                    <CoralReconButton selectClassName='bg-green-300 absolute left-[187px] top-[915px] h-[10px] w-[45px] rotate-[6.81rad]'
-                    unselectClassName='bg-red-300 absolute left-[187px] top-[915px] h-[10px] w-[45px] rotate-[6.81rad]'></CoralReconButton>
-                    <CoralReconButton selectClassName='bg-green-300 absolute left-[188px] top-[855px] h-[10px] w-[45px] rotate-[6.81rad]'
-                    unselectClassName='bg-red-300 absolute left-[188px] top-[855px] h-[10px] w-[45px] rotate-[5.76rad]'></CoralReconButton>
-                    <CoralReconButton selectClassName='bg-green-300 absolute left-[222px] top-[915px] h-[10px] w-[45px] rotate-[6.81rad]'
-                    unselectClassName='bg-red-300 absolute left-[222px] top-[915px] h-[10px] w-[45px] rotate-[5.76rad]'></CoralReconButton>
-                    <CoralReconButton selectClassName='bg-green-300 absolute left-[170px] top-[885px] h-[10px] w-[45px] rotate-[6.81rad]'
-                    unselectClassName='bg-red-300 absolute left-[170px] top-[885px] h-[10px] w-[45px] rotate-[4.7rad]'></CoralReconButton>
-                    <CoralReconButton selectClassName='bg-green-300 absolute left-[240px] top-[885px] h-[10px] w-[45px] rotate-[6.81rad]'
-                    unselectClassName='bg-red-300 absolute left-[240px] top-[885px] h-[10px] w-[45px] rotate-[4.7rad]'></CoralReconButton>
+                    <CoralReconButton selectClassName='bg-green-300 absolute left-[222px] top-[875px] h-[10px] w-[45px] rotate-[6.81rad]'
+                    unselectClassName='bg-red-300 absolute left-[222px] top-[875px] h-[10px] w-[45px] rotate-[6.81rad]'></CoralReconButton>
+                    <CoralReconButton selectClassName='bg-green-300 absolute left-[187px] top-[935px] h-[10px] w-[45px] rotate-[6.81rad]'
+                    unselectClassName='bg-red-300 absolute left-[187px] top-[935px] h-[10px] w-[45px] rotate-[6.81rad]'></CoralReconButton>
+                    <CoralReconButton selectClassName='bg-green-300 absolute left-[188px] top-[875px] h-[10px] w-[45px] rotate-[6.81rad]'
+                    unselectClassName='bg-red-300 absolute left-[188px] top-[875px] h-[10px] w-[45px] rotate-[5.76rad]'></CoralReconButton>
+                    <CoralReconButton selectClassName='bg-green-300 absolute left-[222px] top-[935px] h-[10px] w-[45px] rotate-[6.81rad]'
+                    unselectClassName='bg-red-300 absolute left-[222px] top-[935px] h-[10px] w-[45px] rotate-[5.76rad]'></CoralReconButton>
+                    <CoralReconButton selectClassName='bg-green-300 absolute left-[170px] top-[905px] h-[10px] w-[45px] rotate-[6.81rad]'
+                    unselectClassName='bg-red-300 absolute left-[170px] top-[905px] h-[10px] w-[45px] rotate-[4.7rad]'></CoralReconButton>
+                    <CoralReconButton selectClassName='bg-green-300 absolute left-[240px] top-[905px] h-[10px] w-[45px] rotate-[6.81rad]'
+                    unselectClassName='bg-red-300 absolute left-[240px] top-[905px] h-[10px] w-[45px] rotate-[4.7rad]'></CoralReconButton>
 
                 </div>
                 <div className='h-80 w-full col-span-1 col-start-3 mt-6 rounded-lg border-2 border-gray-800 bg-gray-800'>

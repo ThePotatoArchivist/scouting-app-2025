@@ -1,4 +1,4 @@
-import { MatchDataAggregations, SuperDataAggregations, ScouterData, SuperFoulAggregationsData, MatchIndividualDataAggregations } from 'requests';
+import { MatchDataAggregations, SuperDataAggregations, ScouterData, SuperDataFoulAggregationsDataDataDataDataData, MatchDataDataAggregationsDataDataData, matchOutliersAggregation } from 'requests';
 import { matchApp, superApp, pitApp, leaderboardApp } from './Schema.js';
 //no scouterdata??
 
@@ -112,20 +112,6 @@ async function averageAndMax(): Promise<MatchDataAggregations[]> {
                         ]
                     }
                 },
-                totalCoral: {
-                    $sum: {
-                        $add: [
-                            '$teleCoral.L1',
-                            '$teleCoral.L2',
-                            '$teleCoral.L3',
-                            '$teleCoral.L4',
-                            '$autoCoral.L1',
-                            '$autoCoral.L2',
-                            '$autoCoral.L3',
-                            '$autoCoral.L4'
-                        ]
-                    }
-                },
                 totalProcessor: {
                     $sum: {
                         $add: [
@@ -137,16 +123,6 @@ async function averageAndMax(): Promise<MatchDataAggregations[]> {
                 totalNet: {
                     $sum: {
                         $add: [
-                            '$autoAlgae.netRobot',
-                            '$teleAlgae.netRobot'
-                        ]
-                    }
-                },
-                totalAlgae: {
-                    $sum: {
-                        $add: [
-                            '$autoAlgae.processor', 
-                            '$teleAlgae.processor',
                             '$autoAlgae.netRobot',
                             '$teleAlgae.netRobot'
                         ]
@@ -219,7 +195,7 @@ async function averageAndMax(): Promise<MatchDataAggregations[]> {
                 groundPick3: {
                     $push: {
                         $toBool: [
-                            '$pickupLocation.ground1'
+                            '$pickupLocation.ground3'
                         ]
                     }
                 },
@@ -245,7 +221,7 @@ async function averageAndMax(): Promise<MatchDataAggregations[]> {
 
 
 
-async function maxIndividual(): Promise<MatchIndividualDataAggregations[]> {
+async function maxIndividual(): Promise<MatchDataDataAggregationsDataDataData[]> {
     const result = await matchApp.aggregate([
         {
             $group: {
@@ -316,35 +292,35 @@ async function maxIndividual(): Promise<MatchIndividualDataAggregations[]> {
                 coralDrop2: {
                     $push: {
                        $toBool: [
-                        '$placement.deposit1'
+                        '$placement.deposit2'
                        ]
                     }
                 },
                 coralDrop3: {
                     $push: {
                        $toBool: [
-                        '$placement.deposit1'
+                        '$placement.deposit3'
                        ]
                     }
                 },
                 coralDrop4: {
                     $push: {
                        $toBool: [
-                        '$placement.deposit1'
+                        '$placement.deposit4'
                        ]
                     }
                 },
                 coralDrop5: {
                     $push: {
                        $toBool: [
-                        '$placement.deposit1'
+                        '$placement.deposit5'
                        ]
                     }
                 },
                 coralDrop6: {
                     $push: {
                        $toBool: [
-                        '$placement.deposit1'
+                        '$placement.deposit6'
                        ]
                     }
                 },
@@ -365,7 +341,7 @@ async function maxIndividual(): Promise<MatchIndividualDataAggregations[]> {
                 groundPick3: {
                     $push: {
                         $toBool: [
-                            '$pickupLocation.ground1'
+                            '$pickupLocation.ground3'
                         ]
                     }
                 },
@@ -384,10 +360,95 @@ async function maxIndividual(): Promise<MatchIndividualDataAggregations[]> {
                     }
                 },
             }
-        },
+        }
+     
     ]);
     return result;
 }
+
+async function matchOutlier(): Promise<matchOutliersAggregation[]> {
+    return await matchApp.aggregate([
+       { 
+        $group: {
+            _id:  { teamNumber: '$metadata.alliance' },
+            matchOutlier: {
+                $sum: {
+                    autoL1: {
+                        $multiply: [
+                            '$autoCoral.L1', 3
+                        ]
+                    },
+                    autoL2:  {
+                        $multiply: [
+                            '$autoCoral.L2', 4
+                        ]
+                    },
+                    autoL3: {
+                        $multiply: [
+                            '$autoCoral.L3', 6
+                        ]
+                    },
+                    autoL4: {
+                        $multiply: [
+                            '$autoCoral.L4', 7
+                        ]
+                    },
+                    leave: {
+                       $multiply: [ { $cond: [{$eq: ['$leftStartingZone', true]}, 1, 0]}, 3], 
+                    },
+                    teleL1: {
+                        $multiply: [
+                            '$teleCoral.L1', 2
+                        ]
+                    },
+                    teleL2: {
+                        $multiply: [
+                            '$teleCoral.L2', 3
+                        ]
+                    },
+                    tele3: {
+                        $multiply: [
+                            '$teleCoral.L3', 4
+                        ]
+                    },
+                    tele4:{
+                        $multiply: [
+                            '$teleCoral.L4', 5
+                        ]
+                    },
+                    teleProcessor: {
+                        $multiply: [
+                            '$teleAlgae.processor', 6
+                        ]
+                    },
+                    teleNet: {
+                        $multiply: [
+                            {$add: [
+                                '$teleAlgae.netRobot', '$teleAlgae.netHuman'
+                            ]}, 4
+                        ]
+                    },
+                    park: {
+                        $multiply: [
+                            {$cond: [{ $eq: [ '$climb','park']}, 1, 0]}, 2
+                        ]
+                    },
+                    shallow: {
+                        $multiply: [
+                            {$cond: [{ $eq: [ '$climb', 'shallow']}, 1, 0]}, 6
+                        ]
+                    },
+                    deep: {
+                        $multiply: [
+                            {$cond: [{ $eq: [ '$climb', 'deep']}, 1, 0]}, 12
+                        ]
+                    }
+                }
+            }
+        },
+       }
+    ]);
+;}
 
 
 async function superAverageAndMax(): Promise<SuperDataAggregations[]> {
@@ -445,7 +506,7 @@ async function superAverageAndMax(): Promise<SuperDataAggregations[]> {
     ]);
 }
 
-async function superMaxIndividual(): Promise<SuperFoulAggregationsData[]> {
+async function superMaxIndividual(): Promise<SuperDataFoulAggregationsDataDataDataDataData[]> {
     return await superApp.aggregate([
         {
             $group: {
@@ -482,7 +543,7 @@ async function superMaxIndividual(): Promise<SuperFoulAggregationsData[]> {
                 },
                 
 
-            } satisfies { [K in keyof SuperFoulAggregationsData]: unknown },
+            } satisfies { [K in keyof SuperDataFoulAggregationsDataDataDataDataData]: unknown },
         },
     ]);
 }
@@ -520,4 +581,4 @@ async function robotImageDisplay(
     )?.photo;
 }
 
-export { averageAndMax, superAverageAndMax, robotImageDisplay, scouterRankings, superMaxIndividual, maxIndividual };
+export { averageAndMax, superAverageAndMax, robotImageDisplay, scouterRankings, superMaxIndividual, maxIndividual, matchOutlier };

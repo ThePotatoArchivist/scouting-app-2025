@@ -1,18 +1,19 @@
 function CheckBoxRecon ({
-    handleChecked,
-    className
+    className,
+    ischecked,
 }:
 {
-    handleChecked?: boolean;
     className?: string;
+    ischecked?: boolean;
 }) {
     return(
         <input
                 className={` ${className} absolute text-5xl `}
                 id='one'
                 type="checkbox"
+                checked={ischecked}
                 disabled
-                checked>
+                >
         </input>
 )}
 export default CheckBoxRecon;
