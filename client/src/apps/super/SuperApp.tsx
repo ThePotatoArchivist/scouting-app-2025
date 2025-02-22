@@ -9,7 +9,6 @@ import {
     Break,
     MatchSchedule,
     SuperData,
-    Net,
     RobotPosition,
 } from 'requests';
 import SuperTeam from './components/SuperTeam';
@@ -20,9 +19,8 @@ import { useStatus } from '../../lib/useStatus';
 import { useQueue } from '../../lib/useQueue';
 import scheduleFile from '../../assets/matchSchedule.json';
 import { usePreventUnload } from '../../lib/usePreventUnload';
-import HumanButton from './components/HumanNetCounter';
-// import CreatableSelect from 'react-select/creatable';
-// import SelectSearch, { SelectSearchOption } from 'react-select-search';
+import HumanCounter from './components/HumanNetCounter';
+// import Human from './components/HumanNetCounter';
 
 const schedule = scheduleFile as MatchSchedule;
 
@@ -34,27 +32,26 @@ const foulTypes: Foul[] = [
     'other',
 ];
 
-interface superScores {
-    netHuman: number;
+interface SuperScores {
+    Success: number;
+    Failed: number;
 }
 
-const defaultScore: superScores = {
-    netHuman: 0
+const defaultScore: SuperScores = {
+    Success: 0,
+    Failed: 0,
 };
 
-const defaultNet: Net = false
 const breakTypes: Break[] = ['mechanismDmg', 'batteryFall', 'commsFail'];
 
 const defaultSuperTeamState: SuperTeamState = {
     foulCounts: Object.fromEntries(foulTypes.map(e => [e, 0])) as Record<
-        Foul,
-        number
+        Foul, number
     >,
     breakCount: Object.fromEntries(breakTypes.map(e => [e, 0])) as Record<
-        Break,
-        number
+        Break, number
     >,
-    defenseRank: 'noDef', 
+    defenseRank: 'noDef',
     wasDefended: false,
     teamNumber: undefined,
     cannedComments: [],
@@ -67,12 +64,11 @@ function SuperApp() {
     const [team1, setTeam1] = useState(defaultSuperTeamState);
     const [team2, setTeam2] = useState(defaultSuperTeamState);
     const [team3, setTeam3] = useState(defaultSuperTeamState);
-    const [count, setCount] = useState<superScores>(defaultScore);
+    const [count, setCount] = useState<SuperScores>(defaultScore);
     const [shooterPlayerTeam, setShooterPlayerTeam] = useState<number>();
     const [sendQueue, sendAll, queue, sending] = useQueue();
     const [matchNumber, setMatchNumber] = useState<number>();
     const [showCheck, setShowCheck] = useState(false);
-    const [Net, setNet] = useState(defaultNet);
     const [history, setHistory] = useState<
         { 1: SuperTeamState; 2: SuperTeamState; 3: SuperTeamState }[]
     >([]);
@@ -136,19 +132,20 @@ function SuperApp() {
                     break: team.breakCount,
                     defense: team.defenseRank,
                     defended: team.wasDefended,
-                    netHuman: count.netHuman,
                     humanShooter:
                         shooterPlayerTeam === team.teamNumber
                             ? {
-                                  Net,
+                                    Success: count.Success,
+                                    Failed: count.Failed,
                               }
                             : undefined,
                     comments: team.cannedComments.map(option => option.value),
                 }) satisfies SuperData
         );
 
+        console.log(data);
+
         data.map(e => sendQueue('/data/super', e));
-        setNet(defaultNet);
         setTeam1(defaultSuperTeamState);
         setTeam2(defaultSuperTeamState);
         setTeam3(defaultSuperTeamState);
@@ -299,7 +296,23 @@ function SuperApp() {
                 <SuperTeam teamState={team3} setTeamState={handleTeam3} bgClass={`${shooterPlayerTeam == -3 ? 'bg-[#003805] rounded-lg p-5' : ''} `}/>
                 
         </div>
-                <HumanButton/>
+               
+            <p
+            className={'mt-10  text-white text-2xl'}>
+                Human Player Points
+            </p>
+            
+               <HumanCounter
+                count={count}
+                className='mt-10 mb-5 p-10 mx-4 bg-green-500 text-white text-2xl rounded' 
+                setCount={setCount} >        
+                </HumanCounter> 
+
+                
+                <div/>
+                
+
+
 
             <button
                 onClick={() => {
@@ -322,4 +335,5 @@ function SuperApp() {
     );
 }
 
+export type { SuperScores };
 export default SuperApp;

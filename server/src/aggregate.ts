@@ -158,11 +158,33 @@ async function superAverageAndMax(): Promise<SuperDataAggregations[]> {
                             '$fouls.other',
                         ],
                     },
-                },
+                }, 
+                humanAccuracy: {
+                    $avg: {
+                     $cond: [
+                        {$eq: [ {$add: [
+                            "$humanShooter.Success",
+                            "$humanShooter.Failed"
+                            ]
+                        }, 0]},
+                        null,
+                        {$divide: [
+                            '$humanShooter.Success',
+                            {$add: [
+                                "$humanShooter.Success",
+                                "$humanShooter.Failed"
+                                ]
+                            }    
+                        ]}
+                     ]
+                    }
+                }
+
             } satisfies { [K in keyof SuperDataAggregations]: unknown },
         },
     ]);
 }
+
 
 // async function scouterRankings(): Promise<ScouterDataAggregations[]> {
 //     return await leaderboardApp.aggregate([

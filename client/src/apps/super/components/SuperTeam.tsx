@@ -1,5 +1,5 @@
 import { Dispatch } from 'react';
-import { Foul, Break, DefenseRank, CommentValues } from 'requests';
+import { Foul, Break, DefenseRank, CommentValues} from 'requests';
 import MultiButton from '../../../components/MultiButton';
 import Checkbox from '../../../components/Checkbox';
 import TeamDropdown from '../../../components/TeamDropdown';
