@@ -25,19 +25,19 @@ const CustomTooltip: React.FC<TooltipProps<ValueType, NameType>> = ({
 };
 
 // :3
-export interface MatchAndSuper extends MatchIndividualDataAggregations, SuperFoulAggregationsData {}
+export interface MatchAndSuper extends Pick<MatchIndividualDataAggregations, 'totalL1' | 'totalL2' | 'totalL3' | 'totalL4' | 'totalProcessor' | 'totalNet' | 'totalRemoved' | '_id' >, SuperFoulAggregationsData {}
 
 const BarChartWIP: React.FC<{ data: MatchAndSuper[]; teamNumber: number }> = ({ data, teamNumber }) => { 
 
-  const bingus : MatchIndividualDataAggregations[] = [];
-  const bongus : SuperFoulAggregationsData[] = [];
+  // const bingus : MatchIndividualDataAggregations[] = [];
+  // const bongus : SuperFoulAggregationsData[] = [];
 
 
-  const filterData = (teamNumber: number, matchNumber: number) => {
-    return bongus.filter(item => 
-      item._id.teamNumber === teamNumber && item._id.matchNumber === matchNumber
-    );
-  }
+  // const filterData = (teamNumber: number, matchNumber: number) => {
+  //   return bongus.filter(item => 
+  //     item._id.teamNumber === teamNumber && item._id.matchNumber === matchNumber
+  //   );
+  // }
 
   // const getChartData = (teamNumber: number, matchNumber: number) => {
   //   const filteredData = filterData(teamNumber, matchNumber);
@@ -51,11 +51,11 @@ const BarChartWIP: React.FC<{ data: MatchAndSuper[]; teamNumber: number }> = ({ 
   //     other: item.totalOther
   //   }));
   // // }
-  // const chartData = getChartData(teamNumber, matchNumber);
+  //const chartData = getChartData(teamNumber, matchNumber);
 
 
 //   //grabs data for a specific team
-//   const teamData = data.filter(d => d._id.teamNumber === teamNumber);
+   const teamData = data.filter(d => d._id.teamNumber === teamNumber);
 
  // Transform data for charts to have nicer labels (when tooltip works), d. means the item in the teamdata, match is for the x-axis (i pray this works w/ data :sob:)
   const chartData = teamData.map(d => ({
@@ -63,6 +63,12 @@ const BarChartWIP: React.FC<{ data: MatchAndSuper[]; teamNumber: number }> = ({ 
       Processor: d.totalProcessor,
       Net: d.totalNet,
       Removed: d.totalRemoved,
+      InsideRobot: d.totalInsideRobot*-1,
+      ProtectedZone: d.totalProtectedZone*-1,
+      Pinning: d.totalPinning*-1,
+      MultiplePieces: d.totalMultiplePieces*-1,
+      CageFoul: d.totalCageFoul*-1,
+      Other: d.totalOther*-1,
   }));
 
   

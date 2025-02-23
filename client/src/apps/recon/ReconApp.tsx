@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
     MatchDataAggregations,
     MatchSchedule,
@@ -17,7 +18,7 @@ import { RobotPosition } from 'requests';
 import CheckBoxRecon from './components/CheckDisplayRecon';
 import Checkbox from '../../components/Checkbox';
 import CoralReconButton from './components/ReconDisplay';
-import { MatchAndSuper } from './components/BarchartWIP';
+import BarChartWIP, { MatchAndSuper } from './components/BarchartWIP';
 
 const schedule = scheduleJson as MatchSchedule;
 
@@ -122,23 +123,62 @@ function ReconApp() {
        totalOther: 7
    }
 
-   let bingus: MatchAndSuper[]
-retrieveIndividualMatch?.forEach(
-    (x: MatchIndividualDataAggregations) => {
-    //pull the teamNum from x
-    if (x._id.teamNumber === teamNumber) {
-        retrieveIndividualMatch.push(x)
+   const bingus: MatchAndSuper[] = [];
+   const blingos : MatchIndividualDataAggregations[] = [];
+   const bongus : SuperFoulAggregationsData[] = [];
+   //let y : SuperFoulAggregationsData;
+   
+// retrieveIndividualMatch?.forEach(
+//     (x) => {
+//     //pull the teamNum from x
+//     if (x._id.teamNumber === teamNumber) {
+//         bingus.push(x)
+//     }
+
+//     //pull matchNum from x
+//     //for (let y=0 ; y < retrieveIndividualMatch.length; y++){ /* empty */ };
+
+//     if (x._id.matchNumber > 0) {bingus.push(x)} //I doubt  this works?
+//     //look up same data in retrieveSuper
+//     //const blinky = 
+//     if (y._id.matchNumber == x._id.matchNumber && y._id.teamNumber == teamNumber) {
+//         ahhh
+//     };
+//     //combine into MatchnSuper object
+
+//     }
+// )
+
+
+retrieveIndividualSuper?.forEach(foulData => {
+
+    const plsData = retrieveIndividualMatch?.find(match => 
+        match._id.teamNumber === teamNumber && match._id.teamNumber === foulData._id.teamNumber && match._id.matchNumber === foulData._id.matchNumber
+    );
+  
+    if (plsData) {
+      const combinedArrayThings = {
+        _id: foulData._id,
+        totalInsideRobot: foulData.totalInsideRobot,
+        totalProtectedZone: foulData.totalProtectedZone,
+        totalMultiplePieces: foulData.totalMultiplePieces,
+        totalOther: foulData.totalOther,
+        totalPinning: foulData.totalPinning,
+        totalCageFoul: foulData.totalCageFoul,
+        totalProcessor: plsData.totalProcessor,
+        totalRemoved: plsData.totalRemoved,
+        totalNet: plsData.totalNet,
+        totalL1: plsData.totalL1,
+        totalL2: plsData.totalL2,
+        totalL3: plsData.totalL3,
+        totalL4: plsData.totalL4,
+      };
+  
+      bingus.push(combinedArrayThings);
     }
-    //pull matchNum from x
+  });
 
-    //look up same data in retrieveSuper
-
-    //combine into MatchnSuper object
-
-    }
-)
-
-
+  console.log(bingus)
     return (
         <div className='h-auto min-h-fit border-4 border-[#171c26] bg-[#171c26]'>
             <main className='mx-auto mb-10 flex h-full grid-flow-row flex-col content-center items-center justify-center bg-[#171c26] bg-repeat text-white'>
@@ -165,6 +205,8 @@ retrieveIndividualMatch?.forEach(
                     onClick={() => {
                         reloadRetrieveMatch();
                         reloadRetrieveSuper();
+                        reloadRetrieveIndividualMatch();
+                        reloadRetrieveIndividualSuper();
                     }}>
                     Reload Data
                 </button>
@@ -181,7 +223,7 @@ retrieveIndividualMatch?.forEach(
                     </div>
 
                     <div className='col-span-2 w-full items-center justify-center rounded-lg border-2 border-gray-800 bg-gray-800 p-4'>
-                        {/* <BarChartWIP data={[sampleData]} teamNumber={0}></BarChartWIP> */}
+                       <BarChartWIP data={bingus} teamNumber={0}></BarChartWIP>
                     </div>
 
                 <div className='mt-6 h-fit w-full col-span-2 items-center rounded-lg border-2 border-gray-800 bg-gray-800 p-4'>
@@ -277,6 +319,7 @@ retrieveIndividualMatch?.forEach(
                 <div className='h-80 w-full col-span-1 col-start-3 mt-6 rounded-lg border-2 border-gray-800 bg-gray-800'>
                     <h3 className='text-3xl font-bold text-center'>Outliers</h3>
                 </div>
+                
                 <div>
                 <div className='justify h-24 w-full col-span-1 col-start-4 mt-6 rounded-lg border-2 border-gray-800 bg-gray-800'>
                     <h3 className='text-3xl font-bold text-center'>HP%</h3>
