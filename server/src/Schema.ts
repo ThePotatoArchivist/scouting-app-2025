@@ -39,8 +39,8 @@ const StartingZone = {
 }
 
 const pickup = {
-    leftSource: Boolean,
-    rightSource: Boolean,
+    source1: Boolean,
+    source2: Boolean,
     ground1: Boolean,
     ground2: Boolean,
     ground3: Boolean

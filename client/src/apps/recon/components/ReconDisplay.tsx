@@ -1,28 +1,17 @@
-import { useState } from "react";
-
 
 function CoralReconButton({
-    selectClassName,
-    unselectClassName
+    className,
+    buttonValue
 }:
 {
-    selectClassName: string;
-    unselectClassName: string;
+    className: string;
+    buttonValue?: boolean;
 }){
-    const [selected, setSelected] = useState(false); 
 
-    function handleSelect() {
-        if (selected == false) {
-            setSelected(true);
-        } else {
-            setSelected(false);
-        }
-    }
 
     return(
         <button
-            onClick={handleSelect}
-            className={`${selected? selectClassName : unselectClassName}`}
+            className={`${buttonValue? 'bg-green-300' : 'bg-red-300'} ${className}`}
             disabled={true}
         />
     )
