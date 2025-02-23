@@ -5,6 +5,9 @@ import chalk from 'chalk';
 import { startDockerContainer, stopDockerContainer } from 'database';
 import { app } from './server.js';
 
+// If DEV is true then change the port we are running on, to prevent undesired caching
+const BACKEND_PORT = process.env.NODE_ENV === 'dev' ? 8081 : 8080;
+
 dotenv.load({ path: '.env' });
 dotenv.load({ path: '.env.local' });
 
@@ -14,8 +17,8 @@ const container = await startDockerContainer(process.env.CONTAINER_NAME);
 
 mongoose.connect('mongodb://0.0.0.0:27017/');
 
-const server = app.listen(8080, () => {
-    console.log(chalk.green('Server running at http://localhost:8080'));
+const server = app.listen(BACKEND_PORT, () => {
+    console.log(chalk.green('Server running at http://localhost:' + BACKEND_PORT));
 });
 
 if (REMOTE) {
