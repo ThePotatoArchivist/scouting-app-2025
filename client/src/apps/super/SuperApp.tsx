@@ -195,7 +195,7 @@ function SuperApp() {
 
 
     return (
-        <main className='bg-[#171c26] text-center h-screen'>
+        <main className='bg-[#171c26] text-center h-full'>
             {showCheck && (
                 <MaterialSymbol
                     icon='check'

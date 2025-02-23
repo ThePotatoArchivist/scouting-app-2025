@@ -77,6 +77,9 @@ export interface MatchDataAggregations {
     groundPick3: boolean;
     sourcePick1: boolean;
     sourcePick2: boolean;
+    start1: boolean;
+    start2: boolean;
+    start3: boolean;
 }
 
 export interface matchOutliersAggregation {
@@ -134,6 +137,9 @@ export interface MatchIndividualDataAggregations {
     groundPick3: boolean;
     sourcePick1: boolean;
     sourcePick2: boolean;
+    start1: boolean;
+    start2: boolean;
+    start3: boolean;
 }
 
 export interface MetaData {

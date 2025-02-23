@@ -46,7 +46,10 @@ const matchStats: Exclude<keyof MatchDataAggregations, '_id'>[] = [
     'groundPick2',
     'groundPick3',
     'sourcePick1',
-    'sourcePick2'
+    'sourcePick2',
+    'start1',
+    'start2',
+    'start3',
 ];
 const superStats: Exclude<keyof SuperDataAggregations, '_id'>[] = [
     'avgFouls',
@@ -70,7 +73,7 @@ function ReconApp() {
     const [teamNumber, setTeamNumber] = useState(Number);
     const [handleCheck ] = useState(false);
     const [robotPosition, setRobotPosition] = useState<RobotPosition>();
-    const [currentMatchDisplayed, setcurrentMatchDisplayed] = useState<number>(0);
+    const [currentMatchDisplayed, setcurrentMatchDisplayed] = useState<number>(1);
 
     const blueAlliance = (
         ['blue_1', 'blue_2', 'blue_3'] as (string | undefined)[]
@@ -91,7 +94,55 @@ function ReconApp() {
         ]);
     }, [matchNumber]);
 
+    const matchIncrease = () => {
+        const maxAutos = (retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber).length) ?? 1;
 
+        setcurrentMatchDisplayed(prevMatchDisplayed => (
+        currentMatchDisplayed < maxAutos? prevMatchDisplayed + 1 : prevMatchDisplayed
+    ))
+}
+
+const matchDecrease = () => {
+    setcurrentMatchDisplayed(prevMatchDisplayed => (
+        currentMatchDisplayed > 1? prevMatchDisplayed - 1 : prevMatchDisplayed
+    ))
+}
+
+const setTeamNumberAndResetAutos = (value: React.SetStateAction<number>) => {
+    setTeamNumber(value);
+    setcurrentMatchDisplayed(1);
+}
+
+//    const sampleData : MatchAndSuper = {
+//        _id: {
+//            teamNumber: 0,
+//            matchNumber: 0
+//        },
+//        totalL1: 4,
+//        totalL2: 5,
+//        totalL3: 6,
+//        totalL4: 73,
+//        totalCoral: 8,
+//        totalProcessor: 21,
+//        totalNet: 43,
+//        totalRemoved: 8,
+//        totalAlgae: 11,
+//        coralDrop1: false,
+//        coralDrop2: false,
+//        coralDrop3: false,
+//        coralDrop4: false,
+//        coralDrop5: false,
+//        coralDrop6: false,
+//        groundPick1: false,
+//        groundPick2: false,
+//        groundPick3: false,
+//        sourcePick1: false,
+//        sourcePick2: false,
+//        start1: false,
+//        start2: false,
+//        start3: false,
+//        maxFouls: 60
+//    }
    const sampleData : MatchAndSuper = {
        _id: {
            teamNumber: 0,
@@ -198,8 +249,14 @@ retrieveIndividualSuper?.forEach(foulData => {
                         />
                     </LinkButton>
                 </div>
+
                 <p className='mb-2 text-2xl text-white'>Team Number</p>
-                <TeamDropdown onChange={setTeamNumber} value={teamNumber} />
+                
+                <TeamDropdown 
+                    onChange={setTeamNumberAndResetAutos} 
+                    value={teamNumber} 
+                />
+                
                 <button
                     className='mb-10 mt-5 rounded-lg border-2 border-slate-900 text-lg'
                     onClick={() => {
@@ -210,6 +267,7 @@ retrieveIndividualSuper?.forEach(foulData => {
                     }}>
                     Reload Data
                 </button>
+                
                 <div className='grid gap-10 grid-cols-4 w-full'>
 
                     <div className='col-span-2 ml-auto mr-20 rounded-lg border-2 border-gray-800 bg-gray-800 p-4 w-full'>
@@ -227,7 +285,10 @@ retrieveIndividualSuper?.forEach(foulData => {
                     </div>
 
                 <div className='mt-6 h-fit w-full col-span-2 items-center rounded-lg border-2 border-gray-800 bg-gray-800 p-4'>
-                    <button className='absolute left-[40px] top-[690px]'>
+                    <button 
+                    className='absolute left-[40px] top-[690px]'
+                    onClick={matchDecrease}>
+    
                         <MaterialSymbol
                         icon='arrow_circle_left'
                         size={60}
@@ -238,9 +299,11 @@ retrieveIndividualSuper?.forEach(foulData => {
                         />
                     </button>
 
-                    <h3 className='text-3xl font-bold text-center pb-5'>Autos</h3>
+                    <h3 className='text-3xl font-bold text-center pb-5'>Autos {currentMatchDisplayed}</h3>
 
-                    <button className='absolute left-[270px] top-[690px]'>
+                    <button 
+                    className='absolute left-[270px] top-[690px]'
+                    onClick={matchIncrease}>
                         <MaterialSymbol
                         icon='arrow_circle_right'
                         size={60}
@@ -255,66 +318,73 @@ retrieveIndividualSuper?.forEach(foulData => {
                     </img>
                     
                     <CheckBoxRecon
-                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch[1].groundPick1}
+                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed]?.groundPick1}
+                        retrieveIndividualMatch={retrieveIndividualMatch}
                         className={`top-[840px] left-[115px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
                         {/* ground1 */}
                     </CheckBoxRecon>
                     
                     <CheckBoxRecon
-                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch[1].groundPick2}
+                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed]?.groundPick2}
                         className={`top-[893px] left-[115px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
                         {/* ground2 */}
                     </CheckBoxRecon>
                     
                     <CheckBoxRecon
-                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch[0].groundPick3}
+                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed]?.groundPick3}
                         className={`top-[945px] left-[115px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
                         {/* ground3 */}
                     </CheckBoxRecon>
                     
                     <CheckBoxRecon
-                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch[0].sourcePick1}
+                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed]?.sourcePick1}
                         className={`top-[780px] left-[95px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
                         {/* source1 */}
                     </CheckBoxRecon>
                     
                     <CheckBoxRecon
-                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch[0].sourcePick2}
+                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed]?.sourcePick2}
                         className={`top-[1000px] left-[95px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
                         {/* source2 */}
                     </CheckBoxRecon>
                     
                     <CheckBoxRecon
-                        // ischecked={retrieveIndividualMatch && retrieveIndividualMatch[0].}
+                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed]?.start1}
                         className={`top-[832px] left-[300px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
                         {/* start1 */}
                     </CheckBoxRecon>
                     
                     <CheckBoxRecon
-                        // ischecked={retrieveIndividualMatch && retrieveIndividualMatch[0].}
+                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed]?.start2}
                         className={`top-[895px] left-[300px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
                         {/* start2 */}
                     </CheckBoxRecon>
                     
                     <CheckBoxRecon
-                        // ischecked={retrieveMatch && retrieveMatch[0].}
+                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed]?.start3}
                         className={`top-[955px] left-[300px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
                         {/* start3 */}
                     </CheckBoxRecon>
 
-                    <CoralReconButton selectClassName='bg-green-300 absolute left-[222px] top-[875px] h-[10px] w-[45px] rotate-[6.81rad]'
-                    unselectClassName='bg-red-300 absolute left-[222px] top-[875px] h-[10px] w-[45px] rotate-[6.81rad]'></CoralReconButton>
-                    <CoralReconButton selectClassName='bg-green-300 absolute left-[187px] top-[935px] h-[10px] w-[45px] rotate-[6.81rad]'
-                    unselectClassName='bg-red-300 absolute left-[187px] top-[935px] h-[10px] w-[45px] rotate-[6.81rad]'></CoralReconButton>
-                    <CoralReconButton selectClassName='bg-green-300 absolute left-[188px] top-[875px] h-[10px] w-[45px] rotate-[6.81rad]'
-                    unselectClassName='bg-red-300 absolute left-[188px] top-[875px] h-[10px] w-[45px] rotate-[5.76rad]'></CoralReconButton>
-                    <CoralReconButton selectClassName='bg-green-300 absolute left-[222px] top-[935px] h-[10px] w-[45px] rotate-[6.81rad]'
-                    unselectClassName='bg-red-300 absolute left-[222px] top-[935px] h-[10px] w-[45px] rotate-[5.76rad]'></CoralReconButton>
-                    <CoralReconButton selectClassName='bg-green-300 absolute left-[170px] top-[905px] h-[10px] w-[45px] rotate-[6.81rad]'
-                    unselectClassName='bg-red-300 absolute left-[170px] top-[905px] h-[10px] w-[45px] rotate-[4.7rad]'></CoralReconButton>
-                    <CoralReconButton selectClassName='bg-green-300 absolute left-[240px] top-[905px] h-[10px] w-[45px] rotate-[6.81rad]'
-                    unselectClassName='bg-red-300 absolute left-[240px] top-[905px] h-[10px] w-[45px] rotate-[4.7rad]'></CoralReconButton>
-
+                    <CoralReconButton 
+                    buttonValue={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed]?.coralDrop1}
+                    className='absolute left-[222px] top-[875px] h-[10px] w-[45px] rotate-[6.81rad]'></CoralReconButton>
+                    <CoralReconButton 
+                    buttonValue={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed]?.coralDrop2}
+                    className=' absolute left-[240px] top-[905px] h-[10px] w-[45px] rotate-[4.7rad]'></CoralReconButton>
+                    <CoralReconButton 
+                    buttonValue={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed]?.coralDrop3}
+                    className='absolute left-[222px] top-[935px] h-[10px] w-[45px] rotate-[5.76rad]'></CoralReconButton>
+                    <CoralReconButton
+                    buttonValue={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed]?.coralDrop4} 
+                    className='absolute left-[187px] top-[935px] h-[10px] w-[45px] rotate-[6.81rad]'></CoralReconButton>
+                    <CoralReconButton 
+                    buttonValue={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed]?.coralDrop5}
+                    className=' absolute left-[170px] top-[905px] h-[10px] w-[45px] rotate-[4.7rad]'></CoralReconButton>
+                    <CoralReconButton 
+                    buttonValue={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed]?.coralDrop6}
+                    className='absolute left-[188px] top-[875px] h-[10px] w-[45px] rotate-[5.76rad]'></CoralReconButton>
+                    
                 </div>
                 <div className='h-80 w-full col-span-1 col-start-3 mt-6 rounded-lg border-2 border-gray-800 bg-gray-800'>
                     <h3 className='text-3xl font-bold text-center'>Outliers</h3>

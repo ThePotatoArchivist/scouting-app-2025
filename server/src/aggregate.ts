@@ -202,14 +202,35 @@ async function averageAndMax(): Promise<MatchDataAggregations[]> {
                 sourcePick1: {
                     $push: {
                         $toBool: [
-                            '$pickupLocation.leftSource'
+                            '$pickupLocation.source1'
                         ]
                     }
                 },
                 sourcePick2: {
                     $push: {
                         $toBool: [
-                            '$pickupLocation.rightSource'
+                            '$pickupLocation.source2'
+                        ]
+                    }
+                },
+                start1: {
+                    $push: {
+                        $toBool: [
+                            '$startingZone.start1'
+                        ]
+                    }
+                },
+                start2: {
+                    $push: {
+                        $toBool: [
+                            '$startingZone.start2'
+                        ]
+                    }
+                },
+                start3: {
+                    $push: {
+                        $toBool: [
+                            '$startingZone.start3'
                         ]
                     }
                 },
@@ -283,79 +304,100 @@ async function maxIndividual(): Promise<MatchIndividualDataAggregations[]> {
                     }
                 },
                 coralDrop1: {
-                    $push: {
-                       $toBool: [
+                    $first: {    
+                        $toBool: [
                         '$placement.deposit1'
                        ]
                     }
                 },
                 coralDrop2: {
-                    $push: {
+                    $first: {
                        $toBool: [
                         '$placement.deposit2'
                        ]
                     }
                 },
                 coralDrop3: {
-                    $push: {
+                    $first: {
                        $toBool: [
                         '$placement.deposit3'
                        ]
                     }
                 },
                 coralDrop4: {
-                    $push: {
+                    $first: {
                        $toBool: [
                         '$placement.deposit4'
                        ]
                     }
                 },
                 coralDrop5: {
-                    $push: {
+                    $first: {
                        $toBool: [
                         '$placement.deposit5'
                        ]
                     }
                 },
                 coralDrop6: {
-                    $push: {
+                    $first: {
                        $toBool: [
                         '$placement.deposit6'
                        ]
                     }
                 },
                 groundPick1: {
-                    $push: {
+                    $first: {
                         $toBool: [
                             '$pickupLocation.ground1'
                         ]
                     }
                 },
                 groundPick2: {
-                    $push: {
+                    $first: {
                         $toBool: [
                             '$pickupLocation.ground2'
                         ]
                     }
                 },
                 groundPick3: {
-                    $push: {
+                    $first: {
                         $toBool: [
                             '$pickupLocation.ground3'
                         ]
                     }
                 },
                 sourcePick1: {
-                    $push: {
+                    $first: {
                         $toBool: [
-                            '$pickupLocation.leftSource'
+                            '$pickupLocation.source1'
                         ]
                     }
                 },
                 sourcePick2: {
-                    $push: {
+                    $first: {
                         $toBool: [
-                            '$pickupLocation.rightSource'
+                            '$pickupLocation.source2'
+                        ]
+                    }
+                },
+                start1: {
+                    $first: {
+                        $toBool: [
+                            '$startingZone.start1'
+                        ]
+                    }
+                },
+                start2: {
+                    $first: {
+                        $toBool: [
+                            '$startingZone.start2'
+                        ]
+                    }
+                },
+                start3: {
+                    $first: {
+                        $toBool: [
+                            '$startingZone.start3'
                         ]
                     }
                 },
