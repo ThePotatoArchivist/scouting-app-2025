@@ -1,4 +1,4 @@
-import { MatchDataAggregations, SuperDataAggregations, ScouterData, SuperDataFoulAggregationsDataDataDataDataData, MatchDataDataAggregationsDataDataData, matchOutliersAggregation } from 'requests';
+import { MatchDataAggregations, SuperDataAggregations, ScouterData, SuperFoulAggregationsData, MatchIndividualDataAggregations, matchOutliersAggregation } from 'requests';
 import { matchApp, superApp, pitApp, leaderboardApp } from './Schema.js';
 //no scouterdata??
 
@@ -221,7 +221,7 @@ async function averageAndMax(): Promise<MatchDataAggregations[]> {
 
 
 
-async function maxIndividual(): Promise<MatchDataDataAggregationsDataDataData[]> {
+async function maxIndividual(): Promise<MatchIndividualDataAggregations[]> {
     const result = await matchApp.aggregate([
         {
             $group: {
@@ -506,7 +506,7 @@ async function superAverageAndMax(): Promise<SuperDataAggregations[]> {
     ]);
 }
 
-async function superMaxIndividual(): Promise<SuperDataFoulAggregationsDataDataDataDataData[]> {
+async function superMaxIndividual(): Promise<SuperFoulAggregationsData[]> {
     return await superApp.aggregate([
         {
             $group: {
@@ -543,7 +543,7 @@ async function superMaxIndividual(): Promise<SuperDataFoulAggregationsDataDataDa
                 },
                 
 
-            } satisfies { [K in keyof SuperDataFoulAggregationsDataDataDataDataData]: unknown },
+            } satisfies { [K in keyof SuperFoulAggregationsData]: unknown },
         },
     ]);
 }

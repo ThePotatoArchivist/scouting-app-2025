@@ -17,6 +17,7 @@ import { RobotPosition } from 'requests';
 import CheckBoxRecon from './components/CheckDisplayRecon';
 import Checkbox from '../../components/Checkbox';
 import CoralReconButton from './components/ReconDisplay';
+import { MatchAndSuper } from './components/BarchartWIP';
 
 const schedule = scheduleJson as MatchSchedule;
 
@@ -122,7 +123,22 @@ function ReconApp() {
    }
 
    let bingus: MatchAndSuper[]
-//for (const x: MatchIndividualDataAggregations)
+retrieveIndividualMatch?.forEach(
+    (x: MatchIndividualDataAggregations) => {
+    //pull the teamNum from x
+    if (x._id.teamNumber === teamNumber) {
+        retrieveIndividualMatch.push(x)
+    }
+    //pull matchNum from x
+
+    //look up same data in retrieveSuper
+
+    //combine into MatchnSuper object
+
+    }
+)
+
+
     return (
         <div className='h-auto min-h-fit border-4 border-[#171c26] bg-[#171c26]'>
             <main className='mx-auto mb-10 flex h-full grid-flow-row flex-col content-center items-center justify-center bg-[#171c26] bg-repeat text-white'>
