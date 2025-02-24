@@ -22,6 +22,7 @@ export type CommentValues =
     | 'great_driving'
     | 'good_driving'
     | 'source_only'
+    | 'knock_pieces'
     | 'clogging'
     | 'effective_defense'
     | 'okay_defense'

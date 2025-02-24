@@ -3,7 +3,6 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 
 import LinkButton from '../../components/LinkButton';
 import { MaterialSymbol } from 'react-material-symbols';
-import NumberInput from '../../components/NumberInput';
 
 function Counter({
     value,
@@ -112,7 +111,7 @@ function ScoreCalculator() {
                     Reset All
                 </button>
                 <div className='flex flex-grow snap-x snap-mandatory flex-row gap-2 overflow-x-auto p-2 *:flex-shrink-0'>
-                    <div className='grid w-[calc(100%_-_1rem)] snap-center snap-always auto-rows-fr grid-cols-[auto_1fr] grid-rows-[auto] gap-1 md:w-auto md:flex-grow md:basis-0'>
+                    <div className='grid w-[calc(100%_-_1rem)] snap-center snap-always auto-rows-fr grid-cols-[auto_1fr] grid-rows-[auto] gap-1 md:w-auto md:flex-grow md:basis-0 '>
                         <h2 className='col-span-2 text-center text-xl font-bold text-green-600'>
                             Auto
                         </h2>
@@ -207,19 +206,10 @@ function ScoreCalculator() {
                     </p>
 
                     <p className='text-black-100 text-md rounded-md border-green-800 bg-green-400/70 px-3 py-2 text-center'>
-                        Cage:{' '}
-                        <span className='rounded-lg bg-black/15 p-2 py-1'>
+                        Barge:{' '}
+                        <span className='rounded-lg bg-black/15 p-2 py-2'>
                             {cagePoints}
                         </span>
-                    </p>
-
-                    <p className='text-black-100 text-md rounded-md border-green-800 bg-green-400/70 px-3 py-2 text-center'>
-                        Foul Points:{' '}
-                        <NumberInput
-                            className='w-16 rounded-lg bg-black/15 p-2 py-1 text-center'
-                            value={foulPoints}
-                            onChange={setFoulPoints}
-                        />
                     </p>
 
                     <p className='text-black-100 text-md rounded-md border-green-800 bg-green-400/70 px-3 py-2 text-center font-black'>
