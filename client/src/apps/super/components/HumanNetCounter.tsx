@@ -1,9 +1,8 @@
 //import React, { useState } from "react";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch } from "react";
 import { SuperScores } from "../SuperApp";
 
   type countKeys = keyof SuperScores;
-
 
   function HumanButton({
     // Declare a state variable to keep track of the count
@@ -67,16 +66,17 @@ function HumanCounter({
     
     count: SuperScores;
     className?:string;
-    setCount:Dispatch<SetStateAction<SuperScores>>;
+    setCount:Dispatch<SuperScores>;
     
   }){
 
     const handleCount = (key: countKeys) => {
-          setCount(prevCount => ({
-              ...prevCount,
-              [key]: prevCount[key] + 1,
-          }));
-    //  }
+      // get current human count 
+      const grabCount = {...count};
+      grabCount[key] = (grabCount[key] || 0) + 1;
+      setCount(grabCount);
+      // add 1 to specific 
+
   };
 
 return(

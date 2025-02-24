@@ -69,9 +69,7 @@ function SuperApp() {
     const [sendQueue, sendAll, queue, sending] = useQueue();
     const [matchNumber, setMatchNumber] = useState<number>();
     const [showCheck, setShowCheck] = useState(false);
-    const [history, setHistory] = useState<
-        { 1: SuperTeamState; 2: SuperTeamState; 3: SuperTeamState }[]
-    >([]);
+    const [history, setHistory] = useState< { 1: SuperTeamState; 2: SuperTeamState; 3: SuperTeamState; 4: SuperScores  }[] >([]);
     useStatus(superPosition, matchNumber, scouterName);
 
     const saveHistory = () => {
@@ -81,6 +79,7 @@ function SuperApp() {
                 1: team1,
                 2: team2,
                 3: team3,
+                4: count 
             },
         ]);
     };
@@ -96,7 +95,10 @@ function SuperApp() {
         setTeam3(teamValue);
         saveHistory();
     };
-    
+    const handleCount = (scoreValue: SuperScores) => {
+        setCount(scoreValue);
+        saveHistory();
+    }
 
     const handleSubmit = async () => {
         if (
@@ -190,6 +192,7 @@ function SuperApp() {
             setTeam1(last[1]);
             setTeam2(last[2]);
             setTeam3(last[3]);
+            setCount(last[4]);
         }
     };
 
@@ -305,7 +308,7 @@ function SuperApp() {
                <HumanCounter
                 count={count}
                 className='mt-10 mb-5 p-10 mx-4 bg-green-500 text-white text-2xl rounded' 
-                setCount={setCount} >        
+                setCount={handleCount} >        
                 </HumanCounter> 
 
                 
