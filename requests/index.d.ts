@@ -118,7 +118,7 @@ export interface SuperFoulAggregationsData{
 }
 
 export interface MatchIndividualDataAggregations {
-    _id: { teamNumber: number, matchNumber: number};
+    _id: { teamNumber: number, matchNumber: number, robotPosition:RobotPosition };
     totalL1: number;
     totalL2: number;
     totalL3: number;

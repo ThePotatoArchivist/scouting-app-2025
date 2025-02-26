@@ -75,11 +75,11 @@ function ReconApp() {
     const [robotPosition, setRobotPosition] = useState<RobotPosition>();
     const [currentMatchDisplayed, setcurrentMatchDisplayed] = useState<number>(1);
 
-    const blueAlliance = (
-        ['blue_1', 'blue_2', 'blue_3'] as (string | undefined)[]
-    ).includes(robotPosition);
+    const blueAlliance = (robotPosition: string) => {
+        return ['blue_1', 'blue_2', 'blue_3'].some(position => robotPosition.includes(position));
+    };
 
-
+   
     useEffect(() => {
         if (!matchNumber) return;
         const match = schedule?.[matchNumber];
@@ -107,6 +107,11 @@ const matchDecrease = () => {
         currentMatchDisplayed > 1? prevMatchDisplayed - 1 : prevMatchDisplayed
     ))
 }
+
+// const teamAlliance = () =>{
+//     wip
+// }
+
 
 const setTeamNumberAndResetAutos = (value: React.SetStateAction<number>) => {
     setTeamNumber(value);
@@ -230,6 +235,11 @@ retrieveIndividualSuper?.forEach(foulData => {
   });
 
   console.log(bingus)
+
+  //delete later
+  console.log('Team Number:', teamNumber);
+  console.log('Robot Positions:', retrieveIndividualMatch && retrieveIndividualMatch.map(entry => entry._id.robotPosition));
+
     return (
         <div className='h-auto min-h-fit border-4 border-[#171c26] bg-[#171c26]'>
             <main className='mx-auto mb-10 flex h-full grid-flow-row flex-col content-center items-center justify-center bg-[#171c26] bg-repeat text-white'>
@@ -314,12 +324,13 @@ retrieveIndividualSuper?.forEach(foulData => {
                         />
                     </button>
 
-                    <img src='bluesidematch.png'>
+                    <img
+                    src={`${retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed]?._id.robotPosition 
+                    ? blueAlliance(retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed]?._id.robotPosition) ? 'bluesidematch.png' : 'redsidematch.png' : 'bluesidematch.png'}`}>
                     </img>
                     
                     <CheckBoxRecon
                         ischecked={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed]?.groundPick1}
-                        retrieveIndividualMatch={retrieveIndividualMatch}
                         className={`top-[840px] left-[115px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
                         {/* ground1 */}
                     </CheckBoxRecon>

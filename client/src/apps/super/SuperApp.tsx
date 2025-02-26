@@ -121,11 +121,7 @@ function SuperApp() {
                         robotPosition: (
                             (superPosition === 'blue_ss1'
                                 ? ['blue_1', 'blue_2', 'blue_3']
-                                : [
-                                      'red_1',
-                                      'red_2',
-                                      'red_3',
-                                  ]) satisfies RobotPosition[]
+                                : ['red_1', 'red_2', 'red_3',]) satisfies RobotPosition[]
                         )[index],
                     },
                     fouls: team.foulCounts,

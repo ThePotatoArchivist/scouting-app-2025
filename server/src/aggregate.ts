@@ -38,7 +38,7 @@ async function averageAndMax(): Promise<MatchDataAggregations[]> {
     const result = await matchApp.aggregate([
         {
             $group: {
-                _id: { teamNumber: '$metadata.robotTeam', matchnumber: '$metadata.matchNumber'},
+                _id: { teamNumber: '$metadata.robotTeam'}, 
                 averageCoral: {
                     $avg: {
                         $add: [
@@ -246,7 +246,7 @@ async function maxIndividual(): Promise<MatchIndividualDataAggregations[]> {
     const result = await matchApp.aggregate([
         {
             $group: {
-                _id: { teamNumber: '$metadata.robotTeam', matchNumber: '$metadata.matchNumber'},
+                _id: { teamNumber: '$metadata.robotTeam', matchNumber: '$metadata.matchNumber', robotPosition: '$metadata.robotPosition'},
                 totalL1: {
                     $sum: {
                         $add: [
