@@ -1,5 +1,5 @@
 import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps, Legend } from 'recharts';
 import { NameType, ValueType } from 'recharts/types/component/DefaultTooltipContent';
 import { MatchIndividualDataAggregations, SuperFoulAggregationsData } from 'requests';
 
@@ -24,34 +24,19 @@ const CustomTooltip: React.FC<TooltipProps<ValueType, NameType>> = ({
   return null;
 };
 
-// :3
+
+
+const customLegendPayload = [
+  { value: 'Coral', color: '#13B3AC', id: 'Bongle'},
+  { value: 'Algae', color: '#EEE600', id: 'Bingle'},
+  { value: 'Fouls', color: '#800020', id: 'Blickle'},
+];
+
+
 export interface MatchAndSuper extends Pick<MatchIndividualDataAggregations, 'totalL1' | 'totalL2' | 'totalL3' | 'totalL4' | 'totalProcessor' | 'totalNet' | 'totalRemoved' | '_id' >, SuperFoulAggregationsData {}
 
 const BarChartWIP: React.FC<{ data: MatchAndSuper[]; teamNumber: number }> = ({ data, teamNumber }) => { 
 
-  // const bingus : MatchIndividualDataAggregations[] = [];
-  // const bongus : SuperFoulAggregationsData[] = [];
-
-
-  // const filterData = (teamNumber: number, matchNumber: number) => {
-  //   return bongus.filter(item => 
-  //     item._id.teamNumber === teamNumber && item._id.matchNumber === matchNumber
-  //   );
-  // }
-
-  // const getChartData = (teamNumber: number, matchNumber: number) => {
-  //   const filteredData = filterData(teamNumber, matchNumber);
-  //   return filteredData.map(item => ({
-  //     name: `${item._id.matchNumber}`,
-  //     insideRobot: item.totalInsideRobot,
-  //     protectedZone: item.totalProtectedZone,
-  //     pinning: item.totalPinning,
-  //     multiplePieces: item.totalMultiplePieces,
-  //     cageFoul: item.totalCageFoul,
-  //     other: item.totalOther
-  //   }));
-  // // }
-  //const chartData = getChartData(teamNumber, matchNumber);
 
 
 //   //grabs data for a specific team
@@ -63,6 +48,10 @@ const BarChartWIP: React.FC<{ data: MatchAndSuper[]; teamNumber: number }> = ({ 
       Processor: d.totalProcessor,
       Net: d.totalNet,
       Removed: d.totalRemoved,
+      CoralL1: d.totalL1,
+      CoralL2: d.totalL2,
+      CoralL3: d.totalL3,
+      CoralL4: d.totalL4,
       InsideRobot: d.totalInsideRobot*-1,
       ProtectedZone: d.totalProtectedZone*-1,
       Pinning: d.totalPinning*-1,
@@ -81,9 +70,20 @@ const BarChartWIP: React.FC<{ data: MatchAndSuper[]; teamNumber: number }> = ({ 
         <XAxis dataKey="match" tick={{ fill: "white" }} />
         <YAxis tick={{ fill: "white" }} />
         <Tooltip content={<CustomTooltip />} />
-        <Bar dataKey="Processor" stackId='a' fill="#82ca9d" />
-        <Bar dataKey="Net" stackId='a' fill="#c73260" />
-        <Bar dataKey="Removed" stackId='a' fill="#9C16FF" />
+        <Legend payload={customLegendPayload}/>
+        <Bar dataKey="Processor" stackId='a' fill="#EEE600" />
+        <Bar dataKey="Net" stackId='a' fill="#EEE600" />
+        <Bar dataKey="Removed" stackId='a' fill="#EEE600" />
+        <Bar dataKey="CoralL1" stackId='a' fill="#13B3AC" />
+        <Bar dataKey="CoralL2" stackId='a' fill="#13B3AC" />
+        <Bar dataKey="CoralL3" stackId='a' fill="#13B3AC" />
+        <Bar dataKey="CoralL4" stackId='a' fill="#13B3AC" />
+        <Bar dataKey="InsideRobot" stackId='a' fill="#800020" />
+        <Bar dataKey="ProtectedZone" stackId='a' fill="#800020" />
+        <Bar dataKey="Pinning" stackId='a' fill="#800020" />
+        <Bar dataKey="MultiplePieces" stackId='a' fill="#800020" />
+        <Bar dataKey="CageFoul" stackId='a' fill="#800020" />
+        <Bar dataKey="Other" stackId='a' fill="#800020" />
       </BarChart>
     </ResponsiveContainer>
     

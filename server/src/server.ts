@@ -93,7 +93,7 @@ app.get('/data/retrieve/matchOutlier', async (req, res) => {
     res.send(await matchOutlier());
 });
 
-app.get('/data/retrieve/super', async (req, res) => {
+app.get('/data/retrieve/individualSuper', async (req, res) => {
     res.send(await superMaxIndividual());
 });
 //:)
