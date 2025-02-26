@@ -113,117 +113,37 @@ const setTeamNumberAndResetAutos = (value: React.SetStateAction<number>) => {
     setcurrentMatchDisplayed(1);
 }
 
-//    const sampleData : MatchAndSuper = {
-//        _id: {
-//            teamNumber: 0,
-//            matchNumber: 0
-//        },
-//        totalL1: 4,
-//        totalL2: 5,
-//        totalL3: 6,
-//        totalL4: 73,
-//        totalCoral: 8,
-//        totalProcessor: 21,
-//        totalNet: 43,
-//        totalRemoved: 8,
-//        totalAlgae: 11,
-//        coralDrop1: false,
-//        coralDrop2: false,
-//        coralDrop3: false,
-//        coralDrop4: false,
-//        coralDrop5: false,
-//        coralDrop6: false,
-//        groundPick1: false,
-//        groundPick2: false,
-//        groundPick3: false,
-//        sourcePick1: false,
-//        sourcePick2: false,
-//        start1: false,
-//        start2: false,
-//        start3: false,
-//        maxFouls: 60
-//    }
-   const sampleData : MatchAndSuper = {
-       _id: {
-           teamNumber: 0,
-           matchNumber: 0
-       },
-       totalL1: 4,
-       totalL2: 5,
-       totalL3: 6,
-       totalL4: 73,
-       totalProcessor: 21,
-       totalNet: 43,
-       totalRemoved: 8,
-       coralDrop1: false,
-       coralDrop2: false,
-       coralDrop3: false,
-       coralDrop4: false,
-       coralDrop5: false,
-       coralDrop6: false,
-       groundPick1: false,
-       groundPick2: false,
-       groundPick3: false,
-       sourcePick1: false,
-       sourcePick2: false,
-       totalInsideRobot: 9,
-       totalProtectedZone: 8,
-       totalPinning: 10,
-       totalMultiplePieces: 44,
-       totalCageFoul: 23,
-       totalOther: 7
-   }
-
    const bingus: MatchAndSuper[] = [];
    const blingos : MatchIndividualDataAggregations[] = [];
    const bongus : SuperFoulAggregationsData[] = [];
-   //let y : SuperFoulAggregationsData;
-   
-// retrieveIndividualMatch?.forEach(
-//     (x) => {
-//     //pull the teamNum from x
-//     if (x._id.teamNumber === teamNumber) {
-//         bingus.push(x)
-//     }
-
-//     //pull matchNum from x
-//     //for (let y=0 ; y < retrieveIndividualMatch.length; y++){ /* empty */ };
-
-//     if (x._id.matchNumber > 0) {bingus.push(x)} //I doubt  this works?
-//     //look up same data in retrieveSuper
-//     //const blinky = 
-//     if (y._id.matchNumber == x._id.matchNumber && y._id.teamNumber == teamNumber) {
-//         ahhh
-//     };
-//     //combine into MatchnSuper object
-
-//     }
-// )
 
 
 retrieveIndividualSuper?.forEach(foulData => {
 
     const plsData = retrieveIndividualMatch?.find(match => 
-        match._id.teamNumber === teamNumber && match._id.teamNumber === foulData._id.teamNumber && match._id.matchNumber === foulData._id.matchNumber
+        match._id.teamNumber === teamNumber && 
+        foulData._id.teamNumber === teamNumber && 
+        match._id.matchNumber === foulData._id.matchNumber
     );
+    //I SEE THE TRUTH! I SEE THE LIGHT AT THE END OF THE TUNNEL!
   
     if (plsData) {
-      const combinedArrayThings = {
-        _id: foulData._id,
-        totalInsideRobot: foulData.totalInsideRobot,
-        totalProtectedZone: foulData.totalProtectedZone,
-        totalMultiplePieces: foulData.totalMultiplePieces,
-        totalOther: foulData.totalOther,
-        totalPinning: foulData.totalPinning,
-        totalCageFoul: foulData.totalCageFoul,
-        totalProcessor: plsData.totalProcessor,
-        totalRemoved: plsData.totalRemoved,
-        totalNet: plsData.totalNet,
-        totalL1: plsData.totalL1,
-        totalL2: plsData.totalL2,
-        totalL3: plsData.totalL3,
-        totalL4: plsData.totalL4,
-      };
+        const combinedArrayThings = {
+          _id: foulData._id,
+          totalInsideRobot: Array.isArray(foulData.totalInsideRobot) ? foulData.totalInsideRobot[0] : foulData.totalInsideRobot,
+          totalProtectedZone: Array.isArray(foulData.totalProtectedZone) ? foulData.totalProtectedZone[0] : foulData.totalProtectedZone,
+          totalMultiplePieces: Array.isArray(foulData.totalMultiplePieces) ? foulData.totalMultiplePieces[0] : foulData.totalMultiplePieces,
+          totalOther: Array.isArray(foulData.totalOther) ? foulData.totalOther[0] : foulData.totalOther,
+          totalPinning: Array.isArray(foulData.totalPinning) ? foulData.totalPinning[0] : foulData.totalPinning,
+          totalCageFoul: Array.isArray(foulData.totalCageFoul) ? foulData.totalCageFoul[0] : foulData.totalCageFoul,
+          totalProcessor: Array.isArray(plsData.totalProcessor) ? plsData.totalProcessor[0] : plsData.totalProcessor,
+          totalRemoved: Array.isArray(plsData.totalRemoved) ? plsData.totalRemoved[0] : plsData.totalRemoved,
+          totalNet: Array.isArray(plsData.totalNet) ? plsData.totalNet[0] : plsData.totalNet,
+          totalL1: Array.isArray(plsData.totalL1) ? plsData.totalL1[0] : plsData.totalL1,
+          totalL2: Array.isArray(plsData.totalL2) ? plsData.totalL2[0] : plsData.totalL2,
+          totalL3: Array.isArray(plsData.totalL3) ? plsData.totalL3[0] : plsData.totalL3,
+          totalL4: Array.isArray(plsData.totalL4) ? plsData.totalL4[0] : plsData.totalL4,
+        };
   
       bingus.push(combinedArrayThings);
     }
@@ -281,7 +201,7 @@ retrieveIndividualSuper?.forEach(foulData => {
                     </div>
 
                     <div className='col-span-2 w-full items-center justify-center rounded-lg border-2 border-gray-800 bg-gray-800 p-4'>
-                       <BarChartWIP data={bingus} teamNumber={0}></BarChartWIP>
+                       <BarChartWIP data={bingus} teamNumber={teamNumber}></BarChartWIP>
                     </div>
 
                 <div className='mt-6 h-fit w-full col-span-2 items-center rounded-lg border-2 border-gray-800 bg-gray-800 p-4'>
