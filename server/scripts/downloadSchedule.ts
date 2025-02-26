@@ -57,7 +57,7 @@ const schedule = Object.fromEntries(
     ])
 );
 
-console.log(schedule);
+console.log(schedule); 
 
 fs.writeFileSync(
     '../client/src/assets/matchSchedule.json',
