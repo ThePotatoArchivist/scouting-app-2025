@@ -209,6 +209,18 @@ function SuperTeam({
                     +Comms Fail: {teamState.breakCount.commsFail || 0}
                 </button>
             </div>
+            <div className='flex justify-center'>
+                <button
+                    className='mt-3 rounded-md border bg-red-400 px-3 py-2 text-lg text-zinc-100'
+                    onClick={() => handleDecreaseBreak('bumperFall')}>
+                    -
+                </button>
+                <button
+                    className='mt-3 w-44 rounded-md border bg-slate-600 px-3 py-2 text-lg text-zinc-100'
+                    onClick={() => handleIncreaseBreak('bumperFall')}>
+                    +Bumper Fall: {teamState.breakCount.bumperFall || 0}
+                </button>
+            </div>
 
             <MultiButton
                 onChange={handleDefense}
