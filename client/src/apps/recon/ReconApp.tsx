@@ -158,7 +158,6 @@ retrieveIndividualSuper?.forEach(foulData => {
 
   //delete later
   console.log('Team Number:', teamNumber);
-  console.log('Robot Positions:', retrieveIndividualMatch && retrieveIndividualMatch.map(entry => entry._id.robotPosition));
 
     return (
         <div className='h-auto min-h-fit border-4 border-[#171c26] bg-[#171c26]'>
@@ -245,81 +244,95 @@ retrieveIndividualSuper?.forEach(foulData => {
                     </button>
 
                     <img
-                    src={`${retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed]?._id.robotPosition 
-                    ? blueAlliance(retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed]?._id.robotPosition) ? 'bluesidematch.png' : 'redsidematch.png' : 'bluesidematch.png'}`}>
+                    src={`${retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed - 1]?._id.robotPosition 
+                    ? blueAlliance(retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed - 1]?._id.robotPosition) ? 'bluesidematch.png' : 'redsidematch.png' : 'bluesidematch.png'}`}>
                     </img>
-                    
+
                     <CheckBoxRecon
-                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed]?.groundPick1}
-                        className={`top-[840px] left-[115px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
+                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed - 1]?.groundPick1}
+                        className={`${retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed - 1]?._id.robotPosition 
+                            ? blueAlliance(retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed - 1]?._id.robotPosition) ? 'top-[840px] left-[115px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left' : '' : 'top-[840px] left-[115px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left'}`}>
                         {/* ground1 */}
                     </CheckBoxRecon>
                     
                     <CheckBoxRecon
-                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed]?.groundPick2}
-                        className={`top-[893px] left-[115px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
+                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed - 1]?.groundPick2}
+                        className={`${retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed - 1]?._id.robotPosition 
+                            ? blueAlliance(retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed - 1]?._id.robotPosition) ? 'top-[893px] left-[115px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left' : '' : 'top-[893px] left-[115px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left'} `}>
                         {/* ground2 */}
                     </CheckBoxRecon>
                     
                     <CheckBoxRecon
-                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed]?.groundPick3}
-                        className={`top-[945px] left-[115px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
+                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed - 1]?.groundPick3}
+                        className={`${retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed - 1]?._id.robotPosition 
+                            ? blueAlliance(retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed - 1]?._id.robotPosition) ? 'top-[945px] left-[115px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left' : '' : 'top-[945px] left-[115px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left'}`}>
                         {/* ground3 */}
                     </CheckBoxRecon>
                     
                     <CheckBoxRecon
-                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed]?.sourcePick1}
-                        className={`top-[780px] left-[95px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
+                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed - 1]?.sourcePick1}
+                        className={`${retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed - 1]?._id.robotPosition 
+                            ? blueAlliance(retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed - 1]?._id.robotPosition) ? 'top-[780px] left-[95px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left' : '' : 'top-[780px] left-[95px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left'}`}>
                         {/* source1 */}
                     </CheckBoxRecon>
                     
                     <CheckBoxRecon
-                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed]?.sourcePick2}
-                        className={`top-[1000px] left-[95px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
+                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed - 1]?.sourcePick2}
+                        className={`${retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed - 1]?._id.robotPosition 
+                            ? blueAlliance(retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed - 1]?._id.robotPosition) ? 'top-[1000px] left-[95px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left' : '' : 'top-[1000px] left-[95px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left'}`}>
                         {/* source2 */}
                     </CheckBoxRecon>
                     
                     <CheckBoxRecon
-                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed]?.start1}
-                        className={`top-[832px] left-[300px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
+                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed - 1]?.start1}
+                        className={`${retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed - 1]?._id.robotPosition 
+                            ? blueAlliance(retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed - 1]?._id.robotPosition) ? 'top-[832px] left-[300px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left' : '' : 'top-[832px] left-[300px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left'}`}>
                         {/* start1 */}
                     </CheckBoxRecon>
                     
                     <CheckBoxRecon
-                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed]?.start2}
-                        className={`top-[895px] left-[300px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
+                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed - 1]?.start2}
+                        className={`${retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed - 1]?._id.robotPosition 
+                            ? blueAlliance(retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed - 1]?._id.robotPosition) ? 'top-[895px] left-[300px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left' : '' : 'top-[895px] left-[300px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left'}`}>
                         {/* start2 */}
                     </CheckBoxRecon>
                     
                     <CheckBoxRecon
-                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed]?.start3}
-                        className={`top-[955px] left-[300px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left`}>
+                        ischecked={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed - 1]?.start3}
+                        className={`${retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed - 1]?._id.robotPosition 
+                            ? blueAlliance(retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed - 1]?._id.robotPosition) ? 'top-[955px] left-[300px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left' : '' : 'top-[955px] left-[300px] absolute z-20 h-8 w-8 overflow-hidden rounded-full text-left'}`}>
                         {/* start3 */}
                     </CheckBoxRecon>
 
                     <CoralReconButton 
-                    buttonValue={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed]?.coralDrop1}
-                    className='absolute left-[222px] top-[875px] h-[10px] w-[45px] rotate-[6.81rad]'></CoralReconButton>
+                    buttonValue={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed - 1]?.coralDrop1}
+                    className={`${retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed - 1]?._id.robotPosition 
+                        ? blueAlliance(retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed - 1]?._id.robotPosition) ? 'absolute left-[222px] top-[875px] h-[10px] w-[45px] rotate-[6.81rad]' : '' : 'absolute left-[222px] top-[875px] h-[10px] w-[45px] rotate-[6.81rad]'}`}></CoralReconButton>
                     <CoralReconButton 
-                    buttonValue={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed]?.coralDrop2}
-                    className=' absolute left-[240px] top-[905px] h-[10px] w-[45px] rotate-[4.7rad]'></CoralReconButton>
+                    buttonValue={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed - 1]?.coralDrop2}
+                    className={`${retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed - 1]?._id.robotPosition 
+                        ? blueAlliance(retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed - 1]?._id.robotPosition) ? 'absolute left-[240px] top-[905px] h-[10px] w-[45px] rotate-[4.7rad]' : '' : 'absolute left-[240px] top-[905px] h-[10px] w-[45px] rotate-[4.7rad]'}`}></CoralReconButton>
                     <CoralReconButton 
-                    buttonValue={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed]?.coralDrop3}
-                    className='absolute left-[222px] top-[935px] h-[10px] w-[45px] rotate-[5.76rad]'></CoralReconButton>
+                    buttonValue={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed - 1]?.coralDrop3}
+                    className={`${retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed - 1]?._id.robotPosition 
+                        ? blueAlliance(retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed - 1]?._id.robotPosition) ? 'absolute left-[222px] top-[935px] h-[10px] w-[45px] rotate-[5.76rad]' : '' : 'absolute left-[222px] top-[935px] h-[10px] w-[45px] rotate-[5.76rad]'}`}></CoralReconButton>
                     <CoralReconButton
-                    buttonValue={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed]?.coralDrop4} 
-                    className='absolute left-[187px] top-[935px] h-[10px] w-[45px] rotate-[6.81rad]'></CoralReconButton>
+                    buttonValue={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed - 1]?.coralDrop4} 
+                    className={`${retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed - 1]?._id.robotPosition 
+                        ? blueAlliance(retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed - 1]?._id.robotPosition) ? 'absolute left-[187px] top-[935px] h-[10px] w-[45px] rotate-[6.81rad]' : '' : 'absolute left-[187px] top-[935px] h-[10px] w-[45px] rotate-[6.81rad]'}`}></CoralReconButton>
                     <CoralReconButton 
-                    buttonValue={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed]?.coralDrop5}
-                    className=' absolute left-[170px] top-[905px] h-[10px] w-[45px] rotate-[4.7rad]'></CoralReconButton>
+                    buttonValue={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed - 1]?.coralDrop5}
+                    className={`${retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed - 1]?._id.robotPosition 
+                        ? blueAlliance(retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed - 1]?._id.robotPosition) ? 'absolute left-[170px] top-[905px] h-[10px] w-[45px] rotate-[4.7rad]' : '' : 'absolute left-[170px] top-[905px] h-[10px] w-[45px] rotate-[4.7rad]'}`}></CoralReconButton>
                     <CoralReconButton 
-                    buttonValue={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed]?.coralDrop6}
-                    className='absolute left-[188px] top-[875px] h-[10px] w-[45px] rotate-[5.76rad]'></CoralReconButton>
+                    buttonValue={retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber)[currentMatchDisplayed - 1]?.coralDrop6}
+                    className={`${retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed - 1]?._id.robotPosition 
+                        ? blueAlliance(retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber === teamNumber)[currentMatchDisplayed - 1]?._id.robotPosition) ? 'absolute left-[188px] top-[875px] h-[10px] w-[45px] rotate-[5.76rad]' : '' : 'absolute left-[188px] top-[875px] h-[10px] w-[45px] rotate-[5.76rad]'}`}></CoralReconButton>
                     
                 </div>
-                <div className='h-80 w-full col-span-1 col-start-3 mt-6 rounded-lg border-2 border-gray-800 bg-gray-800'>
+                {/* <div className='h-80 w-full col-span-1 col-start-3 mt-6 rounded-lg border-2 border-gray-800 bg-gray-800'>
                     <h3 className='text-3xl font-bold text-center'>Outliers</h3>
-                </div>
+                </div> */}
                 
                 <div>
                 <div className='justify h-24 w-full col-span-1 col-start-4 mt-6 rounded-lg border-2 border-gray-800 bg-gray-800'>
@@ -330,20 +343,50 @@ retrieveIndividualSuper?.forEach(foulData => {
                         : "No Data"}
                     </p>
                 </div>
-                <div className='justify h-48 w-full col-span-1 mt-8 col-start-4 rounded-lg border-2 border-gray-800 bg-gray-800'> 
+                <div className='justify h-fit w-full col-span-1 mt-8 col-start-4 rounded-lg border-2 border-gray-800 bg-gray-800'> 
                     <h3 className='text-3xl font-bold text-center'>Checklist</h3>
-                    <Checkbox className='text-center'>Coral L1</Checkbox>
+                    <CheckBoxRecon 
+                    label='Coral L1'
+                    ischecked={retrieveMatch && retrieveMatch.filter((matchEntryCheck) => matchEntryCheck._id.teamNumber == teamNumber)[0]?.totalL1 > 0}
+                    className='text-center'> 
+                    </CheckBoxRecon>
                     <br/>
-                    <Checkbox className='text-center'>Coral L2</Checkbox>
+                    <CheckBoxRecon 
+                    label='Coral L2'
+                    ischecked={retrieveMatch && retrieveMatch.filter((matchEntryCheck) => matchEntryCheck._id.teamNumber == teamNumber)[0]?.totalL2 > 0}
+                    className='text-center'> 
+                    </CheckBoxRecon>
                     <br/>
-                    <Checkbox className='text-center'>Coral L3</Checkbox>
+                    <CheckBoxRecon 
+                    label='Coral L3'
+                    ischecked={retrieveMatch && retrieveMatch.filter((matchEntryCheck) => matchEntryCheck._id.teamNumber == teamNumber)[0]?.totalL3 > 0}
+                    className='text-center'> 
+                    </CheckBoxRecon>
                     <br/>
-                    <Checkbox className='text-center'>Coral L4</Checkbox>
+                    <CheckBoxRecon 
+                    label='Coral L4'
+                    ischecked={retrieveMatch && retrieveMatch.filter((matchEntryCheck) => matchEntryCheck._id.teamNumber == teamNumber)[0]?.totalL4 > 0}
+                    className='text-center'> 
+                    </CheckBoxRecon>
                     <br/>
-                    <Checkbox className='text-center'>Algae Net</Checkbox>
+                    <CheckBoxRecon 
+                    label='Algae Net'
+                    ischecked={retrieveMatch && retrieveMatch.filter((matchEntryCheck) => matchEntryCheck._id.teamNumber == teamNumber)[0]?.totalNet > 0}
+                    className='text-center'> 
+                    </CheckBoxRecon>
                     <br/>
-                    <Checkbox className='text-center'>Algae Processor</Checkbox>
-                </div>
+                    <CheckBoxRecon 
+                    label='Algae Processor'
+                    ischecked={retrieveMatch && retrieveMatch.filter((matchEntryCheck) => matchEntryCheck._id.teamNumber == teamNumber)[0]?.totalProcessor > 0}
+                    className='text-center'> 
+                    </CheckBoxRecon>
+                    <br/>
+                    <CheckBoxRecon 
+                    label='Algae Removed'
+                    ischecked={retrieveMatch && retrieveMatch.filter((matchEntryCheck) => matchEntryCheck._id.teamNumber == teamNumber)[0]?.totalRemoved > 0}
+                    className='text-center'> 
+                    </CheckBoxRecon>
+                    </div>
                 </div>
 
 
