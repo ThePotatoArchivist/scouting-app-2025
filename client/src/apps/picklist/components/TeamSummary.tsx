@@ -133,50 +133,12 @@ function TeamSummary({
             </div>
             <div>
                 <h2 className='pb-2 text-2xl'>Pit Scout Info</h2>
-
-                <p className='indent-3'> Role: {teamPitData?.teamRole}</p>
                 <p className='indent-3'>
                     {' '}
                     Batteries: {teamPitData?.pitBatteryCount}
                 </p>
-                <p className='indent-3'>
-                    {' '}
-                    Drivetrain: {teamPitData?.drivebase}
-                </p>
                 <p className='indent-3'> Notes: {teamPitData?.comments}</p>
 
-                <p className='pt-2 text-lg font-semibold text-green-800'>
-                    Capabilities
-                </p>
-                <p className='indent-3'>
-                    Coral: {teamPitData?.capabilities.coral ? 'Yes' : 'No'}
-                </p>
-                <p className='indent-3'>
-                    Algae: {teamPitData?.capabilities.algae ? 'Yes' : 'No'}
-                </p>
-                <p className='indent-3'>
-                    Shallow: {teamPitData?.capabilities.climbShallow ? 'Yes' : 'No'}
-                </p>
-                <p className='indent-3'>
-                    Deep: {teamPitData?.capabilities.climbDeep ? 'Yes' : 'No'}
-                </p>
-
-                <p className='pt-2 text-lg font-semibold text-green-800'>
-                    Preferences
-                </p>
-                <p className='indent-3'>
-                    Coral: {teamPitData?.preference.coralPrefer ? 'Yes' : 'No'}
-                </p>
-                <p className='indent-3'>
-                    Algae:{' '}
-                    {teamPitData?.preference.algaePrefer ? 'Yes' : 'No'}
-                </p>
-                <p className='indent-3'>
-                    Shallow: {teamPitData?.preference.climbSPrefer ? 'Yes' : 'No'}
-                </p>
-                <p className='indent-3'>
-                    Deep: {teamPitData?.preference.climbDPrefer ? 'Yes' : 'No'}
-                </p>
 
                 {/* <p className='text-lg font-semibold text-green-800 pt-2'>More Info</p> */}
             </div>

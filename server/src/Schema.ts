@@ -29,7 +29,8 @@ const coral = {
 };
 const algae = {
     netRobot: Number,
-    processor: Number
+    processor: Number,
+    remove: Number
 };
 
 const StartingZone = {
@@ -133,29 +134,7 @@ type PitDataSchemaType = {
 const pitDataSchema = new mongoose.Schema<PitDataSchemaType>({
     scouterName: String,
     teamNumber: Number,
-    capabilities: {
-        coral: Boolean,
-        algae: Boolean,
-        climbShallow: Boolean,
-        climbDeep: Boolean,
-
-    },
-    preference: {
-        algaePerfer: Boolean,
-        coralPrefer: Boolean,
-        climbSPrefer: Boolean,
-        climbDPerfer:Boolean
-    },
-    autoCapability: [String],
-    teamRole: {
-        type: String,
-        enum: ['scoring', 'defense', 'support', 'all-round'],
-    },
     pitBatteryCount: Number,
-    drivebase: {
-        type: String,
-        enum: ['tank', 'swerve', 'MECANUM', 'other'],
-    },
     photo: Buffer,
     comments: String,
 });

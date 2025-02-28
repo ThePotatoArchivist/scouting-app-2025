@@ -305,7 +305,6 @@ function SuperApp() {
                 </HumanCounter> 
 
                 <br/>
-
             <button
                 onClick={() => {
                     handleSubmit();

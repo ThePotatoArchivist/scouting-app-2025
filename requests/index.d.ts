@@ -31,6 +31,9 @@ export type CommentValues =
     | 'avoids_under_stage';
 
 
+export type Net = boolean;
+
+
 interface capabilities {
     coral: boolean;
     algae: boolean;
@@ -105,6 +108,7 @@ export interface SuperDataAggregations {
     avgFouls: number;
     maxFouls: number;
     humanAccuracy: number;
+
 }
 
 export interface SuperFoulAggregationsData{
@@ -159,8 +163,7 @@ interface coral {
 interface algae {
     netRobot: number;
     processor: number;
-    removed: number;
-}
+    remove: number;
 
 export interface netHuman {
     Success: number;
@@ -231,12 +234,7 @@ export interface ScouterData {
 export interface PitFile {
     scouterName: string;
     teamNumber: number;
-    capabilities: capabilities;
-    preference: preference;
-    autoCapability: string[];
-    teamRole: teamRoles;
     pitBatteryCount: number;
-    drivebase: drivebase;
     comments: string;
     photo: string;
 }

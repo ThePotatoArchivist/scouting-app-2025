@@ -32,7 +32,8 @@ interface MatchScores {
     autoL4: number;
     autoAlgaenetRobot: number;
     autoProcessor: number;
-    autoRemoved: number;
+    autoRemove: number;
+    teleRemove: number;
     teleL1: number;
     teleL2: number;
     teleL3: number;
@@ -48,7 +49,8 @@ const defaultScores: MatchScores = {
     autoL4: 0,
     autoAlgaenetRobot: 0,
     autoProcessor: 0,
-    autoRemoved: 0,
+    autoRemove: 0,
+    teleRemove: 0,
     teleL1: 0,
     teleL2: 0,
     teleL3: 0,
@@ -135,7 +137,7 @@ function MatchApp() {
             autoAlgae: {
                 netRobot: count.autoAlgaenetRobot,
                 processor: count.autoProcessor,
-                removed: count.autoRemoved
+                remove: count.autoRemove
             },
             teleCoral: {
                 L1: count.teleL1,
@@ -146,7 +148,7 @@ function MatchApp() {
             teleAlgae: {
                 netRobot: count.teleAlgaenetRobot,
                 processor: count.teleProcessor,
-                removed: count.teleRemoved
+                remove: count.teleRemove
             },
             climb: climbPosition,
         };
@@ -212,7 +214,7 @@ function MatchApp() {
             autoAlgae: {
                 netRobot: count.autoAlgaenetRobot,
                 processor: count.autoProcessor,
-                removed: count.autoRemoved
+                remove: count.autoRemove
             },
             teleCoral: {
                L1: count.teleL1,
@@ -223,7 +225,7 @@ function MatchApp() {
             teleAlgae: {
                 netRobot: count.teleAlgaenetRobot,
                 processor: count.teleProcessor,
-                removed: count.teleRemoved
+                remove: count.teleRemove
             },
             climb: climbPosition,
         };
