@@ -92,7 +92,7 @@ for (let matchNumber = 1; matchNumber < 400; matchNumber++) {
             autoAlgae: {
                 netRobot: randint(5),
                 processor: randint(5),
-                
+                removed: randint(5),
             },
             climb: choose([
                 'shallow',
@@ -117,7 +117,7 @@ for (let matchNumber = 1; matchNumber < 400; matchNumber++) {
             teleAlgae: {
                 netRobot: randint(5),
                 processor: randint(5),
-                
+                removed: 0
             },
 
         } satisfies MatchData).save();

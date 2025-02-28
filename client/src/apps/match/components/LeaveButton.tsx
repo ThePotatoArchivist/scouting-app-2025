@@ -83,8 +83,8 @@ function FieldButton({
                         <div className='flex-col items-center justify-center pr-3'>
                             <h1 className={`text-4xl ${styleMode ? 'text-white' : 'text-[#171c26]'}`}>Mobility? </h1>
                             <p className={`${styleMode ? 'text-white' : 'text-[#171c26]'}`}>
-                                The robot must be off the starting completely
-                                <br /> at the end of the match to select yes.
+                                The robot must be completely off the starting  
+                                <br /> line at the end of the match to select yes.
                             </p>
                         </div>
                         <MultiButton

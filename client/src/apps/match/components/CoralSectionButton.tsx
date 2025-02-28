@@ -1,30 +1,28 @@
-import { useState } from "react";
 
 
 function CoralSectionButton({
     selectClassName,
-    unselectClassName
-}:
-{
+    unselectClassName,
+    onChange,
+    value,
+}: {
     selectClassName: string;
     unselectClassName: string;
-}){
-    const [selected, setSelected] = useState(false); 
+    onChange: (newValue: boolean) => void;
+    value: boolean
+}) {
 
     function handleSelect() {
-        if (selected == false) {
-            setSelected(true);
-        } else {
-            setSelected(false);
-        }
+        const newValue = !value;
+        onChange(newValue);
     }
-
+// :3
     return(
         <button
             onClick={handleSelect}
-            className={`${selected? selectClassName : unselectClassName}`}
+            className={`${value? selectClassName : unselectClassName}`}
         />
-    )
+    );
 }
 
 export default CoralSectionButton;
