@@ -10,13 +10,11 @@ function MatchTable({ matches }: { matches: StatusRecieve['matches'] }) {
                     <th className='status-red col-span-1'>Red 1</th>
                     <th className='status-red col-span-1'>Red 2</th>
                     <th className='status-red col-span-1'>Red 3</th>
-                    <th className='status-red col-span-1'>Red SS 1</th>
-                    <th className='status-red col-span-1'>Red SS 2</th>
+                    <th className='status-red col-span-1'>Red SS</th>
                     <th className='status-blue col-span-1'>Blue 1</th>
                     <th className='status-blue col-span-1'>Blue 2</th>
                     <th className='status-blue col-span-1'>Blue 3</th>
-                    <th className='status-blue col-span-1'>Blue SS 1</th>
-                    <th className='status-blue col-span-1'>Blue SS 2</th>
+                    <th className='status-blue col-span-1'>Blue SS</th>
                 </tr>
             </thead>
             <tbody>

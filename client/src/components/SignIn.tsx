@@ -67,7 +67,7 @@ function SignIn({
                         onChange={onChangeRobotPosition}
                         value={robotPosition}
                         labels={['Red 1', 'Red 2', 'Blue 1', 'Blue 2']}
-                        values={['red_ss1', 'red_ss2','blue_ss1','blue_ss2']}
+                        values={['red_ss','blue_ss']}
                         className={'text-xl col-2 row-2'}
                         unSelectedClassName={[
                             'text-red-500 bg-gray-300 ',

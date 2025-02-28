@@ -1,5 +1,5 @@
 import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps, Legend } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps } from 'recharts';
 import { NameType, ValueType } from 'recharts/types/component/DefaultTooltipContent';
 import { MatchIndividualDataAggregations, SuperFoulAggregationsData } from 'requests';
 
@@ -24,16 +24,8 @@ const CustomTooltip: React.FC<TooltipProps<ValueType, NameType>> = ({
   return null;
 };
 
-
-
-const customLegendPayload = [
-  { value: 'Coral', color: '#13B3AC', id: 'Bongle'},
-  { value: 'Algae', color: '#EEE600', id: 'Bingle'},
-  { value: 'Fouls', color: '#800020', id: 'Blickle'},
-];
-
-
-export interface MatchAndSuper extends Pick<MatchIndividualDataAggregations, 'totalL1' | 'totalL2' | 'totalL3' | 'totalL4' | 'totalProcessor' | 'totalNet' | 'totalRemoved' | '_id' >, SuperFoulAggregationsData {}
+// :3
+export interface MatchAndSuper extends Pick<MatchIndividualDataAggregations, 'totalL1' | 'totalL2' | 'totalL3' | 'totalL4' | 'totalProcessor' | 'totalNet' | 'totalRemoved'>, SuperFoulAggregationsData {}
 
 const BarChartWIP: React.FC<{ data: MatchAndSuper[]; teamNumber: number }> = ({ data, teamNumber }) => { 
 
@@ -70,7 +62,6 @@ const BarChartWIP: React.FC<{ data: MatchAndSuper[]; teamNumber: number }> = ({ 
         <XAxis dataKey="match" tick={{ fill: "white" }} />
         <YAxis tick={{ fill: "white" }} />
         <Tooltip content={<CustomTooltip />} />
-        <Legend payload={customLegendPayload}/>
         <Bar dataKey="Processor" stackId='a' fill="#EEE600" />
         <Bar dataKey="Net" stackId='a' fill="#EEE600" />
         <Bar dataKey="Removed" stackId='a' fill="#EEE600" />

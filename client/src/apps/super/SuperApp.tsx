@@ -119,7 +119,7 @@ function SuperApp() {
                         matchNumber,
                         robotTeam: team.teamNumber!,
                         robotPosition: (
-                            (superPosition === 'blue_ss1'
+                            (superPosition === 'blue_ss'
                                 ? ['blue_1', 'blue_2', 'blue_3']
                                 : ['red_1', 'red_2', 'red_3',]) satisfies RobotPosition[]
                         )[index],
@@ -161,7 +161,7 @@ function SuperApp() {
             setTeam3(team3 => ({ ...team3, teamNumber: undefined }));
             return;
         }
-        const blueAlliance = superPosition === 'blue_ss1';
+        const blueAlliance = superPosition === 'blue_ss';
         setTeam1(team1 => ({
             ...team1,
             teamNumber:

@@ -22,9 +22,8 @@ import { SuperScores } from "../SuperApp";
   }){
    return (
     <>
-    <p>
-    className={'mt-8 text-white text-2xl'}>
-    Successes
+    <p className={'mt-8 text-white text-2xl'}>
+      Successes
     </p>
     
       <button
@@ -37,11 +36,8 @@ import { SuperScores } from "../SuperApp";
             {count[successKey]}
           </p>
      </button>
-<br/>
-     <p
-    
-     className={'mt-8 text-white text-2xl'}>
-      <div/>
+     <div/>
+     <p className={'mt-8 text-white text-2xl'}>
      Fails</p>
      <button
         className='mt-10 mb-5 p-10 mx-4 bg-red-500 text-white text-2xl rounded' 
