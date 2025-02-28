@@ -40,6 +40,7 @@ interface MatchScores {
     teleL4: number;
     teleAlgaenetRobot: number;
     teleProcessor: number;
+    teleRemoved: number;
 }
 const defaultScores: MatchScores = {
     autoL1: 0,
@@ -55,7 +56,8 @@ const defaultScores: MatchScores = {
     teleL3: 0,
     teleL4: 0,
     teleAlgaenetRobot: 0,
-    teleProcessor: 0
+    teleProcessor: 0,
+    teleRemoved: 0
 };
 
 function MatchApp() {
@@ -65,11 +67,11 @@ function MatchApp() {
     const [matchNumber, setMatchNumber] = useState<number>();
     const [count, setCount] = useState<MatchScores>(defaultScores);
     const [leave, setLeave] = useState(false); //false=Not Left, true=Left
-    const [left, setLeft] = useState(false);
-    const [middle, setMiddle] = useState(false);
-    const [right, setRight] = useState(false);
-    const [leftSource, setleftSource] = useState(false);
-    const [rightSource, setrightSource] = useState(false);
+    const [start1, setStart1] = useState(false);
+    const [start2, setStart2] = useState(false);
+    const [start3, setStart3] = useState(false);
+    const [source1, setSource1] = useState(false);
+    const [source2, setSource2] = useState(false);
     const [ground1, setGround1] = useState(false);
     const [ground2, setGround2] = useState(false);
     const [ground3, setGround3] = useState(false);
@@ -107,16 +109,16 @@ function MatchApp() {
             },
             leftStartingZone: leave,
             startingZone: {
-                left: left,
-                middle: middle,
-                right: right,
+                start1: start1,
+                start2: start2,
+                start3: start3,
             },
             pickupLocation: {
-                leftSource: leftSource,
-                rightSource: rightSource,
+                source1: source1,
+                source2: source2,
                 ground1: ground1,
                 ground2: ground2,
-                round3: ground3
+                ground3: ground3
             },
             placement: {
                 deposit1: deposit1,
@@ -184,16 +186,16 @@ function MatchApp() {
             },
             leftStartingZone: leave,
             startingZone: {
-                left: left,
-                middle: middle,
-                right: right,
+                start1: start1,
+                start2: start2,
+                start3: start3,
             },
             pickupLocation: {
-                leftSource: leftSource,
-                rightSource: rightSource,
+                source1: source1,
+                source2: source2,
                 ground1: ground1,
                 ground2: ground2,
-                round3: ground3
+                ground3: ground3
             },
             placement: {
                 deposit1: deposit1,
@@ -227,22 +229,22 @@ function MatchApp() {
             },
             climb: climbPosition,
         };
-
+        
         sendQueue('/data/match', data);
         setCount(defaultScores);
         setClimbPosition('none');
         setLeave(false);
-        setLeft(false);
-        setMiddle(false);
-        setRight(false);
+        setStart1(false);
+        setStart2(false);
+        setStart3(false);
         setDeposit1(false);
         setDeposit2(false);
         setDeposit3(false);
         setDeposit4(false);
         setDeposit5(false);
         setDeposit6(false);
-        setleftSource(false);
-        setrightSource(false);
+        setSource1(false);
+        setSource2(false);
         setGround1(false);
         setGround2(false);
         setGround3(false);
@@ -294,7 +296,6 @@ function MatchApp() {
         }
     }
 
-    const [handleCheck ] = useState(false);
 
     return (
        <div className= {`${ toggleState ? 'bg-[#171c26]' : 'bg-white'}`}> 
@@ -404,52 +405,93 @@ function MatchApp() {
                 
                 <img src={`${blueAlliance ? 'bluesidematch.png': 'redsidematch.png'}`} width={500} height={600} className='justify-self-center my-7'></img>
                 {   <CheckBoxMatch
-                    handleChecked={handleCheck}
-                    className={`${blueAlliance ? '' :'bottom-[120px] right-[700px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    checked={ground1}
+                    onChange={setGround1}
+                    className={`${blueAlliance ? 'top-[660px] left-[285px]' :'top-[675px] left-[455px] ' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
+                    // ground 1
                     }
                     <CheckBoxMatch
-                    handleChecked={handleCheck}
-                    className={`${blueAlliance ? '' :'bottom-[230px] right-[395px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    checked={ground2}
+                    onChange={setGround2}
+                    className={`${blueAlliance ? 'top-[740px] left-[285px]' :'top-[760px] left-[455px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
+                    {/* ground 2 */}
                     <CheckBoxMatch
-                    handleChecked={handleCheck}
-                    className={`${blueAlliance ? '' :'bottom-[135px] right-[395px] ' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    checked={ground3}
+                    onChange={setGround3}
+                    className={`${blueAlliance ? 'top-[820px] left-[285px]' :'top-[840px] left-[455px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
+                    {/* ground 3 */}
                     <CheckBoxMatch
-                    handleChecked={handleCheck}
-                    className={`${blueAlliance? '' :'bottom-[390px] right-[365px] ' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    checked={source1}
+                    onChange={setSource1}
+                    className={`${blueAlliance? 'top-[570px] left-[250px]' :'top-[585px] left-[485px] ' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
+                    {/* source 1 */}
                     <CheckBoxMatch
-                    handleChecked={handleCheck}
-                    className={`${blueAlliance? '' :'bottom-[315px] right-[395px] ' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    checked={source2}
+                    onChange={setSource2}
+                    className={`${blueAlliance? 'top-[910px] left-[250px]' :'top-[930px] left-[485px] ' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
+                    {/* source 2 */}
                     <CheckBoxMatch
-                    handleChecked={handleCheck}
-                    className={`${blueAlliance? 'bottom-[100px] right-[180px] ' :'bottom-[230px] left-[32px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    checked={start1}
+                    onChange={setStart1}
+                    className={`${blueAlliance? 'top-[645px] left-[565px] ' :'top-[660px] left-[160px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
+                    {/* starting location 1 */}
                     <CheckBoxMatch
-                    handleChecked={handleCheck}
-                    className={`${blueAlliance? 'bottom-[100px] right-[160px] ' :'bottom-[345px] left-[30px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    checked={start2}
+                    onChange={setStart2}
+                    className={`${blueAlliance? 'top-[740px] left-[565px]' :'top-[760px] left-[160px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
+                    {/* starting location 2 */}
                     <CheckBoxMatch
-                    handleChecked={handleCheck}
-                    className={`${blueAlliance? 'bottom-[350px] right-[170px] ' :'bottom-[40px] left-[365px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    checked={start3}
+                    onChange={setStart3}
+                    className={`${blueAlliance? 'top-[835px] left-[565px]' :'top-[858px] left-[160px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
+                    {/* starting location 3 */}
                     
                     
-                    <CoralSectionButton selectClassName='bg-green-300 absolute left-[9.01em] top-[51em] h-[1em] w-[4em] rotate-[6.88rad]'
-                    unselectClassName='bg-red-300 absolute left-[9.01em] top-[51em] h-[1em] w-[4em] rotate-[6.88rad]'></CoralSectionButton>
-                    <CoralSectionButton selectClassName='bg-green-300 absolute left-[12.2em] top-[45.2em] h-[1em] w-[4.5em] rotate-[6.88rad]'
-                    unselectClassName='bg-red-300 absolute left-[12.2em] top-[45.2em] h-[1em] w-[4.5em] rotate-[6.88rad]'></CoralSectionButton>
-                    <CoralSectionButton selectClassName='bg-green-300 absolute left-[7.6em] top-[48em] h-[1em] w-[4em] rotate-90'
-                    unselectClassName='bg-red-300 absolute left-[7.6em] top-[48em] h-[1em] w-[4em] rotate-90'></CoralSectionButton>
-                    <CoralSectionButton selectClassName='bg-green-300 absolute left-[14.25em] top-[48.3em] h-[1em] w-[4em] rotate-90'
-                    unselectClassName='bg-red-300 absolute left-[14.25em] top-[48.3em] h-[1em] w-[4em] rotate-90'></CoralSectionButton>
-                    <CoralSectionButton selectClassName='bg-green-300 absolute left-[9.1em] top-[45em] h-[1em] w-[4em] rotate-[2.64rad]'
-                    unselectClassName='bg-red-300 absolute left-[9.1em] top-[45em] h-[1em] w-[4em] rotate-[2.64rad]'></CoralSectionButton>
-                    <CoralSectionButton selectClassName='bg-green-300 absolute left-[12.5em] top-[51.1em] h-[1em] w-[4em] rotate-[2.64rad]'
-                    unselectClassName='bg-red-300 absolute left-[12.5em] top-[51.1em] h-[1em] w-[4em] rotate-[2.64rad]'></CoralSectionButton>
+                    
+                    <CoralSectionButton
+                        onChange={setDeposit1}
+                        value={deposit1} 
+                        selectClassName={`${blueAlliance? 'bg-green-300 absolute left-[27.45em] top-[44.3em]':'bg-green-300 absolute left-[20.15em] top-[45.3em]'} h-[1em] w-[4.5em] rotate-[6.83rad]`}
+                        unselectClassName={`${blueAlliance? 'bg-red-300 absolute left-[27.45em] top-[44.3em]':'bg-red-300 absolute left-[20.15em] top-[45.3em]'} h-[1em] w-[4.5em] rotate-[6.83rad]`}>
+                    </CoralSectionButton>
+                    <CoralSectionButton
+                        onChange={setDeposit2}
+                        value={deposit2} 
+                        selectClassName={`${blueAlliance? 'bg-green-300 absolute left-[29.4em] top-[47.1em]':'bg-green-300 absolute left-[22em] top-[48.4em]'} h-[1em] w-[4em] rotate-90`}
+                        unselectClassName={`${blueAlliance? 'bg-red-300 absolute left-[29.4em] top-[47.1em]':'bg-red-300 absolute left-[22em] top-[48.4em]'} h-[1em] w-[4em] rotate-90`}>
+                    </CoralSectionButton>
+                    <CoralSectionButton
+                        onChange={setDeposit3}
+                        value={deposit3} 
+                        selectClassName={`${blueAlliance? 'bg-green-300 absolute left-[27.6em] top-[49.9em]':'bg-green-300 absolute left-[20.2em] top-[51.1em]'} h-[1em] w-[4em] rotate-[2.6rad]`}
+                        unselectClassName={`${blueAlliance? 'bg-red-300 absolute left-[27.6em] top-[49.9em]':'bg-red-300 absolute left-[20.2em] top-[51.1em]'} h-[1em] w-[4em] rotate-[2.6rad]`}>
+                    </CoralSectionButton>
+                    <CoralSectionButton 
+                        onChange={setDeposit4}
+                        value={deposit4}
+                        selectClassName={`${blueAlliance? 'bg-green-300 absolute left-[24.35em] top-[49.9em]':'bg-green-300 absolute left-[16.95em] top-[51em]'} h-[1em] w-[4em] rotate-[6.83rad]`}
+                        unselectClassName={`${blueAlliance? 'bg-red-300 absolute left-[24.35em] top-[49.9em]':'bg-red-300 absolute left-[16.95em] top-[51em]'} h-[1em] w-[4em] rotate-[6.83rad]`}>
+                    </CoralSectionButton>
+                    <CoralSectionButton 
+                        onChange={setDeposit5}
+                        value={deposit5}
+                        selectClassName={`${blueAlliance? 'bg-green-300 absolute left-[22.85em] top-[47.3em]':'bg-green-300 absolute left-[15.4em] top-[48.05em]'} h-[1em] w-[4em] rotate-90`}
+                        unselectClassName={`${blueAlliance? 'bg-red-300 absolute left-[22.85em] top-[47.3em]':'bg-red-300 absolute left-[15.4em] top-[48.05em]'} h-[1em] w-[4em] rotate-90`}>
+                    </CoralSectionButton>
+                    <CoralSectionButton
+                        onChange={setDeposit6}
+                        value={deposit6} 
+                        selectClassName={`${blueAlliance? 'bg-green-300 absolute left-[24.3em] top-[44.4em]':'bg-green-300 absolute left-[17em] top-[45.3em]'} h-[1em] w-[4em] rotate-[2.6rad]`}
+                        unselectClassName={`${blueAlliance? 'bg-red-300 absolute left-[24.3em] top-[44.4em]':'bg-red-300 absolute left-[17em] top-[45.3em]'} h-[1em] w-[4em] rotate-[2.6rad]`}>
+                    </CoralSectionButton>
                     
                 <p
                     className={`text-center m-5 ${toggleState ? 'text-white' : 'text-[#171c26]'}`}>
@@ -496,7 +538,8 @@ function MatchApp() {
             </div>
 
             <div>
-                <div>Queue: {queue.length}</div>
+                <div className={`${toggleState ? 'text-white' : 'text-[#171c26]'} justify-center text-center`}>
+                Queue: {queue.length}</div>
                 <button
                     onClick={sendAll}
                     className='rounded-md bg-amber-500 px-2 py-1 text-center mb-5'>

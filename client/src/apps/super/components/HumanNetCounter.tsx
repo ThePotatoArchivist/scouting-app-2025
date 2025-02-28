@@ -30,8 +30,6 @@ import { SuperScores } from "../SuperApp";
         </p>
       </div>
     <div className="snap-center flex justify-center">
-    
-    
       <button
         // className="mt-10 p-10 mx-4 bg-green-500 text-white Ftext-2xl rounded"
         onClick={() => handleCount(successKey)}
@@ -42,7 +40,6 @@ import { SuperScores } from "../SuperApp";
             {count[successKey]}
           </p>
      </button>
-
      <button
         className='mt-10 mb-5 p-10 mx-16 bg-red-500 text-white text-2xl rounded' 
         onClick={() => handleCount(failKey)}
@@ -52,7 +49,6 @@ import { SuperScores } from "../SuperApp";
           </p>
      </button>
      </div>
-     
     </>
    ); 
   };

@@ -7,7 +7,10 @@ import {
     averageAndMax,
     superAverageAndMax,
     robotImageDisplay,
-    scouterRankings
+    scouterRankings,
+    maxIndividual,
+    superMaxIndividual,
+    matchOutlier
 } from './aggregate.js';
 import { setUpSocket, updateMatchStatus } from './status.js';
 import { MatchData, PitFile, PitResult, SuperData } from 'requests';
@@ -77,9 +80,23 @@ app.get('/data/retrieve', async (req, res) => {
     res.send(await averageAndMax());
 });
 
+app.get('/data/retrieve/individualMatch', async (req, res) => {
+    res.send(await maxIndividual());
+});
+//:)
+
 app.get('/data/retrieve/super', async (req, res) => {
     res.send(await superAverageAndMax());
 });
+
+app.get('/data/retrieve/matchOutlier', async (req, res) => {
+    res.send(await matchOutlier());
+});
+
+app.get('/data/retrieve/individualSuper', async (req, res) => {
+    res.send(await superMaxIndividual());
+});
+//:)
 
 app.get('/data/retrieve/scouter', async (req, res) => {
     res.send(await scouterRankings());

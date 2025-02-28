@@ -31,7 +31,9 @@ export type CommentValues =
     | 'weak_build'
     | 'avoids_under_stage';
 
+
 export type Net = boolean;
+
 
 interface capabilities {
     coral: boolean;
@@ -54,36 +56,95 @@ export type SuperPosition = 'red_ss' | 'blue_ss';
 export type ScouterPosition = 'red_right' | 'blue_right';
 
 export interface MatchDataAggregations {
-    _id: { teamNumber: number };
-    averageTeleCoral: number;
-    averageTeleAlgaeProcessor: number;
-    averageTeleAlgaeRobotNet: number;
-    averageAutoCoral: number;
-    averageAutoAlgaeProcessor: number;
-    averageAutoAlgaeRobotNet: number;
-    maxTeleCoral: number;
-    maxTeleAlgaeProcessor: number;
-    maxTeleAlgaeRobotNet: number;
-    maxAutoCoral: number;
-    maxAutoAlgaeProcessor: number;
-    maxAutoAlgaeRobotNet: number;
-    maxCoral: number;
-    maxAlgaeProcessor: number;
-    maxAlgaeRobotNet: number;
+    _id: { teamNumber: number};
+    averageCoral: number;
+    averageAlgae: number;
+    averageRemove: number;
     avgClimbRate: number;
+    totalL1: number;
+    totalL2: number;
+    totalL3: number;
+    totalL4: number;
+    totalCoral: number;
+    totalProcessor: number;
+    totalNet: number;
+    totalRemoved: number;
+    totalAlgae: number;
+    coralDrop1: boolean;
+    coralDrop2: boolean;
+    coralDrop3: boolean;
+    coralDrop4: boolean;
+    coralDrop5: boolean;
+    coralDrop6: boolean;
+    groundPick1: boolean;
+    groundPick2: boolean;
+    groundPick3: boolean;
+    sourcePick1: boolean;
+    sourcePick2: boolean;
+    start1: boolean;
+    start2: boolean;
+    start3: boolean;
 }
 
-// export interface ScouterDataAggregations {
-//     scouterName: string
-//     accuracy: number;
-// }
-// find me
+export interface matchOutliersAggregation {
+    _id: { teamNumber: number };
+    autoL1: number;
+    autoL2: number;
+    autoL3: number;
+    autoL4: number;
+    leave: number;
+    teleL1: number;
+    teleL2: number;
+    teleL3: number;
+    teleL4: number;
+    teleProcessor: number;
+    teleNet: number;
+    shallow: number;
+    deep: number;
+    park: number;
+}
 
 export interface SuperDataAggregations {
     _id: { teamNumber: number };
     avgFouls: number;
     maxFouls: number;
     humanAccuracy: number;
+
+}
+
+export interface SuperFoulAggregationsData{
+    _id: { teamNumber: number, matchNumber: number };
+    totalInsideRobot: number;
+    totalProtectedZone: number;
+    totalPinning: number;
+    totalMultiplePieces: number;
+    totalCageFoul: number;
+    totalOther: number;
+}
+
+export interface MatchIndividualDataAggregations {
+    _id: { teamNumber: number, matchNumber: number, robotPosition: RobotPosition };
+    totalL1: number;
+    totalL2: number;
+    totalL3: number;
+    totalL4: number;
+    totalProcessor: number;
+    totalNet: number;
+    totalRemoved: number;
+    coralDrop1: boolean;
+    coralDrop2: boolean;
+    coralDrop3: boolean;
+    coralDrop4: boolean;
+    coralDrop5: boolean;
+    coralDrop6: boolean;
+    groundPick1: boolean;
+    groundPick2: boolean;
+    groundPick3: boolean;
+    sourcePick1: boolean;
+    sourcePick2: boolean;
+    start1: boolean;
+    start2: boolean;
+    start3: boolean;
 }
 
 export interface MetaData {
@@ -112,17 +173,17 @@ export interface netHuman {
 }
 
 interface StartingZone {
-    left: boolean;
-    middle: boolean;
-    right: boolean;
+    start1: boolean;
+    start2: boolean;
+    start3: boolean;
 }
 
 interface pickup {
-    leftSource: boolean;
-    rightSource: boolean;
+    source1: boolean;
+    source2: boolean;
     ground1: boolean;
     ground2: boolean;
-    round3: boolean
+    ground3: boolean
 }
 
 interface placeLocation {
@@ -239,6 +300,4 @@ export type TeamData = Partial<{
         avatar?: string;
         info?: TeamInfo;
     };
-
-    
 }>;

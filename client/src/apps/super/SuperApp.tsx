@@ -123,11 +123,7 @@ function SuperApp() {
                         robotPosition: (
                             (superPosition === 'blue_ss'
                                 ? ['blue_1', 'blue_2', 'blue_3']
-                                : [
-                                      'red_1',
-                                      'red_2',
-                                      'red_3',
-                                  ]) satisfies RobotPosition[]
+                                : ['red_1', 'red_2', 'red_3',]) satisfies RobotPosition[]
                         )[index],
                     },
                     fouls: team.foulCounts,
@@ -198,7 +194,7 @@ function SuperApp() {
 
 
     return (
-        <main className='bg-[#171c26] text-center'>
+        <main className='bg-[#171c26] text-center h-full'>
             {showCheck && (
                 <MaterialSymbol
                     icon='check'
@@ -311,13 +307,7 @@ function SuperApp() {
                 <SuperTeam teamState={team2} setTeamState={handleTeam2} bgClass={`${shooterPlayerTeam == -2 ? 'bg-[#003805] rounded-lg p-5' : ''} `}/>
                 <SuperTeam teamState={team3} setTeamState={handleTeam3} bgClass={`${shooterPlayerTeam == -3 ? 'bg-[#003805] rounded-lg p-5' : ''} `}/>
                 
-        </div>
-               
-            
-                
-
-
-
+        </div>  
             <button
                 onClick={() => {
                     handleSubmit();
