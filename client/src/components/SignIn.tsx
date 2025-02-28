@@ -66,19 +66,15 @@ function SignIn({
                     <MultiButton
                         onChange={onChangeRobotPosition}
                         value={robotPosition}
-                        labels={['Red 1', 'Red 2', 'Blue 1', 'Blue 2']}
+                        labels={['Red', 'Blue']}
                         values={['red_ss','blue_ss']}
                         className={'text-xl col-2 row-2'}
                         unSelectedClassName={[
                             'text-red-500 bg-gray-300 ',
-                            'text-red-500 bg-gray-300 ',
-                            'text-blue-500 bg-gray-300',
                             'text-blue-500 bg-gray-300',
                         ]}
                         selectedClassName={[
                             'bg-red-500 text-white',
-                            'bg-red-500 text-white',
-                            'bg-blue-500 text-white',
                             'bg-blue-500 text-white',
                         ]}
                     />
