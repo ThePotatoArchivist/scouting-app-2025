@@ -275,6 +275,19 @@ function SuperApp() {
                 className='m-2 p-2 text-xl text-black'
             />
         </div>
+        <p
+            className={'mt-10  text-white text-2xl'}>
+                Human Player Points
+            </p>
+            
+               <HumanCounter
+                count={count}
+                className='mt-10 mb-5 p-10 mx-4 bg-green-500 text-white text-2xl rounded' 
+                setCount={handleCount} >        
+                </HumanCounter> 
+
+                
+                <div/>
        <p className='text-white pt-5 text-2xl'>Human Player</p>     
         <div className='grid grid-cols-3 justify-items-center gap-10 px-10'>
             <MultiButton
@@ -300,19 +313,7 @@ function SuperApp() {
                 
         </div>
                
-            <p
-            className={'mt-10  text-white text-2xl'}>
-                Human Player Points
-            </p>
             
-               <HumanCounter
-                count={count}
-                className='mt-10 mb-5 p-10 mx-4 bg-green-500 text-white text-2xl rounded' 
-                setCount={handleCount} >        
-                </HumanCounter> 
-
-                
-                <div/>
                 
 
 

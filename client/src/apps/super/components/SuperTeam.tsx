@@ -99,7 +99,7 @@ function SuperTeam({
 
             <p className='mt-5 text-4xl text-zinc-100 underline'>Fouls</p>
 
-            <div className=' flex justify-center'>
+            <div className=' flex justify-center my-4'>
                 <button
                     className='mt-3 rounded-md border bg-red-400 px-3 py-2 text-lg text-zinc-100'
                     onClick={() => handleDecreaseFoul('insideRobot')}>
@@ -111,7 +111,7 @@ function SuperTeam({
                     +Inside Robot: {teamState.foulCounts.insideRobot || 0}
                 </button>
             </div>
-            <div className='flex justify-center'>
+            <div className='flex justify-center my-4'>
                 <button
                     className='mt-3 rounded-md border bg-red-400 px-3 py-2 text-lg text-zinc-100'
                     onClick={() => handleDecreaseFoul('protectedZone')}>
@@ -123,7 +123,7 @@ function SuperTeam({
                     +Protected Zone: {teamState.foulCounts.protectedZone || 0}
                 </button>
             </div>
-            <div className='flex justify-center'>
+            <div className='flex justify-center my-4'>
                 <button
                     className='mt-3 rounded-md border bg-red-400 px-3 py-2 text-lg text-zinc-100'
                     onClick={() => handleDecreaseFoul('pinning')}>
@@ -135,7 +135,7 @@ function SuperTeam({
                     +Pinning: {teamState.foulCounts.pinning || 0}
                 </button>
             </div>
-            <div className='flex justify-center'>
+            <div className='flex justify-center my-4'>
                 <button
                     className='mt-3 rounded-md border bg-red-400 px-3 py-2 text-lg text-zinc-100'
                     onClick={() => handleDecreaseFoul('multiplePieces')}>
@@ -147,7 +147,7 @@ function SuperTeam({
                     +Multiple Pieces: {teamState.foulCounts.multiplePieces || 0}
                 </button>
             </div>
-            <div className='flex justify-center'>
+            <div className='flex justify-center my-4'>
                 <button
                     className='mt-3 rounded-md border bg-red-400 px-3 py-2 text-lg text-zinc-100'
                     onClick={() => handleDecreaseFoul('cageFoul')}>
@@ -159,7 +159,7 @@ function SuperTeam({
                     +Cage Foul: {teamState.foulCounts.cageFoul || 0}
                 </button>
             </div>
-            <div className='flex justify-center'>
+            <div className='flex justify-center my-4'>
                 <button
                     className='mt-3 rounded-md border bg-red-400 px-3 py-2 text-lg text-zinc-100'
                     onClick={() => handleDecreaseFoul('other')}>
@@ -173,7 +173,7 @@ function SuperTeam({
             </div>
 
             <p className='mt-7 text-4xl text-zinc-100 underline'>Breaks</p>
-            <div className='flex justify-center'>
+            <div className='flex justify-center my-4'>
                 <button
                     className='mt-3 rounded-md border bg-red-400 px-3 py-2 text-lg text-zinc-100'
                     onClick={() => handleDecreaseBreak('mechanismDmg')}>
@@ -185,7 +185,7 @@ function SuperTeam({
                     +Mechanism Dmg: {teamState.breakCount.mechanismDmg || 0}
                 </button>
             </div>
-            <div className='flex justify-center'>
+            <div className='flex justify-center my-4'>
                 <button
                     className='mt-3 rounded-md border bg-red-400 px-3 py-2 text-lg text-zinc-100'
                     onClick={() => handleDecreaseBreak('batteryFall')}>
@@ -197,7 +197,7 @@ function SuperTeam({
                     +Battery Fall: {teamState.breakCount.batteryFall || 0}
                 </button>
             </div>
-            <div className='flex justify-center'>
+            <div className='flex justify-center my-4'>
                 <button
                     className='mt-3 rounded-md border bg-red-400 px-3 py-2 text-lg text-zinc-100'
                     onClick={() => handleDecreaseBreak('commsFail')}>
@@ -209,7 +209,7 @@ function SuperTeam({
                     +Comms Fail: {teamState.breakCount.commsFail || 0}
                 </button>
             </div>
-            <div className='flex justify-center'>
+            <div className='flex justify-center my-4'>
                 <button
                     className='mt-3 rounded-md border bg-red-400 px-3 py-2 text-lg text-zinc-100'
                     onClick={() => handleDecreaseBreak('bumperFall')}>

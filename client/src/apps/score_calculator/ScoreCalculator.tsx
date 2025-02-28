@@ -16,12 +16,12 @@ function Counter({
     return (
         <>
             <button
-                className=' rounded-l-lg bg-red-400 px-4 py-8 text-zinc-100 active:brightness-75'
+                className=' rounded-l-lg bg-red-400 px-4 border py-8 text-zinc-100 active:brightness-75'
                 onClick={() => onChange(value > 0 ? value - 1 : value)}>
                 -
             </button>
             <button
-                className='rounded-r-lg px-1 text-clip bg-slate-600 text-zinc-100 active:brightness-75'
+                className='rounded-r-lg px-1 text-clip bg-slate-600 border text-zinc-100 active:brightness-75'
                 onClick={() => onChange(value + 1)}>
                 + {children} ({value})
             </button>
@@ -80,7 +80,7 @@ function ScoreCalculator() {
     };
 
     return (
-        <div className='flex h-dvh flex-col'>
+        <div className='flex h-dvh flex-col bg-gray-800'>
             <div className='mb-2 bg-gray-800'>
                 <br />
                 <h1 className='mb-4 text-center text-6xl  font-bold text-[#48c55c]'>
@@ -107,7 +107,7 @@ function ScoreCalculator() {
                     className='text-2xl col-span-2 mx-2 rounded-md  bg-blue-400/70 px-3 py-2 text-black active:brightness-75'>
                     Reset All
                 </button>
-                <h2 className='text-center text-5xl font-bold text-green-600 my-2'>
+                <h2 className='text-center text-5xl font-bold text-green-400 my-2'>
                             Auto
                         </h2>
                     <>
@@ -139,10 +139,9 @@ function ScoreCalculator() {
                         </Counter>
                     </div>
                     </>
-                    <h2 className='col-span-2 text-center text-5xl font-bold text-green-600 my-2'>
+                    <h2 className='col-span-2 text-center text-5xl font-bold text-green-400 my-2'>
                             Teleop
                     </h2>
-                    {/*grid w-10 snap-center snap-always auto-rows-fr grid-cols-[auto_1fr] grid-rows-[auto] gap-1 md:flex-grow md:basis-0 */}
                     <>
                     <div className='snap-center flex justify-center my-2 gap-2'>
                         
@@ -170,7 +169,7 @@ function ScoreCalculator() {
                         </Counter>
                         </div>
                     </>
-                    <h2 className='col-span-2 my-2 text-center text-5xl font-bold text-green-600'>
+                    <h2 className='col-span-2 my-2 text-center text-5xl font-bold text-green-400'>
                             Endgame
                     </h2>
                     <div className='snap-center flex justify-center text-3xl my-2 gap-2'>
@@ -188,8 +187,8 @@ function ScoreCalculator() {
                     </div>
                 </div>
 
-                <div className='col-span-2 grid grid-cols-2 justify-center gap-2 py-2'>
-                    <p className='text-black-100 text-md rounded-md border-green-800 bg-green-400/70 px-3 py-2 text-center'>
+                <div className='col-span-2 grid grid-cols-2 justify-center gap-2 py-2 bg-gray-800'>
+                    <p className='text-black-100 text-md rounded-md border-green-800 bg-green-400 px-3 py-2 text-center'>
                         Leave:{' '}
                         <span className='rounded-lg bg-black/15 p-2 py-1'>
                             {autoPoints}
@@ -197,21 +196,21 @@ function ScoreCalculator() {
                     </p>
 
                     <p
-                        className={` text-black-100 text-md rounded-md border-green-800 bg-green-400/70 px-3 py-2 text-center`}>
+                        className={` text-black-100 text-md rounded-md border-green-800 bg-green-400 px-3 py-2 text-center`}>
                         Coral:{' '}
                         <span className='rounded-lg bg-black/15 p-2 py-1'>
                             {CoralPoints}
                         </span>
                     </p>
 
-                    <p className='text-black-100 text-md rounded-md border-green-800 bg-green-400/70 px-3 py-2 text-center'>
+                    <p className='text-black-100 text-md rounded-md border-green-800 bg-green-400 px-3 py-2 text-center'>
                         Algae:{' '}
                         <span className='rounded-lg bg-black/15 p-2 py-1'>
                             {AlgaePoints}
                         </span>
                     </p>
 
-                    <p className='text-black-100 text-md rounded-md border-green-800 bg-green-400/70 px-3 py-2 text-center'>
+                    <p className='text-black-100 text-md rounded-md border-green-800 bg-green-400 px-3 py-2 text-center'>
                         Barge:{' '}
                         <span className='rounded-lg bg-black/15 p-2 py-2'>
                             {cagePoints}
