@@ -16,12 +16,13 @@ export type Foul =
     | 'multiplePieces'
     | 'cageFoul'
     | 'other';
-export type Break = 'mechanismDmg' | 'batteryFall' | 'commsFail';
+export type Break = 'mechanismDmg' | 'batteryFall' | 'commsFail' | 'bumperFall';
 export type DefenseRank = 'fullDef' | 'someDef' | 'noDef';
 export type CommentValues =
     | 'great_driving'
     | 'good_driving'
     | 'source_only'
+    | 'knock_pieces'
     | 'clogging'
     | 'effective_defense'
     | 'okay_defense'

@@ -86,6 +86,7 @@ const superScoutDataSchema = new mongoose.Schema<SuperData>({
         mechanismDmg: Number,
         batteryFall: Number,
         commsFail: Number,
+        bumperFall: Number
     },
     defense: {
         type: String,

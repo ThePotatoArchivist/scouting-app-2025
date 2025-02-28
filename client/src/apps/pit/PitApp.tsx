@@ -111,7 +111,7 @@ function PitApp() {
                 </div>
 
                 <div className='mb-2 flex items-center justify-center'>
-                    <div className='flex h-40 w-2/4 flex-col items-center justify-center rounded-lg border-4 border-[#2f3646] bg-[#2f3646]'>
+                    <div className='flex h-72 w-2/4 flex-col items-center justify-center rounded-lg border-4 border-[#2f3646] bg-[#2f3646]'>
                         <h1 className='text-center text-white'>Team Number</h1>
                         <TeamDropdown
                             onChange={setTeamNumber}
@@ -125,7 +125,7 @@ function PitApp() {
 
      
                 <div className='mb-8 flex items-center justify-center'>
-                    <div className='flex h-40 w-2/4 flex-col items-center justify-center rounded-lg border-4 border-[#2f3646] bg-[#2f3646] '>
+                    <div className='flex h-72 w-2/4 flex-col items-center justify-center rounded-lg border-4 border-[#2f3646] bg-[#2f3646] '>
                         <h1 className='text-center text-white'>
                             Number of Batteries?
                         </h1>

@@ -21,6 +21,7 @@ const commentOptions: SelectOption<CommentValues>[] = [
     { label: 'great driving', value: 'great_driving', color: '#5ac750' },
     { label: 'good driving', value: 'good_driving', color: '#50a1c7' },
     { label: 'source only', value: 'source_only', color: '#c78450' },
+    { label: 'knock pieces', value: 'knock_pieces', color: '#c107f0' },
     { label: 'clogging', value: 'clogging', color: '#c78450' },
     {
         label: 'effective defense',

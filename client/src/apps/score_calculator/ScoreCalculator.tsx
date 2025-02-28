@@ -3,7 +3,6 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 
 import LinkButton from '../../components/LinkButton';
 import { MaterialSymbol } from 'react-material-symbols';
-import NumberInput from '../../components/NumberInput';
 
 function Counter({
     value,
@@ -17,12 +16,12 @@ function Counter({
     return (
         <>
             <button
-                className='text-md my-2 rounded-l-lg bg-red-400 px-4 py-2 text-zinc-100 active:brightness-75'
+                className=' rounded-l-lg bg-red-400 px-4 border py-8 text-zinc-100 active:brightness-75'
                 onClick={() => onChange(value > 0 ? value - 1 : value)}>
                 -
             </button>
             <button
-                className='text-md min-w-55 my-2 rounded-r-lg bg-slate-600 px-3  py-2 text-zinc-100 active:brightness-75'
+                className='rounded-r-lg px-1 text-clip bg-slate-600 border text-zinc-100 active:brightness-75'
                 onClick={() => onChange(value + 1)}>
                 + {children} ({value})
             </button>
@@ -48,20 +47,18 @@ function ScoreCalculator() {
     const [Deep, setDeep] = useState(0);
     const [Shallow, setShallow] = useState(0);
     
-    const [foulPoints, setFoulPoints] = useState<number | undefined>(0);
-
     const autoPoints = autoLeave * 3 ;
     const CoralPoints =
         autoCoral1 * 3 + autoCoral2 * 4 + autoCoral3 * 6 + autoCoral4 * 7 + teleCoral1 * 2 + teleCoral2 * 3 + teleCoral3 * 4 + teleCoral4 * 5;
-    const AlgaePoints = autoAlgaeProcessor * 6 + teleAlgaeProcessor * 6 + autoAlgaeNet *4; teleAlgaeNet * 4;
+    const AlgaePoints = 
+        autoAlgaeProcessor * 6 + teleAlgaeProcessor * 6 + autoAlgaeNet *4 + teleAlgaeNet * 4;
     const cagePoints =
         park * 2 + Deep * 12 + Shallow * 6;
     const totalPoints =
         autoPoints +
         CoralPoints + 
         AlgaePoints +
-        cagePoints +
-        (foulPoints ?? 0);
+        cagePoints ;
 
     const handleReset = () => {
         setAutoLeave(0);
@@ -80,14 +77,13 @@ function ScoreCalculator() {
         setPark(0);
         setDeep(0);
         setShallow(0);
-        setFoulPoints(0);
     };
 
     return (
-        <div className='flex h-dvh flex-col'>
+        <div className='flex h-dvh flex-col bg-gray-800'>
             <div className='mb-2 bg-gray-800'>
                 <br />
-                <h1 className='mb-4 text-center text-3xl  font-bold text-[#48c55c]'>
+                <h1 className='mb-4 text-center text-6xl  font-bold text-[#48c55c]'>
                     Score Calculator
                 </h1>
             </div>
@@ -108,14 +104,14 @@ function ScoreCalculator() {
             <div className='flex flex-grow flex-col'>
                 <button
                     onClick={handleReset}
-                    className='text-md col-span-2 mx-2 rounded-md  bg-blue-400/70 px-3 py-2 text-black active:brightness-75'>
+                    className='text-2xl col-span-2 mx-2 rounded-md  bg-blue-400/70 px-3 py-2 text-black active:brightness-75'>
                     Reset All
                 </button>
-                <div className='flex flex-grow snap-x snap-mandatory flex-row gap-2 overflow-x-auto p-2 *:flex-shrink-0'>
-                    <div className='grid w-[calc(100%_-_1rem)] snap-center snap-always auto-rows-fr grid-cols-[auto_1fr] grid-rows-[auto] gap-1 md:w-auto md:flex-grow md:basis-0'>
-                        <h2 className='col-span-2 text-center text-xl font-bold text-green-600'>
+                <h2 className='text-center text-5xl font-bold text-green-400 my-2'>
                             Auto
                         </h2>
+                    <>
+                    <div className='snap-center flex justify-center gap-2 my-2'>
                         <Counter value={autoLeave} onChange={setAutoLeave}>
                             Auto Leave
                         </Counter>
@@ -131,17 +127,24 @@ function ScoreCalculator() {
                         <Counter value={autoCoral4} onChange={setAutoCoral4}>
                             Auto Coral L4
                         </Counter>
-                        <Counter value={autoAlgaeProcessor} onChange={setAutoAlgaeProcessor}>
+                    </div>
+                    </>
+                    <>
+                    <div className='snap-center flex justify-center gap-2 my-2'>
+                    <Counter value={autoAlgaeProcessor} onChange={setAutoAlgaeProcessor}>
                             Auto Algae Processor
                         </Counter>
                         <Counter value={autoAlgaeNet} onChange={setAutoAlgaeNet}>
                             Auto Algae Net
                         </Counter>
                     </div>
-                    <div className='grid w-[calc(100%_-_2rem)] snap-center snap-always auto-rows-fr grid-cols-[auto_1fr] grid-rows-[auto] gap-1 md:w-auto md:flex-grow md:basis-0'>
-                        <h2 className='col-span-2 text-center text-xl font-bold text-green-600'>
+                    </>
+                    <h2 className='col-span-2 text-center text-5xl font-bold text-green-400 my-2'>
                             Teleop
-                        </h2>
+                    </h2>
+                    <>
+                    <div className='snap-center flex justify-center my-2 gap-2'>
+                        
                         <Counter value={teleCoral1} onChange={setTeleCoral1}>
                             Tele Coral L1
                         </Counter>
@@ -154,22 +157,23 @@ function ScoreCalculator() {
                         <Counter value={teleCoral4} onChange={setTeleCoral4}>
                             Tele Coral L4
                         </Counter>
-
+                    </div>
+                    </>
+                    <>
+                        <div className='snap-center flex justify-center gap-2 my-2'>
                         <Counter value={teleAlgaeProcessor} onChange={setTeleAlgaeProcessor}>
                             Tele Algae Processor
                         </Counter>
-
-                        <Counter
-                            value={teleAlgaeNet}
-                            onChange={setTeleAlgaeNet}>
+                        <Counter value={teleAlgaeNet} onChange={setTeleAlgaeNet}>
                             Tele Algae Net
                         </Counter>
-                    </div>
-
-                    <div className='grid w-[calc(100%_-_1rem)] snap-center snap-always auto-rows-fr  grid-cols-[auto_1fr] grid-rows-[auto]  gap-1 md:w-auto md:flex-grow md:basis-0'>
-                        <h2 className='col-span-2 text-center text-xl font-bold text-green-600'>
+                        </div>
+                    </>
+                    <h2 className='col-span-2 my-2 text-center text-5xl font-bold text-green-400'>
                             Endgame
-                        </h2>
+                    </h2>
+                    <div className='snap-center flex justify-center text-3xl my-2 gap-2'>
+                        
                         <Counter value={park} onChange={setPark}>
                             Park
                         </Counter>
@@ -183,8 +187,8 @@ function ScoreCalculator() {
                     </div>
                 </div>
 
-                <div className='col-span-2 grid grid-cols-2 justify-center gap-2 bg-slate-200 p-3'>
-                    <p className='text-black-100 text-md rounded-md border-green-800 bg-green-400/70 px-3 py-2 text-center'>
+                <div className='col-span-2 grid grid-cols-2 justify-center gap-2 py-2 bg-gray-800'>
+                    <p className='text-black-100 text-md rounded-md border-green-800 bg-green-400 px-3 py-2 text-center'>
                         Leave:{' '}
                         <span className='rounded-lg bg-black/15 p-2 py-1'>
                             {autoPoints}
@@ -192,45 +196,34 @@ function ScoreCalculator() {
                     </p>
 
                     <p
-                        className={` text-black-100 text-md rounded-md border-green-800 bg-green-400/70 px-3 py-2 text-center`}>
+                        className={` text-black-100 text-md rounded-md border-green-800 bg-green-400 px-3 py-2 text-center`}>
                         Coral:{' '}
                         <span className='rounded-lg bg-black/15 p-2 py-1'>
                             {CoralPoints}
                         </span>
                     </p>
 
-                    <p className='text-black-100 text-md rounded-md border-green-800 bg-green-400/70 px-3 py-2 text-center'>
+                    <p className='text-black-100 text-md rounded-md border-green-800 bg-green-400 px-3 py-2 text-center'>
                         Algae:{' '}
                         <span className='rounded-lg bg-black/15 p-2 py-1'>
                             {AlgaePoints}
                         </span>
                     </p>
 
-                    <p className='text-black-100 text-md rounded-md border-green-800 bg-green-400/70 px-3 py-2 text-center'>
-                        Cage:{' '}
-                        <span className='rounded-lg bg-black/15 p-2 py-1'>
+                    <p className='text-black-100 text-md rounded-md border-green-800 bg-green-400 px-3 py-2 text-center'>
+                        Barge:{' '}
+                        <span className='rounded-lg bg-black/15 p-2 py-2'>
                             {cagePoints}
                         </span>
                     </p>
-
-                    <p className='text-black-100 text-md rounded-md border-green-800 bg-green-400/70 px-3 py-2 text-center'>
-                        Foul Points:{' '}
-                        <NumberInput
-                            className='w-16 rounded-lg bg-black/15 p-2 py-1 text-center'
-                            value={foulPoints}
-                            onChange={setFoulPoints}
-                        />
-                    </p>
-
-                    <p className='text-black-100 text-md rounded-md border-green-800 bg-green-400/70 px-3 py-2 text-center font-black'>
+                </div>
+                <p className='text-black-100 text-md rounded-md border-green-800 bg-green-400/70 px-3 py-2 text-center font-black'>
                         Total:{' '}
                         <span className='rounded-lg bg-black/15 p-2 py-1'>
                             {totalPoints}
                         </span>
                     </p>
-                </div>
             </div>
-        </div>
     );
 }
 

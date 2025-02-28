@@ -69,9 +69,7 @@ function SuperApp() {
     const [sendQueue, sendAll, queue, sending] = useQueue();
     const [matchNumber, setMatchNumber] = useState<number>();
     const [showCheck, setShowCheck] = useState(false);
-    const [history, setHistory] = useState<
-        { 1: SuperTeamState; 2: SuperTeamState; 3: SuperTeamState }[]
-    >([]);
+    const [history, setHistory] = useState< { 1: SuperTeamState; 2: SuperTeamState; 3: SuperTeamState; 4: SuperScores  }[] >([]);
     useStatus(superPosition, matchNumber, scouterName);
 
     const saveHistory = () => {
@@ -81,6 +79,7 @@ function SuperApp() {
                 1: team1,
                 2: team2,
                 3: team3,
+                4: count 
             },
         ]);
     };
@@ -96,7 +95,10 @@ function SuperApp() {
         setTeam3(teamValue);
         saveHistory();
     };
-    
+    const handleCount = (scoreValue: SuperScores) => {
+        setCount(scoreValue);
+        saveHistory();
+    }
 
     const handleSubmit = async () => {
         if (
@@ -186,6 +188,7 @@ function SuperApp() {
             setTeam1(last[1]);
             setTeam2(last[2]);
             setTeam3(last[3]);
+            setCount(last[4]);
         }
     };
 
@@ -268,6 +271,19 @@ function SuperApp() {
                 className='m-2 p-2 text-xl text-black'
             />
         </div>
+        <p
+            className={'mt-10  text-white text-2xl'}>
+                Human Player Points
+            </p>
+            
+               <HumanCounter
+                count={count}
+                className='mt-10 mb-5 p-10 mx-4 bg-green-500 text-white text-2xl rounded' 
+                setCount={handleCount} >        
+                </HumanCounter> 
+
+                
+                <div/>
        <p className='text-white pt-5 text-2xl'>Human Player</p>     
         <div className='grid grid-cols-3 justify-items-center gap-10 px-10'>
             <MultiButton
@@ -291,20 +307,7 @@ function SuperApp() {
                 <SuperTeam teamState={team2} setTeamState={handleTeam2} bgClass={`${shooterPlayerTeam == -2 ? 'bg-[#003805] rounded-lg p-5' : ''} `}/>
                 <SuperTeam teamState={team3} setTeamState={handleTeam3} bgClass={`${shooterPlayerTeam == -3 ? 'bg-[#003805] rounded-lg p-5' : ''} `}/>
                 
-        </div>
-               
-            <p
-            className={'mt-10  text-white text-2xl'}>
-                Human Player Points
-            </p>
-               <HumanCounter
-               
-                count={count}
-                className='mt-10 mb-5 p-10 mx-2 justify-center bg-green-500 text-white text-2xl rounded flex flex-nowrap' 
-                setCount={setCount} >        
-                </HumanCounter> 
-
-                <br/>
+        </div>  
             <button
                 onClick={() => {
                     handleSubmit();
