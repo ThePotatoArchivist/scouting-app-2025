@@ -74,9 +74,13 @@ function PitApp() {
                     
                   <h1 className='text-center text-3x1 text-white'>Pit Scouting Guide!</h1>
                   <p className='text-center text-x1 text-white'>1. Introduce yourself to the team!</p>
-                  <p className='text-center text-x1 text-white'>Ex: "Hi I'm (name) and I'm from Team 4201. What are you guys working on?</p>
-                  <p className='text-center text-x1 text-white'>2. Be curious! Engage with the members and don't treat them as if you're just surveying them. </p>
-                  <p className='text-center text-x1 text-white'>3. Be confident and uphold Gracious Professionalism.</p>
+                  <p className='text-center text-x1 text-white'>Ex: "Hi I'm (name) and I'm from Team 4201.</p>
+                  <p className='text-center text-x1 text-white'>What are you guys working on?"</p>
+                  <p className='text-center text-x1 text-white'>2. Be curious! Engage with the members and</p>
+                  <p className='text-center text-x1 text-white'> don't treat them as if you're just surveying them. </p>
+                  <p className='text-center text-x1 text-white'>3. Compliment their robot and be friendly. </p>
+                  <p className='text-center text-x1 text-white'>Ease into questions about the robot. </p>
+                  <p className='text-center text-x1 text-white'>4. Be confident and uphold Gracious Professionalism.</p>
                   <p className='text-center text-x1 text-white'>Good luck!!</p>
                 </div>
 
