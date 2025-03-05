@@ -24,6 +24,8 @@ export type CommentValues =
     | 'source_only'
     | 'knock_pieces'
     | 'clogging'
+    | 'coral stuck'
+    | 'algae stuck'
     | 'effective_defense'
     | 'okay_defense'
     | 'ineffective_defense'
