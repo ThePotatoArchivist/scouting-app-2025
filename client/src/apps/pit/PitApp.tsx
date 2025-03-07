@@ -23,7 +23,7 @@ function PitApp() {
     const [batteryNumber, setBatteryNumber] = useState(Number);
     const [teamNumber, setTeamNumber] = useState(Number);
     const [toggleState, setToggleState] = useState(false);
-    const [sendQueue, sendAll, queue, sending] = useQueue();
+    const [sendQueuePit, sendAllPit, queuePit, sendingPit] = useQueue();
     const [scouterName, setScouterName] = useState('');
     const [robotImage, setRobotImage] = useState('');
     useEffect(() => {
@@ -32,16 +32,16 @@ function PitApp() {
     }, [refreshScoutedTeams]);
 
     const handleSubmit = async () => {
-        if (sending) return;
+        if (sendingPit) return;
 
         const data: PitFile = {
-            scouterName: 'bcdsh',
+            scouterName: 'bogos',
             teamNumber,
             pitBatteryCount: batteryNumber,
             photo: robotImage,
             comments: additionalNotes,
         };
-            sendQueue('/data/pit', data);
+            sendQueuePit('/data/pit', data);
             refreshScoutedTeams();
             setBatteryNumber(0);
             setAdditionalNotes('');
@@ -63,8 +63,8 @@ function PitApp() {
 
     return (
         <>
-            <div className='bg-[#171c26]'>
-                <div className='mb-7 border border-neutral-900 bg-gray-800'>
+            <div className={`${toggleState ? 'bg-[#171c26]' : 'bg-white'}`}>
+                <div className={`${toggleState ? 'border-neutral-900 bg-gray-800' : 'bg-slate-300'} mb-7 border `} >
                     <br />
                     <h1 className='mb-4 text-center text-3xl font-bold text-[#48c55c]'>
                         Pit App
@@ -124,8 +124,8 @@ function PitApp() {
                 </div>
 
                 <div className='mb-2 flex items-center justify-center'>
-                    <div className='flex h-72 w-2/4 flex-col items-center justify-center rounded-lg border-4 border-[#2f3646] bg-[#2f3646]'>
-                        <h1 className='text-center text-white'>Team Number</h1>
+                    <div className={`${toggleState ? 'bg-[#2f3646] border-[#2f3646]' : 'bg-slate-200 border-slate-200'} flex h-72 w-2/4 flex-col items-center justify-center rounded-lg border-4`}>
+                        <h1 className={`${toggleState ? 'text-white' : 'text-[#171c26]'} text-center`}>Team Number</h1>
                         <TeamDropdown
                             onChange={setTeamNumber}
                             value={teamNumber}
@@ -138,8 +138,8 @@ function PitApp() {
 
      
                 <div className='mb-8 flex items-center justify-center'>
-                    <div className='flex h-72 w-2/4 flex-col items-center justify-center rounded-lg border-4 border-[#2f3646] bg-[#2f3646] '>
-                        <h1 className='text-center text-white'>
+                    <div className={`${toggleState ? 'bg-[#2f3646] border-[#2f3646]' : 'bg-slate-200 border-slate-200'} flex h-72 w-2/4 flex-col items-center justify-center rounded-lg border-4`} >
+                        <h1 className={`${toggleState ? 'text-white' : 'text-[#171c26]'} text-center`}>
                             Number of Batteries?
                         </h1>
                         <input
@@ -155,10 +155,10 @@ function PitApp() {
                     </div>
                 </div>
 
-                <h1 className='my-2 text-center text-white '>Robot Image</h1>
+                <h1 className={`${toggleState ? 'text-white' : 'text-[#171c26]'} my-2 text-center`}>Robot Image</h1>
                 <ImageUploader value={robotImage} onChange={setRobotImage} />
 
-                <h1 className='pt-6 text-center text-white'>
+                <h1 className={`${toggleState ? 'text-white' : 'text-[#171c26]'} pt-6 text-center`}>
                     Additional Notes?
                 </h1>
                 <input
@@ -170,16 +170,19 @@ function PitApp() {
                 <button
                     onClick={handleSubmit}
                     className='border-1 pad mx-auto !flex w-min place-content-center rounded-lg border border-gray-700 bg-[#48c55c] px-4 py-4 font-sans text-4xl font-semibold text-black shadow-xl md:bg-opacity-50 '>
-                    {sending ? 'Sending...' : 'Submit'}
+                    {sendingPit ? 'Sending...' : 'Submit'}
                 </button>
+                <br/>
                 <div>
                 <div className={`${toggleState ? 'text-white' : 'text-[#171c26]'} justify-center text-center`}>
-                Queue: {queue.length}</div>
+                Queue: {queuePit.length}</div>
+                <div className='flex justify-center items-center'>
                 <button
-                    onClick={sendAll}
+                    onClick={sendAllPit}
                     className='rounded-md bg-amber-500 px-2 py-1 text-center mb-5'>
-                    {sending ? 'Sending...' : 'Resend All'}
+                    {sendingPit ? 'Sending...' : 'Resend All'}
                 </button>
+                </div>
             </div>
             </div>
         </>
