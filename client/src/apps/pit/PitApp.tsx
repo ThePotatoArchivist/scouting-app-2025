@@ -23,7 +23,7 @@ function PitApp() {
     const [batteryNumber, setBatteryNumber] = useState(Number);
     const [teamNumber, setTeamNumber] = useState(Number);
     const [toggleState, setToggleState] = useState(false);
-    const [sendQueuePit, sendAllPit, queuePit, sendingPit] = useQueue();
+    const [sendQueuePit, sendAllPit, queuePit, sendingPit] = useQueue('pit');
     const [scouterName, setScouterName] = useState('');
     const [robotImage, setRobotImage] = useState('');
     useEffect(() => {
