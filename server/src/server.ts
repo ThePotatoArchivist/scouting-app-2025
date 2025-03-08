@@ -57,7 +57,6 @@ app.post('/data/super', async (req, res) => {
 
 app.post('/data/pit', async (req, res) => {
     const body = req.body as PitFile;
-console.log(body);
     try {
         let PitApp;
         if (body.photo == '') {
@@ -79,7 +78,6 @@ console.log(body);
 
         res.end();
     } catch (e) {
-        console.log(e)
         res.status(500);
         res.end();
     }
