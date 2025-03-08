@@ -131,10 +131,8 @@ function PitApp() {
                         />
                     </div>
                 </div>
+                
 
-
-
-     
                 <div className='mb-8 flex items-center justify-center'>
                     <div className='flex h-72 w-2/4 flex-col items-center justify-center rounded-lg border-4 border-[#2f3646] bg-[#2f3646] '>
                         <h1 className='text-center text-white'>
@@ -151,6 +149,25 @@ function PitApp() {
                             type='number'
                             placeholder='0'></input>
                     </div>
+                </div>
+                <div className='mb-8 flex items-center justify-center'>  
+                    
+                    <div className='flex h-72 w-2/4 flex-col items-center justify-center rounded-lg border-4 border-[#2f3646] bg-[#2f3646]'>
+                    <h1 className='text-center text-2xl text-white font-bold'>
+                            Intake?
+                        </h1>
+                        <h1 className= 'text-left text-white mr-2 '>
+                            Hopper?
+                        </h1>
+                        <input type='checkbox' className='form-checkbox h-5 w-5 text-blue-600'/>
+
+
+                        <h1 className= 'text-left text-white'>
+                            Funnel/Coral Intakes?
+                        </h1>
+                        <input type='checkbox' className='form-checkbox h-5 w-5 text-blue-600'/>
+                    </div>
+                   
                 </div>
 
                 <h1 className='my-2 text-center text-white '>Robot Image</h1>
