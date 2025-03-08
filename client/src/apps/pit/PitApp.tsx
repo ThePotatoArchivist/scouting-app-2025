@@ -23,7 +23,7 @@ function PitApp() {
     const [batteryNumber, setBatteryNumber] = useState(Number);
     const [teamNumber, setTeamNumber] = useState(Number);
     const [toggleState, setToggleState] = useState(false);
-    const [sendQueuePit, sendAllPit, queuePit, sendingPit] = useQueue('pit');
+    const [sendQueuePit, sendAllPit, queuePit, sendingPit] = useQueue();
     const [scouterName, setScouterName] = useState('');
     const [robotImage, setRobotImage] = useState('');
     useEffect(() => {
@@ -32,7 +32,7 @@ function PitApp() {
     }, [refreshScoutedTeams]);
 
     const handleSubmit = async () => {
-        if (sendingPit) return;
+        if (sendingPit) return;  
 
         const data: PitFile = {
             scouterName: 'bogos',

@@ -62,7 +62,7 @@ const defaultScores: MatchScores = {
 
 function MatchApp() {
     usePreventUnload();
-    const [sendQueue, sendAll, queue, sending] = useQueue('match');
+    const [sendQueue, sendAll, queue, sending] = useQueue();
     const [teamNumber, setTeamNumber] = useState<number>();
     const [matchNumber, setMatchNumber] = useState<number>();
     const [count, setCount] = useState<MatchScores>(defaultScores);

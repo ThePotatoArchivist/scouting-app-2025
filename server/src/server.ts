@@ -57,12 +57,20 @@ app.post('/data/super', async (req, res) => {
 
 app.post('/data/pit', async (req, res) => {
     const body = req.body as PitFile;
-
+console.log(body);
     try {
-        const PitApp = new pitApp({
+        let PitApp;
+        if (body.photo == '') {
+            PitApp = new pitApp({
+                ...body,
+                photo: Buffer.from([])
+            })
+        } else {
+        PitApp = new pitApp({
             ...body,
             photo: Buffer.from(dataUriToBuffer(body.photo).buffer),
         });
+        }
         // const aPitApp =
 
         await PitApp.save();
@@ -71,6 +79,7 @@ app.post('/data/pit', async (req, res) => {
 
         res.end();
     } catch (e) {
+        console.log(e)
         res.status(500);
         res.end();
     }
