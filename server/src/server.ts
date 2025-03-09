@@ -59,10 +59,19 @@ app.post('/data/pit', async (req, res) => {
     const body = req.body as PitFile;
 
     try {
-        const PitApp = new pitApp({
-            ...body,
-            photo: Buffer.from(dataUriToBuffer(body.photo).buffer),
-        });
+        let PitApp;
+        if (body.photo == '') {
+            PitApp = new pitApp({
+                ...body,
+                photo: Buffer.from([]),
+            });
+        } else {
+            PitApp = new pitApp({
+                ...body,
+                photo: Buffer.from(dataUriToBuffer(body.photo).buffer),
+            });
+        }
+        
         // const aPitApp =
 
         await PitApp.save();
