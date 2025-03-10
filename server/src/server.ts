@@ -32,7 +32,6 @@ app.post('/data/match', async (req, res) => {
 
     await matchApp.replaceOne ({ 'metadata.robotTeam' : body.metadata.robotTeam, 'metadata.matchNumber' : body.metadata.matchNumber }, body).setOptions({upsert: true});
 
-    // await new matchApp(body).save();
     updateMatchStatus();
     console.log(
         chalk.gray(
@@ -48,7 +47,6 @@ app.post('/data/super', async (req, res) => {
 
     await superApp.replaceOne ({ 'metadata.robotTeam' : body.metadata.robotTeam, 'metadata.matchNumber' : body.metadata.matchNumber }, body).setOptions({upsert: true});
 
-    await new superApp(body).save();
     updateMatchStatus();
     console.log(
         chalk.gray(
