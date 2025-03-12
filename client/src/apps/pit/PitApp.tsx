@@ -73,15 +73,15 @@ function PitApp() {
                     </h1>
                     
                   <h1 className='text-center text-3x1 text-white'>Pit Scouting Guide!</h1>
-                  <p className='text-center text-x1 text-white'>1. Introduce yourself to the team!</p>
-                  <p className='text-center text-x1 text-white'>Ex: "Hi I'm (name) and I'm from Team 4201.</p>
-                  <p className='text-center text-x1 text-white'>What are you guys working on?"</p>
-                  <p className='text-center text-x1 text-white'>2. Be curious! Engage with the members and</p>
-                  <p className='text-center text-x1 text-white'> don't treat them as if you're just surveying them. </p>
-                  <p className='text-center text-x1 text-white'>3. Compliment their robot and be friendly. </p>
-                  <p className='text-center text-x1 text-white'>Ease into questions about the robot. </p>
-                  <p className='text-center text-x1 text-white'>4. Be confident and uphold Gracious Professionalism.</p>
-                  <p className='text-center text-x1 text-white'>Good luck!!</p>
+                  <p className='text-center text-md text-white'>1. Introduce yourself to the team! <br/> 
+                  Ex: "Hi I'm {scouterName} and I'm from Team 4201. <br/> 
+                  What are you guys working on?" <br/>
+                  2. Be curious! Engage with the members and <br/>
+                  don't treat them as if you're just surveying them. <br/>
+                  3. Compliment their robot and be friendly. <br/> 
+                  Ease into questions about the robot. <br/>
+                  4. Be confident and uphold Gracious Professionalism.<br/>
+                  Good luck!!</p>
                 </div>
 
                 <div className='fixed left-4 top-4 z-20  flex flex-col gap-2 rounded-md bg-slate-200 p-2'>
@@ -121,9 +121,9 @@ function PitApp() {
                     <ConeStacker />
                 </div>
 
-                <div className='mb-2 flex items-center justify-center'>
+                <div className='mb-6 flex items-center justify-center'>
                     <div className='flex h-72 w-2/4 flex-col items-center justify-center rounded-lg border-4 border-[#2f3646] bg-[#2f3646]'>
-                        <h1 className='text-center text-white'>Team Number</h1>
+                        <h1 className='text-center text-white text-3xl font-bold'>Team Number</h1>
                         <TeamDropdown
                             onChange={setTeamNumber}
                             value={teamNumber}
@@ -133,9 +133,9 @@ function PitApp() {
                 </div>
                 
 
-                <div className='mb-8 flex items-center justify-center'>
+                <div className='mb-6 flex items-center justify-center'>
                     <div className='flex h-72 w-2/4 flex-col items-center justify-center rounded-lg border-4 border-[#2f3646] bg-[#2f3646] '>
-                        <h1 className='text-center text-white'>
+                        <h1 className='text-center text-white text-3xl'>
                             Number of Batteries?
                         </h1>
                         <input
@@ -152,20 +152,26 @@ function PitApp() {
                 </div>
                 <div className='mb-8 flex items-center justify-center'>  
                     
-                    <div className='flex h-72 w-2/4 flex-col items-center justify-center rounded-lg border-4 border-[#2f3646] bg-[#2f3646]'>
-                    <h1 className='text-center text-2xl text-white font-bold'>
-                            Intake?
+                    <div className='grid h-72 w-2/4 grid-cols-4 items-center justify-center rounded-lg border-4 border-[#2f3646] bg-[#2f3646] text-3xl'>
+                    <div className='col-span-4'>
+                    <h1 className='text-center text-4xl text-white font-bold'>
+                            Intake
                         </h1>
-                        <h1 className= 'text-left text-white mr-2 '>
-                            Hopper?
+                    </div>
+                    
+                    <div className='col-span-2 place-items-center justify-center'>
+                        <h1 className='text-left text-white mr-2 '>
+                            Hopper
                         </h1>
-                        <input type='checkbox' className='form-checkbox h-5 w-5 text-blue-600'/>
-
-
+                        <input type='checkbox' className='form-checkbox h-12 w-12 text-blue-600'/>
+                    </div>
+                    <div className='col-span-2 place-items-center justify-center'>
                         <h1 className= 'text-left text-white'>
-                            Funnel/Coral Intakes?
+                            Funnel/Coral Intakes
                         </h1>
-                        <input type='checkbox' className='form-checkbox h-5 w-5 text-blue-600'/>
+                        <input type='checkbox' className='form-checkbox h-12 w-12 text-blue-600'/>
+                    </div>
+                       
                     </div>
                    
                 </div>
