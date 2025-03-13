@@ -311,7 +311,7 @@ function SuperApp() {
             <button
                 onClick={() => {
                     handleSubmit();
-                    scrollTo(0, 0);
+                    
                 }}
                 className='m-5 w-full max-w-80 rounded-md bg-[#48c55c] px-4 py-2 text-lg'>
                 Submit
