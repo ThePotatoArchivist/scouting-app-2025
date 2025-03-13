@@ -210,14 +210,14 @@ function SuperApp() {
             </h1>
 
             <div className='fixed left-4 top-4 z-20 flex flex-row gap-3 rounded-md bg-slate-200 p-1'>
-                <LinkButton link='/' className='snap-none'>
+                <LinkButton link='/'>
                     <MaterialSymbol
                         icon='home'
                         size={60}
                         fill
                         grade={200}
                         color='green'
-                        className='snap-none'
+                       
                     />
                 </LinkButton>
 
@@ -234,7 +234,7 @@ function SuperApp() {
                                     scouterName && superPosition
                                         ? 'text-green-400'
                                         : 'text-gray-400'
-                                } snap-none`}
+                                }`}
                             />
                         </button>
                     )}>
@@ -252,14 +252,14 @@ function SuperApp() {
 
                 <button
                     onClick={undoHistoryCount}
-                    className='z-10 aspect-square snap-none rounded bg-[#f07800]  p-1  font-bold text-black '>
+                    className='z-10 aspect-square rounded bg-[#f07800]  p-1  font-bold text-black '>
                     <MaterialSymbol
                         icon='undo'
                         size={60}
                         fill
                         grade={200}
                         color='black'
-                        className='snap-none'
+                      
                     />
                 </button>
             </div>
