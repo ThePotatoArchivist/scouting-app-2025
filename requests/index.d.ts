@@ -239,6 +239,7 @@ export interface PitFile {
     scouterName: string;
     teamNumber: number;
     pitBatteryCount: number;
+    hopperIntake: boolean;
     comments: string;
     photo: string;
 }

@@ -23,6 +23,7 @@ function PitApp() {
     const [batteryNumber, setBatteryNumber] = useState(Number);
     const [teamNumber, setTeamNumber] = useState(Number);
     const [toggleState, setToggleState] = useState(false);
+    const [hopper, setHopper] = useState(false);
     const [sendQueuePit, sendAllPit, queuePit, sendingPit] = useQueue();
     const [scouterName, setScouterName] = useState('');
     const [robotImage, setRobotImage] = useState('');
@@ -38,6 +39,7 @@ function PitApp() {
             scouterName: 'bogos',
             teamNumber,
             pitBatteryCount: batteryNumber,
+            hopperIntake: hopper,
             photo: robotImage,
             comments: additionalNotes,
         };
@@ -46,6 +48,7 @@ function PitApp() {
             setBatteryNumber(0);
             setAdditionalNotes('');
             setTeamNumber(0);
+            setHopper(false);
             setRobotImage('');
     };
 
@@ -172,16 +175,10 @@ function PitApp() {
                     </div>
                     
                     <div className='col-span-2 place-items-center justify-center'>
-                        <h1 className='text-left text-white mr-2 '>
-                            Hopper
+                        <h1 className='text-left text-white justify-center'>
+                            Hopper/Funnel Coral Intakes
                         </h1>
-                        <input type='checkbox' className='form-checkbox h-12 w-12 text-blue-600'/>
-                    </div>
-                    <div className='col-span-2 place-items-center justify-center'>
-                        <h1 className= 'text-left text-white'>
-                            Funnel/Coral Intakes
-                        </h1>
-                        <input type='checkbox' className='form-checkbox h-12 w-12 text-blue-600'/>
+                        <input type='checkbox' checked={hopper} className='form-checkbox h-12 w-12 text-blue-600'/>
                     </div>
                        
                     </div>

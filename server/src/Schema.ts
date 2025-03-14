@@ -139,6 +139,7 @@ const pitDataSchema = new mongoose.Schema<PitDataSchemaType>({
     scouterName: String,
     teamNumber: Number,
     pitBatteryCount: Number,
+    hopperIntake: Boolean,
     photo: Buffer,
     comments: String,
 });
