@@ -47,7 +47,7 @@ function ScoreCalculator() {
     const [Deep, setDeep] = useState(0);
     const [Shallow, setShallow] = useState(0);
     
-    const autoPoints = autoLeave * 3 ;
+    const autoPoints = autoLeave * 3 + autoCoral1 * 3 + autoCoral2 * 4 + autoCoral3 * 6 + autoCoral4 * 7 + autoAlgaeProcessor * 6 + autoAlgaeNet *4;
     const CoralPoints =
         autoCoral1 * 3 + autoCoral2 * 4 + autoCoral3 * 6 + autoCoral4 * 7 + teleCoral1 * 2 + teleCoral2 * 3 + teleCoral3 * 4 + teleCoral4 * 5;
     const AlgaePoints = 
@@ -59,6 +59,9 @@ function ScoreCalculator() {
         CoralPoints + 
         AlgaePoints +
         cagePoints ;
+    const autoCoralTotal = autoCoral1 * 3 + autoCoral2 * 4 + autoCoral3 * 6 + autoCoral4 * 7;
+    const teleCoralTotal = teleCoral1 * 2 + teleCoral2 * 3 + teleCoral3 * 4 + teleCoral4 * 5;
+    const teleopPoints = teleCoralTotal + cagePoints + teleAlgaeNet * 4 + teleAlgaeProcessor * 6;
 
     const handleReset = () => {
         setAutoLeave(0);
@@ -186,36 +189,39 @@ function ScoreCalculator() {
                         
                     </div>
                 </div>
+                
+                <div className='grid grid-cols-12 justify-center py-2 bg-gray-800 text-black-100 text-xl'>
+                <p className='col-span-3 border-green-800 border-4 bg-green-400 px-3 py-2 text-center'>Auto Leave</p>
+                    <p className='col-span-9 border-green-800 border-4 bg-green-300 px-3 py-2 text-center'>Points: {autoLeave*3}</p>
+                <p className='col-span-3 border-green-800 border-4 bg-green-500 px-3 py-2 text-center'>Auto Coral</p>
+                    <p className='col-span-1 border-green-800 border-4 bg-green-400 px-3 py-2'>L1: {autoCoral1}</p>
+                    <p className='col-span-1 border-green-800 border-4 bg-green-400 px-3 py-2'>L2: {autoCoral2}</p>
+                    <p className='col-span-1 border-green-800 border-4 bg-green-400 px-3 py-2'>L3: {autoCoral3}</p>
+                    <p className='col-span-1 border-green-800 border-4 bg-green-400 px-3 py-2'>L4: {autoCoral4}</p>
+                    <p className='col-span-5 border-green-800 border-4 bg-green-400 px-3 py-2 text-center'>Points: {autoCoralTotal}</p>
+                <p className='col-span-3 border-green-900 border-4 bg-green-400 px-3 py-2 text-center font-bold'>Total Auto</p>
+                    <p className='col-span-9 border-green-900 border-4 bg-green-300 px-3 py-2 text-center font-bold'>Points: {autoPoints}</p>
+                    <p className='col-span-3 border-green-800 border-4 bg-green-500 px-3 py-2 text-center'>Teleop Coral</p>
+                    <p className='col-span-1 border-green-800 border-4 bg-green-400 px-3 py-2'>L1: {teleCoral1+autoCoral1}</p>
+                    <p className='col-span-1 border-green-800 border-4 bg-green-400 px-3 py-2'>L2: {teleCoral2+autoCoral2}</p>
+                    <p className='col-span-1 border-green-800 border-4 bg-green-400 px-3 py-2'>L3: {teleCoral3+autoCoral3}</p>
+                    <p className='col-span-1 border-green-800 border-4 bg-green-400 px-3 py-2'>L4: {teleCoral4+autoCoral4}</p>
+                    <p className='col-span-5 border-green-800 border-4 bg-green-400 px-3 py-2 text-center'>Points: {teleCoralTotal}</p>
+                <p className='col-span-3 border-green-800 border-4 bg-green-400 px-3 py-2 text-center'>Algae</p>
+                    <p className='col-span-2 border-green-800 border-4 bg-green-300 px-3 py-2'>Net: {teleAlgaeNet+autoAlgaeNet}</p>
+                    <p className='col-span-2 border-green-800 border-4 bg-green-300 px-3 py-2'>Processor: {teleAlgaeProcessor+autoAlgaeProcessor}</p>
+                    <p className='col-span-5 border-green-800 border-4 bg-green-300 px-3 py-2 text-center'>Points: {AlgaePoints}</p>
+                <p className='col-span-3 border-green-800 border-4 bg-green-500 px-3 py-2 text-center'>Barge</p>
+                <div className='col-span-4 flex'>
+                    <p className='border-green-800 border-4 bg-green-400 px-3 py-2 w-80'>Park: {park}</p>
+                    <p className='border-green-800 border-4 bg-green-400 px-3 py-2 w-80'>Deep: {Deep}</p>
+                    <p className='border-green-800 border-4 bg-green-400 px-3 py-2 w-80'>Shallow: {Shallow}</p>
+                </div>
+                    <p className='col-span-5 border-green-800 border-4 bg-green-400 px-3 py-2 text-center'>Points: {cagePoints}</p>
+                <p className='col-span-3 border-green-900 border-4 bg-green-400 px-3 py-2 text-center font-bold'>Total Teleop</p>
+                    <p className='col-span-9 border-green-900 border-4 bg-green-300 px-3 py-2 text-center font-bold'>Points: {teleopPoints}</p>
 
-                <div className='col-span-2 grid grid-cols-2 justify-center gap-2 py-2 bg-gray-800'>
-                    <p className='text-black-100 text-md rounded-md border-green-800 bg-green-400 px-3 py-2 text-center'>
-                        Leave:{' '}
-                        <span className='rounded-lg bg-black/15 p-2 py-1'>
-                            {autoPoints}
-                        </span>
-                    </p>
-
-                    <p
-                        className={` text-black-100 text-md rounded-md border-green-800 bg-green-400 px-3 py-2 text-center`}>
-                        Coral:{' '}
-                        <span className='rounded-lg bg-black/15 p-2 py-1'>
-                            {CoralPoints}
-                        </span>
-                    </p>
-
-                    <p className='text-black-100 text-md rounded-md border-green-800 bg-green-400 px-3 py-2 text-center'>
-                        Algae:{' '}
-                        <span className='rounded-lg bg-black/15 p-2 py-1'>
-                            {AlgaePoints}
-                        </span>
-                    </p>
-
-                    <p className='text-black-100 text-md rounded-md border-green-800 bg-green-400 px-3 py-2 text-center'>
-                        Barge:{' '}
-                        <span className='rounded-lg bg-black/15 p-2 py-2'>
-                            {cagePoints}
-                        </span>
-                    </p>
+                   
                 </div>
                 <p className='text-black-100 text-md rounded-md border-green-800 bg-green-400/70 px-3 py-2 text-center font-black'>
                         Total:{' '}
