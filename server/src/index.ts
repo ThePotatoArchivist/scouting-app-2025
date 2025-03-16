@@ -13,6 +13,8 @@ dotenv.load({ path: '.env.local' });
 
 const REMOTE = process.env.LOCATION === 'remote';
 
+process.env.CONTAINER_NAME = 'cala-quals';
+
 const container = await startDockerContainer(process.env.CONTAINER_NAME);
 
 mongoose.connect('mongodb://0.0.0.0:27017/');

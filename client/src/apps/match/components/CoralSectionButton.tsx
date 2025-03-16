@@ -3,11 +3,13 @@
 function CoralSectionButton({
     selectClassName,
     unselectClassName,
+    className,
     onChange,
     value,
 }: {
     selectClassName: string;
     unselectClassName: string;
+    className: string;
     onChange: (newValue: boolean) => void;
     value: boolean
 }) {
@@ -20,7 +22,7 @@ function CoralSectionButton({
     return(
         <button
             onClick={handleSelect}
-            className={`${value? selectClassName : unselectClassName}`}
+            className={`${className} ${value? selectClassName : unselectClassName}`}
         />
     );
 }

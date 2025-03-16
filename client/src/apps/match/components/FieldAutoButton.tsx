@@ -64,38 +64,44 @@ const FieldAutoButton = () => {
             <CoralSectionButton
                 onChange={setDeposit1}
                 value={deposit1} 
-                selectClassName={`${blueAlliance? 'bg-green-300 absolute left-[27.45em] top-[44.3em]':'bg-green-300 absolute left-[20.15em] top-[45.3em]'} h-[1em] w-[4.5em] rotate-[6.83rad]`}
-                unselectClassName={`${blueAlliance? 'bg-red-300 absolute left-[27.45em] top-[44.3em]':'bg-red-300 absolute left-[20.15em] top-[45.3em]'} h-[1em] w-[4.5em] rotate-[6.83rad]`}>
+                className={`absolute ${blueAlliance? 'left-[19.5em] top-[19em]':'left-[12em] top-[20em]'} h-[1em] w-[4.5em] rotate-[30deg]`}
+                selectClassName='bg-green-300'
+                unselectClassName='bg-red-300'>   
             </CoralSectionButton>
             <CoralSectionButton
                 onChange={setDeposit2}
                 value={deposit2} 
-                selectClassName={`${blueAlliance? 'bg-green-300 absolute left-[29.4em] top-[47.1em]':'bg-green-300 absolute left-[22em] top-[48.4em]'} h-[1em] w-[4em] rotate-90`}
-                unselectClassName={`${blueAlliance? 'bg-red-300 absolute left-[29.4em] top-[47.1em]':'bg-red-300 absolute left-[22em] top-[48.4em]'} h-[1em] w-[4em] rotate-90`}>
+                className={`absolute ${blueAlliance? 'left-[21em] top-[21.5em]':'left-[13.5em] top-[23em]'} h-[1em] w-[4.5em] rotate-[90deg]`}
+                selectClassName='bg-green-300'
+                unselectClassName='bg-red-300'>
             </CoralSectionButton>
             <CoralSectionButton
                 onChange={setDeposit3}
                 value={deposit3} 
-                selectClassName={`${blueAlliance? 'bg-green-300 absolute left-[27.6em] top-[49.9em]':'bg-green-300 absolute left-[20.2em] top-[51.1em]'} h-[1em] w-[4em] rotate-[2.6rad]`}
-                unselectClassName={`${blueAlliance? 'bg-red-300 absolute left-[27.6em] top-[49.9em]':'bg-red-300 absolute left-[20.2em] top-[51.1em]'} h-[1em] w-[4em] rotate-[2.6rad]`}>
+                className={`absolute ${blueAlliance? 'left-[19.5em] top-[24.5em]':'left-[12em] top-[26em]'} h-[1em] w-[4.5em] rotate-[-30deg]`}
+                selectClassName='bg-green-300'
+                unselectClassName='bg-red-300' >
             </CoralSectionButton>
             <CoralSectionButton 
                 onChange={setDeposit4}
                 value={deposit4}
-                selectClassName={`${blueAlliance? 'bg-green-300 absolute left-[24.35em] top-[49.9em]':'bg-green-300 absolute left-[16.95em] top-[51em]'} h-[1em] w-[4em] rotate-[6.83rad]`}
-                unselectClassName={`${blueAlliance? 'bg-red-300 absolute left-[24.35em] top-[49.9em]':'bg-red-300 absolute left-[16.95em] top-[51em]'} h-[1em] w-[4em] rotate-[6.83rad]`}>
+                className={`absolute ${blueAlliance? 'left-[16em] top-[24.5em]':'left-[8.5em] top-[26em]'} h-[1em] w-[4.5em] rotate-[30deg]`}
+                selectClassName='bg-green-300'
+                unselectClassName='bg-red-300'>
             </CoralSectionButton>
             <CoralSectionButton 
                 onChange={setDeposit5}
                 value={deposit5}
-                selectClassName={`${blueAlliance? 'bg-green-300 absolute left-[22.85em] top-[47.3em]':'bg-green-300 absolute left-[15.4em] top-[48.05em]'} h-[1em] w-[4em] rotate-90`}
-                unselectClassName={`${blueAlliance? 'bg-red-300 absolute left-[22.85em] top-[47.3em]':'bg-red-300 absolute left-[15.4em] top-[48.05em]'} h-[1em] w-[4em] rotate-90`}>
+                className={`absolute ${blueAlliance? 'left-[14.5em] top-[21.5em]':'left-[6.9em] top-[22.9em]'} h-[1em] w-[4.5em] rotate-[90deg]`}
+                selectClassName='bg-green-300'
+                unselectClassName='bg-red-300'>
             </CoralSectionButton>
             <CoralSectionButton
                 onChange={setDeposit6}
                 value={deposit6} 
-                selectClassName={`${blueAlliance? 'bg-green-300 absolute left-[24.3em] top-[44.4em]':'bg-green-300 absolute left-[17em] top-[45.3em]'} h-[1em] w-[4em] rotate-[2.6rad]`}
-                unselectClassName={`${blueAlliance? 'bg-red-300 absolute left-[24.3em] top-[44.4em]':'bg-red-300 absolute left-[17em] top-[45.3em]'} h-[1em] w-[4em] rotate-[2.6rad]`}>
+                className={`absolute ${blueAlliance? 'left-[16em] top-[19em]':'left-[8.5em] top-[20em]'} h-[1em] w-[4.5em] rotate-[-30deg]`}
+                selectClassName='bg-green-300'
+                unselectClassName='bg-red-300'>
             </CoralSectionButton>
         </>
     );

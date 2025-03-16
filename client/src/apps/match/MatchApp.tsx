@@ -398,7 +398,7 @@ function MatchApp() {
                 </button>
             </div>
 
-            <div>
+            <div className='relative'>
                 <h2 className='mb-5 mt-12 text-center text-5xl font-semibold text-green-600'>
                     Autonomous
                 </h2>
@@ -407,90 +407,96 @@ function MatchApp() {
                 {   <CheckBoxMatch
                     checked={ground1}
                     onChange={setGround1}
-                    className={`${blueAlliance ? 'top-[660px] left-[285px]' :'top-[670px] left-[440px] ' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`${blueAlliance ? 'top-[255px] left-[155px]' :'top-[265px] left-[335px] ' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
                     // ground 1
                     }
                     <CheckBoxMatch
                     checked={ground2}
                     onChange={setGround2}
-                    className={`${blueAlliance ? 'top-[740px] left-[285px]' :'top-[760px] left-[440px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`${blueAlliance ? 'top-[335px] left-[155px]' :'top-[365px] left-[340px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
                     {/* ground 2 */}
                     <CheckBoxMatch
                     checked={ground3}
                     onChange={setGround3}
-                    className={`${blueAlliance ? 'top-[820px] left-[285px]' :'top-[840px] left-[440px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`${blueAlliance ? 'top-[415px] left-[155px]' :'top-[435px] left-[340px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
                     {/* ground 3 */}
                     <CheckBoxMatch
                     checked={source1}
                     onChange={setSource1}
-                    className={`${blueAlliance? 'top-[570px] left-[250px]' :'top-[585px] left-[485px] ' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`${blueAlliance? 'top-[150px] left-[130px]' :'top-[175px] left-[345px] ' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
                     {/* source 1 */}
                     <CheckBoxMatch
                     checked={source2}
                     onChange={setSource2}
-                    className={`${blueAlliance? 'top-[910px] left-[250px]' :'top-[930px] left-[485px] ' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`${blueAlliance? 'top-[510px] left-[130px]' :'top-[510px] left-[345px] ' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
                     {/* source 2 */}
                     <CheckBoxMatch
                     checked={start1}
                     onChange={setStart1}
-                    className={`${blueAlliance? 'top-[645px] left-[565px] ' :'top-[660px] left-[160px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`${blueAlliance? 'top-[230px] left-[440px] ' :'top-[230px] left-[35px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
                     {/* starting location 1 */}
                     <CheckBoxMatch
                     checked={start2}
                     onChange={setStart2}
-                    className={`${blueAlliance? 'top-[740px] left-[565px]' :'top-[760px] left-[160px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`${blueAlliance? 'top-[330px] left-[440px]' :'top-[330px] left-[35px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
                     {/* starting location 2 */}
                     <CheckBoxMatch
                     checked={start3}
                     onChange={setStart3}
-                    className={`${blueAlliance? 'top-[835px] left-[565px]' :'top-[858px] left-[160px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
+                    className={`${blueAlliance? 'top-[430px] left-[440px]' :'top-[430px] left-[35px]' } absolute z-20 h-10 w-10 overflow-hidden rounded-full text-left`}>
                     </CheckBoxMatch>
                     {/* starting location 3 */}
                     
-                    
+                                                                                
                     
                     <CoralSectionButton
                         onChange={setDeposit1}
                         value={deposit1} 
-                        selectClassName={`${blueAlliance? 'bg-green-300 absolute left-[27.45em] top-[44.3em]':'bg-green-300 absolute left-[18.5em] top-[45.3em]'} h-[1em] w-[4.5em] rotate-[6.83rad]`}
-                        unselectClassName={`${blueAlliance? 'bg-red-300 absolute left-[27.45em] top-[44.3em]':'bg-red-300 absolute left-[18.5em] top-[45.3em]'} h-[1em] w-[4.5em] rotate-[6.83rad]`}>
+                        className={`absolute ${blueAlliance? 'left-[19.5em] top-[19em]':'left-[12em] top-[20em]'} h-[1em] w-[4.5em] rotate-[30deg]`}
+                        selectClassName='bg-green-300'
+                        unselectClassName='bg-red-300'>
                     </CoralSectionButton>
                     <CoralSectionButton
                         onChange={setDeposit2}
                         value={deposit2} 
-                        selectClassName={`${blueAlliance? 'bg-green-300 absolute left-[29.4em] top-[47.1em]':'bg-green-300 absolute left-[20.2em] top-[48.4em]'} h-[1em] w-[4em] rotate-90`}
-                        unselectClassName={`${blueAlliance? 'bg-red-300 absolute left-[29.4em] top-[47.1em]':'bg-red-300 absolute left-[20.2em] top-[48.4em]'} h-[1em] w-[4em] rotate-90`}>
+                        className={`absolute ${blueAlliance? 'left-[21em] top-[21.5em]':'left-[13.5em] top-[23em]'} h-[1em] w-[4.5em] rotate-[90deg]`}
+                        selectClassName='bg-green-300'
+                        unselectClassName='bg-red-300'>
                     </CoralSectionButton>
                     <CoralSectionButton
                         onChange={setDeposit3}
                         value={deposit3} 
-                        selectClassName={`${blueAlliance? 'bg-green-300 absolute left-[27.6em] top-[49.9em]':'bg-green-300 absolute left-[18.5em] top-[51.1em]'} h-[1em] w-[4em] rotate-[2.6rad]`}
-                        unselectClassName={`${blueAlliance? 'bg-red-300 absolute left-[27.6em] top-[49.9em]':'bg-red-300 absolute left-[18.5em] top-[51.1em]'} h-[1em] w-[4em] rotate-[2.6rad]`}>
+                        className={`absolute ${blueAlliance? 'left-[19.5em] top-[24.5em]':'left-[12em] top-[26em]'} h-[1em] w-[4.5em] rotate-[-30deg]`}
+                        selectClassName='bg-green-300'
+                        unselectClassName='bg-red-300' >
                     </CoralSectionButton>
                     <CoralSectionButton 
                         onChange={setDeposit4}
                         value={deposit4}
-                        selectClassName={`${blueAlliance? 'bg-green-300 absolute left-[24.35em] top-[49.9em]':'bg-green-300 absolute left-[15.2em] top-[51em]'} h-[1em] w-[4em] rotate-[6.83rad]`}
-                        unselectClassName={`${blueAlliance? 'bg-red-300 absolute left-[24.35em] top-[49.9em]':'bg-red-300 absolute left-[15.2em] top-[51em]'} h-[1em] w-[4em] rotate-[6.83rad]`}>
+                        className={`absolute ${blueAlliance? 'left-[16em] top-[24.5em]':'left-[8.5em] top-[26em]'} h-[1em] w-[4.5em] rotate-[30deg]`}
+                        selectClassName='bg-green-300'
+                        unselectClassName='bg-red-300'>
                     </CoralSectionButton>
                     <CoralSectionButton 
                         onChange={setDeposit5}
                         value={deposit5}
-                        selectClassName={`${blueAlliance? 'bg-green-300 absolute left-[22.85em] top-[47.3em]':'bg-green-300 absolute left-[13.75em] top-[48.05em]'} h-[1em] w-[4em] rotate-90`}
-                        unselectClassName={`${blueAlliance? 'bg-red-300 absolute left-[22.85em] top-[47.3em]':'bg-red-300 absolute left-[13.75em] top-[48.05em]'} h-[1em] w-[4em] rotate-90`}>
+                        className={`absolute ${blueAlliance? 'left-[14.5em] top-[21.5em]':'left-[6.9em] top-[22.9em]'} h-[1em] w-[4.5em] rotate-[90deg]`}
+                        selectClassName='bg-green-300'
+                        unselectClassName='bg-red-300'>  
                     </CoralSectionButton>
                     <CoralSectionButton
                         onChange={setDeposit6}
                         value={deposit6} 
-                        selectClassName={`${blueAlliance? 'bg-green-300 absolute left-[24.3em] top-[44.4em]':'bg-green-300 absolute left-[15.4em] top-[45.3em]'} h-[1em] w-[4em] rotate-[2.6rad]`}
-                        unselectClassName={`${blueAlliance? 'bg-red-300 absolute left-[24.3em] top-[44.4em]':'bg-red-300 absolute left-[15.4em] top-[45.3em]'} h-[1em] w-[4em] rotate-[2.6rad]`}>
+                        className={`absolute ${blueAlliance? 'left-[16em] top-[19em]':'left-[8.5em] top-[20em]'} h-[1em] w-[4.5em] rotate-[-30deg]`}
+                        selectClassName='bg-green-300'
+                        unselectClassName='bg-red-300'>
                     </CoralSectionButton>
                     
                 <p
