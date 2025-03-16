@@ -54,14 +54,16 @@ function ScoreCalculator() {
         autoAlgaeProcessor * 6 + teleAlgaeProcessor * 6 + autoAlgaeNet *4 + teleAlgaeNet * 4;
     const cagePoints =
         park * 2 + Deep * 12 + Shallow * 6;
+    const autoCoralTotal = autoCoral1 * 3 + autoCoral2 * 4 + autoCoral3 * 6 + autoCoral4 * 7;
+    const teleCoralTotal = teleCoral1* 2  + teleCoral2 * 3 + teleCoral3 * 4 + teleCoral4 * 5;
+    const teleopPoints = teleCoralTotal + cagePoints + teleAlgaeNet * 4 + teleAlgaeProcessor * 6;
     const totalPoints =
         autoPoints +
         CoralPoints + 
         AlgaePoints +
-        cagePoints ;
-    const autoCoralTotal = autoCoral1 * 3 + autoCoral2 * 4 + autoCoral3 * 6 + autoCoral4 * 7;
-    const teleCoralTotal = (teleCoral1 - autoCoral1 )* 2  + (teleCoral2 - autoCoral2) * 3 + (teleCoral3 - autoCoral3) * 4 + (teleCoral4 - autoCoral4) * 5;
-    const teleopPoints = teleCoralTotal + cagePoints + teleAlgaeNet * 4 + teleAlgaeProcessor * 6;
+        cagePoints -
+        autoCoralTotal;
+    //added the minus coz its being counted twice
 
     const handleReset = () => {
         setAutoLeave(0);
