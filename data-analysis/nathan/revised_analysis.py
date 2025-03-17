@@ -2,8 +2,8 @@ import numpy as np
 import pandas as pd
 
 # Load data
-match_df = pd.read_csv("matchapps.csv")
-super_df = pd.read_csv("superapps.csv")
+match_df = pd.read_csv("test.matchapps.csv")
+super_df = pd.read_csv("test.superapps.csv")
 DEBUG = False
 
 # ---------------------------
@@ -196,4 +196,4 @@ for team in team_list:
 # ---------------------------
 # Export results
 # ---------------------------
-team_df.to_csv("caph_2025_sat.csv")
+team_df.to_csv("updated_caph_2025_sat_full.csv")
