@@ -1,7 +1,7 @@
-import { Dispatch, useEffect, useState } from 'react';
-import { RobotPosition, SuperPosition } from 'requests';
-import MultiButton from './MultiButton';
-import TextInput from './TextInput';
+import { Dispatch, useEffect, useState } from 'react';
+import { RobotPosition, SuperPosition } from 'requests';
+import MultiButton from './MultiButton';
+import TextInput from './TextInput';
 
 function SignIn({
     scouterName,
@@ -12,41 +12,41 @@ function SignIn({
     pitScouting,
     onSubmit,
 }: {
-    scouterName: string;
-    onChangeScouterName: Dispatch<string>;
-    onSubmit: () => void;
+    scouterName: string;
+    onChangeScouterName: Dispatch<string>;
+    onSubmit: () => void;
 } & (
     | {
-          superScouting: true;
-          pitScouting?: false;
-          robotPosition: SuperPosition | undefined;
-          onChangeRobotPosition: Dispatch<SuperPosition>;
+          superScouting: true;
+          pitScouting?: false;
+          robotPosition: SuperPosition | undefined;
+          onChangeRobotPosition: Dispatch<SuperPosition>;
       }
     | {
-          superScouting?: false;
-          pitScouting?: false;
+          superScouting?: false;
+          pitScouting?: false;
 
-          robotPosition: RobotPosition | undefined;
-          onChangeRobotPosition: Dispatch<RobotPosition>;
+          robotPosition: RobotPosition | undefined;
+          onChangeRobotPosition: Dispatch<RobotPosition>;
       }
     | {
-          superScouting?: false;
-          pitScouting: true;
+          superScouting?: false;
+          pitScouting: true;
 
-          robotPosition?: undefined;
-          onChangeRobotPosition?: undefined;
+          robotPosition?: undefined;
+          onChangeRobotPosition?: undefined;
       }
 )) {
-    const [showCheck, setShowCheck] = useState<boolean>(false);
+    const [showCheck, setShowCheck] = useState<boolean>(false);
 
     function handleSubmit() {
-        setShowCheck(true);
-        onSubmit();
+        setShowCheck(true);
+        onSubmit();
     }
 
     useEffect(() => {
-        setShowCheck(false);
-    }, [scouterName, robotPosition]);
+        setShowCheck(false);
+    }, [scouterName, robotPosition]);
 
     return (
         <>
@@ -130,10 +130,10 @@ function SignIn({
                 </div>
             </div>
         </>
-    );
+    );
 }
 
-export default SignIn;
+export default SignIn;
 
 /* 
 state variable - type for alliance already (in packages - robot position)

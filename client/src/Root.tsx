@@ -1,11 +1,11 @@
-import { Outlet } from 'react-router';
+import { Outlet } from 'react-router';
 
 function Root() {
     return (
         <>
             <Outlet />
         </>
-    );
+    );
 }
 
-export default Root;
+export default Root;

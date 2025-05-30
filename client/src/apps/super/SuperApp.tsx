@@ -1,8 +1,8 @@
-import { MaterialSymbol } from 'react-material-symbols';
-import LinkButton from '../../components/LinkButton';
-import SignIn from '../../components/SignIn';
-import { useEffect, useState } from 'react';
-import Dialog from '../../components/Dialog';
+import { MaterialSymbol } from 'react-material-symbols';
+import LinkButton from '../../components/LinkButton';
+import SignIn from '../../components/SignIn';
+import { useEffect, useState } from 'react';
+import Dialog from '../../components/Dialog';
 import {
     Foul,
     SuperPosition,
@@ -10,19 +10,19 @@ import {
     MatchSchedule,
     SuperData,
     RobotPosition,
-} from 'requests';
-import SuperTeam from './components/SuperTeam';
-import { SuperTeamState } from './components/SuperTeam';
-import NumberInput from '../../components/NumberInput';
-import MultiButton from '../../components/MultiButton';
-import { useStatus } from '../../lib/useStatus';
-import { useQueue } from '../../lib/useQueue';
-import scheduleFile from '../../assets/matchSchedule.json';
-import { usePreventUnload } from '../../lib/usePreventUnload';
-import HumanCounter from './components/HumanNetCounter';
-// import Human from './components/HumanNetCounter';
+} from 'requests';
+import SuperTeam from './components/SuperTeam';
+import { SuperTeamState } from './components/SuperTeam';
+import NumberInput from '../../components/NumberInput';
+import MultiButton from '../../components/MultiButton';
+import { useStatus } from '../../lib/useStatus';
+import { useQueue } from '../../lib/useQueue';
+import scheduleFile from '../../assets/matchSchedule.json';
+import { usePreventUnload } from '../../lib/usePreventUnload';
+import HumanCounter from './components/HumanNetCounter';
+// import Human from './components/HumanNetCounter';
 
-const schedule = scheduleFile as MatchSchedule;
+const schedule = scheduleFile as MatchSchedule;
 
 const foulTypes: Foul[] = [
     'insideRobot',
@@ -30,19 +30,19 @@ const foulTypes: Foul[] = [
     'pinning',
     'multiplePieces',
     'other',
-];
+];
 
 interface SuperScores {
-    Success: number;
-    Failed: number;
+    Success: number;
+    Failed: number;
 }
 
 const defaultScore: SuperScores = {
     Success: 0,
     Failed: 0,
-};
+};
 
-const breakTypes: Break[] = ['mechanismDmg', 'batteryFall', 'commsFail'];
+const breakTypes: Break[] = ['mechanismDmg', 'batteryFall', 'commsFail'];
 
 const defaultSuperTeamState: SuperTeamState = {
     foulCounts: Object.fromEntries(foulTypes.map(e => [e, 0])) as Record<
@@ -55,22 +55,22 @@ const defaultSuperTeamState: SuperTeamState = {
     wasDefended: false,
     teamNumber: undefined,
     cannedComments: [],
-};
+};
 
 function SuperApp() {
-    usePreventUnload();
-    const [scouterName, setScouterName] = useState('');
-    const [superPosition, setSuperPosition] = useState<SuperPosition>();
-    const [team1, setTeam1] = useState(defaultSuperTeamState);
-    const [team2, setTeam2] = useState(defaultSuperTeamState);
-    const [team3, setTeam3] = useState(defaultSuperTeamState);
-    const [count, setCount] = useState<SuperScores>(defaultScore);
-    const [shooterPlayerTeam, setShooterPlayerTeam] = useState<number>();
-    const [sendQueue, sendAll, queue, sending] = useQueue();
-    const [matchNumber, setMatchNumber] = useState<number>();
-    const [showCheck, setShowCheck] = useState(false);
-    const [history, setHistory] = useState< { 1: SuperTeamState; 2: SuperTeamState; 3: SuperTeamState; 4: SuperScores  }[] >([]);
-    useStatus(superPosition, matchNumber, scouterName);
+    usePreventUnload();
+    const [scouterName, setScouterName] = useState('');
+    const [superPosition, setSuperPosition] = useState<SuperPosition>();
+    const [team1, setTeam1] = useState(defaultSuperTeamState);
+    const [team2, setTeam2] = useState(defaultSuperTeamState);
+    const [team3, setTeam3] = useState(defaultSuperTeamState);
+    const [count, setCount] = useState<SuperScores>(defaultScore);
+    const [shooterPlayerTeam, setShooterPlayerTeam] = useState<number>();
+    const [sendQueue, sendAll, queue, sending] = useQueue();
+    const [matchNumber, setMatchNumber] = useState<number>();
+    const [showCheck, setShowCheck] = useState(false);
+    const [history, setHistory] = useState< { 1: SuperTeamState; 2: SuperTeamState; 3: SuperTeamState; 4: SuperScores  }[] >([]);
+    useStatus(superPosition, matchNumber, scouterName);
 
     const saveHistory = () => {
         setHistory([
@@ -81,23 +81,23 @@ function SuperApp() {
                 3: team3,
                 4: count 
             },
-        ]);
-    };
+        ]);
+    };
     const handleTeam1 = (teamValue: SuperTeamState) => {
-        setTeam1(teamValue);
-        saveHistory();
-    };
+        setTeam1(teamValue);
+        saveHistory();
+    };
     const handleTeam2 = (teamValue: SuperTeamState) => {
-        setTeam2(teamValue);
-        saveHistory();
-    };
+        setTeam2(teamValue);
+        saveHistory();
+    };
     const handleTeam3 = (teamValue: SuperTeamState) => {
-        setTeam3(teamValue);
-        saveHistory();
-    };
+        setTeam3(teamValue);
+        saveHistory();
+    };
     const handleCount = (scoreValue: SuperScores) => {
-        setCount(scoreValue);
-        saveHistory();
+        setCount(scoreValue);
+        saveHistory();
     }
 
     const handleSubmit = async () => {
@@ -109,8 +109,8 @@ function SuperApp() {
             team2.teamNumber === undefined ||
             team3.teamNumber === undefined
         ) {
-            alert('data is missing! :(');
-            return;
+            alert('data is missing! :(');
+            return;
         }
 
         const data = [team1, team2, team3].map(
@@ -139,58 +139,58 @@ function SuperApp() {
                             : undefined,
                     comments: team.cannedComments.map(option => option.value),
                 }) satisfies SuperData
-        );
+        );
 
-        console.log(data);
+        console.log(data);
 
-        data.map(e => sendQueue('/data/super', e));
-        setTeam1(defaultSuperTeamState);
-        setTeam2(defaultSuperTeamState);
-        setTeam3(defaultSuperTeamState);
-        setCount(defaultScore);
-        setHistory([]);
-        setMatchNumber(matchNumber + 1);
-        setShowCheck(true);
+        data.map(e => sendQueue('/data/super', e));
+        setTeam1(defaultSuperTeamState);
+        setTeam2(defaultSuperTeamState);
+        setTeam3(defaultSuperTeamState);
+        setCount(defaultScore);
+        setHistory([]);
+        setMatchNumber(matchNumber + 1);
+        setShowCheck(true);
         setTimeout(() => {
-            setShowCheck(false);
-        }, 3000);
-    };
+            setShowCheck(false);
+        }, 3000);
+    };
 
     useEffect(() => {
         if (!schedule || !superPosition || !matchNumber) {
-            setTeam1(team1 => ({ ...team1, teamNumber: undefined }));
-            setTeam2(team2 => ({ ...team2, teamNumber: undefined }));
-            setTeam3(team3 => ({ ...team3, teamNumber: undefined }));
-            return;
+            setTeam1(team1 => ({ ...team1, teamNumber: undefined }));
+            setTeam2(team2 => ({ ...team2, teamNumber: undefined }));
+            setTeam3(team3 => ({ ...team3, teamNumber: undefined }));
+            return;
         }
-        const blueAlliance = superPosition === 'blue_ss';
+        const blueAlliance = superPosition === 'blue_ss';
         setTeam1(team1 => ({
             ...team1,
             teamNumber:
                 schedule[matchNumber]?.[blueAlliance ? 'blue_1' : 'red_1'],
-        }));
+        }));
         setTeam2(team2 => ({
             ...team2,
             teamNumber:
                 schedule[matchNumber]?.[blueAlliance ? 'blue_2' : 'red_2'],
-        }));
+        }));
         setTeam3(team3 => ({
             ...team3,
             teamNumber:
                 schedule[matchNumber]?.[blueAlliance ? 'blue_3' : 'red_3'],
-        }));
-    }, [matchNumber, superPosition]);
+        }));
+    }, [matchNumber, superPosition]);
 
     const undoHistoryCount = () => {
         if (history.length > 0) {
-            setHistory(prevHistory => prevHistory.slice(0, -1));
-            const last = history.at(-1)!;
-            setTeam1(last[1]);
-            setTeam2(last[2]);
-            setTeam3(last[3]);
-            setCount(last[4]);
+            setHistory(prevHistory => prevHistory.slice(0, -1));
+            const last = history.at(-1)!;
+            setTeam1(last[1]);
+            setTeam2(last[2]);
+            setTeam3(last[3]);
+            setCount(last[4]);
         }
-    };
+    };
 
 
     return (
@@ -310,7 +310,7 @@ function SuperApp() {
         </div>  
             <button
                 onClick={() => {
-                    handleSubmit();
+                    handleSubmit();
                     
                 }}
                 className='m-5 w-full max-w-80 rounded-md bg-[#48c55c] px-4 py-2 text-lg'>
@@ -326,8 +326,8 @@ function SuperApp() {
                 </button>
             </div>
         </main>
-    );
+    );
 }
 
-export type { SuperScores };
-export default SuperApp;
+export type { SuperScores };
+export default SuperApp;

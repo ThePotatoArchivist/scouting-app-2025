@@ -1,22 +1,22 @@
-import { Dispatch, SetStateAction } from 'react';
-import { MatchScores } from '../MatchApp';
-import { ClimbPosition } from 'requests';
-import MultiButton from '../../../components/MultiButton';
+import { Dispatch, SetStateAction } from 'react';
+import { MatchScores } from '../MatchApp';
+import { ClimbPosition } from 'requests';
+import MultiButton from '../../../components/MultiButton';
 
 function EndgameButton({
     setClimb,
     climbPosition,
 }: {
-    setClimb: Dispatch<SetStateAction<ClimbPosition>>;
-    setCount: Dispatch<SetStateAction<MatchScores>>;
-    climbPosition: ClimbPosition;
-    count: MatchScores;
+    setClimb: Dispatch<SetStateAction<ClimbPosition>>;
+    setCount: Dispatch<SetStateAction<MatchScores>>;
+    climbPosition: ClimbPosition;
+    count: MatchScores;
 }) {
-    // const [alliance, setAlliance] = useState(false); //false=red, true=blue, null=hollow purple
+    // const [alliance, setAlliance] = useState(false); //false=red, true=blue, null=hollow purple
 
     const handleClimb = (newClimb: ClimbPosition) => {
-        setClimb(newClimb);
-    };
+        setClimb(newClimb);
+    };
 
     return (
         <>
@@ -51,7 +51,7 @@ function EndgameButton({
             </div>
             <br/>
         </>
-    );
+    );
 }
 
-export default EndgameButton;
+export default EndgameButton;

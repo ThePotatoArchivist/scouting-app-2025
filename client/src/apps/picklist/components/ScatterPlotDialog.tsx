@@ -1,28 +1,28 @@
-import { Dispatch, useState } from 'react';
-import { AnalysisEntry, ScatterPlotGraphData } from '../data';
-import TextInput from '../../../components/TextInput';
-import SelectSearch from 'react-select-search';
-import camelToSpaced from '../../../lib/camelCaseConvert';
-import { MaterialSymbol } from 'react-material-symbols';
+import { Dispatch, useState } from 'react';
+import { AnalysisEntry, ScatterPlotGraphData } from '../data';
+import TextInput from '../../../components/TextInput';
+import SelectSearch from 'react-select-search';
+import camelToSpaced from '../../../lib/camelCaseConvert';
+import { MaterialSymbol } from 'react-material-symbols';
 
 function ScatterPlotDialog({
     onSubmit,
     onClose,
     data,
 }: {
-    onSubmit: Dispatch<ScatterPlotGraphData>;
-    onClose?: () => void;
-    data: AnalysisEntry[] | undefined;
+    onSubmit: Dispatch<ScatterPlotGraphData>;
+    onClose?: () => void;
+    data: AnalysisEntry[] | undefined;
 }) {
     const columns = data
         ? Object.keys(data[0]).filter(
               e => e !== 'teamNumber' && typeof data[0][e] === 'number'
           )
-        : [];
+        : [];
 
-    const [title, setTitle] = useState('');
-    const [xColumn, setXColumn] = useState<string>();
-    const [yColumn, setYColumn] = useState<string>();
+    const [title, setTitle] = useState('');
+    const [xColumn, setXColumn] = useState<string>();
+    const [yColumn, setYColumn] = useState<string>();
 
     const handleSubmit = () => {
         if (xColumn && yColumn) {
@@ -35,10 +35,10 @@ function ScatterPlotDialog({
                 xColumn: xColumn || '',
                 yColumn: yColumn || '',
                 type: 'ScatterPlotGraph',
-            });
-            onClose?.();
+            });
+            onClose?.();
         }
-    };
+    };
 
     return (
         <>
@@ -94,7 +94,7 @@ function ScatterPlotDialog({
             </p>
             <button onClick={handleSubmit}>Create</button>
         </>
-    );
+    );
 }
 
-export default ScatterPlotDialog;
+export default ScatterPlotDialog;

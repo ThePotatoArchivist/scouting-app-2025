@@ -1,5 +1,5 @@
-import { StatusRecieve } from 'requests';
-import MatchRow from './MatchRow';
+import { StatusRecieve } from 'requests';
+import MatchRow from './MatchRow';
 
 function MatchTable({ matches }: { matches: StatusRecieve['matches'] }) {
     return (
@@ -23,7 +23,7 @@ function MatchTable({ matches }: { matches: StatusRecieve['matches'] }) {
                 ))}
             </tbody>
         </table>
-    );
+    );
 }
 
-export { MatchTable };
+export { MatchTable };

@@ -1,4 +1,4 @@
-import { Dispatch, InputHTMLAttributes, RefObject } from 'react';
+import { Dispatch, InputHTMLAttributes, RefObject } from 'react';
 
 function NumberInput({
     value,
@@ -6,10 +6,10 @@ function NumberInput({
     className = '',
     ...otherProps
 }: {
-    value?: number | undefined;
-    onChange?: Dispatch<number | undefined>;
-    ref?: RefObject<HTMLInputElement>;
-    className?: string;
+    value?: number | undefined;
+    onChange?: Dispatch<number | undefined>;
+    ref?: RefObject<HTMLInputElement>;
+    className?: string;
 } & Omit<
     InputHTMLAttributes<HTMLInputElement>,
     'onChange' | 'value' | 'type'
@@ -31,7 +31,7 @@ function NumberInput({
             }
             {...otherProps}
         />
-    );
+    );
 }
 
-export default NumberInput;
+export default NumberInput;

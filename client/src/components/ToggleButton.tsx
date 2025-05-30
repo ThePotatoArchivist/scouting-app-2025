@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 function ToggleButton({
     className = '',
@@ -8,12 +8,12 @@ function ToggleButton({
     onChange,
     value,
 }: {
-    className?: string;
-    trueClassName?: string;
-    falseClassName?: string;
-    children?: ReactNode;
-    onChange?: (value: boolean) => void;
-    value?: boolean;
+    className?: string;
+    trueClassName?: string;
+    falseClassName?: string;
+    children?: ReactNode;
+    onChange?: (value: boolean) => void;
+    value?: boolean;
 }) {
     return (
         <button
@@ -21,7 +21,7 @@ function ToggleButton({
             onClick={() => onChange?.(!value)}>
             {children}
         </button>
-    );
+    );
 }
 
-export default ToggleButton;
+export default ToggleButton;

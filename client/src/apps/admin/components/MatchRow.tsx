@@ -1,13 +1,13 @@
-import { RobotPosition, SuperPosition } from 'requests';
-import PositionCell from './PositionCell';
+import { RobotPosition, SuperPosition } from 'requests';
+import PositionCell from './PositionCell';
 
 function MatchRow({
     matchNumber,
     scouters,
 }: {
-    matchNumber: string;
-    scouters: Record<RobotPosition, { schedule: number; real: number[] }> &
-        Record<SuperPosition, boolean>;
+    matchNumber: string;
+    scouters: Record<RobotPosition, { schedule: number; real: number[] }> &
+        Record<SuperPosition, boolean>;
 }) {
     return (
         <tr>
@@ -21,7 +21,7 @@ function MatchRow({
             <PositionCell scouter={scouters.blue_3} />
             <PositionCell scouter={scouters.blue_ss} />
         </tr>
-    );
+    );
 }
 
-export default MatchRow;
+export default MatchRow;

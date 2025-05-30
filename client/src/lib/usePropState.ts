@@ -1,9 +1,9 @@
-import { Dispatch, SetStateAction, useCallback } from 'react';
+import { Dispatch, SetStateAction, useCallback } from 'react';
 
 function apply<T>(action: SetStateAction<T>, oldValue: T): T {
     return typeof action === 'function'
         ? (action as (prev: T) => T)(oldValue)
-        : action;
+        : action;
 }
 
 /**
@@ -24,12 +24,12 @@ function usePropState<T extends object, K extends keyof T>(
             setObject(object => ({
                 ...object,
                 [key]: apply(value, object[key]),
-            }));
+            }));
         },
         [key, setObject]
-    );
+    );
 
-    return [object[key], setState];
+    return [object[key], setState];
 }
 
-export { usePropState };
+export { usePropState };

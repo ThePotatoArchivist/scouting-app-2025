@@ -1,15 +1,15 @@
-import { MaterialSymbol } from 'react-material-symbols';
-import { StatusReport } from 'requests';
+import { MaterialSymbol } from 'react-material-symbols';
+import { StatusReport } from 'requests';
 
 function BatteryLevelIcon(batteryLevel: number) {
     if (batteryLevel > 75) {
-        return <MaterialSymbol icon='battery_full' className='mb-4 mr-3' />;
+        return <MaterialSymbol icon='battery_full' className='mb-4 mr-3' />;
     } else if (batteryLevel > 50) {
-        return <MaterialSymbol icon='battery_3_bar' className='mb-4 mr-3' />;
+        return <MaterialSymbol icon='battery_3_bar' className='mb-4 mr-3' />;
     } else if (batteryLevel > 25) {
-        return <MaterialSymbol icon='battery_1_bar' className='mb-4 mr-3' />;
+        return <MaterialSymbol icon='battery_1_bar' className='mb-4 mr-3' />;
     } else {
-        return <MaterialSymbol icon='battery_alert' className='mb-4 mr-3' />;
+        return <MaterialSymbol icon='battery_alert' className='mb-4 mr-3' />;
     }
 }
 function ScouterCard({
@@ -17,9 +17,9 @@ function ScouterCard({
     title,
     red = false,
 }: {
-    scouter: StatusReport[];
-    title: string;
-    red?: boolean;
+    scouter: StatusReport[];
+    title: string;
+    red?: boolean;
 }) {
     return (
         <div
@@ -54,7 +54,7 @@ function ScouterCard({
                 </>
             )}
         </div>
-    );
+    );
 }
 
-export { ScouterCard };
+export { ScouterCard };

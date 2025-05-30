@@ -1,15 +1,15 @@
-import fs from 'fs';
+import fs from 'fs';
 
 function randint(max: number, min = 0) {
-    return Math.floor(randfloat(max, min));
+    return Math.floor(randfloat(max, min));
 }
 
 function choose<T>(array: T[]) {
-    return array[randint(array.length)];
+    return array[randint(array.length)];
 }
 
 function randfloat(max: number, min = 0) {
-    return (max - min) * Math.random() + min;
+    return (max - min) * Math.random() + min;
 }
 
 const teams: number[] = `4
@@ -63,7 +63,7 @@ const teams: number[] = `4
 9538
 9635`
     .split('\n')
-    .map(str => parseInt(str));
+    .map(str => parseInt(str));
 
 const data = teams.map(team => ({
     teamNumber: team,
@@ -95,6 +95,6 @@ const data = teams.map(team => ({
         weak_build: randint(5),
         avoids_under_stage: randint(5),
     },
-}));
+}));
 
-fs.writeFileSync('static/output_analysis.json', JSON.stringify(data));
+fs.writeFileSync('static/output_analysis.json', JSON.stringify(data));

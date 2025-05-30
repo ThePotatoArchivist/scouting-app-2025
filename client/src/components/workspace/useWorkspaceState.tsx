@@ -1,10 +1,10 @@
-import { Dispatch, SetStateAction, useState } from 'react';
-import { PaneData, SplitData, TabBase, TabsData } from './workspaceData';
+import { Dispatch, SetStateAction, useState } from 'react';
+import { PaneData, SplitData, TabBase, TabsData } from './workspaceData';
 
-type ResizeType = 'horizontal' | 'vertical' | undefined;
+type ResizeType = 'horizontal' | 'vertical' | undefined;
 
 interface WorkspaceControls<T extends TabBase> {
-    setAddToFocused: Dispatch<Dispatch<T>>;
+    setAddToFocused: Dispatch<Dispatch<T>>;
 }
 
 function useWorkspaceState<T extends TabBase>(
@@ -22,15 +22,15 @@ function useWorkspaceState<T extends TabBase>(
                 initialState instanceof TabsData
               ? initialState
               : new TabsData(initialState)
-    );
+    );
 
     const [addToFocused, setAddToFocused] = useState<Dispatch<T>>(
         views === undefined
             ? () => (value: T) => setViews(new TabsData(value))
             : () => () => {}
-    );
+    );
 
-    return [views, setViews, addToFocused, { setAddToFocused }];
+    return [views, setViews, addToFocused, { setAddToFocused }];
 }
 
-export { useWorkspaceState, type WorkspaceControls, type ResizeType };
+export { useWorkspaceState, type WorkspaceControls, type ResizeType };

@@ -1,2 +1,2 @@
-import { buildDockerImage } from './build.js';
-buildDockerImage();
+import { buildDockerImage } from './build.js';
+buildDockerImage();

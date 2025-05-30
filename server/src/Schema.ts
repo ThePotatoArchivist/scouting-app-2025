@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import { CommentValues, MatchData, PitFile, SuperData, ScouterData } from 'requests';
+import mongoose from 'mongoose';
+import { CommentValues, MatchData, PitFile, SuperData, ScouterData } from 'requests';
 
 const matchappsMetaDataSchema = {
     scouterName: String,
@@ -9,7 +9,7 @@ const matchappsMetaDataSchema = {
         type: String,
         enum: ['red_1', 'red_2', 'red_3', 'blue_1', 'blue_2', 'blue_3'],
     },
-};
+};
 
 const superappsMetaDataSchema = {
     scouterName: String,
@@ -19,19 +19,19 @@ const superappsMetaDataSchema = {
         type: String,
         enum: ['red_1', 'red_2', 'red_3', 'blue_1', 'blue_2', 'blue_3'],
     },
-};
+};
 
 const coral = {
     L1: Number,
     L2: Number,
     L3: Number,
     L4: Number
-};
+};
 const algae = {
     netRobot: Number,
     processor: Number,
     remove: Number
-};
+};
 
 const StartingZone = {
     start1: Boolean,
@@ -70,7 +70,7 @@ const matchDataSchema = new mongoose.Schema<MatchData>({
         type: String,
         enum: ['shallow','deep', 'park', 'none', 'failed'],
     },
-});
+});
 
 const superScoutDataSchema = new mongoose.Schema<SuperData>({
     metadata: superappsMetaDataSchema,
@@ -123,17 +123,17 @@ const superScoutDataSchema = new mongoose.Schema<SuperData>({
             ] satisfies CommentValues[],
         },
     ],
-});
+});
 
 const leaderboardDataSchema = new mongoose.Schema<ScouterData> ({
     scouterName: String,
     accuracy: Number,
-});
+});
 
 
 type PitDataSchemaType = {
-    [K in keyof PitFile]: K extends 'photo' ? Buffer : PitFile[K];
-};
+    [K in keyof PitFile]: K extends 'photo' ? Buffer : PitFile[K];
+};
 
 const pitDataSchema = new mongoose.Schema<PitDataSchemaType>({
     scouterName: String,
@@ -142,13 +142,13 @@ const pitDataSchema = new mongoose.Schema<PitDataSchemaType>({
     hopperIntake: Boolean,
     photo: Buffer,
     comments: String,
-});
+});
 
-// const ssApp = ('ssApp', superScoutDataSchema);
-const pitApp = mongoose.model('pitApp', pitDataSchema);
-const matchApp = mongoose.model('matchApp', matchDataSchema);
-const superApp = mongoose.model('superApp', superScoutDataSchema);
-const leaderboardApp = mongoose.model('leaderboardApp', leaderboardDataSchema);
+// const ssApp = ('ssApp', superScoutDataSchema);
+const pitApp = mongoose.model('pitApp', pitDataSchema);
+const matchApp = mongoose.model('matchApp', matchDataSchema);
+const superApp = mongoose.model('superApp', superScoutDataSchema);
+const leaderboardApp = mongoose.model('leaderboardApp', leaderboardDataSchema);
 
 export {
     matchApp,
@@ -160,4 +160,4 @@ export {
     leaderboardApp,
     leaderboardDataSchema,
 
-};
+};

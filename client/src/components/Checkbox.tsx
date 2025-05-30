@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 function Checkbox({
     className,
@@ -7,11 +7,11 @@ function Checkbox({
     onChange,
     checked,
 }: {
-    className?: string;
-    boxClassName?: string;
-    children?: ReactNode;
-    onChange?: (value: boolean) => void;
-    checked?: boolean;
+    className?: string;
+    boxClassName?: string;
+    children?: ReactNode;
+    onChange?: (value: boolean) => void;
+    checked?: boolean;
 }) {
     return (
         <label className={`${className} select-none`}>
@@ -23,7 +23,7 @@ function Checkbox({
             />
             {children}
         </label>
-    );
+    );
 }
 
-export default Checkbox;
+export default Checkbox;

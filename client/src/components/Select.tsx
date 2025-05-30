@@ -1,4 +1,4 @@
-import { Dispatch } from 'react';
+import { Dispatch } from 'react';
 
 function Select<T extends string = string>({
     options,
@@ -6,12 +6,12 @@ function Select<T extends string = string>({
     placeholder = value,
     onChange,
 }: {
-    options: T[] | [value: T, label: string][];
-    value?: T | undefined;
-    placeholder?: string;
-    onChange?: Dispatch<T>;
+    options: T[] | [value: T, label: string][];
+    value?: T | undefined;
+    placeholder?: string;
+    onChange?: Dispatch<T>;
 }) {
-    const optionSplit = typeof options[0] !== 'string';
+    const optionSplit = typeof options[0] !== 'string';
 
     return (
         <select
@@ -32,7 +32,7 @@ function Select<T extends string = string>({
                 </option>
             ))}
         </select>
-    );
+    );
 }
 
-export default Select;
+export default Select;

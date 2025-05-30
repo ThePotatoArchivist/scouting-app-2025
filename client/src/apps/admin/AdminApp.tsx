@@ -1,14 +1,14 @@
-import { MaterialSymbol } from 'react-material-symbols';
-import LinkButton from '../../components/LinkButton';
-import { useStatusRecieve } from '../../lib/useStatus';
-import { ScouterTable } from './components/ScouterTable';
-import { MatchTable } from './components/MatchTable';
-//import { useFetchJson } from "../../lib/useFetch";
+import { MaterialSymbol } from 'react-material-symbols';
+import LinkButton from '../../components/LinkButton';
+import { useStatusRecieve } from '../../lib/useStatus';
+import { ScouterTable } from './components/ScouterTable';
+import { MatchTable } from './components/MatchTable';
+//import { useFetchJson } from "../../lib/useFetch";
 
 function AdminApp() {
-    const status = useStatusRecieve();
+    const status = useStatusRecieve();
 
-    // const [schedule] = useFetchJson<MatchSchedule>('/matchSchedule.json');
+    // const [schedule] = useFetchJson<MatchSchedule>('/matchSchedule.json');
 
     return (
         <main className='flex h-screen w-screen select-none flex-col items-center text-center'>
@@ -40,7 +40,7 @@ function AdminApp() {
                 </div>
             </div>
         </main>
-    );
+    );
 }
 
-export default AdminApp;
+export default AdminApp;

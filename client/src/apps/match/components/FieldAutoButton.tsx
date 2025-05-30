@@ -1,29 +1,29 @@
-import { useState } from "react";
-import { RobotPosition } from "requests";
-import CheckBoxMatch from './CheckBoxButton';
-import CoralSectionButton from "./CoralSectionButton";
-import bluesidematch from 'path/to/bluesidematch.png';
-import redsidematch from 'path/to/redsidematch.png';
+import { useState } from "react";
+import { RobotPosition } from "requests";
+import CheckBoxMatch from './CheckBoxButton';
+import CoralSectionButton from "./CoralSectionButton";
+import bluesidematch from 'path/to/bluesidematch.png';
+import redsidematch from 'path/to/redsidematch.png';
 
 const FieldAutoButton = () => {
-    const [robotPosition] = useState<RobotPosition>();
-    const [ground1, setGround1] = useState(false);
-    const [ground2, setGround2] = useState(false);
-    const [ground3, setGround3] = useState(false);
-    const [source1, setSource1] = useState(false);
-    const [source2, setSource2] = useState(false);
-    const [start1, setStart1] = useState(false);
-    const [start2, setStart2] = useState(false);
-    const [start3, setStart3] = useState(false);
-    const [deposit1, setDeposit1] = useState(false);
-    const [deposit2, setDeposit2] = useState(false);
-    const [deposit3, setDeposit3] = useState(false);
-    const [deposit4, setDeposit4] = useState(false);
-    const [deposit5, setDeposit5] = useState(false);
-    const [deposit6, setDeposit6] = useState(false);
+    const [robotPosition] = useState<RobotPosition>();
+    const [ground1, setGround1] = useState(false);
+    const [ground2, setGround2] = useState(false);
+    const [ground3, setGround3] = useState(false);
+    const [source1, setSource1] = useState(false);
+    const [source2, setSource2] = useState(false);
+    const [start1, setStart1] = useState(false);
+    const [start2, setStart2] = useState(false);
+    const [start3, setStart3] = useState(false);
+    const [deposit1, setDeposit1] = useState(false);
+    const [deposit2, setDeposit2] = useState(false);
+    const [deposit3, setDeposit3] = useState(false);
+    const [deposit4, setDeposit4] = useState(false);
+    const [deposit5, setDeposit5] = useState(false);
+    const [deposit6, setDeposit6] = useState(false);
     const blueAlliance = (
         ['blue_1', 'blue_2', 'blue_3'] as (string | undefined)[]
-    ).includes(robotPosition);
+    ).includes(robotPosition);
 
     return (
         <>
@@ -104,7 +104,7 @@ const FieldAutoButton = () => {
                 unselectClassName='bg-red-300'>
             </CoralSectionButton>
         </>
-    );
-};
+    );
+};
 
-export default FieldAutoButton;
+export default FieldAutoButton;

@@ -1,4 +1,4 @@
-import LinkButton from '../../components/LinkButton';
+import LinkButton from '../../components/LinkButton';
 
 const Games = () => {
     return (
@@ -10,7 +10,7 @@ const Games = () => {
                 width={'720px'}
                 height={'480px'}></iframe>
         </>
-    );
-};
+    );
+};
 
-export default Games;
+export default Games;

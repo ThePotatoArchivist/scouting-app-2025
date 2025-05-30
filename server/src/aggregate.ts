@@ -1,5 +1,5 @@
-import { MatchDataAggregations, SuperDataAggregations, ScouterData, SuperFoulAggregationsData, MatchIndividualDataAggregations, matchOutliersAggregation } from 'requests';
-import { matchApp, superApp, pitApp, leaderboardApp } from './Schema.js';
+import { MatchDataAggregations, SuperDataAggregations, ScouterData, SuperFoulAggregationsData, MatchIndividualDataAggregations, matchOutliersAggregation } from 'requests';
+import { matchApp, superApp, pitApp, leaderboardApp } from './Schema.js';
 //no scouterdata??
 
 
@@ -33,7 +33,7 @@ async function averageAndMax(): Promise<MatchDataAggregations[]> {
                 },
             },
         },
-    ]);
+    ]);
 
     const result = await matchApp.aggregate([
         {
@@ -236,8 +236,8 @@ async function averageAndMax(): Promise<MatchDataAggregations[]> {
                 },
             }
         },
-    ]);
-    return result;
+    ]);
+    return result;
 }
 
 
@@ -404,8 +404,8 @@ async function maxIndividual(): Promise<MatchIndividualDataAggregations[]> {
             }
         }
      
-    ]);
-    return result;
+    ]);
+    return result;
 }
 
 async function matchOutlier(): Promise<matchOutliersAggregation[]> {
@@ -489,8 +489,8 @@ async function matchOutlier(): Promise<matchOutliersAggregation[]> {
             }
         },
        }
-    ]);
-;}
+    ]);
+;}
 
 
 async function superAverageAndMax(): Promise<SuperDataAggregations[]> {
@@ -545,7 +545,7 @@ async function superAverageAndMax(): Promise<SuperDataAggregations[]> {
 
             } satisfies { [K in keyof SuperDataAggregations]: unknown },
         },
-    ]);
+    ]);
 }
 
 async function superMaxIndividual(): Promise<SuperFoulAggregationsData[]> {
@@ -587,7 +587,7 @@ async function superMaxIndividual(): Promise<SuperFoulAggregationsData[]> {
 
             } satisfies { [K in keyof SuperFoulAggregationsData]: unknown },
         },
-    ]);
+    ]);
 }
 
 // async function scouterRankings(): Promise<ScouterDataAggregations[]> {
@@ -602,15 +602,15 @@ async function superMaxIndividual(): Promise<SuperFoulAggregationsData[]> {
 //                 },
 //             } satisfies { [K in keyof ScouterDataAggregations]: unknown },
 //         },
-//     ]);
+//     ]);
 // }
 
 async function scouterRankings(): Promise<ScouterData[]> {
-    const filter = {};
+    const filter = {};
     const result =  await leaderboardApp.find(filter)
     return (
         result
-    );
+    );
 }
 
 
@@ -620,7 +620,7 @@ async function robotImageDisplay(
 ): Promise<Buffer | undefined> {
     return (
         await pitApp.findOne({ teamNumber: teamNumber }, 'teamNumber photo')
-    )?.photo;
+    )?.photo;
 }
 
-export { averageAndMax, superAverageAndMax, robotImageDisplay, scouterRankings, superMaxIndividual, maxIndividual, matchOutlier };
+export { averageAndMax, superAverageAndMax, robotImageDisplay, scouterRankings, superMaxIndividual, maxIndividual, matchOutlier };

@@ -1,25 +1,25 @@
-import { Dispatch, ReactNode, useState } from 'react';
-import 'react-dropdown/style.css';
+import { Dispatch, ReactNode, useState } from 'react';
+import 'react-dropdown/style.css';
 
 function ButtonDropdown<T extends string>({
     value,
     setValue,
     children,
 }: {
-    value: Record<T, number>;
-    setValue: Dispatch<Record<T, number>>;
-    children?: ReactNode;
+    value: Record<T, number>;
+    setValue: Dispatch<Record<T, number>>;
+    children?: ReactNode;
 }) {
-    const [showDropdown, setShowDropdown] = useState<boolean>(false);
+    const [showDropdown, setShowDropdown] = useState<boolean>(false);
 
     const handleDropdown = () => {
-        setShowDropdown(!showDropdown);
-    };
+        setShowDropdown(!showDropdown);
+    };
 
     const handleOption = (option: T) => {
-        setValue({ ...value, [option]: value[option] + 1 });
-        setShowDropdown(false);
-    };
+        setValue({ ...value, [option]: value[option] + 1 });
+        setShowDropdown(false);
+    };
 
     return (
         <div>
@@ -50,10 +50,10 @@ function ButtonDropdown<T extends string>({
                     .join(', \n')}
             </pre>
         </div>
-    );
+    );
 }
 
-export default ButtonDropdown;
+export default ButtonDropdown;
 
 /*
 structure:

@@ -1,19 +1,19 @@
-import { Dispatch, useState } from 'react';
-import { StatTableData } from '../data';
-import TextInput from '../../../components/TextInput';
-import { MaterialSymbol } from 'react-material-symbols';
-import Checkbox from '../../../components/Checkbox';
+import { Dispatch, useState } from 'react';
+import { StatTableData } from '../data';
+import TextInput from '../../../components/TextInput';
+import { MaterialSymbol } from 'react-material-symbols';
+import Checkbox from '../../../components/Checkbox';
 
 function StatDialog({
     onSubmit,
     onClose,
 }: {
-    onSubmit: Dispatch<StatTableData>;
-    onClose?: () => void;
+    onSubmit: Dispatch<StatTableData>;
+    onClose?: () => void;
 }) {
-    const [title, setTitle] = useState('');
+    const [title, setTitle] = useState('');
 
-    const [weighted, setWeighted] = useState(false);
+    const [weighted, setWeighted] = useState(false);
 
     const handleSubmit = () => {
         onSubmit({
@@ -23,9 +23,9 @@ function StatDialog({
             ascending: false,
             weighted: weighted,
             weights: [],
-        });
-        onClose?.();
-    };
+        });
+        onClose?.();
+    };
 
     return (
         <>
@@ -52,7 +52,7 @@ function StatDialog({
             </p>
             <button onClick={handleSubmit}>Create</button>
         </>
-    );
+    );
 }
 
-export default StatDialog;
+export default StatDialog;

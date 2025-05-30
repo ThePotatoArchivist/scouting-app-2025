@@ -5,9 +5,9 @@ function CheckBoxRecon ({
     label,
 }:
 {
-    className?: string;
-    ischecked?: boolean;
-    label?: string;
+    className?: string;
+    ischecked?: boolean;
+    label?: string;
 }) {
     return(
         <label>
@@ -22,4 +22,4 @@ function CheckBoxRecon ({
         </label>
                 
 )}
-export default CheckBoxRecon;
+export default CheckBoxRecon;

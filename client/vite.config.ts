@@ -1,8 +1,8 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react-swc';
-import { VitePWA } from 'vite-plugin-pwa';
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react-swc';
+import { VitePWA } from 'vite-plugin-pwa';
 
-const nonHashFiles = ['woff', 'woff2'];
+const nonHashFiles = ['woff', 'woff2'];
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -49,10 +49,10 @@ export default defineConfig({
                             assetInfo.name.endsWith(`.${ext}`)
                         )
                     )
-                        return 'assets/[name].[ext]';
-                    return 'assets/[name]-[hash].[ext]';
+                        return 'assets/[name].[ext]';
+                    return 'assets/[name]-[hash].[ext]';
                 },
             },
         },
     },
-});
+});

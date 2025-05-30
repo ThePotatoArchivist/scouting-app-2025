@@ -1,7 +1,7 @@
-import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps } from 'recharts';
-import { NameType, ValueType } from 'recharts/types/component/DefaultTooltipContent';
-import { MatchIndividualDataAggregations, SuperFoulAggregationsData } from 'requests';
+import React from 'react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps } from 'recharts';
+import { NameType, ValueType } from 'recharts/types/component/DefaultTooltipContent';
+import { MatchIndividualDataAggregations, SuperFoulAggregationsData } from 'requests';
 
 
 
@@ -19,20 +19,20 @@ const CustomTooltip: React.FC<TooltipProps<ValueType, NameType>> = ({
           </p>
         ))}
       </div>
-    );
+    );
   }
-  return null;
-};
+  return null;
+};
 
 // :3
 export interface MatchAndSuper extends Pick<MatchIndividualDataAggregations, 'totalL1' | 'totalL2' | 'totalL3' | 'totalL4' | 'totalProcessor' | 'totalNet' | 'totalRemoved'>, SuperFoulAggregationsData {}
 
-const BarChartWIP: React.FC<{ data: MatchAndSuper[]; teamNumber: number }> = ({ data, teamNumber }) => { 
+const BarChartWIP: React.FC<{ data: MatchAndSuper[]; teamNumber: number }> = ({ data, teamNumber }) => { 
 
 
 
 //   //grabs data for a specific team
-   const teamData = data.filter(d => d._id.teamNumber === teamNumber);
+   const teamData = data.filter(d => d._id.teamNumber === teamNumber);
 
  // Transform data for charts to have nicer labels (when tooltip works), d. means the item in the teamdata, match is for the x-axis (i pray this works w/ data :sob:)
   const chartData = teamData.map(d => ({
@@ -50,7 +50,7 @@ const BarChartWIP: React.FC<{ data: MatchAndSuper[]; teamNumber: number }> = ({ 
       MultiplePieces: d.totalMultiplePieces*-1,
       CageFoul: d.totalCageFoul*-1,
       Other: d.totalOther*-1,
-  }));
+  }));
 
   
  
@@ -78,7 +78,7 @@ const BarChartWIP: React.FC<{ data: MatchAndSuper[]; teamNumber: number }> = ({ 
       </BarChart>
     </ResponsiveContainer>
     
-  );
-};
+  );
+};
 
-export default BarChartWIP;
+export default BarChartWIP;

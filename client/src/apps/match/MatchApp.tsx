@@ -1,46 +1,46 @@
-import EndgameButton from './components/EndGameButton'; 
-import FieldButton from './components/LeaveButton';
-import LinkButton from '../../components/LinkButton';
+import EndgameButton from './components/EndGameButton'; 
+import FieldButton from './components/LeaveButton';
+import LinkButton from '../../components/LinkButton';
 import {
     ClimbPosition,
     MatchData,
     MatchSchedule,
     RobotPosition,
     // ScouterPosition,
-} from 'requests';
-import { SetStateAction, useEffect, useState } from 'react';
-import { MaterialSymbol } from 'react-material-symbols';
-import 'react-material-symbols/rounded';
-import SignIn from '../../components/SignIn';
-import Dialog from '../../components/Dialog';
-import NumberInput from '../../components/NumberInput';
-import CheckBoxMatch from './components/CheckBoxButton';
-import { useStatus } from '../../lib/useStatus';
-import TeamDropdown from '../../components/TeamDropdown';
-import { useQueue } from '../../lib/useQueue';
-import scheduleFile from '../../assets/matchSchedule.json';
-import { usePreventUnload } from '../../lib/usePreventUnload';
-import ToggleButton from '../../components/LightVDarkMode';
-import CoralSectionButton from './components/CoralSectionButton';
+} from 'requests';
+import { SetStateAction, useEffect, useState } from 'react';
+import { MaterialSymbol } from 'react-material-symbols';
+import 'react-material-symbols/rounded';
+import SignIn from '../../components/SignIn';
+import Dialog from '../../components/Dialog';
+import NumberInput from '../../components/NumberInput';
+import CheckBoxMatch from './components/CheckBoxButton';
+import { useStatus } from '../../lib/useStatus';
+import TeamDropdown from '../../components/TeamDropdown';
+import { useQueue } from '../../lib/useQueue';
+import scheduleFile from '../../assets/matchSchedule.json';
+import { usePreventUnload } from '../../lib/usePreventUnload';
+import ToggleButton from '../../components/LightVDarkMode';
+import CoralSectionButton from './components/CoralSectionButton';
 
-const schedule = scheduleFile as MatchSchedule;
+const schedule = scheduleFile as MatchSchedule;
 
 interface MatchScores {
-    autoL1: number;
-    autoL2: number;
-    autoL3: number;
-    autoL4: number;
-    autoAlgaenetRobot: number;
-    autoProcessor: number;
-    autoRemove: number;
-    teleRemove: number;
-    teleL1: number;
-    teleL2: number;
-    teleL3: number;
-    teleL4: number;
-    teleAlgaenetRobot: number;
-    teleProcessor: number;
-    teleRemoved: number;
+    autoL1: number;
+    autoL2: number;
+    autoL3: number;
+    autoL4: number;
+    autoAlgaenetRobot: number;
+    autoProcessor: number;
+    autoRemove: number;
+    teleRemove: number;
+    teleL1: number;
+    teleL2: number;
+    teleL3: number;
+    teleL4: number;
+    teleAlgaenetRobot: number;
+    teleProcessor: number;
+    teleRemoved: number;
 }
 const defaultScores: MatchScores = {
     autoL1: 0,
@@ -58,45 +58,45 @@ const defaultScores: MatchScores = {
     teleAlgaenetRobot: 0,
     teleProcessor: 0,
     teleRemoved: 0
-};
+};
 
 function MatchApp() {
-    usePreventUnload();
-    const [sendQueue, sendAll, queue, sending] = useQueue();
-    const [teamNumber, setTeamNumber] = useState<number>();
-    const [matchNumber, setMatchNumber] = useState<number>();
-    const [count, setCount] = useState<MatchScores>(defaultScores);
-    const [leave, setLeave] = useState(false); //false=Not Left, true=Left
-    const [start1, setStart1] = useState(false);
-    const [start2, setStart2] = useState(false);
-    const [start3, setStart3] = useState(false);
-    const [source1, setSource1] = useState(false);
-    const [source2, setSource2] = useState(false);
-    const [ground1, setGround1] = useState(false);
-    const [ground2, setGround2] = useState(false);
-    const [ground3, setGround3] = useState(false);
-    const [deposit1, setDeposit1] = useState(false);
-    const [deposit2, setDeposit2] = useState(false);
-    const [deposit3, setDeposit3] = useState(false);
-    const [deposit4, setDeposit4] = useState(false);
-    const [deposit5, setDeposit5] = useState(false);
-    const [deposit6, setDeposit6] = useState(false);
-    const [countHistory, setCountHistory] = useState<MatchScores[]>([]);
-    const [climbPosition, setClimbPosition] = useState<ClimbPosition>('none');
-    const [showCheck, setShowCheck] = useState(false);
-    const [scouterName, setScouterName] = useState('');
-    const [robotPosition, setRobotPosition] = useState<RobotPosition>();
-    const [toggleState, setToggleState] = useState(false);
-    // const [scouterPosition, setScouterPosition] = useState<ScouterPosition>();
+    usePreventUnload();
+    const [sendQueue, sendAll, queue, sending] = useQueue();
+    const [teamNumber, setTeamNumber] = useState<number>();
+    const [matchNumber, setMatchNumber] = useState<number>();
+    const [count, setCount] = useState<MatchScores>(defaultScores);
+    const [leave, setLeave] = useState(false); //false=Not Left, true=Left
+    const [start1, setStart1] = useState(false);
+    const [start2, setStart2] = useState(false);
+    const [start3, setStart3] = useState(false);
+    const [source1, setSource1] = useState(false);
+    const [source2, setSource2] = useState(false);
+    const [ground1, setGround1] = useState(false);
+    const [ground2, setGround2] = useState(false);
+    const [ground3, setGround3] = useState(false);
+    const [deposit1, setDeposit1] = useState(false);
+    const [deposit2, setDeposit2] = useState(false);
+    const [deposit3, setDeposit3] = useState(false);
+    const [deposit4, setDeposit4] = useState(false);
+    const [deposit5, setDeposit5] = useState(false);
+    const [deposit6, setDeposit6] = useState(false);
+    const [countHistory, setCountHistory] = useState<MatchScores[]>([]);
+    const [climbPosition, setClimbPosition] = useState<ClimbPosition>('none');
+    const [showCheck, setShowCheck] = useState(false);
+    const [scouterName, setScouterName] = useState('');
+    const [robotPosition, setRobotPosition] = useState<RobotPosition>();
+    const [toggleState, setToggleState] = useState(false);
+    // const [scouterPosition, setScouterPosition] = useState<ScouterPosition>();
 
     const blueAlliance = (
         ['blue_1', 'blue_2', 'blue_3'] as (string | undefined)[]
-    ).includes(robotPosition);
+    ).includes(robotPosition);
 
     const handleAbsentRobot = async () => {
         if (robotPosition == undefined || matchNumber == undefined) {
-            alert('Check if your signed in, and you have the match number');
-            return;
+            alert('Check if your signed in, and you have the match number');
+            return;
         }
     
 
@@ -151,21 +151,21 @@ function MatchApp() {
                 remove: count.teleRemove
             },
             climb: climbPosition,
-        };
+        };
 
-        sendQueue('/data/match', data);
-        setCount(defaultScores);
-        setClimbPosition('none');
-        setLeave(false);
-        setMatchNumber(matchNumber + 1);
-        setCountHistory([]);
+        sendQueue('/data/match', data);
+        setCount(defaultScores);
+        setClimbPosition('none');
+        setLeave(false);
+        setMatchNumber(matchNumber + 1);
+        setCountHistory([]);
 
-        setShowCheck(true);
+        setShowCheck(true);
 
         setTimeout(() => {
-            setShowCheck(false);
-        }, 3000);
-    };
+            setShowCheck(false);
+        }, 3000);
+    };
 
     const handleSubmit = async () => {
         if (
@@ -173,8 +173,8 @@ function MatchApp() {
             matchNumber == undefined ||
             teamNumber == undefined
         ) {
-            alert('data is missing! :(');
-            return;
+            alert('data is missing! :(');
+            return;
         }
 
         const data: MatchData = {
@@ -228,71 +228,71 @@ function MatchApp() {
                 remove: count.teleRemove
             },
             climb: climbPosition,
-        };
+        };
         
-        sendQueue('/data/match', data);
-        setCount(defaultScores);
-        setClimbPosition('none');
-        setLeave(false);
-        setStart1(false);
-        setStart2(false);
-        setStart3(false);
-        setDeposit1(false);
-        setDeposit2(false);
-        setDeposit3(false);
-        setDeposit4(false);
-        setDeposit5(false);
-        setDeposit6(false);
-        setSource1(false);
-        setSource2(false);
-        setGround1(false);
-        setGround2(false);
-        setGround3(false);
-        setMatchNumber(matchNumber + 1);
-        setCountHistory([]);
+        sendQueue('/data/match', data);
+        setCount(defaultScores);
+        setClimbPosition('none');
+        setLeave(false);
+        setStart1(false);
+        setStart2(false);
+        setStart3(false);
+        setDeposit1(false);
+        setDeposit2(false);
+        setDeposit3(false);
+        setDeposit4(false);
+        setDeposit5(false);
+        setDeposit6(false);
+        setSource1(false);
+        setSource2(false);
+        setGround1(false);
+        setGround2(false);
+        setGround3(false);
+        setMatchNumber(matchNumber + 1);
+        setCountHistory([]);
 
-        setShowCheck(true);
+        setShowCheck(true);
 
         setTimeout(() => {
-            setShowCheck(false);
-        }, 3000);
-    };
+            setShowCheck(false);
+        }, 3000);
+    };
 
     const showConfirmationDialog = () => {
         if (window.confirm('Are you sure you want to mark as absent?')) {
             // User confirmed, call the action
-            handleAbsentRobot();
+            handleAbsentRobot();
             // Optionally, you can also scroll to the top
-            scrollTo(0, 0);
+            scrollTo(0, 0);
         }
-    };
+    };
 
     const undoCount = () => {
         if (countHistory.length > 0) {
-            setCountHistory(prevHistory => prevHistory.slice(0, -1));
-            setCount(countHistory.at(-1)!);
+            setCountHistory(prevHistory => prevHistory.slice(0, -1));
+            setCount(countHistory.at(-1)!);
         }
-    };
+    };
     const handleSetCount = (newCount: SetStateAction<MatchScores>) => {
-        setCountHistory([...countHistory, count]);
-        setCount(newCount);
-    };
+        setCountHistory([...countHistory, count]);
+        setCount(newCount);
+    };
 
     useEffect(() => {
         setTeamNumber(
             schedule && robotPosition && matchNumber
                 ? schedule[matchNumber]?.[robotPosition]
                 : undefined
-        );
-    }, [matchNumber, robotPosition]);
+        );
+    }, [matchNumber, robotPosition]);
 
-    useStatus(robotPosition, matchNumber, scouterName);
+    useStatus(robotPosition, matchNumber, scouterName);
 
     function buttonToggle() {
         if (toggleState == false) {
-            setToggleState(true);
+            setToggleState(true);
         } else {
-            setToggleState(false);
+            setToggleState(false);
         }
     }
 
@@ -533,8 +533,8 @@ function MatchApp() {
                 <div className='mb-5 mt-20 flex flex-col justify-center'>
                     <button
                         onClick={() => {
-                            handleSubmit();
-                            scrollTo(0, 0);
+                            handleSubmit();
+                            scrollTo(0, 0);
                         }}
                         style={{ fontSize: '30px' }}
                         className='rounded-md bg-green-500 px-2 py-1 text-center'>
@@ -554,9 +554,9 @@ function MatchApp() {
             </div>
         </main>
         </div> 
-    );
+    );
 }
 
-export type { MatchScores, ClimbPosition };
+export type { MatchScores, ClimbPosition };
 
-export default MatchApp;
+export default MatchApp;

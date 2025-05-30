@@ -1,17 +1,17 @@
-import { Dispatch } from 'react';
-import { Foul, Break, DefenseRank, CommentValues} from 'requests';
-import MultiButton from '../../../components/MultiButton';
-import Checkbox from '../../../components/Checkbox';
-import TeamDropdown from '../../../components/TeamDropdown';
-import CannedCommentBox, { SelectOption } from './CannedComments';
+import { Dispatch } from 'react';
+import { Foul, Break, DefenseRank, CommentValues} from 'requests';
+import MultiButton from '../../../components/MultiButton';
+import Checkbox from '../../../components/Checkbox';
+import TeamDropdown from '../../../components/TeamDropdown';
+import CannedCommentBox, { SelectOption } from './CannedComments';
 
 export interface SuperTeamState {
-    foulCounts: Record<Foul, number>;
-    breakCount: Record<Break, number>;
-    defenseRank: DefenseRank;
-    wasDefended: boolean;
-    teamNumber: number | undefined;
-    cannedComments: SelectOption<CommentValues>[];
+    foulCounts: Record<Foul, number>;
+    breakCount: Record<Break, number>;
+    defenseRank: DefenseRank;
+    wasDefended: boolean;
+    teamNumber: number | undefined;
+    cannedComments: SelectOption<CommentValues>[];
 }
 
 function SuperTeam({
@@ -19,57 +19,57 @@ function SuperTeam({
     setTeamState,
     bgClass
 }: {
-    teamState: SuperTeamState;
-    setTeamState: Dispatch<SuperTeamState>;
-    bgClass?: string;
+    teamState: SuperTeamState;
+    setTeamState: Dispatch<SuperTeamState>;
+    bgClass?: string;
 }) {
     const handleDefense = (newDefense: DefenseRank) => {
-        setTeamState({ ...teamState, defenseRank: newDefense });
-    };
+        setTeamState({ ...teamState, defenseRank: newDefense });
+    };
     const handleWasDefended = (newDefended: boolean) => {
-        setTeamState({ ...teamState, wasDefended: newDefended });
-    };
+        setTeamState({ ...teamState, wasDefended: newDefended });
+    };
 
     const handleChangeTeam = (newChangeTeam: number) => {
-        setTeamState({ ...teamState, teamNumber: newChangeTeam });
-    };
+        setTeamState({ ...teamState, teamNumber: newChangeTeam });
+    };
 
     const handleAddComment = (comments: SelectOption<CommentValues>[]) => {
-        setTeamState({ ...teamState, cannedComments: comments });
-    };
+        setTeamState({ ...teamState, cannedComments: comments });
+    };
     const handleIncreaseFoul = (
         foulType: keyof typeof teamState.foulCounts
     ) => {
-        const updatedFoulCounts = { ...teamState.foulCounts };
-        updatedFoulCounts[foulType] = (updatedFoulCounts[foulType] || 0) + 1;
-        setTeamState({ ...teamState, foulCounts: updatedFoulCounts });
-    };
+        const updatedFoulCounts = { ...teamState.foulCounts };
+        updatedFoulCounts[foulType] = (updatedFoulCounts[foulType] || 0) + 1;
+        setTeamState({ ...teamState, foulCounts: updatedFoulCounts });
+    };
     const handleDecreaseFoul = (
         foulType: keyof typeof teamState.foulCounts
     ) => {
-        const updatedFoulCounts = { ...teamState.foulCounts };
+        const updatedFoulCounts = { ...teamState.foulCounts };
         if (updatedFoulCounts[foulType] > 0) {
-            updatedFoulCounts[foulType] -= 1;
+            updatedFoulCounts[foulType] -= 1;
         }
-        setTeamState({ ...teamState, foulCounts: updatedFoulCounts });
-    };
+        setTeamState({ ...teamState, foulCounts: updatedFoulCounts });
+    };
     const handleIncreaseBreak = (
         breakType: keyof typeof teamState.breakCount
     ) => {
-        const updatedBreakCounts = { ...teamState.breakCount };
+        const updatedBreakCounts = { ...teamState.breakCount };
         updatedBreakCounts[breakType] =
-            (updatedBreakCounts[breakType] || 0) + 1;
-        setTeamState({ ...teamState, breakCount: updatedBreakCounts });
-    };
+            (updatedBreakCounts[breakType] || 0) + 1;
+        setTeamState({ ...teamState, breakCount: updatedBreakCounts });
+    };
     const handleDecreaseBreak = (
         breakType: keyof typeof teamState.breakCount
     ) => {
-        const updatedBreakCounts = { ...teamState.breakCount };
+        const updatedBreakCounts = { ...teamState.breakCount };
         if (updatedBreakCounts[breakType] > 0) {
-            updatedBreakCounts[breakType] -= 1;
+            updatedBreakCounts[breakType] -= 1;
         }
-        setTeamState({ ...teamState, breakCount: updatedBreakCounts });
-    };
+        setTeamState({ ...teamState, breakCount: updatedBreakCounts });
+    };
     
     
 
@@ -240,7 +240,7 @@ function SuperTeam({
                 </Checkbox>
             </div>
         </div>
-    );
+    );
 }
 
-export default SuperTeam;
+export default SuperTeam;

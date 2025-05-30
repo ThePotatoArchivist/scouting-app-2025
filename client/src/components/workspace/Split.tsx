@@ -1,8 +1,8 @@
-import { Dispatch, Fragment, useEffect, useRef } from 'react';
-import { useArrayState } from '../../lib/useArrayState';
-import { usePropState } from '../../lib/usePropState';
-import Pane from './Pane';
-import ResizeHandle from './ResizeHandle';
+import { Dispatch, Fragment, useEffect, useRef } from 'react';
+import { useArrayState } from '../../lib/useArrayState';
+import { usePropState } from '../../lib/usePropState';
+import Pane from './Pane';
+import ResizeHandle from './ResizeHandle';
 import {
     PaneData,
     SplitData,
@@ -10,46 +10,46 @@ import {
     TabBase,
     TabsData,
     TabsSplice,
-} from './workspaceData';
+} from './workspaceData';
 
 function Split<T extends TabBase>({
     value,
     onChange,
 }: StateProps<SplitData<T>>) {
-    const divRef = useRef<HTMLDivElement>(null);
+    const divRef = useRef<HTMLDivElement>(null);
 
-    const [sizes, setSizes] = usePropState(value, onChange, 'sizes');
-    const [panes, setPanes] = usePropState(value, onChange, 'panes');
-    const sizesA = useArrayState(setSizes);
-    const panesA = useArrayState(setPanes);
+    const [sizes, setSizes] = usePropState(value, onChange, 'sizes');
+    const [panes, setPanes] = usePropState(value, onChange, 'panes');
+    const sizesA = useArrayState(setSizes);
+    const panesA = useArrayState(setPanes);
 
     useEffect(() => {
-        setSizes(new Array(panes.length).fill(1 / panes.length));
+        setSizes(new Array(panes.length).fill(1 / panes.length));
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [panes.length]);
+    }, [panes.length]);
 
     useEffect(() => {
         // If there is less than one remaining
         if (panes.length <= 1) {
-            (onChange as Dispatch<PaneData<T>>)(panes[0]);
-            return;
+            (onChange as Dispatch<PaneData<T>>)(panes[0]);
+            return;
         }
-    }, [onChange, panes]);
+    }, [onChange, panes]);
 
     const handleResize = (index: number) => (size: number) => {
         const newSize =
             size /
             (value.vertical
                 ? divRef.current!.offsetHeight
-                : divRef.current!.offsetWidth);
+                : divRef.current!.offsetWidth);
 
-        const neighborSize = sizes[index] + sizes[index + 1] - newSize;
+        const neighborSize = sizes[index] + sizes[index + 1] - newSize;
 
-        if (newSize < 0.1 || neighborSize < 0.1) return;
+        if (newSize < 0.1 || neighborSize < 0.1) return;
 
-        sizesA.set(index, newSize);
-        sizesA.set(index + 1, neighborSize);
-    };
+        sizesA.set(index, newSize);
+        sizesA.set(index + 1, neighborSize);
+    };
 
     const handleSplice =
         (i: number): TabsSplice<T> =>
@@ -58,8 +58,8 @@ function Split<T extends TabBase>({
                 ...panes.slice(0, i),
                 ...values(panes[i] as TabsData<T>),
                 ...panes.slice(i + 1),
-            ]);
-        };
+            ]);
+        };
 
     return (
         <div
@@ -94,7 +94,7 @@ function Split<T extends TabBase>({
                 </Fragment>
             ))}
         </div>
-    );
+    );
 }
 
-export default Split;
+export default Split;

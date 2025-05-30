@@ -1,6 +1,6 @@
-import { Dispatch, SetStateAction, useContext } from 'react';
-import Split from './Split';
-import Tabs from './Tabs';
+import { Dispatch, SetStateAction, useContext } from 'react';
+import Split from './Split';
+import Tabs from './Tabs';
 import {
     PaneData,
     SplitData,
@@ -8,8 +8,8 @@ import {
     TabBase,
     TabsData,
     TabsSplice,
-} from './workspaceData';
-import { NestingContext } from './workspaceContexts';
+} from './workspaceData';
+import { NestingContext } from './workspaceContexts';
 
 function Pane<T extends TabBase>({
     value,
@@ -21,14 +21,14 @@ function Pane<T extends TabBase>({
     onReplaceHoriz,
     onReplaceVert,
 }: {
-    height?: number;
-    width?: number;
-    onRemove: () => void;
-    className?: string;
-    onReplaceHoriz?: TabsSplice<T>;
-    onReplaceVert?: TabsSplice<T>;
+    height?: number;
+    width?: number;
+    onRemove: () => void;
+    className?: string;
+    onReplaceHoriz?: TabsSplice<T>;
+    onReplaceVert?: TabsSplice<T>;
 } & StateProps<PaneData<T>>) {
-    const nesting = useContext(NestingContext);
+    const nesting = useContext(NestingContext);
 
     return (
         <NestingContext.Provider value={nesting + 1}>
@@ -59,7 +59,7 @@ function Pane<T extends TabBase>({
                 )}
             </div>
         </NestingContext.Provider>
-    );
+    );
 }
 
-export default Pane;
+export default Pane;

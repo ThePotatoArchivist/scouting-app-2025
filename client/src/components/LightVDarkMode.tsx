@@ -8,10 +8,10 @@ children,
 
 
 } : {
-className?: string;
-buttonClassName?: string;
+className?: string;
+buttonClassName?: string;
 onClick?: MouseEventHandler<HTMLElement>
-children?: ReactNode;
+children?: ReactNode;
 }) {
     return (
         <>
@@ -27,4 +27,4 @@ children?: ReactNode;
 
 
 
-export default ToggleButton;
+export default ToggleButton;

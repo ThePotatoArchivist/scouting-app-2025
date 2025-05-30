@@ -1,14 +1,14 @@
-import { Link } from 'react-router-dom';
-import { ReactNode } from 'react';
+import { Link } from 'react-router-dom';
+import { ReactNode } from 'react';
 
 function LinkButton({
     link,
     className,
     children,
 }: {
-    link: string;
-    className?: string;
-    children?: ReactNode;
+    link: string;
+    className?: string;
+    children?: ReactNode;
 }) {
     return (
         <>
@@ -16,7 +16,7 @@ function LinkButton({
                 <button className={className}>{children}</button>
             </Link>
         </>
-    );
+    );
 }
 
-export default LinkButton;
+export default LinkButton;

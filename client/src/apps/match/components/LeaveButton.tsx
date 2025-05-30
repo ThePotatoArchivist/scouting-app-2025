@@ -1,8 +1,8 @@
-import { Dispatch, SetStateAction } from 'react';
-import { MatchScores } from '../MatchApp';
-import MultiButton from '../../../components/MultiButton';
+import { Dispatch, SetStateAction } from 'react';
+import { MatchScores } from '../MatchApp';
+import MultiButton from '../../../components/MultiButton';
 
-type countKeys = keyof MatchScores;
+type countKeys = keyof MatchScores;
 
 function RegionButton({
     handleCount,
@@ -19,15 +19,15 @@ function RegionButton({
         autokey: countKeys,
         telekey: countKeys,
         aKey?: countKeys
-    ) => void;
-    className?: string;
-    teleKey: countKeys;
-    autoKey: countKeys;
-    teleOp: boolean;
-    count: MatchScores;
-    label?: string;
-    styleMode?: boolean;
-    textClassName?: string;
+    ) => void;
+    className?: string;
+    teleKey: countKeys;
+    autoKey: countKeys;
+    teleOp: boolean;
+    count: MatchScores;
+    label?: string;
+    styleMode?: boolean;
+    textClassName?: string;
 
 }) {
     return (
@@ -43,7 +43,7 @@ function RegionButton({
             </button>
         
         </div>
-    );
+    );
 }
 
 function FieldButton({
@@ -54,26 +54,26 @@ function FieldButton({
     count,
     styleMode
 }: {
-    setLeave?: Dispatch<boolean>;
-    setCount: Dispatch<SetStateAction<MatchScores>>;
-    teleOp: boolean;
-    leave?: boolean;
-    count: MatchScores;
-    styleMode?: boolean;
+    setLeave?: Dispatch<boolean>;
+    setCount: Dispatch<SetStateAction<MatchScores>>;
+    teleOp: boolean;
+    leave?: boolean;
+    count: MatchScores;
+    styleMode?: boolean;
 }) {
     const handleCount = (autoKey: countKeys, teleKey: countKeys) => {
         //if (teleOp) {
-            const finalKey = teleOp ? teleKey : autoKey;
+            const finalKey = teleOp ? teleKey : autoKey;
             setCount(prevCount => ({
                 ...prevCount,
                 [finalKey]: prevCount[finalKey] + 1,
-            }));
+            }));
       //  }
-    };
+    };
 
     const handleLeave = () => {
-        setLeave?.(!leave);
-    };
+        setLeave?.(!leave);
+    };
     
     return (
         <>
@@ -188,7 +188,7 @@ function FieldButton({
                     
 
         </>
-    );
+    );
 }
 
-export default FieldButton;
+export default FieldButton;

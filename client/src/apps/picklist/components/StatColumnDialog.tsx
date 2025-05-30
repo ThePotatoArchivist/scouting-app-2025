@@ -1,32 +1,32 @@
-import { Dispatch, useState } from 'react';
-import { AnalysisEntry } from '../data';
-import SelectSearch from 'react-select-search';
-import camelToSpaced from '../../../lib/camelCaseConvert';
-import { MaterialSymbol } from 'react-material-symbols';
+import { Dispatch, useState } from 'react';
+import { AnalysisEntry } from '../data';
+import SelectSearch from 'react-select-search';
+import camelToSpaced from '../../../lib/camelCaseConvert';
+import { MaterialSymbol } from 'react-material-symbols';
 
 function StatColumnDialog({
     onSubmit,
     onClose,
     data,
 }: {
-    onSubmit: Dispatch<string>;
-    onClose?: () => void;
-    data: AnalysisEntry[] | undefined;
+    onSubmit: Dispatch<string>;
+    onClose?: () => void;
+    data: AnalysisEntry[] | undefined;
 }) {
     const columns = data
         ? Object.keys(data[0]).filter(
               e => e !== 'teamNumber' && typeof data[0][e] === 'number'
           )
-        : [];
-    columns.push('robotImages');
+        : [];
+    columns.push('robotImages');
 
-    const [column, setColumn] = useState<string>();
+    const [column, setColumn] = useState<string>();
     const handleSubmit = () => {
         if (column) {
-            onSubmit(column);
-            onClose?.();
+            onSubmit(column);
+            onClose?.();
         }
-    };
+    };
 
     return (
         <>
@@ -55,7 +55,7 @@ function StatColumnDialog({
                 Create
             </button>
         </>
-    );
+    );
 }
 
-export default StatColumnDialog;
+export default StatColumnDialog;

@@ -1,12 +1,12 @@
-import chalk from 'chalk';
-import Docker from 'dockerode';
-import dotenv from 'dotenv-mono';
-dotenv.load();
+import chalk from 'chalk';
+import Docker from 'dockerode';
+import dotenv from 'dotenv-mono';
+dotenv.load();
 
-const docker = new Docker();
+const docker = new Docker();
 
 function buildDockerImage() {
-    console.log(chalk.blue('Building docker image...\n'));
+    console.log(chalk.blue('Building docker image...\n'));
     docker.buildImage(
         {
             src: ['Dockerfile'],
@@ -15,8 +15,8 @@ function buildDockerImage() {
         { t: process.env.IMAGE_NAME },
         (err, stream) => {
             if (err) {
-                console.error(chalk.red('Error building Docker image:'), err);
-                return;
+                console.error(chalk.red('Error building Docker image:'), err);
+                return;
             }
 
             // Print build process
@@ -24,17 +24,17 @@ function buildDockerImage() {
                 try {
                     process.stdout.write(
                         chalk.gray(JSON.parse(chunk)?.stream ?? '')
-                    );
+                    );
                 } catch (e) {
                     /* empty */
                 }
-            });
+            });
 
             stream.on('end', () => {
-                console.log(chalk.blue('Docker image build complete.'));
-            });
+                console.log(chalk.blue('Docker image build complete.'));
+            });
         }
-    );
+    );
 }
 
-export { buildDockerImage };
+export { buildDockerImage };

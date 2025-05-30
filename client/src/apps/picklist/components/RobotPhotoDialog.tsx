@@ -1,11 +1,11 @@
-import { MaterialSymbol } from 'react-material-symbols';
+import { MaterialSymbol } from 'react-material-symbols';
 
 function RobotPhotoDialog({
     teamNumber,
     onClose,
 }: {
-    teamNumber: number;
-    onClose?: () => void;
+    teamNumber: number;
+    onClose?: () => void;
 }) {
     return (
         <>
@@ -21,7 +21,7 @@ function RobotPhotoDialog({
                 </button>
             </div>
         </>
-    );
+    );
 }
 
-export default RobotPhotoDialog;
+export default RobotPhotoDialog;

@@ -1,17 +1,17 @@
-import { Dispatch } from 'react';
-import { MaterialSymbol } from 'react-material-symbols';
-import { TeamData } from 'requests';
-import { WindowData } from '../data';
-import blankImage from '../../../images/blank.png';
+import { Dispatch } from 'react';
+import { MaterialSymbol } from 'react-material-symbols';
+import { TeamData } from 'requests';
+import { WindowData } from '../data';
+import blankImage from '../../../images/blank.png';
 
 function TeamItem({
     teamNumber,
     teamInfoJson,
     onSubmit,
 }: {
-    teamNumber: number;
-    teamInfoJson: TeamData;
-    onSubmit: Dispatch<WindowData>;
+    teamNumber: number;
+    teamInfoJson: TeamData;
+    onSubmit: Dispatch<WindowData>;
 }) {
     // Handle when a team on the stat table is clicked
     function handleTeamSummaryClick(teamNumber: number) {
@@ -19,7 +19,7 @@ function TeamItem({
             title: 'Team ' + teamNumber + ' Summary',
             type: 'TeamSummary',
             teamNumber: teamNumber,
-        });
+        });
     }
 
     return (
@@ -29,7 +29,7 @@ function TeamItem({
                     <img
                         src={
                             teamInfoJson[teamNumber]?.avatar
-                                ? `data:image/png;base64,${teamInfoJson[teamNumber]?.avatar}`
+                                ? `data:image/png;base64,${teamInfoJson[teamNumber]?.avatar}`
                                 : blankImage
                         }
                     />
@@ -44,7 +44,7 @@ function TeamItem({
                 }
             </td>
         </>
-    );
+    );
 }
 
-export default TeamItem;
+export default TeamItem;

@@ -1,17 +1,17 @@
 //import ToggleButton from '../../components/ToggleButton'
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 
-import LinkButton from '../../components/LinkButton';
-import { MaterialSymbol } from 'react-material-symbols';
+import LinkButton from '../../components/LinkButton';
+import { MaterialSymbol } from 'react-material-symbols';
 
 function Counter({
     value,
     onChange,
     children,
 }: {
-    value: number;
-    onChange: Dispatch<SetStateAction<number>>;
-    children: string;
+    value: number;
+    onChange: Dispatch<SetStateAction<number>>;
+    children: string;
 }) {
     return (
         <>
@@ -26,63 +26,63 @@ function Counter({
                 + {children} ({value})
             </button>
         </>
-    );
+    );
 }
 
 function ScoreCalculator() {
-    const [autoLeave, setAutoLeave] = useState(0);
-    const [autoCoral1, setAutoCoral1] = useState(0);
-    const [autoCoral2, setAutoCoral2] = useState(0);
-    const [autoCoral3, setAutoCoral3] = useState(0);
-    const [autoCoral4, setAutoCoral4] = useState(0);
-    const [autoAlgaeProcessor, setAutoAlgaeProcessor] = useState(0);
-    const [autoAlgaeNet, setAutoAlgaeNet] = useState(0);
-    const [teleCoral1, setTeleCoral1] = useState(0);
-    const [teleCoral2, setTeleCoral2] = useState(0);
-    const [teleCoral3, setTeleCoral3] = useState(0);
-    const [teleCoral4, setTeleCoral4] = useState(0);
-    const [teleAlgaeNet, setTeleAlgaeNet] = useState(0);
-    const [teleAlgaeProcessor, setTeleAlgaeProcessor] = useState(0);
-    const [park, setPark] = useState(0);
-    const [Deep, setDeep] = useState(0);
-    const [Shallow, setShallow] = useState(0);
+    const [autoLeave, setAutoLeave] = useState(0);
+    const [autoCoral1, setAutoCoral1] = useState(0);
+    const [autoCoral2, setAutoCoral2] = useState(0);
+    const [autoCoral3, setAutoCoral3] = useState(0);
+    const [autoCoral4, setAutoCoral4] = useState(0);
+    const [autoAlgaeProcessor, setAutoAlgaeProcessor] = useState(0);
+    const [autoAlgaeNet, setAutoAlgaeNet] = useState(0);
+    const [teleCoral1, setTeleCoral1] = useState(0);
+    const [teleCoral2, setTeleCoral2] = useState(0);
+    const [teleCoral3, setTeleCoral3] = useState(0);
+    const [teleCoral4, setTeleCoral4] = useState(0);
+    const [teleAlgaeNet, setTeleAlgaeNet] = useState(0);
+    const [teleAlgaeProcessor, setTeleAlgaeProcessor] = useState(0);
+    const [park, setPark] = useState(0);
+    const [Deep, setDeep] = useState(0);
+    const [Shallow, setShallow] = useState(0);
     
-    const autoPoints = autoLeave * 3 + autoCoral1 * 3 + autoCoral2 * 4 + autoCoral3 * 6 + autoCoral4 * 7 + autoAlgaeProcessor * 6 + autoAlgaeNet *4;
+    const autoPoints = autoLeave * 3 + autoCoral1 * 3 + autoCoral2 * 4 + autoCoral3 * 6 + autoCoral4 * 7 + autoAlgaeProcessor * 6 + autoAlgaeNet *4;
     const CoralPoints =
-        autoCoral1 * 3 + autoCoral2 * 4 + autoCoral3 * 6 + autoCoral4 * 7 + teleCoral1 * 2 + teleCoral2 * 3 + teleCoral3 * 4 + teleCoral4 * 5;
+        autoCoral1 * 3 + autoCoral2 * 4 + autoCoral3 * 6 + autoCoral4 * 7 + teleCoral1 * 2 + teleCoral2 * 3 + teleCoral3 * 4 + teleCoral4 * 5;
     const AlgaePoints = 
-        autoAlgaeProcessor * 6 + teleAlgaeProcessor * 6 + autoAlgaeNet *4 + teleAlgaeNet * 4;
+        autoAlgaeProcessor * 6 + teleAlgaeProcessor * 6 + autoAlgaeNet *4 + teleAlgaeNet * 4;
     const cagePoints =
-        park * 2 + Deep * 12 + Shallow * 6;
-    const autoCoralTotal = autoCoral1 * 3 + autoCoral2 * 4 + autoCoral3 * 6 + autoCoral4 * 7;
-    const teleCoralTotal = teleCoral1* 2  + teleCoral2 * 3 + teleCoral3 * 4 + teleCoral4 * 5;
-    const teleopPoints = teleCoralTotal + cagePoints + teleAlgaeNet * 4 + teleAlgaeProcessor * 6;
+        park * 2 + Deep * 12 + Shallow * 6;
+    const autoCoralTotal = autoCoral1 * 3 + autoCoral2 * 4 + autoCoral3 * 6 + autoCoral4 * 7;
+    const teleCoralTotal = teleCoral1* 2  + teleCoral2 * 3 + teleCoral3 * 4 + teleCoral4 * 5;
+    const teleopPoints = teleCoralTotal + cagePoints + teleAlgaeNet * 4 + teleAlgaeProcessor * 6;
     const totalPoints =
         autoPoints +
         CoralPoints + 
         AlgaePoints +
         cagePoints -
-        autoCoralTotal;
+        autoCoralTotal;
     //added the minus coz its being counted twice
 
     const handleReset = () => {
-        setAutoLeave(0);
-        setAutoCoral1(0);
-        setAutoCoral2(0);
-        setAutoCoral3(0);
-        setAutoCoral4(0);
-        setAutoAlgaeProcessor(0);
-        setAutoAlgaeNet(0);
-        setTeleCoral1(0);
-        setTeleCoral2(0);
-        setTeleCoral3(0);
-        setTeleCoral4(0);
-        setTeleAlgaeProcessor(0);
-        setTeleAlgaeNet(0);
-        setPark(0);
-        setDeep(0);
-        setShallow(0);
-    };
+        setAutoLeave(0);
+        setAutoCoral1(0);
+        setAutoCoral2(0);
+        setAutoCoral3(0);
+        setAutoCoral4(0);
+        setAutoAlgaeProcessor(0);
+        setAutoAlgaeNet(0);
+        setTeleCoral1(0);
+        setTeleCoral2(0);
+        setTeleCoral3(0);
+        setTeleCoral4(0);
+        setTeleAlgaeProcessor(0);
+        setTeleAlgaeNet(0);
+        setPark(0);
+        setDeep(0);
+        setShallow(0);
+    };
 
     return (
         <div className='flex h-dvh flex-col bg-gray-800'>
@@ -232,7 +232,7 @@ function ScoreCalculator() {
                         </span>
                     </p>
             </div>
-    );
+    );
 }
 
-export default ScoreCalculator;
+export default ScoreCalculator;

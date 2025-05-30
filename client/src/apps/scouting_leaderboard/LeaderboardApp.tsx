@@ -1,19 +1,19 @@
 import {
     ScouterData,
-} from 'requests';
-import { StatRow } from './components/StatRow';
-import LinkButton from '../../components/LinkButton';
-import { MaterialSymbol } from 'react-material-symbols';
-import { useFetchJson } from '../../lib/useFetch';
+} from 'requests';
+import { StatRow } from './components/StatRow';
+import LinkButton from '../../components/LinkButton';
+import { MaterialSymbol } from 'react-material-symbols';
+import { useFetchJson } from '../../lib/useFetch';
 
 
 
 function LeaderboardApp() {
     
     const [retrieveScouter, reloadRetrieveScouter] =
-    useFetchJson<ScouterData[]>('/data/retrieve/scouter');
+    useFetchJson<ScouterData[]>('/data/retrieve/scouter');
 
-    const sortedScouters = (retrieveScouter ?? []).sort((a, b) => b.accuracy - a.accuracy);
+    const sortedScouters = (retrieveScouter ?? []).sort((a, b) => b.accuracy - a.accuracy);
     console.log(sortedScouters)
 
     return (
@@ -39,7 +39,7 @@ function LeaderboardApp() {
             <button
                 className='my-3 rounded-lg border-2 border-slate-900 text-lg'
                 onClick={() => {
-                    reloadRetrieveScouter();
+                    reloadRetrieveScouter();
                 }}>
                 Reload Data
             </button>
@@ -70,8 +70,8 @@ function LeaderboardApp() {
             </table>
         </main>
         </div> 
-    );
+    );
 }
 
 
-export default LeaderboardApp;
+export default LeaderboardApp;

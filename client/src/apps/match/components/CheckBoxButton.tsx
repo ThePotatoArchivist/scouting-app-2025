@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode } from "react";
 
 function CheckBoxMatch ({
     checked,
@@ -7,10 +7,10 @@ function CheckBoxMatch ({
     className,
 }:
 {
-    checked: boolean;
-    children?:ReactNode;
-    onChange?: (value: boolean) => void;
-    className?: string;
+    checked: boolean;
+    children?:ReactNode;
+    onChange?: (value: boolean) => void;
+    className?: string;
 }) {
     return(
         <input
@@ -23,7 +23,7 @@ function CheckBoxMatch ({
                     {children}
         </input>
 )}
-export default CheckBoxMatch;
+export default CheckBoxMatch;
 
 
 //for scouter position, add this within the button's className:

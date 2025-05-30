@@ -1,32 +1,32 @@
-import { Dispatch, useState } from 'react';
-import { AnalysisEntry, BarGraphData } from '../data';
-import TextInput from '../../../components/TextInput';
-import Checkbox from '../../../components/Checkbox';
-import SelectSearch from 'react-select-search';
-import camelToSpaced from '../../../lib/camelCaseConvert';
-import { MaterialSymbol } from 'react-material-symbols';
+import { Dispatch, useState } from 'react';
+import { AnalysisEntry, BarGraphData } from '../data';
+import TextInput from '../../../components/TextInput';
+import Checkbox from '../../../components/Checkbox';
+import SelectSearch from 'react-select-search';
+import camelToSpaced from '../../../lib/camelCaseConvert';
+import { MaterialSymbol } from 'react-material-symbols';
 
 function BarGraphDialog({
     onSubmit,
     onClose,
     data,
 }: {
-    onSubmit: Dispatch<BarGraphData>;
-    onClose?: () => void;
-    data: AnalysisEntry[] | undefined;
+    onSubmit: Dispatch<BarGraphData>;
+    onClose?: () => void;
+    data: AnalysisEntry[] | undefined;
 }) {
     const columns = data
         ? Object.keys(data[0]).filter(
               e => e !== 'teamNumber' && typeof data[0][e] === 'number'
           )
-        : [];
+        : [];
 
-    const [title, setTitle] = useState('');
-    const [column, setColumn] = useState<string>();
-    const [ascending, setAscending] = useState(false);
+    const [title, setTitle] = useState('');
+    const [column, setColumn] = useState<string>();
+    const [ascending, setAscending] = useState(false);
 
-    const [showAll, setShowAll] = useState(true);
-    const [top, setTop] = useState('');
+    const [showAll, setShowAll] = useState(true);
+    const [top, setTop] = useState('');
 
     const handleSubmit = () => {
         if (column) {
@@ -36,10 +36,10 @@ function BarGraphDialog({
                 ascending,
                 type: 'BarGraph',
                 top: parseInt(top),
-            });
-            onClose?.();
+            });
+            onClose?.();
         }
-    };
+    };
 
     return (
         <>
@@ -95,7 +95,7 @@ function BarGraphDialog({
             </p>
             <button onClick={handleSubmit}>Create</button>
         </>
-    );
+    );
 }
 
-export default BarGraphDialog;
+export default BarGraphDialog;

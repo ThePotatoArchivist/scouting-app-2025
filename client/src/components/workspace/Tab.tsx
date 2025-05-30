@@ -1,8 +1,8 @@
-import { DragEventHandler, useContext, useState } from 'react';
-import { DragContext } from './workspaceContexts';
-import DropTarget from './DropTarget';
-import { MaterialSymbol } from 'react-material-symbols';
-import { TabBase } from './workspaceData';
+import { DragEventHandler, useContext, useState } from 'react';
+import { DragContext } from './workspaceContexts';
+import DropTarget from './DropTarget';
+import { MaterialSymbol } from 'react-material-symbols';
+import { TabBase } from './workspaceData';
 
 function Tab<T extends TabBase>({
     value,
@@ -12,34 +12,34 @@ function Tab<T extends TabBase>({
     title,
     selected,
 }: {
-    value: T;
-    onRemove: () => void;
-    onInsertBefore: (value: T) => void;
-    onClick: () => void;
-    title: string;
-    selected: boolean;
+    value: T;
+    onRemove: () => void;
+    onInsertBefore: (value: T) => void;
+    onClick: () => void;
+    title: string;
+    selected: boolean;
 }) {
-    const [[dragging], setDragging] = useContext(DragContext) as DragContext<T>;
+    const [[dragging], setDragging] = useContext(DragContext) as DragContext<T>;
 
-    const [draggingSelf, setDraggingSelf] = useState(false);
+    const [draggingSelf, setDraggingSelf] = useState(false);
 
     const handleDragStart: DragEventHandler = event => {
-        event.dataTransfer.setData('text/custom', 'dummy data');
-        event.dataTransfer.dropEffect = 'move';
-        setDraggingSelf(true);
+        event.dataTransfer.setData('text/custom', 'dummy data');
+        event.dataTransfer.dropEffect = 'move';
+        setDraggingSelf(true);
         setDragging([
             value,
             () => {
-                onRemove();
-                handleDragEnd();
+                onRemove();
+                handleDragEnd();
             },
-        ]);
-    };
+        ]);
+    };
 
     const handleDragEnd = () => {
-        setDraggingSelf(false);
-        setDragging([undefined, undefined]);
-    };
+        setDraggingSelf(false);
+        setDragging([undefined, undefined]);
+    };
 
     return (
         <div
@@ -63,7 +63,7 @@ function Tab<T extends TabBase>({
                 <MaterialSymbol icon='close' />
             </button>
         </div>
-    );
+    );
 }
 
-export default Tab;
+export default Tab;

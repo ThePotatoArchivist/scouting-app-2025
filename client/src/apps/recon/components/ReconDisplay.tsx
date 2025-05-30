@@ -4,8 +4,8 @@ function CoralReconButton({
     buttonValue
 }:
 {
-    className: string;
-    buttonValue?: boolean;
+    className: string;
+    buttonValue?: boolean;
 }){
 
 
@@ -17,4 +17,4 @@ function CoralReconButton({
     )
 }
 
-export default CoralReconButton;
+export default CoralReconButton;

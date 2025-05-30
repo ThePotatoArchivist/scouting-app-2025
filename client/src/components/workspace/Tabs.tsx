@@ -6,7 +6,7 @@ import {
     useContext,
     useEffect,
     useRef,
-} from 'react';
+} from 'react';
 import {
     PaneData,
     SplitData,
@@ -14,17 +14,17 @@ import {
     TabBase,
     TabsData,
     TabsSplice,
-} from './workspaceData';
+} from './workspaceData';
 import {
     SetAddToFocusedContext,
     DragContext,
     TabContentContext,
     NestingContext,
-} from './workspaceContexts';
-import { usePropState } from '../../lib/usePropState';
-import { useArrayState } from '../../lib/useArrayState';
-import Tab from './Tab';
-import DropTarget from './DropTarget';
+} from './workspaceContexts';
+import { usePropState } from '../../lib/usePropState';
+import { useArrayState } from '../../lib/useArrayState';
+import Tab from './Tab';
+import DropTarget from './DropTarget';
 
 function Tabs<T extends TabBase>({
     value,
@@ -33,30 +33,30 @@ function Tabs<T extends TabBase>({
     onReplaceHoriz,
     onReplaceVert,
 }: StateProps<TabsData<T>> & {
-    onRemove: () => void;
-    onReplaceHoriz?: TabsSplice<T>;
-    onReplaceVert?: TabsSplice<T>;
+    onRemove: () => void;
+    onReplaceHoriz?: TabsSplice<T>;
+    onReplaceVert?: TabsSplice<T>;
 }) {
-    const [selected, setSelected] = usePropState(value, onChange, 'selected');
-    const [tabs, setTabs] = usePropState(value, onChange, 'tabs');
-    const tabsA = useArrayState(setTabs);
+    const [selected, setSelected] = usePropState(value, onChange, 'selected');
+    const [tabs, setTabs] = usePropState(value, onChange, 'tabs');
+    const tabsA = useArrayState(setTabs);
 
-    const nesting = useContext(NestingContext);
+    const nesting = useContext(NestingContext);
 
-    const tabContext = useContext(TabContentContext) as TabContentContext<T>;
+    const tabContext = useContext(TabContentContext) as TabContentContext<T>;
     const setAddToFocused = useContext(
         SetAddToFocusedContext
-    ) as SetAddToFocusedContext<T>;
-    const [[dragging]] = useContext(DragContext) as DragContext<T>;
+    ) as SetAddToFocusedContext<T>;
+    const [[dragging]] = useContext(DragContext) as DragContext<T>;
 
     const handleSplit = (vertical: boolean, start: boolean) => (other: T) => {
-        const replaceFunction = vertical ? onReplaceVert : onReplaceHoriz;
+        const replaceFunction = vertical ? onReplaceVert : onReplaceHoriz;
         if (replaceFunction) {
             replaceFunction(value => [
                 start ? new TabsData(other) : value,
                 start ? value : new TabsData(other),
-            ]);
-            return;
+            ]);
+            return;
         }
         (onChange as Dispatch<SetStateAction<PaneData<T>>>)(
             value =>
@@ -65,30 +65,30 @@ function Tabs<T extends TabBase>({
                     start ? new TabsData(other) : value,
                     start ? value : new TabsData(other)
                 )
-        );
-    };
+        );
+    };
 
     const handleFocus = useCallback(() => {
         // Passing a function to a setState will run it, so to set a state to a function a wrapper arrow is needed
         setAddToFocused(() => value => {
-            tabsA.add(value);
-            setSelected(tabs.length);
-        });
-    }, [setAddToFocused, setSelected, tabs.length, tabsA]);
+            tabsA.add(value);
+            setSelected(tabs.length);
+        });
+    }, [setAddToFocused, setSelected, tabs.length, tabsA]);
 
-    const tabCount = useRef(0);
+    const tabCount = useRef(0);
 
     useEffect(() => {
-        if (tabs.length > tabCount.current) handleFocus();
-        tabCount.current = tabs.length;
-    }, [handleFocus, tabs.length]);
+        if (tabs.length > tabCount.current) handleFocus();
+        tabCount.current = tabs.length;
+    }, [handleFocus, tabs.length]);
 
     useEffect(() => {
         if (tabs.length === 0) {
-            onRemove();
-            return;
+            onRemove();
+            return;
         }
-    }, [onRemove, tabs.length]);
+    }, [onRemove, tabs.length]);
 
     return (
         <div className='flex h-full w-full flex-col' onClick={handleFocus}>
@@ -101,23 +101,23 @@ function Tabs<T extends TabBase>({
                         title={tab.title}
                         value={tab}
                         onInsertBefore={value => {
-                            tabsA.insert(i, value);
-                            setSelected(i);
+                            tabsA.insert(i, value);
+                            setSelected(i);
                         }}
                         onRemove={() => {
-                            tabsA.remove(i);
+                            tabsA.remove(i);
                             // If the selected tab does not exist
                             if (tabs.length - 2 < selected)
-                                setSelected(selected - 1);
+                                setSelected(selected - 1);
                         }}
                     />
                 ))}
                 <DropTarget
                     onDrop={(value: T) => {
-                        tabsA.add(value);
+                        tabsA.add(value);
                         setSelected(
                             tabs.includes(value) ? tabs.length - 1 : tabs.length
-                        );
+                        );
                     }}
                     disabled={tabs.length === 1 && dragging === tabs[0]}
                     className='min-w-8 flex-grow'
@@ -165,7 +165,7 @@ function Tabs<T extends TabBase>({
                     )}
             </div>
         </div>
-    );
+    );
 }
 
-export default Tabs;
+export default Tabs;

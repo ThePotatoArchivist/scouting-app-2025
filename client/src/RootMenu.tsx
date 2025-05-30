@@ -1,6 +1,6 @@
-import LinkButton from './components/LinkButton';
+import LinkButton from './components/LinkButton';
 
-import { MaterialSymbol } from 'react-material-symbols';
+import { MaterialSymbol } from 'react-material-symbols';
 
 const images = [
     'bg-field-blue',
@@ -9,7 +9,7 @@ const images = [
     'bg-field-blue-endgame',
     'bg-field-blue-super',
     'bg-field-red-super',
-];
+];
 
 function RootMenu() {
     return (
@@ -65,7 +65,7 @@ function RootMenu() {
                 <MaterialSymbol icon='search' />
             </div>
         </main>
-    );
+    );
 }
 
-export default RootMenu;
+export default RootMenu;

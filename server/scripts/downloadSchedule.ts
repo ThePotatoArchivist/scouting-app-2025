@@ -1,32 +1,32 @@
-import fetch from 'node-fetch';
-import { dotenvLoad } from 'dotenv-mono';
-import fs from 'fs';
+import fetch from 'node-fetch';
+import { dotenvLoad } from 'dotenv-mono';
+import fs from 'fs';
 
-dotenvLoad({ path: '.env' });
-dotenvLoad({ path: '.env.local' });
-const apiKey = process.env.API_KEY!;
-const eventKey = process.env.EVENT_KEY!;
+dotenvLoad({ path: '.env' });
+dotenvLoad({ path: '.env.local' });
+const apiKey = process.env.API_KEY!;
+const eventKey = process.env.EVENT_KEY!;
 interface SimpleMatch {
-    key: string;
-    comp_level: 'qm' | 'ef' | 'qf' | 'sf' | 'f';
-    set_number: number;
-    match_number: number;
+    key: string;
+    comp_level: 'qm' | 'ef' | 'qf' | 'sf' | 'f';
+    set_number: number;
+    match_number: number;
     alliances: {
         [_ in 'red' | 'blue']: {
-            score: number;
-            team_keys: string[];
-            surrogate_team_keys?: string[];
-            dq_team_keys?: string[];
-        };
-    };
-    winning_alliance?: 'red' | 'blue';
-    event_key: string;
-    time?: number;
-    actual_time?: number;
-    predicted_time?: number;
-    post_result_time?: number;
-    score_breakdown?: object | null;
-    videos?: { type: 'youtube' | 'tba'; key: string }[];
+            score: number;
+            team_keys: string[];
+            surrogate_team_keys?: string[];
+            dq_team_keys?: string[];
+        };
+    };
+    winning_alliance?: 'red' | 'blue';
+    event_key: string;
+    time?: number;
+    actual_time?: number;
+    predicted_time?: number;
+    post_result_time?: number;
+    score_breakdown?: object | null;
+    videos?: { type: 'youtube' | 'tba'; key: string }[];
 }
 
 const result = await fetch(
@@ -36,13 +36,13 @@ const result = await fetch(
             'X-TBA-Auth-Key': apiKey,
         },
     }
-);
+);
 
 function teamNumber(teamString: string) {
-    return parseInt(teamString.slice(3));
+    return parseInt(teamString.slice(3));
 }
 
-const data = (await result.json()) as SimpleMatch[];
+const data = (await result.json()) as SimpleMatch[];
 const schedule = Object.fromEntries(
     data.map(match => [
         match.match_number,
@@ -55,13 +55,13 @@ const schedule = Object.fromEntries(
             blue_3: teamNumber(match.alliances.blue.team_keys[2]),
         },
     ])
-);
+);
 
-console.log(schedule);
+console.log(schedule);
 
 fs.writeFileSync(
     '../client/src/assets/matchSchedule.json',
     JSON.stringify(schedule)
-);
+);
 
-console.log("Don't forget to run npm run build!");
+console.log("Don't forget to run npm run build!");

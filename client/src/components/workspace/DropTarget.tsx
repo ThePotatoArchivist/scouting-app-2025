@@ -4,9 +4,9 @@ import {
     useContext,
     useEffect,
     useState,
-} from 'react';
-import { DragContext } from './workspaceContexts';
-import { TabBase } from './workspaceData';
+} from 'react';
+import { DragContext } from './workspaceContexts';
+import { TabBase } from './workspaceData';
 
 function DropTarget<T extends TabBase>({
     disabled = false,
@@ -14,48 +14,48 @@ function DropTarget<T extends TabBase>({
     className = '',
     areaClassName,
 }: {
-    disabled?: boolean;
-    onDrop: (value: T) => void;
-    className?: string;
-    areaClassName?: string;
+    disabled?: boolean;
+    onDrop: (value: T) => void;
+    className?: string;
+    areaClassName?: string;
 }) {
     const [[dragging, removeDragged]] = useContext(
         DragContext
-    ) as DragContext<T>;
-    const [dragTarget, setDragTarget] = useState(false);
+    ) as DragContext<T>;
+    const [dragTarget, setDragTarget] = useState(false);
 
     useEffect(() => {
-        if (!dragging && dragTarget) setDragTarget(false);
-    }, [dragTarget, dragging]);
+        if (!dragging && dragTarget) setDragTarget(false);
+    }, [dragTarget, dragging]);
 
     const handleDragEnter: DragEventHandler = event => {
-        if (disabled || !dragging) return;
-        event.preventDefault();
-        setDragTarget(true);
-    };
+        if (disabled || !dragging) return;
+        event.preventDefault();
+        setDragTarget(true);
+    };
 
     const handleDragLeave: DragEventHandler = () => {
-        setDragTarget(false);
-    };
+        setDragTarget(false);
+    };
 
     const handleDragOver: DragEventHandler = event => {
-        if (disabled || !dragging) return;
-        event.preventDefault();
-    };
+        if (disabled || !dragging) return;
+        event.preventDefault();
+    };
 
     const handleDrop: DragEventHandler = () => {
         if (dragging) {
-            removeDragged!();
-            onDrop(dragging);
+            removeDragged!();
+            onDrop(dragging);
         }
-    };
+    };
 
     const listeners: HTMLAttributes<HTMLDivElement> = {
         onDragEnter: handleDragEnter,
         onDragOver: handleDragOver,
         onDragLeave: handleDragLeave,
         onDrop: handleDrop,
-    };
+    };
 
     return areaClassName === undefined ? (
         <div
@@ -69,7 +69,7 @@ function DropTarget<T extends TabBase>({
             />
             <div {...listeners} className={`${className} z-10`} />
         </>
-    );
+    );
 }
 
-export default DropTarget;
+export default DropTarget;

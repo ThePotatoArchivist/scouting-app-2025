@@ -1,19 +1,19 @@
-import { startDockerContainer } from 'database';
-import mongoose from 'mongoose';
-import { matchApp, superApp, leaderboardApp } from '../src/Schema.js';
-import { CommentValues, MatchData, SuperData, ScouterData } from 'requests';
-import { dotenvLoad } from 'dotenv-mono';
+import { startDockerContainer } from 'database';
+import mongoose from 'mongoose';
+import { matchApp, superApp, leaderboardApp } from '../src/Schema.js';
+import { CommentValues, MatchData, SuperData, ScouterData } from 'requests';
+import { dotenvLoad } from 'dotenv-mono';
 
 function randint(max: number, min = 0) {
-    return Math.floor((max - min) * Math.random()) + min;
+    return Math.floor((max - min) * Math.random()) + min;
 }
 
 function choose<T>(array: T[]) {
-    return array[randint(array.length)];
+    return array[randint(array.length)];
 }
 
-await startDockerContainer(process.env.CONTAINER_NAME);
-await mongoose.connect('mongodb://0.0.0.0:27017/');
+await startDockerContainer(process.env.CONTAINER_NAME);
+await mongoose.connect('mongodb://0.0.0.0:27017/');
 
 const comments: CommentValues[] = [
     'great_driving',
@@ -26,7 +26,7 @@ const comments: CommentValues[] = [
     'sturdy_build',
     'weak_build',
     'avoids_under_stage',
-];
+];
 
 // const scouterLeaderName: leaderboardValues[] = [
 //     'Vanessa',
@@ -35,23 +35,23 @@ const comments: CommentValues[] = [
 //     'Nathan',
 //     'Ashreeya',
 //     'Tica',
-//];
+//];
 
-dotenvLoad({ path: '.env' });
-dotenvLoad({ path: '.env.local' });
+dotenvLoad({ path: '.env' });
+dotenvLoad({ path: '.env.local' });
 
-const apiKey = process.env.API_KEY!;
-const eventKey = process.env.EVENT_KEY!;
-console.log(apiKey);
+const apiKey = process.env.API_KEY!;
+const eventKey = process.env.EVENT_KEY!;
+console.log(apiKey);
 
 interface SimpleTeam {
-    key: string;
-    team_number: number;
-    nickname?: string;
-    name: string;
-    city?: string;
-    state_prov?: string;
-    country?: string;
+    key: string;
+    team_number: number;
+    nickname?: string;
+    name: string;
+    city?: string;
+    state_prov?: string;
+    country?: string;
 }
 
 const result = await fetch(
@@ -61,16 +61,16 @@ const result = await fetch(
             'X-TBA-Auth-Key': apiKey,
         },
     }
-);
+);
 
-console.log(result.status);
+console.log(result.status);
 
-const data = (await result.json()) as SimpleTeam[];
-console.log(data);
-const teams = data.map(e => e.team_number).sort((a, b) => a - b);
-console.log(teams);
+const data = (await result.json()) as SimpleTeam[];
+console.log(data);
+const teams = data.map(e => e.team_number).sort((a, b) => a - b);
+console.log(teams);
 
-for (let matchNumber = 1; matchNumber < 400; matchNumber++) {
+for (let matchNumber = 1; matchNumber < 400; matchNumber++) {
     for (const robotPosition of [
         'red_1',
         'red_2',
@@ -79,8 +79,8 @@ for (let matchNumber = 1; matchNumber < 400; matchNumber++) {
         'blue_2',
         'blue_3',
     ] as const) {
-        console.log(matchNumber);
-        const team = choose(teams);
+        console.log(matchNumber);
+        const team = choose(teams);
         await new matchApp({
             autoCoral: {
                 L1: randint(5),
@@ -120,7 +120,7 @@ for (let matchNumber = 1; matchNumber < 400; matchNumber++) {
                 removed: 0
             },
 
-        } satisfies MatchData).save();
+        } satisfies MatchData).save();
 
         await new superApp({
             metadata: {
@@ -152,20 +152,20 @@ for (let matchNumber = 1; matchNumber < 400; matchNumber++) {
                       }
                     : undefined,
             netHuman: randint(4)        
-        } satisfies SuperData).save();
+        } satisfies SuperData).save();
     }
 }
 
-for (let scouterNumber = 1; scouterNumber < 100; scouterNumber++) {
-    console.log(scouterNumber);
+for (let scouterNumber = 1; scouterNumber < 100; scouterNumber++) {
+    console.log(scouterNumber);
         await new leaderboardApp({                
             
                 scouterName:choose(['Vanessa', 'Crisanto', 'Christian', 'Nathan', 'Ashreeya', 'Tica']),
                 accuracy: randint(100),
             
 
-        } satisfies ScouterData).save();
+        } satisfies ScouterData).save();
 
 }
 
-await mongoose.disconnect();
+await mongoose.disconnect();

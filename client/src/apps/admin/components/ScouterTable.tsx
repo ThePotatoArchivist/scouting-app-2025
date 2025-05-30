@@ -1,5 +1,5 @@
-import { RobotPosition, StatusReport, SuperPosition } from 'requests';
-import { ScouterCard } from './ScouterCard';
+import { RobotPosition, StatusReport, SuperPosition } from 'requests';
+import { ScouterCard } from './ScouterCard';
 
 function ScouterTable({ scouters }: { scouters: StatusReport[] }) {
     const sortedScouter = Object.fromEntries(
@@ -18,7 +18,7 @@ function ScouterTable({ scouters }: { scouters: StatusReport[] }) {
             robotPosition,
             scouters.filter(scouter => scouter.robotPosition === robotPosition),
         ])
-    ) as Record<RobotPosition | SuperPosition, StatusReport[]>;
+    ) as Record<RobotPosition | SuperPosition, StatusReport[]>;
 
     return (
         <div className='grid grid-cols-4 gap-2'>
@@ -31,7 +31,7 @@ function ScouterTable({ scouters }: { scouters: StatusReport[] }) {
             <ScouterCard scouter={sortedScouter.blue_3} title='Blue 3' />
             <ScouterCard scouter={sortedScouter.blue_ss} title='Blue SS' />
         </div>
-    );
+    );
 }
 
-export { ScouterTable };
+export { ScouterTable };

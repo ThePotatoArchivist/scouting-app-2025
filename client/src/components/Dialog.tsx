@@ -4,34 +4,34 @@ import {
     useEffect,
     useRef,
     useState,
-} from 'react';
+} from 'react';
 
 function Dialog({
     open: openProp,
     trigger,
     children,
 }: {
-    open?: boolean;
-    trigger: (open: () => void) => ReactNode;
-    children: ReactNode | ((close: () => void) => ReactNode);
+    open?: boolean;
+    trigger: (open: () => void) => ReactNode;
+    children: ReactNode | ((close: () => void) => ReactNode);
 }) {
-    const dialogRef = useRef<HTMLDialogElement>(null);
+    const dialogRef = useRef<HTMLDialogElement>(null);
 
-    const [open, setOpen] = useState(openProp);
-
-    useEffect(() => {
-        setOpen(openProp);
-    }, [openProp]);
+    const [open, setOpen] = useState(openProp);
 
     useEffect(() => {
-        if (open === dialogRef.current?.open) return;
+        setOpen(openProp);
+    }, [openProp]);
+
+    useEffect(() => {
+        if (open === dialogRef.current?.open) return;
 
         if (open) {
-            dialogRef.current?.showModal();
+            dialogRef.current?.showModal();
         } else {
-            dialogRef.current?.close();
+            dialogRef.current?.close();
         }
-    }, [open]);
+    }, [open]);
 
     const handleMouseDown: MouseEventHandler<HTMLDialogElement> = ({
         currentTarget,
@@ -39,9 +39,9 @@ function Dialog({
         clientY,
         target,
     }) => {
-        if (currentTarget !== target) return;
+        if (currentTarget !== target) return;
         const { left, right, top, bottom } =
-            currentTarget.getBoundingClientRect();
+            currentTarget.getBoundingClientRect();
 
         if (
             clientX > left &&
@@ -49,10 +49,10 @@ function Dialog({
             clientY > top &&
             clientY < bottom
         )
-            return;
+            return;
 
-        setOpen(false);
-    };
+        setOpen(false);
+    };
 
     return (
         <>
@@ -68,7 +68,7 @@ function Dialog({
             </dialog>
             {trigger(() => setOpen(true))}
         </>
-    );
+    );
 }
 
-export default Dialog;
+export default Dialog;

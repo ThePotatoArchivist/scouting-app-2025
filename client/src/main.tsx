@@ -1,27 +1,27 @@
-import React, { lazy, Suspense } from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import 'react-select-search/style.css';
-import '@fontsource/poppins';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Root from './Root';
-import RootMenu from './RootMenu';
-import AdminApp from './apps/admin/AdminApp';
-import MatchApp from './apps/match/MatchApp';
-import PitApp from './apps/pit/PitApp';
-import ReconApp from './apps/recon/ReconApp';
-import SuperApp from './apps/super/SuperApp';
-import PublicApp from './apps/public/PublicApp';
-import 'react-material-symbols/rounded';
-import ScoringCalculator from './apps/score_calculator/ScoreCalculator';
-import LeaderboardApp from './apps/scouting_leaderboard/LeaderboardApp';
+import React, { lazy, Suspense } from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import 'react-select-search/style.css';
+import '@fontsource/poppins';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Root from './Root';
+import RootMenu from './RootMenu';
+import AdminApp from './apps/admin/AdminApp';
+import MatchApp from './apps/match/MatchApp';
+import PitApp from './apps/pit/PitApp';
+import ReconApp from './apps/recon/ReconApp';
+import SuperApp from './apps/super/SuperApp';
+import PublicApp from './apps/public/PublicApp';
+import 'react-material-symbols/rounded';
+import ScoringCalculator from './apps/score_calculator/ScoreCalculator';
+import LeaderboardApp from './apps/scouting_leaderboard/LeaderboardApp';
 
-import { registerSW } from 'virtual:pwa-register';
+import { registerSW } from 'virtual:pwa-register';
 
-const PicklistApp = lazy(() => import('./apps/picklist/PicklistApp'));
+const PicklistApp = lazy(() => import('./apps/picklist/PicklistApp'));
 
 // Automatically reloads the page a second time to update the SW
-registerSW();
+registerSW();
 
 const router = createBrowserRouter([
     {
@@ -74,10 +74,10 @@ const router = createBrowserRouter([
             },
         ],
     },
-]);
+]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <RouterProvider router={router} />
     </React.StrictMode>
-);
+);

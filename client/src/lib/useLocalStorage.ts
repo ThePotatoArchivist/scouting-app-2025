@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 function useLocalStorage<T>(
     initialState: T | (() => T),
@@ -6,13 +6,13 @@ function useLocalStorage<T>(
 ): [T, Dispatch<SetStateAction<T>>] {
     const [state, setState] = useState<T>(
         () => JSON.parse(localStorage.getItem(key) ?? 'null') ?? initialState
-    );
+    );
 
     useEffect(() => {
-        localStorage.setItem(key, JSON.stringify(state));
-    }, [key, state]);
+        localStorage.setItem(key, JSON.stringify(state));
+    }, [key, state]);
 
-    return [state, setState];
+    return [state, setState];
 }
 
-export { useLocalStorage };
+export { useLocalStorage };

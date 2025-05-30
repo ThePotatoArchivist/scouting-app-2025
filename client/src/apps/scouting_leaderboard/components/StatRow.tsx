@@ -1,11 +1,11 @@
-import { ScouterData } from 'requests';
+import { ScouterData } from 'requests';
 
 function StatRow({
     rank,
     scouter,
 }: {
-    rank: number;
-    scouter: ScouterData;
+    rank: number;
+    scouter: ScouterData;
 }) {
    
     return (
@@ -24,9 +24,9 @@ function StatRow({
                     {scouter && scouter.accuracy}
                 </td>
         </tr>
-    );
+    );
 }
 
 
 
-export { StatRow };
+export { StatRow };

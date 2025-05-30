@@ -1,4 +1,4 @@
-import LinkButton from '../../components/LinkButton';
+import LinkButton from '../../components/LinkButton';
 
 function PublicApp() {
     return (
@@ -6,7 +6,7 @@ function PublicApp() {
             <h1>Public App</h1>
             <LinkButton link='/'>Home</LinkButton>
         </>
-    );
+    );
 }
 
-export default PublicApp;
+export default PublicApp;

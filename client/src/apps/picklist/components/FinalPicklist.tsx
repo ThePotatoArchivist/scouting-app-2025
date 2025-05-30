@@ -1,9 +1,9 @@
-import { Dispatch, useState } from 'react';
-import { MaterialSymbol } from 'react-material-symbols';
-import { AnalysisEntry, WindowData } from '../data';
-import { TeamData } from 'requests';
-import TeamItem from './TeamItem';
-import SelectSearch from 'react-select-search';
+import { Dispatch, useState } from 'react';
+import { MaterialSymbol } from 'react-material-symbols';
+import { AnalysisEntry, WindowData } from '../data';
+import { TeamData } from 'requests';
+import TeamItem from './TeamItem';
+import SelectSearch from 'react-select-search';
 
 function picklist({
     teamInfoJson,
@@ -12,27 +12,27 @@ function picklist({
     picklist,
     setPicklist,
 }: {
-    teamInfoJson: TeamData;
-    onSubmit: Dispatch<WindowData>;
-    data: AnalysisEntry[] | undefined;
-    picklist: number[];
-    setPicklist: Dispatch<number[]>;
+    teamInfoJson: TeamData;
+    onSubmit: Dispatch<WindowData>;
+    data: AnalysisEntry[] | undefined;
+    picklist: number[];
+    setPicklist: Dispatch<number[]>;
 }) {
     // Get all team numbers from the json data
-    const teamNumbers = data?.map(e => e.teamNumber.toString()) ?? [];
+    const teamNumbers = data?.map(e => e.teamNumber.toString()) ?? [];
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [expanded, setExpanded] = useState(false);
+    const [expanded, setExpanded] = useState(false);
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [newTeamNumber, setNewTeamNumber] = useState<string>();
+    const [newTeamNumber, setNewTeamNumber] = useState<string>();
 
     function handleExpand() {
-        setExpanded(!expanded);
+        setExpanded(!expanded);
     }
 
     function handleRemoveTeam(index: number) {
-        setPicklist(picklist.filter((_, i) => i !== index));
+        setPicklist(picklist.filter((_, i) => i !== index));
     }
 
     function moveTeamNumber(index: number, up: boolean) {
@@ -45,7 +45,7 @@ function picklist({
                         picklist[index - 1],
                         picklist.slice(index + 1)
                     )
-            );
+            );
         } else if (index < picklist.length - 1) {
             setPicklist(
                 picklist
@@ -55,14 +55,14 @@ function picklist({
                         picklist[index],
                         picklist.slice(index + 2)
                     )
-            );
+            );
         }
     }
 
     function addNewTeamNumber(teamNumber: string) {
         if (teamNumber && !picklist.includes(Number(teamNumber))) {
-            setPicklist([...picklist, Number(teamNumber)]);
-            setNewTeamNumber('Select Team');
+            setPicklist([...picklist, Number(teamNumber)]);
+            setNewTeamNumber('Select Team');
         }
     }
 
@@ -105,7 +105,7 @@ function picklist({
                                         <MaterialSymbol icon='close' />
                                     </button>
                                 </div>
-                            );
+                            );
                         })}
                     </div>
                     <div className='self-center'>
@@ -127,7 +127,7 @@ function picklist({
                 <></>
             )}
         </div>
-    );
+    );
 }
 
-export default picklist;
+export default picklist;

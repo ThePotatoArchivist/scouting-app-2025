@@ -3,7 +3,7 @@ function postJson(url: string, data: unknown) {
         body: JSON.stringify(data),
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-    });
+    });
 }
 
-export { postJson };
+export { postJson };

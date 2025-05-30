@@ -1,13 +1,13 @@
-import { Dispatch, InputHTMLAttributes, RefObject } from 'react';
+import { Dispatch, InputHTMLAttributes, RefObject } from 'react';
 
 function TextInput({
     value,
     onChange,
     ...otherProps
 }: {
-    value?: string;
-    onChange?: Dispatch<string>;
-    ref?: RefObject<HTMLInputElement>;
+    value?: string;
+    onChange?: Dispatch<string>;
+    ref?: RefObject<HTMLInputElement>;
 } & Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'>) {
     return (
         <input
@@ -17,7 +17,7 @@ function TextInput({
             }
             {...otherProps}
         />
-    );
+    );
 }
 
-export default TextInput;
+export default TextInput;

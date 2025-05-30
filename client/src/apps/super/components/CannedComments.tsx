@@ -1,20 +1,20 @@
-import { Dispatch } from 'react';
-import { CommentValues } from 'requests';
-import chroma from 'chroma-js';
-import Select, { StylesConfig } from 'react-select';
+import { Dispatch } from 'react';
+import { CommentValues } from 'requests';
+import chroma from 'chroma-js';
+import Select, { StylesConfig } from 'react-select';
 
 export interface SelectOption<T> {
-    value: T;
-    label: string;
-    color: string;
+    value: T;
+    label: string;
+    color: string;
 }
 
 interface ColourOption {
-    readonly value: string;
-    readonly label: string;
-    readonly color: string;
-    readonly isFixed?: boolean;
-    readonly isDisabled?: boolean;
+    readonly value: string;
+    readonly label: string;
+    readonly color: string;
+    readonly isFixed?: boolean;
+    readonly isDisabled?: boolean;
 }
 
 const commentOptions: SelectOption<CommentValues>[] = [
@@ -39,12 +39,12 @@ const commentOptions: SelectOption<CommentValues>[] = [
     { label: 'sturdy build', value: 'sturdy_build', color: '#5ac750' },
     { label: 'weak build', value: 'weak_build', color: '#c75050' },
     
-];
+];
 
 const colourStyles: StylesConfig<ColourOption, true> = {
     control: styles => ({ ...styles, backgroundColor: 'white' }),
     option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-        const color = chroma(data.color);
+        const color = chroma(data.color);
         return {
             ...styles,
             backgroundColor: isDisabled
@@ -71,14 +71,14 @@ const colourStyles: StylesConfig<ColourOption, true> = {
                         : color.alpha(0.3).css()
                     : undefined,
             },
-        };
+        };
     },
     multiValue: (styles, { data }) => {
-        const color = chroma(data.color);
+        const color = chroma(data.color);
         return {
             ...styles,
             backgroundColor: color.alpha(0.1).css(),
-        };
+        };
     },
     multiValueLabel: (styles, { data }) => ({
         ...styles,
@@ -92,14 +92,14 @@ const colourStyles: StylesConfig<ColourOption, true> = {
             color: 'white',
         },
     }),
-};
+};
 
 function CannedCommentBox({
     value,
     onChange,
 }: {
-    value?: SelectOption<CommentValues>[] | undefined;
-    onChange?: Dispatch<SelectOption<CommentValues>[]>;
+    value?: SelectOption<CommentValues>[] | undefined;
+    onChange?: Dispatch<SelectOption<CommentValues>[]>;
 }) {
     return (
         <div className='contents p-10 '>
@@ -117,7 +117,7 @@ function CannedCommentBox({
                 isSearchable={false}
             />
         </div>
-    );
+    );
 }
 
-export default CannedCommentBox;
+export default CannedCommentBox;

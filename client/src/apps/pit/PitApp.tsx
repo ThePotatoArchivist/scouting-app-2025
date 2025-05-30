@@ -1,39 +1,39 @@
-import React, { useEffect, useState } from 'react';
-import { PitFile } from 'requests';
-import LinkButton from '../../components/LinkButton';
-import { MaterialSymbol } from 'react-material-symbols';
-import TeamDropdown from '../../components/TeamDropdown';
-import Dialog from '../../components/Dialog';
-import SignIn from '../../components/SignIn';
-import ConeStacker from '../../components/ConeStacker';
-import { usePreventUnload } from '../../lib/usePreventUnload';
-import ImageUploader from './components/ImageUploader';
-import { useFetchJson } from '../../lib/useFetch';
-import { useQueue } from '../../lib/useQueue';
-import ToggleButton from '../../components/LightVDarkMode';
+import React, { useEffect, useState } from 'react';
+import { PitFile } from 'requests';
+import LinkButton from '../../components/LinkButton';
+import { MaterialSymbol } from 'react-material-symbols';
+import TeamDropdown from '../../components/TeamDropdown';
+import Dialog from '../../components/Dialog';
+import SignIn from '../../components/SignIn';
+import ConeStacker from '../../components/ConeStacker';
+import { usePreventUnload } from '../../lib/usePreventUnload';
+import ImageUploader from './components/ImageUploader';
+import { useFetchJson } from '../../lib/useFetch';
+import { useQueue } from '../../lib/useQueue';
+import ToggleButton from '../../components/LightVDarkMode';
 
 function PitApp() {
-    usePreventUnload();
+    usePreventUnload();
 
     const [scoutedTeams, refreshScoutedTeams] = useFetchJson<number[]>(
         '/data/pit/scouted-teams'
-    );
+    );
 
-    const [additionalNotes, setAdditionalNotes] = useState('');
-    const [batteryNumber, setBatteryNumber] = useState(Number);
-    const [teamNumber, setTeamNumber] = useState(Number);
-    const [toggleState, setToggleState] = useState(false);
-    const [hopper, setHopper] = useState(false);
-    const [sendQueuePit, sendAllPit, queuePit, sendingPit] = useQueue();
-    const [scouterName, setScouterName] = useState('');
-    const [robotImage, setRobotImage] = useState('');
+    const [additionalNotes, setAdditionalNotes] = useState('');
+    const [batteryNumber, setBatteryNumber] = useState(Number);
+    const [teamNumber, setTeamNumber] = useState(Number);
+    const [toggleState, setToggleState] = useState(false);
+    const [hopper, setHopper] = useState(false);
+    const [sendQueuePit, sendAllPit, queuePit, sendingPit] = useQueue();
+    const [scouterName, setScouterName] = useState('');
+    const [robotImage, setRobotImage] = useState('');
     useEffect(() => {
-        const timeout = setInterval(refreshScoutedTeams, 60 * 1000);
-        return () => clearInterval(timeout);
-    }, [refreshScoutedTeams]);
+        const timeout = setInterval(refreshScoutedTeams, 60 * 1000);
+        return () => clearInterval(timeout);
+    }, [refreshScoutedTeams]);
 
     const handleSubmit = async () => {
-        if (sendingPit) return;  
+        if (sendingPit) return;  
 
         const data: PitFile = {
             scouterName: 'bogos',
@@ -42,25 +42,25 @@ function PitApp() {
             hopperIntake: hopper,
             photo: robotImage,
             comments: additionalNotes,
-        };
-            sendQueuePit('/data/pit', data);
-            refreshScoutedTeams();
-            setBatteryNumber(0);
-            setAdditionalNotes('');
-            setTeamNumber(0);
-            setHopper(false);
-            setRobotImage('');
-    };
+        };
+            sendQueuePit('/data/pit', data);
+            refreshScoutedTeams();
+            setBatteryNumber(0);
+            setAdditionalNotes('');
+            setTeamNumber(0);
+            setHopper(false);
+            setRobotImage('');
+    };
 
     const inputBattery = {
         width: '150px',
         height: '50px',
-    };
+    };
     function buttonToggle() {
         if (toggleState == false) {
-            setToggleState(true);
+            setToggleState(true);
         } else {
-            setToggleState(false);
+            setToggleState(false);
         }
     }
 
@@ -216,7 +216,7 @@ function PitApp() {
             </div>
             </div>
         </>
-    );
+    );
 }
 
-export default PitApp;
+export default PitApp;

@@ -1,28 +1,28 @@
-import Dialog from '../../../components/Dialog';
-import camelToSpaced from '../../../lib/camelCaseConvert';
-import { AnalysisEntry, TeamSummaryData } from '../data';
-import { PitResult, TeamData } from 'requests';
-import RobotPhotoDialog from './RobotPhotoDialog';
-import { snakeToSpaced } from '../../../lib/snakeCaseConvert';
+import Dialog from '../../../components/Dialog';
+import camelToSpaced from '../../../lib/camelCaseConvert';
+import { AnalysisEntry, TeamSummaryData } from '../data';
+import { PitResult, TeamData } from 'requests';
+import RobotPhotoDialog from './RobotPhotoDialog';
+import { snakeToSpaced } from '../../../lib/snakeCaseConvert';
 
 function commentToColor(comment: string) {
     switch (comment) {
         case 'good_driving':
         case 'okay_defense':
-            return 'bg-[#50a1c7]';
+            return 'bg-[#50a1c7]';
         case 'clogging':
         case 'source_only':
         case 'avoids_under_stage':
-            return 'bg-[#c78450]';
+            return 'bg-[#c78450]';
         case 'weak_build':
         case 'ineffective_defense':
-            return 'bg-[#c75050]';
+            return 'bg-[#c75050]';
         case 'sturdy_build':
         case 'great_driving':
         case 'effective_defense':
-            return 'bg-[#5ac750]';
+            return 'bg-[#5ac750]';
         default:
-            return 'bg-gray-500';
+            return 'bg-gray-500';
     }
 }
 
@@ -32,22 +32,22 @@ function TeamSummary({
     teamInfoJson,
     pitData,
 }: {
-    table: TeamSummaryData;
-    data: AnalysisEntry[];
-    teamInfoJson: TeamData;
-    pitData: PitResult;
+    table: TeamSummaryData;
+    data: AnalysisEntry[];
+    teamInfoJson: TeamData;
+    pitData: PitResult;
 }) {
     // Get the data for the team specified
-    const teamData = data.find(e => e.teamNumber === table.teamNumber);
+    const teamData = data.find(e => e.teamNumber === table.teamNumber);
 
-    const { info: teamInfo, avatar } = teamInfoJson[table.teamNumber] ?? {};
-    const teamPitData = pitData[table.teamNumber];
+    const { info: teamInfo, avatar } = teamInfoJson[table.teamNumber] ?? {};
+    const teamPitData = pitData[table.teamNumber];
 
     return (
         <div className='flex flex-row '>
             <div>
                 <div className='flex space-x-4'>
-                    {avatar && <img src={`data:image/png;base64,${avatar}`} />}
+                    {avatar && <img src={`data:image/png;base64,${avatar}`} />}
                     <h1 className='text-3xl'>
                         Team{' '}
                         {teamInfo
@@ -127,7 +127,7 @@ function TeamSummary({
                                 <p key={e}>
                                     {camelToSpaced(e)}: {teamData[e]}
                                 </p>
-                            );
+                            );
                         }
                     })}
             </div>
@@ -143,7 +143,7 @@ function TeamSummary({
                 {/* <p className='text-lg font-semibold text-green-800 pt-2'>More Info</p> */}
             </div>
         </div>
-    );
+    );
 }
 
-export default TeamSummary;
+export default TeamSummary;

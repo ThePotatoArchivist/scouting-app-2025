@@ -1,26 +1,26 @@
-import { Dispatch, useState } from 'react';
-import { AnalysisEntry, TeamSummaryData } from '../data';
-import TextInput from '../../../components/TextInput';
-import SelectSearch from 'react-select-search';
-import { MaterialSymbol } from 'react-material-symbols';
+import { Dispatch, useState } from 'react';
+import { AnalysisEntry, TeamSummaryData } from '../data';
+import TextInput from '../../../components/TextInput';
+import SelectSearch from 'react-select-search';
+import { MaterialSymbol } from 'react-material-symbols';
 
 function TeamSummaryDialog({
     onSubmit,
     onClose,
     data,
 }: {
-    onSubmit: Dispatch<TeamSummaryData>;
-    onClose?: () => void;
-    data: AnalysisEntry[] | undefined;
+    onSubmit: Dispatch<TeamSummaryData>;
+    onClose?: () => void;
+    data: AnalysisEntry[] | undefined;
 }) {
     // Get all team numbers from the json data
-    const teamNumbers = data?.map(e => e.teamNumber.toString()) ?? [];
+    const teamNumbers = data?.map(e => e.teamNumber.toString()) ?? [];
 
     // Sort the team numbers
-    teamNumbers.sort((a, b) => Number(a) - Number(b));
+    teamNumbers.sort((a, b) => Number(a) - Number(b));
 
-    const [title, setTitle] = useState('');
-    const [teamNumber, setTeamNumber] = useState<string>();
+    const [title, setTitle] = useState('');
+    const [teamNumber, setTeamNumber] = useState<string>();
 
     const handleSubmit = () => {
         if (teamNumber) {
@@ -30,10 +30,10 @@ function TeamSummaryDialog({
                     : '',
                 teamNumber: Number(teamNumber),
                 type: 'TeamSummary',
-            });
-            onClose?.();
+            });
+            onClose?.();
         }
-    };
+    };
 
     return (
         <>
@@ -72,7 +72,7 @@ function TeamSummaryDialog({
             </p>
             <button onClick={handleSubmit}>Create</button>
         </>
-    );
+    );
 }
 
-export default TeamSummaryDialog;
+export default TeamSummaryDialog;

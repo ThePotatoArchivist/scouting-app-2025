@@ -1,27 +1,27 @@
-import { ChangeEventHandler } from 'react';
-import { MaterialSymbol } from 'react-material-symbols';
+import { ChangeEventHandler } from 'react';
+import { MaterialSymbol } from 'react-material-symbols';
 
 function ImageUploader({
     value,
     onChange,
 }: {
-    value: string;
-    onChange: (value: string) => void;
+    value: string;
+    onChange: (value: string) => void;
 }) {
     const handleChange: ChangeEventHandler<HTMLInputElement> = event => {
-        const reader = new FileReader();
+        const reader = new FileReader();
 
         if (!event.target.files) {
-            return;
+            return;
         }
 
-        reader.readAsDataURL(event.target.files[0]);
+        reader.readAsDataURL(event.target.files[0]);
 
         reader.onload = () => {
             //Make sure this is string type
-            onChange(reader.result as string);
-        };
-    };
+            onChange(reader.result as string);
+        };
+    };
 
     return (
         <label className='flex justify-center '>
@@ -46,6 +46,6 @@ function ImageUploader({
                 )}
             </div>
         </label>
-    );
+    );
 }
-export default ImageUploader;
+export default ImageUploader;

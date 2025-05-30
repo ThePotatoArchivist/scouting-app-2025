@@ -5,22 +5,22 @@ import {
     MatchIndividualDataAggregations,
     SuperDataAggregations,
     SuperFoulAggregationsData,
-} from 'requests';
-import LinkButton from '../../components/LinkButton';
-import { useFetchJson } from '../../lib/useFetch';
-import { useEffect, useState } from 'react';
-import { MaterialSymbol } from 'react-material-symbols';
-import TeamDropdown from '../../components/TeamDropdown';
-import scheduleJson from '../../assets/matchSchedule.json';
-import { RobotPosition } from 'requests';
+} from 'requests';
+import LinkButton from '../../components/LinkButton';
+import { useFetchJson } from '../../lib/useFetch';
+import { useEffect, useState } from 'react';
+import { MaterialSymbol } from 'react-material-symbols';
+import TeamDropdown from '../../components/TeamDropdown';
+import scheduleJson from '../../assets/matchSchedule.json';
+import { RobotPosition } from 'requests';
 
-// import BarChartWIP, { MatchAndSuper } from './components/BarchartWIP';
-import CheckBoxRecon from './components/CheckDisplayRecon';
-import Checkbox from '../../components/Checkbox';
-import CoralReconButton from './components/ReconDisplay';
-import BarChartWIP, { MatchAndSuper } from './components/BarchartWIP';
+// import BarChartWIP, { MatchAndSuper } from './components/BarchartWIP';
+import CheckBoxRecon from './components/CheckDisplayRecon';
+import Checkbox from '../../components/Checkbox';
+import CoralReconButton from './components/ReconDisplay';
+import BarChartWIP, { MatchAndSuper } from './components/BarchartWIP';
 
-const schedule = scheduleJson as MatchSchedule;
+const schedule = scheduleJson as MatchSchedule;
 
 const matchStats: Exclude<keyof MatchDataAggregations, '_id'>[] = [
     // 'averageTeleCoral',
@@ -50,40 +50,40 @@ const matchStats: Exclude<keyof MatchDataAggregations, '_id'>[] = [
     'start1',
     'start2',
     'start3',
-];
+];
 const superStats: Exclude<keyof SuperDataAggregations, '_id'>[] = [
     'avgFouls',
     'maxFouls',
     'humanAccuracy'
-];
+];
 
 function ReconApp() {
     const [retrieveMatch, reloadRetrieveMatch] =
-        useFetchJson<MatchDataAggregations[]>('/data/retrieve');
+        useFetchJson<MatchDataAggregations[]>('/data/retrieve');
     const [retrieveSuper, reloadRetrieveSuper] = useFetchJson<
         SuperDataAggregations[]
-    >('/data/retrieve/super');
+    >('/data/retrieve/super');
     const [retrieveIndividualMatch, reloadRetrieveIndividualMatch] =
-        useFetchJson<MatchIndividualDataAggregations[]>('/data/retrieve/individualMatch');
+        useFetchJson<MatchIndividualDataAggregations[]>('/data/retrieve/individualMatch');
     const [retrieveIndividualSuper, reloadRetrieveIndividualSuper] = useFetchJson<
         SuperFoulAggregationsData[]
-    >('/data/retrieve/individualSuper');
-    const [matchNumber, setMatchNumber] = useState<number>();
-    const [teams, setTeams] = useState<(number | undefined)[]>([undefined]);
-    const [teamNumber, setTeamNumber] = useState(Number);
-    const [handleCheck ] = useState(false);
-    const [robotPosition, setRobotPosition] = useState<RobotPosition>();
-    const [currentMatchDisplayed, setcurrentMatchDisplayed] = useState<number>(1);
+    >('/data/retrieve/individualSuper');
+    const [matchNumber, setMatchNumber] = useState<number>();
+    const [teams, setTeams] = useState<(number | undefined)[]>([undefined]);
+    const [teamNumber, setTeamNumber] = useState(Number);
+    const [handleCheck ] = useState(false);
+    const [robotPosition, setRobotPosition] = useState<RobotPosition>();
+    const [currentMatchDisplayed, setcurrentMatchDisplayed] = useState<number>(1);
 
     const blueAlliance = (robotPosition: string) => {
-        return ['blue_1', 'blue_2', 'blue_3'].some(position => robotPosition.includes(position));
-    };
+        return ['blue_1', 'blue_2', 'blue_3'].some(position => robotPosition.includes(position));
+    };
 
    
     useEffect(() => {
-        if (!matchNumber) return;
-        const match = schedule?.[matchNumber];
-        if (!match) return;
+        if (!matchNumber) return;
+        const match = schedule?.[matchNumber];
+        if (!match) return;
         setTeams([
             match.red_1,
             match.red_2,
@@ -91,11 +91,11 @@ function ReconApp() {
             match.blue_1,
             match.blue_2,
             match.blue_3,
-        ]);
-    }, [matchNumber]);
+        ]);
+    }, [matchNumber]);
 
     const matchIncrease = () => {
-        const maxAutos = (retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber).length) ?? 1;
+        const maxAutos = (retrieveIndividualMatch && retrieveIndividualMatch.filter((matchDataEntry) => matchDataEntry._id.teamNumber == teamNumber).length) ?? 1;
 
         setcurrentMatchDisplayed(prevMatchDisplayed => (
         currentMatchDisplayed < maxAutos? prevMatchDisplayed + 1 : prevMatchDisplayed
@@ -114,13 +114,13 @@ const matchDecrease = () => {
 
 
 const setTeamNumberAndResetAutos = (value: React.SetStateAction<number>) => {
-    setTeamNumber(value);
-    setcurrentMatchDisplayed(1);
+    setTeamNumber(value);
+    setcurrentMatchDisplayed(1);
 }
 
-   const bingus: MatchAndSuper[] = [];
-   const blingos : MatchIndividualDataAggregations[] = [];
-   const bongus : SuperFoulAggregationsData[] = [];
+   const bingus: MatchAndSuper[] = [];
+   const blingos : MatchIndividualDataAggregations[] = [];
+   const bongus : SuperFoulAggregationsData[] = [];
 
 
 retrieveIndividualSuper?.forEach(foulData => {
@@ -129,7 +129,7 @@ retrieveIndividualSuper?.forEach(foulData => {
         match._id.teamNumber === teamNumber && 
         foulData._id.teamNumber === teamNumber && 
         match._id.matchNumber === foulData._id.matchNumber
-    );
+    );
     //I SEE THE TRUTH! I SEE THE LIGHT AT THE END OF THE TUNNEL!
   
     if (plsData) {
@@ -148,16 +148,16 @@ retrieveIndividualSuper?.forEach(foulData => {
           totalL2: Array.isArray(plsData.totalL2) ? plsData.totalL2[0] : plsData.totalL2,
           totalL3: Array.isArray(plsData.totalL3) ? plsData.totalL3[0] : plsData.totalL3,
           totalL4: Array.isArray(plsData.totalL4) ? plsData.totalL4[0] : plsData.totalL4,
-        };
+        };
   
-      bingus.push(combinedArrayThings);
+      bingus.push(combinedArrayThings);
     }
-  });
+  });
 
   console.log(bingus)
 
   //delete later
-  console.log('Team Number:', teamNumber);
+  console.log('Team Number:', teamNumber);
 
     return (
         <div className='h-auto min-h-fit border-4 border-[#171c26] bg-[#171c26]'>
@@ -189,10 +189,10 @@ retrieveIndividualSuper?.forEach(foulData => {
                 <button
                     className='mb-10 mt-5 rounded-lg border-2 border-slate-900 text-lg'
                     onClick={() => {
-                        reloadRetrieveMatch();
-                        reloadRetrieveSuper();
-                        reloadRetrieveIndividualMatch();
-                        reloadRetrieveIndividualSuper();
+                        reloadRetrieveMatch();
+                        reloadRetrieveSuper();
+                        reloadRetrieveIndividualMatch();
+                        reloadRetrieveIndividualSuper();
                     }}>
                     Reload Data
                 </button>
@@ -393,7 +393,7 @@ retrieveIndividualSuper?.forEach(foulData => {
                 </div>
             </main>
         </div>
-    );
+    );
 }
 
-export default ReconApp;
+export default ReconApp;

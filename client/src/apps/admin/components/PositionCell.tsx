@@ -1,11 +1,11 @@
-import { MaterialSymbol } from 'react-material-symbols';
+import { MaterialSymbol } from 'react-material-symbols';
 
 function PositionCell({
     scouter,
 }: {
-    scouter: { schedule: number; real: number[] } | boolean;
+    scouter: { schedule: number; real: number[] } | boolean;
 }) {
-    const isBoolean = typeof scouter === 'boolean';
+    const isBoolean = typeof scouter === 'boolean';
     return (
         <td
             className={`w-auto border-2 border-slate-700 text-center ${(isBoolean ? scouter : scouter.real.length > 0) ? 'bg-amber-400' : ''}`}>
@@ -19,6 +19,6 @@ function PositionCell({
                 <MaterialSymbol icon='warning' />
             )}
         </td>
-    );
+    );
 }
-export default PositionCell;
+export default PositionCell;

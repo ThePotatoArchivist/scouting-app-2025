@@ -1,21 +1,21 @@
-import { Dispatch } from 'react';
-import { AnalysisEntry, StatTableData, WindowData } from '../data';
-import { TeamData } from 'requests';
-import Dialog from '../../../components/Dialog';
-import StatColumnDialog from './StatColumnDialog';
-import { MaterialSymbol } from 'react-material-symbols';
-import camelToSpaced from '../../../lib/camelCaseConvert';
-import RobotPhotoDialog from './RobotPhotoDialog';
-import TeamItem from './TeamItem';
+import { Dispatch } from 'react';
+import { AnalysisEntry, StatTableData, WindowData } from '../data';
+import { TeamData } from 'requests';
+import Dialog from '../../../components/Dialog';
+import StatColumnDialog from './StatColumnDialog';
+import { MaterialSymbol } from 'react-material-symbols';
+import camelToSpaced from '../../../lib/camelCaseConvert';
+import RobotPhotoDialog from './RobotPhotoDialog';
+import TeamItem from './TeamItem';
 
 const isNumber = (num: unknown): num is number => {
-    return typeof num === 'number';
-};
+    return typeof num === 'number';
+};
 
 const sumReduction: [(prev: number, current: number) => number, 0] = [
     (prev, current) => prev + current,
     0,
-];
+];
 
 function StatTable({
     table,
@@ -25,14 +25,14 @@ function StatTable({
     onSubmit,
     onSetFinal,
 }: {
-    table: StatTableData;
-    data: AnalysisEntry[];
-    setTable: Dispatch<StatTableData>;
-    teamInfoJson: TeamData;
-    onSubmit: Dispatch<WindowData>;
-    onSetFinal: Dispatch<number[]>;
+    table: StatTableData;
+    data: AnalysisEntry[];
+    setTable: Dispatch<StatTableData>;
+    teamInfoJson: TeamData;
+    onSubmit: Dispatch<WindowData>;
+    onSetFinal: Dispatch<number[]>;
 }) {
-    let sortedData: AnalysisEntry[];
+    let sortedData: AnalysisEntry[];
 
     if (table.weighted) {
         sortedData = [...data].sort((a, b) => {
@@ -40,15 +40,15 @@ function StatTable({
                 .map(column => a[column])
                 .filter(isNumber)
                 .map((e, i) => e * table.weights[i])
-                .reduce(...sumReduction);
+                .reduce(...sumReduction);
             const bSum = table.columns
                 .map(column => b[column])
                 .filter(isNumber)
                 .map((e, i) => e * table.weights[i])
-                .reduce(...sumReduction);
+                .reduce(...sumReduction);
 
-            return (aSum - bSum) * (table.ascending ? 1 : -1);
-        });
+            return (aSum - bSum) * (table.ascending ? 1 : -1);
+        });
     } else {
         sortedData = table.sortColumn
             ? [...data].sort(
@@ -57,16 +57,16 @@ function StatTable({
                           (b[table.sortColumn!] as number)) *
                       (table.ascending ? 1 : -1)
               )
-            : data;
+            : data;
     }
 
     // Handle when a StatColumn component is clicked
     function handleClickColumn(sortColumn: string) {
         if (sortColumn === table.sortColumn) {
-            setTable({ ...table, ascending: !table.ascending });
-            return;
+            setTable({ ...table, ascending: !table.ascending });
+            return;
         }
-        setTable({ ...table, sortColumn });
+        setTable({ ...table, sortColumn });
     }
 
     // Handle when the new StatColumn is submitted
@@ -75,8 +75,8 @@ function StatTable({
             ...table,
             columns: [...table.columns, column],
             weights: [...table.weights, 0],
-        };
-        setTable(data);
+        };
+        setTable(data);
     }
 
     // Handle when a StatColumn component is deleted
@@ -85,7 +85,7 @@ function StatTable({
             ...table,
             columns: table.columns.filter((_, i) => i !== index),
             weights: table.weights.filter((_, i) => i !== index),
-        });
+        });
     }
 
     // Handle when the weights of the stat column are changed
@@ -93,12 +93,12 @@ function StatTable({
         index: number,
         event: React.ChangeEvent<HTMLInputElement>
     ) {
-        const value = parseFloat(event.target.value);
+        const value = parseFloat(event.target.value);
 
         setTable({
             ...table,
             weights: table.weights.map((e, i) => (index === i ? value : e)),
-        });
+        });
     }
 
     // Handle when a stat on the stat table is clicked
@@ -107,7 +107,7 @@ function StatTable({
             title: camelToSpaced(column),
             type: 'StatSummary',
             column: column,
-        });
+        });
     }
 
     return (
@@ -238,7 +238,7 @@ function StatTable({
                 </tbody>
             </table>
         </div>
-    );
+    );
 }
 
-export default StatTable;
+export default StatTable;

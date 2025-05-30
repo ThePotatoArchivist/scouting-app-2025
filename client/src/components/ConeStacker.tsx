@@ -1,6 +1,6 @@
-import coneIcon from '../assets/cone.svg';
-import Dialog from './Dialog';
-import { MaterialSymbol } from 'react-material-symbols';
+import coneIcon from '../assets/cone.svg';
+import Dialog from './Dialog';
+import { MaterialSymbol } from 'react-material-symbols';
 
 function ConeStacker() {
     return (
@@ -25,7 +25,7 @@ function ConeStacker() {
                 </>
             )}
         </Dialog>
-    );
+    );
 }
 
-export default ConeStacker;
+export default ConeStacker;
